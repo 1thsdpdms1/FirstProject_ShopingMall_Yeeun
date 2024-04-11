@@ -1,0 +1,40 @@
+server:
+  port: 8095
+
+#Spring ??
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #?????
+    url: jdbc:mysql://localhost:3306/springsecuritydb #DB URL
+    username: root #?? (root? ??? ??)
+    password: 1234 #????
+
+  #Thymeleaf ??
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+
+  #jpa ??
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create #drop, create, update
+    properties:
+      hibernate:
+        show_sql: true #SQL ???? ???
+        format_sql: true #SQL ??
+
+  #spring:   #oAuth2 ?? (google, kakao, naver)
+  profiles:
+    include: oauth2    #application-oauth2.yml
+
+  main:
+    allow-bean-definition-overriding: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+filePath: file:///c:/saveFile/
