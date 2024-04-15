@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver #?????
-    url: jdbc:mysql://localhost:3306/springsecuritydb #DB URL
+    url: jdbc:mysql://localhost:3306/e1i4project #DB URL
     username: root #?? (root? ??? ??)
     password: 1234 #????
 
@@ -19,7 +19,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create #drop, create, update
+      ddl-auto: update #drop, create, update
     properties:
       hibernate:
         show_sql: true #SQL ???? ???
