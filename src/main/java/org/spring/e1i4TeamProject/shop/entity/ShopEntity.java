@@ -13,21 +13,21 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "item")
-public class ItemEntity extends BaseTimeEntity {
+@Table(name = "shop")
+public class ShopEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id")
+    @Column(name = "shop_id")
     private Long id;
 
     @Column(nullable = false)
-    private String itemTitle;
+    private String shopTitle;
 
     @Column(nullable = false)
-    private String itemContent;
+    private String shopContent;
 
     @Column(nullable = false)
-    private int itemPrice;
+    private int shopPrice;
 
     @Column(nullable = false)
     private int count;
@@ -36,29 +36,29 @@ public class ItemEntity extends BaseTimeEntity {
     private int isSoldOut;
 
     @Column(columnDefinition = "integer default 0", nullable = false)
-    private int itemHit;
+    private int shopHit;
 
     @Column(nullable = false)
-    private int itemAttachFile;
+    private int shopAttachFile;
 
     @Column(nullable = false)
-    private String itemSeller;
+    private String shopSeller;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "itemEntity"
+    @OneToMany(mappedBy = "shopEntity"
         ,fetch = FetchType.LAZY
         ,cascade = CascadeType.REMOVE)
-    private List<CartItemListEntity> cartItemListEntityList;
+    private List<CartShopListEntity> cartShopListEntityList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "itemEntity"
+    @OneToMany(mappedBy = "shopEntity"
         ,fetch = FetchType.LAZY
         ,cascade = CascadeType.REMOVE)
-    private List<ItemFileEntity> itemFileEntityList;
+    private List<ShopFileEntity> shopFileEntityList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "itemEntity"
+    @OneToMany(mappedBy = "shopEntity"
         ,fetch = FetchType.LAZY
         ,cascade = CascadeType.REMOVE)
-    private List<ItemReplyEntity> itemReplyEntityList;
+    private List<ShopReplyEntity> shopReplyEntityList;
 }

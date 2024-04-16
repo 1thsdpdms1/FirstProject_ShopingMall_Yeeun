@@ -2,7 +2,7 @@ package org.spring.e1i4TeamProject.shop.dto;
 
 import lombok.*;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
-import org.spring.e1i4TeamProject.shop.entity.CartItemListEntity;
+import org.spring.e1i4TeamProject.shop.entity.CartShopListEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +17,7 @@ public class CartDto {
 
     private MemberEntity memberEntity;
 
-    private List<CartItemListEntity> cartItemListEntityList;
+    private List<CartShopListEntity> cartShopListEntityList;
 
     private LocalDateTime createTime;
 

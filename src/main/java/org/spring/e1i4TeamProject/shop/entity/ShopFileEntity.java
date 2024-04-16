@@ -1,7 +1,6 @@
 package org.spring.e1i4TeamProject.shop.entity;
 
 import lombok.*;
-import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 
 import javax.persistence.*;
@@ -12,20 +11,20 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "item_file")
-public class ItemFileEntity extends BaseTimeEntity {
+@Table(name = "shop_file")
+public class ShopFileEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_file_id")
+    @Column(name = "shop_file_id")
     private Long id;
 
     @Column(nullable = false)
-    private String itemNewFileName;
+    private String shopNewFileName;
 
     @Column(nullable = false)
-    private String itemOldFileName;
+    private String shopOldFileName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private ItemEntity itemEntity;
+    @JoinColumn(name = "shop_id")
+    private ShopEntity shopEntity;
 }

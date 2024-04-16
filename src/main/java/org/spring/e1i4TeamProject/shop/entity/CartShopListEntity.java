@@ -5,7 +5,6 @@ import lombok.*;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,11 +12,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "cart_item_list")
-public class CartItemListEntity extends BaseTimeEntity {
+@Table(name = "cart_shop_list")
+public class CartShopListEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_list_id")
+    @Column(name = "cart_shop_list_id")
     private Long id;
 
     @JsonIgnore
@@ -27,8 +26,8 @@ public class CartItemListEntity extends BaseTimeEntity {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private ItemEntity itemEntity;
+    @JoinColumn(name = "shop_id")
+    private ShopEntity shopEntity;
 
     private int count;
 }
