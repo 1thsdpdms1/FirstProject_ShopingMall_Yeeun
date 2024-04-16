@@ -30,5 +30,5 @@ public class CartEntity extends BaseTimeEntity {
     @OneToMany(mappedBy = "cartEntity",
         fetch = FetchType.LAZY,
         cascade = CascadeType.REMOVE)
-    private List<CartItemListEntity> cartItemListEntityList;
+    private List<CartShopListEntity> cartShopListEntityList;
 }

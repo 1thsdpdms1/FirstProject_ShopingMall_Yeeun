@@ -1,7 +1,7 @@
 package org.spring.e1i4TeamProject.shop.dto;
 
 import lombok.*;
-import org.spring.e1i4TeamProject.shop.entity.ItemEntity;
+import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
 
 import java.time.LocalDateTime;
 
@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-public class ItemFileDto {
+public class ShopReplyDto {
     private Long id;
 
-    private String itemNewFileName;
+    private String shopReplyWriter;
 
-    private String itemOldFileName;
+    private String shopReplyContent;
 
-    private ItemEntity itemEntity;
+    private ShopEntity shopEntity;
 
     private LocalDateTime createTime;
 

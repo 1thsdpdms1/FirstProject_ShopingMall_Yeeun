@@ -1,25 +1,23 @@
 package org.spring.e1i4TeamProject.shop.dto;
 
 import lombok.*;
-import org.spring.e1i4TeamProject.shop.entity.CartEntity;
-import org.spring.e1i4TeamProject.shop.entity.ItemEntity;
+import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
 
 import java.time.LocalDateTime;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class CartItemListDto {
+public class ShopFileDto {
     private Long id;
 
-    private CartEntity cartEntity;
+    private String shopNewFileName;
 
-    private ItemEntity itemEntity;
+    private String shopOldFileName;
 
-    private int count;
+    private ShopEntity shopEntity;
 
     private LocalDateTime createTime;
 

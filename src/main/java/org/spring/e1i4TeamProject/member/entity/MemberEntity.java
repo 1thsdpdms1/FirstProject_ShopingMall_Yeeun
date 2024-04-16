@@ -34,7 +34,7 @@ public class MemberEntity extends BaseTimeEntity {
     @Column(nullable = true) // 기본이 널 허용
     private String address;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
