@@ -2,6 +2,7 @@ package org.spring.e1i4TeamProject.board.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.spring.e1i4TeamProject.board.dto.BoardDto;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 
@@ -34,7 +35,7 @@ public class BoardEntity extends BaseTimeEntity {
     private int boardHit;
 
     @Column(nullable = false)
-    private int boardAttachFile;
+    private int boardAttachFile; //게시글 작성시 파일이 존재하면 1, 없으면 0
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,4 +53,36 @@ public class BoardEntity extends BaseTimeEntity {
         , fetch = FetchType.LAZY
         , cascade = CascadeType.REMOVE)
     private List<BoardReplyEntity> boardReplyEntityList;
+
+    //board write dto 데이터를 Entity 로 보낸다 - 파일 없다 -> 정상 실행
+    public static BoardEntity toInsertBoardEntity0(BoardDto boardDto) {
+
+        BoardEntity boardEntity=new BoardEntity();
+
+        boardEntity.setBoardTitle(boardDto.getBoardTitle()); //게시글 제목
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardWriter(boardDto.getBoardWriter());
+        boardEntity.setBoardAttachFile(0);
+        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
+        boardEntity.setBoardHit(0);
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
+        return boardEntity;
+    }
+
+    //board write dto 데이터를 Entity 로 보낸다 - 파일 있다
+    public static BoardEntity toInsertBoardEntity1(BoardDto boardDto) {
+
+        BoardEntity boardEntity=new BoardEntity();
+
+        boardEntity.setBoardTitle(boardDto.getBoardTitle()); //게시글 제목
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardWriter(boardDto.getBoardWriter());//게시글 작성자
+        boardEntity.setBoardAttachFile(1);
+        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
+        boardEntity.setBoardHit(0);
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
+        return boardEntity;
+    }
 }

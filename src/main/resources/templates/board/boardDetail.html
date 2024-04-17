@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>boardDetail</title>
+        <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
+</head>
+<body>
+
+<div th:replace="~{/fragments/common/header :: headerFragment }"></div>
+
+<div class="container">
+    <div class="boardDetail">
+        <div class="boardDetail-con">
+            <div class="boardDetail-form">
+                <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
+                <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
+                    <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+                    <ul>
+                        <li>
+                            상세보기
+                        </li>
+<!--                        <input th:text="${userId}">아이디</input> <br>-->
+                        <li>
+
+                            <label>category</label>
+                                <!--boardEntity에 category column 을 만들어서 데이터 저장하고 불러올 수 있나?-->
+<!--                            <input th:field="*{category}"></input>-->
+                        </li>
+
+                        <li>
+                            <label for="boardId">글번호</label>
+                            <input type="text" name="boardId" id="boardId" th:value="${board.id}" readonly>
+                        </li>
+
+                        <li>
+                            <label for="boardWriter">글쓴이</label>
+                            <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}" readonly>
+                        </li>
+
+                        <li>
+                            <label for="boardTitle">제목</label>
+                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}" readonly>
+                        </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
+                        <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
+
+
+                        <li>
+                            <label for="boardContent">내용 </label>
+                        </li>
+                        <li>
+                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}"></textarea>
+                        </li>
+                        <!--                        <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
+
+                        <li>
+                            <label for="boardFile">파일</label>
+                            <input type="file" name="boardFile" id="boardFile">
+                        </li>
+
+                        <li>
+                            <input type="reset" value="초기화">
+                            <input type="submit" value="작성">
+                        </li>
+
+
+                    </ul>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+</body>
+</html>

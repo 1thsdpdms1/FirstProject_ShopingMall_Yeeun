@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" th:href="@{/css/board/boardList.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/common/header :: headerFragment}"></div>
+
+<div class="container">
+    <div class="boardList">
+        <div class="boardList-con">
+            <h1>boardList</h1>
+            <table>
+                <thead>
+                <tr>
+                    <td colspan="10">
+                        <div class="search">
+                            <div class="search-con">
+                                <form th:action="@{/board/boardList}" method="get">
+                                    <select name="subject" id="subject">
+                                        <option value="freeBoard">자유게시판</option>
+                                        <option value="questionBoard">질문게시판</option>
+
+                                    </select>
+                                    <input type="text" name="search" id="search">
+                                    <input type="submit" value="검색">
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <th>글번호</th>
+                    <th>종류</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성날짜</th>
+                    <th>조회수</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+                <tr th:each="board: ${boardDtoList}">
+
+                    <td th:text="${board.id}"></td>
+
+                    <td th:text="${board.id}"></td>
+                    <!--<td th:text="${board.종류}"></td>-->
+
+<!--                    <td th:text="${board.boardTitle}"></td>-->
+<!--                     th:href="@{/board/boardDetail/{id}(id=${board.id})}"-->
+                    <td>
+                        <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
+
+<!--                            <label th:text="${board.boardTitle}"></label>-->
+                            <label th:text="${board.boardContent}"></label>
+                            <!--★★★★★★★★★★★★★★★boardContent는 불러와지는데 boardTitle은 안된다-->
+
+<!--                            <label>-->
+
+<!--                                <th:block th:if="${board.boardAttachFile==1}">-->
+<!--                                    <td>O</td>-->
+<!--                                </th:block>-->
+
+<!--                                <th:block th:unless="${board.boardAttachFile==1}">-->
+<!--                                    <td>X</td>-->
+<!--                                </th:block>-->
+<!--                            </label>-->
+                        </a>
+                    </td>
+                    <!--제목을 누르면 Detail로 이동-->
+
+                    <td th:text="${board.boardWriter}"></td>
+                    <!--회원이름으로 불러오기  1. 글작성할때 boardWriter를 memberName으로 불러와서 쓸지
+                                            2. 여기에서 바로 memberName 으로 받아올지-->
+
+                    <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd')}"></td>
+                    <!--                    <td th:text="${board.memberId}"></td>-->
+
+
+                    <td th:text="${board.boardHit}"></td>
+
+
+                    <!-- <th:block th:if="${board.attachFile==1}">
+                                         조건이 true일 때 실행
+                                        <td>O</td>
+                    </th:block>
+                    <td th:if="${board.attachFile==1}">O</td>
+
+
+                    <td th:unless="${board.attachFile==1}">X</td>
+                    <th:block th:unless="${board.attachFile==1}">
+                                     조건이 fasle 일 때 실행
+                                    <td>X</td>
+                    </th:block> -->
+
+
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/common/footer :: footerFragment}"></div>
+
+</body>
+</html>
