@@ -1,81 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div class="header" th:fragment="headerFragment">
-  <div class="header-con">    
-    <div class="top-header">
-      <div class="top-menu">
-        <div class="right-menu">
-          <ul>
-            <li><a th:href="@{/member/memberLogin}">로그인</a></li>
-            <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
-            <li><a href="#">장바구니</a></li>
-            <li><a href="#">고객센터</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="bottom-menu">
-        <h1 class="left">
-          <a href="#">오늘의 강좌</a>
-        </h1>
-        <h1 class="logo">
-          <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
-        </h1>
-      </div>
-    </div>
-    <div class="bottom-header">
-      <div class="pre-gnb on" >
-        <ul>
-          <li>
-            <a href="#">Shop</a>            
-          </li>
-          <li>
-            <a href="#">board</a>
-          </li>
-          <li>
-            <a href="#">admin</a>
-          </li>
-          <li>
-            <a href="#">나의강의실</a>
-          </li>
-        </ul>
-      </div>
-      <div class="gnb off" >
-        <ul>
-          <li>
-            <a href="#">Shop</a>
-            <ul class="sub">
-              <li><a href="#">미술</a></li>
-              <li><a href="#">체육</a></li>
-              <li><a href="#">음악</a></li>
-              <li><a href="#">요식</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">board</a>
-            <ul class="sub">
-              <li><a href="#">커뮤니티</a></li>
-              <li><a href="#">공지사항</a></li>
-              <li><a href="#">수강후기</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">admin</a>
-            <ul class="sub">
-              <li><a href="#">memberList</a></li>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-            </ul>
-          </li>
-          <li>
-            <a href="#">나의강의실</a>
-            <ul class="sub">
-              <li><a href="#">시간표</a></li>
-              <li><a href="#">개인정보</a></li>
-              <li><a href="#">1:1문의내역</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+<div class="header" th:fragment="headerFragment">
+    <div class="header-con">
+        <div class="top-header">
+            <div class="top-menu">
+                <div class="right-menu">
+                    <ul>
+                        <th:block sec:authorize="isAnonymous()">
+                        <li><a th:href="@{/member/memberLogin}">로그인</a></li>
+                        <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
+                        </th:block>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">고객센터</a></li>
+
+                        <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER','MEMBER')">
+                            <li><a th:href="@{/member/user}">MEMBERSHIP</a></li>
+                        </th:block>
+
+                        <th:block sec:authorize="isAuthenticated()">
+                            <li><a th:href="@{/board/write}">WRITE</a></li>
+                            <li>
+                                <a th:href="@{member/detail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                   th:text="${#authentication.principal.username}"></a>
+                            </li>
+                            <li><a th:href="@{/member/logout}">LOGOUT</a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-menu">
+                <h1 class="left">
+                    <a href="#">오늘의 강좌</a>
+                </h1>
+                <h1 class="logo">
+                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
+                </h1>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="pre-gnb on">
+                <ul>
+                    <li>
+                        <a href="#">Shop</a>
+                    </li>
+                    <li>
+                        <a href="#">board</a>
+                    </li>
+                    <li>
+                        <a href="#">admin</a>
+                    </li>
+                    <li>
+                        <a href="#">나의강의실</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="gnb off">
+                <ul>
+                    <li>
+                        <a href="#">Shop</a>
+                        <ul class="sub">
+                            <li><a href="#">미술</a></li>
+                            <li><a href="#">체육</a></li>
+                            <li><a href="#">음악</a></li>
+                            <li><a href="#">요식</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">board</a>
+                        <ul class="sub">
+                            <li><a href="#">커뮤니티</a></li>
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">수강후기</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">admin</a>
+                        <ul class="sub">
+                            <li><a href="#">memberList</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">나의강의실</a>
+                        <ul class="sub">
+                            <li><a href="#">시간표</a></li>
+                            <li><a href="#">개인정보</a></li>
+                            <li><a href="#">1:1문의내역</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 </html>

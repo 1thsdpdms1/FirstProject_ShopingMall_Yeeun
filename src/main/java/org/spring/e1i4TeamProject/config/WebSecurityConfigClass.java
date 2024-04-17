@@ -28,7 +28,7 @@ public class WebSecurityConfigClass {
 
         // 1. 웹페이지 설정 (Client 요청 URL 처리, 권한)
         http.authorizeHttpRequests()
-            .antMatchers("/", "/member/join","/member/memberList", "/member/login", "/member/").permitAll()
+            .antMatchers("/", "/member/memberJoin","/member/memberList", "/member/memberLogin", "/member/").permitAll()
             .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
             .antMatchers("/member/logout","/board/write").authenticated()
             .antMatchers("/admin/**").hasRole("ADMIN")
@@ -38,15 +38,15 @@ public class WebSecurityConfigClass {
         // 2. 로그인
         http.formLogin()
             // 사용자가 직접 설정한 로그인 페이지
-            .loginPage("/member/login")
+            .loginPage("/member/memberLogin")
             // *** username : 실제로는 userEmail
             .usernameParameter("userEmail")
             // *** password : 실제로는 userPw
             .passwordParameter("userPw")
-            // 로그인 폼 post <form th:action="@{/member/login}" method="post">
-            .loginProcessingUrl("/member/login")
+            // 로그인 폼 post <form th:action="@{/member/memberLogin}" method="post">
+            .loginProcessingUrl("/member/memberLogin")
             // 로그인 성공시
-//            .defaultSuccessUrl("/member")
+//            .defaultSuccessUrl("/")
 //            .successForwardUrl("/") // post방식 컨트롤러에 만들어야 한다.
             .successHandler(customAuthenticationSuccessHandler())
             // 로그인 실패시
@@ -54,14 +54,14 @@ public class WebSecurityConfigClass {
             .failureHandler(authenticationFailureHandler())
             .and()
             .oauth2Login()
-            .loginPage("/member/login")
+            .loginPage("/member/memberLogin")
             .userInfoEndpoint() // google, naver, kakao
             .userService(myOAuth2UserService());
 
         // 3. 로그아웃
         http.logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-            .logoutSuccessUrl("/member");
+            .logoutSuccessUrl("/");
         return http.build();
     }
 

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <script th:src="@{/js/header.js}" defer></script>
     <title>회원 가입</title>
     <link rel="stylesheet" th:href="@{/css/member/memberJoin.css}">
 </head>
@@ -36,7 +37,7 @@
                         <input type="text" id="address" th:field="*{address}" placeholder="주소 입력"> <br>
                     </li>
                     <li>
-                        <label for="phoneNumber">주소</label>
+                        <label for="phoneNumber">전화번호</label>
                         <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="전화번호 입력"> <br>
                     </li>
 

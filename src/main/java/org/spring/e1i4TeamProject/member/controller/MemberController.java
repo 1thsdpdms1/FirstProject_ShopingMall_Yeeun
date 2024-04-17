@@ -41,7 +41,7 @@ public class MemberController {
     }
 
     @GetMapping("/memberLogin")
-    public String login(@RequestParam(value = "error", required = false) String error,
+    public String memberLogin(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception,
                         MemberDto memberDto, Model model) {
 
