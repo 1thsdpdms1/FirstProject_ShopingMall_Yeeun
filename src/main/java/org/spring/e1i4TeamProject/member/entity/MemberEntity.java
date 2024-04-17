@@ -6,7 +6,11 @@ import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.role.Role;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
+
 
 import javax.persistence.*;
 import java.util.List;
@@ -49,6 +53,12 @@ public class MemberEntity extends BaseTimeEntity {
             , cascade = CascadeType.REMOVE)
     private List<BoardEntity> boardEntityList;
 
+    @JsonIgnore
+    @OneToMany
+        (mappedBy = "memberEntity"
+            ,fetch = FetchType.LAZY
+            ,cascade = CascadeType.REMOVE)
+    private List<ShopEntity> shopEntityList;
 
     public static MemberEntity toMemberJoinEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
 
@@ -64,4 +74,6 @@ public class MemberEntity extends BaseTimeEntity {
 
         return memberEntity;
     }
+
+
 }

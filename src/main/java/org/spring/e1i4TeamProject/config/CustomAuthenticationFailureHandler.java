@@ -45,7 +45,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
 
         // /member/login페이지로 error, exception 보냄
-        setDefaultFailureUrl("/member/login?error=true&exception=" + errorMessage);
+        setDefaultFailureUrl("/member/memberLogin?error=true&exception=" + errorMessage);
 
         super.onAuthenticationFailure(request, response, exception);
     }

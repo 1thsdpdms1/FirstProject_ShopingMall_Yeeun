@@ -28,7 +28,7 @@ public class WebSecurityConfigClass {
 
         // 1. 웹페이지 설정 (Client 요청 URL 처리, 권한)
         http.authorizeHttpRequests()
-            .antMatchers("/", "/member/join","/member/memberList", "/member/login", "/member/").permitAll()
+            .antMatchers("/", "/member/memberJoin","/member/memberList", "/member/memberLogin", "/member/").permitAll()
             .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
             .antMatchers("/member/logout","/board/write").authenticated()
             .antMatchers("/admin/**").hasRole("ADMIN")
@@ -44,7 +44,7 @@ public class WebSecurityConfigClass {
             // *** password : 실제로는 userPw
             .passwordParameter("userPw")
             // 로그인 폼 post <form th:action="@{/member/login}" method="post">
-            .loginProcessingUrl("/member/login")
+            .loginProcessingUrl("/member/memberLogin")
             // 로그인 성공시
 //            .defaultSuccessUrl("/member")
 //            .successForwardUrl("/") // post방식 컨트롤러에 만들어야 한다.
@@ -54,7 +54,7 @@ public class WebSecurityConfigClass {
             .failureHandler(authenticationFailureHandler())
             .and()
             .oauth2Login()
-            .loginPage("/member/login")
+            .loginPage("/member/memberLogin")
             .userInfoEndpoint() // google, naver, kakao
             .userService(myOAuth2UserService());
 

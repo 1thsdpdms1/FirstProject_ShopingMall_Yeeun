@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/common/shop/shopWrite.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="write">
+    <div class="write-con">
+      <div class="write-form">
+        <form th:action="@{/shop/shopWrite}" method="post" enctype="multipart/form-data"
+              th:object="${shopDto}">
+          <ul>
+            <li>
+              shop Write
+            </li>
+            <li>
+              <label for="memberId">MEMBERID</label>
+              <input type="text" name="memberId"
+                     id="memberId" th:value="${memberId}" readonly>
+            </li>
+            <li>
+              <label for="shopTitle">TITLE</label>
+              <input type="text" id="shopTitle" th:field="*{shopTitle}">
+            </li>
+            <p th:if="${#fields.hasErrors('shopTitle')}" th:errors="*{shopTitle}" class="error"></p>
+            <li>
+              <label for="shopContent">CONTENT</label>
+            </li>
+            <li>
+              <textarea th:field="*{shopContent}" id="shopContent" cols="30" rows="10"></textarea>
+            </li>
+            <p th:if="${#fields.hasErrors('shopContent')}" th:errors="*{shopContent}" class="error"></p>
+            <li>
+              <label for="ShopPrice">ShopPrice</label>
+              <input type="text" id="ShopPrice" th:field="*{ShopPrice}">
+            </li>
+            <p th:if="${#fields.hasErrors('ShopPrice')}" th:errors="*{ShopPrice}" class="error"></p>
+            <li>
+              <label for="Count">Count</label>
+              <input type="text" id="Count" th:field="*{Count}">
+            </li>
+            <p th:if="${#fields.hasErrors('Count')}" th:errors="*{Count}" class="error"></p>
+            <li>
+              <label for="isSoldOut">isSoldOut</label>
+              <input type="text" id="isSoldOut" th:field="*{isSoldOut}">
+            </li>
+            <p th:if="${#fields.hasErrors('isSoldOut')}" th:errors="*{isSoldOut}" class="error"></p>
+
+            <li>
+              <label for="shopFile">파일</label>
+              <input type="file" name="shopFile" id="shopFile">
+            </li>
+            <li>
+              <input type="submit" value="shopWriteOk">
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

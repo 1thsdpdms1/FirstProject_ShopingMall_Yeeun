@@ -3,6 +3,8 @@ package org.spring.e1i4TeamProject.shop.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
+import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -61,4 +63,68 @@ public class ShopEntity extends BaseTimeEntity {
         ,fetch = FetchType.LAZY
         ,cascade = CascadeType.REMOVE)
     private List<ShopReplyEntity> shopReplyEntityList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private MemberEntity memberEntity;
+
+    public static ShopEntity toInsertShopEntity(ShopDto shopDto) {
+        ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setShopTitle(shopDto.getShopTitle());
+        shopEntity.setShopContent(shopDto.getShopContent());
+        shopEntity.setShopPrice(shopDto.getShopPrice());
+        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopHit(0);
+        shopEntity.setShopAttachFile(0);
+        shopEntity.setMemberEntity(shopDto.getMemberEntity());
+
+        return shopEntity;
+    }
+
+
+    public static ShopEntity toInsertFileShopEntity(ShopDto shopDto) {
+        ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setShopTitle(shopDto.getShopTitle());
+        shopEntity.setShopContent(shopDto.getShopContent());
+        shopEntity.setShopPrice(shopDto.getShopPrice());
+        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopHit(0);
+        shopEntity.setShopAttachFile(1);
+        shopEntity.setMemberEntity(shopDto.getMemberEntity());
+
+        return shopEntity;
+    }
+
+    public static ShopEntity toUpdateShopEntity(ShopDto shopDto) {
+        ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setShopTitle(shopDto.getShopTitle());
+        shopEntity.setShopContent(shopDto.getShopContent());
+        shopEntity.setShopPrice(shopDto.getShopPrice());
+        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopAttachFile(0);
+        shopEntity.setMemberEntity(shopDto.getMemberEntity());
+
+        return shopEntity;
+    }
+    public static ShopEntity toUpdateFileShopEntity(ShopDto shopDto) {
+        ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setShopTitle(shopDto.getShopTitle());
+        shopEntity.setShopContent(shopDto.getShopContent());
+        shopEntity.setShopPrice(shopDto.getShopPrice());
+        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopAttachFile(1);
+        shopEntity.setMemberEntity(shopDto.getMemberEntity());
+
+        return shopEntity;
+    }
+
+
+
+
+
+
 }
