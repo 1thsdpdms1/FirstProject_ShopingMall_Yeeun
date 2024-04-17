@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+    <link rel="stylesheet" th:href="@{/css/member/memberJoin.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="join">
+        <div class="joinLogin-con">
+            <h1 class="joinBtn"><a th:href="@{/member/memberJoin}">회원가입</a></h1>
+            <h1 class="loginBtn"><a th:href="@{/member/memberLogin}">로그인</a></h1>
+        </div>
+        <div class="join-con">
+            <form th:action="@{/member/memberJoin}" method="post" th:object="${memberDto}">
+                <ul>
+                    <li>
+                        <label for="userEmail">이메일</label>
+                        <input type="email" id="userEmail" th:field="*{userEmail}" placeholder="이메일 입력"> <br>
+                    </li>
+                    <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="error"></p>
+                    <li>
+                        <label for="userPw">비밀번호</label>
+                        <input type="password" id="userPw" th:field="*{userPw}" placeholder="비밀번호 입력"> <br>
+                    </li>
+                    <p th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" class="error"></p>
+                    <li>
+                        <label for="name">NAME</label>
+                        <input type="text" id="name" th:field="*{name}" placeholder="NAME"> <br>
+                    </li>
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
+                    <li>
+                        <label for="address">주소</label>
+                        <input type="text" id="address" th:field="*{address}" placeholder="주소 입력"> <br>
+                    </li>
+                    <li>
+                        <label for="phoneNumber">주소</label>
+                        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="전화번호 입력"> <br>
+                    </li>
+
+                    <li class="li2">
+                        <input type="reset" value="취소">
+                        <input type="submit" value="회원가입 실행">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

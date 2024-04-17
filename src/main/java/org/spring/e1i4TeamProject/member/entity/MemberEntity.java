@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
+import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.role.Role;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -43,7 +45,23 @@ public class MemberEntity extends BaseTimeEntity {
     @JsonIgnore
     @OneToMany
         (mappedBy = "memberEntity"
-            ,fetch = FetchType.LAZY
-            ,cascade = CascadeType.REMOVE)
+            , fetch = FetchType.LAZY
+            , cascade = CascadeType.REMOVE)
     private List<BoardEntity> boardEntityList;
+
+
+    public static MemberEntity toMemberJoinEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(passwordEncoder.encode(memberDto.getUserPw()));
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setRole(Role.MEMBER);
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+    }
 }

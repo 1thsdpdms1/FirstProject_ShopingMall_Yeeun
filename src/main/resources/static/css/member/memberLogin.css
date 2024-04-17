@@ -1,0 +1,157 @@
+@import url(../common/reset.css);
+@import url(../common/header.css);
+@import url(../common/footer.css);
+/*loginContainer*/
+
+.container {
+    width: 100%;
+    height: auto;
+}
+
+.login .login-con {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid #fdc926;
+    box-shadow: 5px 5px #666666;
+}
+
+.container .login {
+    width: 100%;
+    height: calc(100vh - 60px - 150px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.container .login .login-con {
+    width: 500px;
+    border: 1px solid #fdc926;
+    padding: 10px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px #666666;
+    gap: 10px;
+}
+
+/*.login .login-con h1.title {*/
+/*    background-color: #555555;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 10px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+.container .login .joinLogin-con {
+    font-size: 30px;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.container .login .joinLogin-con h1.joinBtn {
+    border-bottom: 1px solid #ccc;
+}
+
+.container .login .joinLogin-con h1.loginBtn {
+    border-bottom: 1px solid black;
+}
+
+
+.login .login-con form {
+    width: 100%;
+}
+
+.login .login-con h1.title {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.login .login-con ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.login .login-con ul li {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.login .login-con ul li label {
+    flex: 1;
+    background-color: #000000;
+    color: white;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login .login-con ul li input {
+    flex: 2;
+    background-color: white;
+    font-size: 12px;
+    padding: 5px;
+}
+
+/*.login .login-con ul > li a{*/
+/*    flex: 2;*/
+/*    border: 1px solid black;*/
+/*    text-align: center;*/
+/*    font-size: 12px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+.login .login-con ul > li.li2 {
+    border-top: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 0;
+    gap: 5px;
+    box-sizing: border-box;
+}
+
+.login .login-con ul > li input[type = reset] {
+    flex: 1;
+    gap: 5px;
+}
+
+.login .login-con ul > li input[type = submit] {
+    flex: 3;
+}
+
+.sns {
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
+.sns a img {
+    display: flex;
+    width: 100%;
+    height: 30px;
+}
+
+.login .login-con ul li.sns {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-top: 10px;
+}

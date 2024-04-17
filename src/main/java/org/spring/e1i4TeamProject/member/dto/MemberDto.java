@@ -5,6 +5,8 @@ import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 
 import org.spring.e1i4TeamProject.member.role.Role;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,10 +18,13 @@ import java.util.List;
 public class MemberDto {
     private Long id;
 
+    @Size(min = 3, max = 15)
     private String userEmail;
 
+    @NotBlank(message = "비밀번호를 입력하세요")
     private String userPw;
 
+    @NotBlank(message = "이름을 입력하세요")
     private String name;
 
     private String address;

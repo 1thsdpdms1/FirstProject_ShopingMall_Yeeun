@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>index</title>
-  <script th:src="@{/js/header.js}" defer></script>
-  <link rel="stylesheet" th:href="@{/css/index.css}">
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script th:src="@{/js/header.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
- <div class="container">
-  <div class="index">
-    <div class="index-con">
-      <div class="sections">
-        <div class="section sec1">
-          <div class="con">
-          </div>
-        </div>
-        <div class="section sec2">
-          <div class="con">
-            <div class="left-con">left</div>
-            <div class="center-con">center</div>
-            <div class="right-con">right</div>
-          </div>
-        </div>
-        <div class="section sec3">
-          <div class="con">
-            <div class="title">
-              <span class="left">LEFT</span>
-              <span class="right">RIGHT</span>
+<div class="container">
+    <div class="index">
+        <div class="index-con">
+            <div class="sections">
+                <div class="section sec1">
+                    <div class="con">
+                    </div>
+                </div>
+                <div class="section sec2">
+                    <div class="con">
+                        <div class="left-con">left</div>
+                        <div class="center-con">center</div>
+                        <div class="right-con">right</div>
+                    </div>
+                </div>
+                <div class="section sec3">
+                    <div class="con">
+                        <div class="title">
+                            <span class="left">LEFT</span>
+                            <span class="right">RIGHT</span>
+                        </div>
+                        <div class="bottom-con">
+                            <div class="left-con">
+                                <div class="con1">con1</div>
+                                <div class="con2">con2</div>
+                            </div>
+                            <div class="center-con">center</div>
+                            <div class="right-con">right</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pop-con">
+                    <a href="#">수강신청바로가기</a>
+                </div>
             </div>
-            <div class="bottom-con">
-              <div class="left-con">
-                <div class="con1">con1</div>
-                <div class="con2">con2</div>
-              </div>
-              <div class="center-con">center</div>
-              <div class="right-con">right</div>
-            </div>
-          </div>
         </div>
-        <div class="pop-con">
-          <a href="#">수강신청바로가기</a>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <div th:replace="~{/fragments/common/footer :: footerFragment}">
 </div>
