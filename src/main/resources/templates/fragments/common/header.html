@@ -3,6 +3,19 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div class="header" th:fragment="headerFragment">
+<<<<<<< HEAD
+    <div class="header-con">
+        <div class="top-header">
+            <div class="top-menu">
+                <div class="right-menu">
+                    <ul>
+                        <th:block sec:authorize="isAnonymous()">
+                            <li><a th:href="@{/member/memberLogin}">로그인</a></li>
+                            <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
+                        </th:block>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">고객센터</a></li>
+=======
   <div class="header-con">
     <div class="top-header">
       <div class="top-menu">
@@ -14,6 +27,7 @@
             </th:block>
             <li><a href="#">장바구니</a></li>
             <li><a href="#">고객센터</a></li>
+>>>>>>> dev
 
             <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER','MEMBER')">
               <li><a th:href="@{/member/user}">MEMBERSHIP</a></li>
