@@ -1,0 +1,98 @@
+@import url(../common/reset.css);
+@import url(../common/header.css);
+@import url(../common/footer.css);
+
+.error {
+    color: red;
+    border: 1px solid red;
+}
+
+.container {
+    width: 100%;
+}
+
+.container .detail {
+    width: 100%;
+    height: calc(100vh - 60px - 150px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.container .detail .detail-con {
+    width: 500px;
+    border: 1px solid #fdc926;
+    padding: 10px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px #666666;
+    gap: 10px;
+}
+
+/*.detail .detail-con h1.title {*/
+/*    background-color: #555555;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 10px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+.container .detail .detailLogin-con {
+    font-size: 30px;
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.container .detail  .detailLogin-con h1.detailBtn{
+    border-bottom: 1px solid black;
+}
+
+.container .detail .detailLogin-con h1.loginBtn{
+    border-bottom: 1px solid #ccc;
+}
+
+.container .detail .detail-con ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.container .detail .detail-con ul li {
+    display: flex;
+    justify-content: space-between;
+    /*gap: 5px;*/
+    /*border: 1px solid #ccc;*/
+    box-sizing: border-box;
+}
+
+.container .detail .detail-con ul li label {
+    flex: 1;
+    background-color: #fdc926;
+    color: white;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.container .detail .detail-con ul li input {
+    flex: 3;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.container .detail .detail-con ul li.li2{
+    color : white;
+    padding: 5px 0;
+    cursor : pointer;
+    border: 0;
+    gap : 5px;
+}

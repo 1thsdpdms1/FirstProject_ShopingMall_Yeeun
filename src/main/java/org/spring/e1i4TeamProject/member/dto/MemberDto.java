@@ -3,6 +3,7 @@ package org.spring.e1i4TeamProject.member.dto;
 import lombok.*;
 import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 
+import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.spring.e1i4TeamProject.member.role.Role;
 import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
 
@@ -41,4 +42,23 @@ public class MemberDto {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+    public static MemberDto toMemberDto(MemberEntity memberEntity) {
+
+        MemberDto memberDto = new MemberDto();
+
+        memberDto.setId(memberEntity.getId());
+        memberDto.setUserEmail(memberEntity.getUserEmail());
+        memberDto.setUserPw(memberEntity.getUserPw());
+        memberDto.setName(memberEntity.getName());
+        memberDto.setAddress(memberEntity.getAddress());
+        memberDto.setPhoneNumber(memberEntity.getPhoneNumber());
+        memberDto.setRole(memberEntity.getRole());
+        memberDto.setBoardEntityList(memberEntity.getBoardEntityList());
+        memberDto.setShopEntityList(memberEntity.getShopEntityList());
+        memberDto.setCreateTime(memberEntity.getCreateTime());
+        memberDto.setUpdateTime(memberEntity.getUpdateTime());
+
+        return memberDto;
+    }
 }
