@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/common/shop/shopList.css}">
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="boardList">
+    <div class="boardList-con">
+      <h1>BoardList</h1>
+      <div class="search">
+        <form th:action="@{/shop/shopList}" method="get">
+          <select name="subject" id="subject">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+<!--            <option value="ShopPrice">가격</option>-->
+          </select>
+          <input type="text" name="search" id="search">
+          <input type="submit" value="검색">
+        </form>
+      </div>
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>제목</th>
+          <th>내용</th>
+          <th>조회수</th>
+          <th>생성시간</th>
+          <th:block sec:authorize="isAuthenticated()">
+            <th>수정시간</th>
+            <th>상세보기</th>
+            <th>삭제</th>
+          </th:block>
+          <th:block sec:authorize="isAnonymous()">
+
+          </th:block>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="shop : ${shopList}">
+          <td th:text="${shop.id}"></td>
+          <td th:text="${shop.shopTitle}"></td>
+          <td th:text="${shop.shopContent}"></td>
+          <td th:text="${shop.shopHit}"></td>
+          <td th:text="${#temporals.format(shop.createTime, 'yyyy년-MM월-dd일 ')}"></td>
+          <th:block sec:authorize="isAuthenticated()">
+            <td th:text="${#temporals.format(shop.updateTime, 'yyyy년-MM월-dd일 ')}"></td>
+            <th:blcok th:if="${shop.memberEntity.userEmail==myUserDetails.username}">
+              <td><a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}" class="a">보기</a></td>
+              <td><a th:href="@{/shop/shopDelete/{id}(id=${shop.id})}" class="a" onclick="delete1(event)">삭제 </a></td>
+              <script>
+                function delete1(event){
+
+                         alert('정상적으로 삭제 처리되셨습니다');
+                         }
+              </script>
+            </th:blcok>
+            <th:blcok th:unless="${shop.memberEntity.userEmail==myUserDetails.username}">
+              <td><a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}">보기</a></td>
+
+              <td><a href="#" onclick="deleteId(event)">삭제</a></td>
+              <script>
+                function deleteId(event){
+                event.preventDefault();
+                alert('본인글이 아니면 삭제 할수 없습니다');
+                }
+              </script>
+            </th:blcok>
+          </th:block>
+          <!--          <th:block th:if="${board.attachFile==1}">-->
+          <!--            <td>o</td>-->
+          <!--          </th:block>-->
+          <!--          <th:block th:unless="${board.attachFile==1}">-->
+          <!--            <td>x</td>-->
+          <!--          </th:block>-->
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="11">
+            <div class="paging">
+              <ul>
+                <li>
+                  <!-- 현재페이지가  첫번째 페이지이면   span표시 -->
+                  <span th:if="${shopList.pageable.pageNumber+1 eq 1}" class="span0">START</span>
+                  <!-- 처음 페이지가 아니면  a -->
+                  <span th:unless="${shopList.pageable.pageNumber+1 eq 1}">
+                    <a th:href="@{/shop/shopList(page=0 , search=${param.search}, subject=${param.subject}  )}"
+                       class="span1">처음</a>
+                  </span>
+                </li>
+                <li>
+                  <!-- 이전페이지가  첫번째 페이지이면   span표시 -->
+                  <span th:if="${1==shopList.pageable.pageNumber+1}" class="span0">PRE</span>
+                  <span th:unless="${1==shopList.pageable.pageNumber+1}">
+                    <!--itemList.pageable.pageNumber 현재페이지 -1 -->
+                    <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber-1} ,search=${param.search},subject=${param.subject} )}"
+                       class="span1">이전</a>
+                  </span>
+                </li>
+                <!-- block  -->
+                <!-- 페이지 번호 -->
+                <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                  <span th:if="${i == shopList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
+                  <a th:unless="${i == shopList.pageable.pageNumber+1}"
+                     th:href="@{/shop/shopList(page=${ i - 1},search=${param.search},subject=${param.subject} )}"
+                     th:text="${i}"></a>
+                </li>
+                <li>
+                  <!-- 현재페이지가 마지막 페이지이면   span표시 -->
+                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">NEXT</span>
+                  <!-- 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 -->
+                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">
+                        <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
+                           class="span1">다음</a>
+                  </span>
+                </li>
+                <li>
+                  <!-- 현재페이지가 마지막 페이지이면   span표시 -->
+                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">END</span>
+                  <!-- 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a -->
+                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">
+                    <a th:href="@{/shop/shopList(page=${shopList.totalPages-1},search=${param.search},subject=${param.subject} )}"
+                       class="span1">마지막</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+      <th:block sec:authorize="isAuthenticated()">
+        <div class="writebutton">
+          <a href="/shop/shopWrite" class><img src="/images/btn_write.jpg" alt="글쓰기"></a>
+        </div>
+      </th:block>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+
+</html>

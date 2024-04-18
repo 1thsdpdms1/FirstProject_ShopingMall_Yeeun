@@ -4,6 +4,7 @@ import lombok.*;
 import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 
 import org.spring.e1i4TeamProject.member.role.Role;
+import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -34,6 +35,8 @@ public class MemberDto {
     private Role role;
 
     private List<BoardEntity> boardEntityList;
+
+    private List<ShopEntity> shopEntityList;
 
     private LocalDateTime createTime;
 
