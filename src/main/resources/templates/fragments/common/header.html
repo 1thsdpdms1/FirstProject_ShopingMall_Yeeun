@@ -14,11 +14,6 @@
                         </th:block>
                         <li><a href="#">장바구니</a></li>
                         <li><a href="#">고객센터</a></li>
-
-                        <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER','MEMBER')">
-                            <li><a th:href="@{/member/user}">MEMBERSHIP</a></li>
-                        </th:block>
-
                         <th:block sec:authorize="hasAnyRole('ADMIN')">
                             <li><a th:href="@{/admin/index}">ADMIN</a></li>
                         </th:block>
