@@ -48,7 +48,7 @@
 
 .index .index-con .sections .section.sec2 .con .left-con{
   flex:1;
-  background-color: rgb(100, 10, 255);
+
   color: bisque;
   display: flex;
   justify-content: center;
@@ -89,14 +89,14 @@
   height: 50px;
   border: 1px solid;
   box-sizing: border-box;  
-  background-color: brown;
+  background-color: rgb(255, 255, 255);
 }
 .index .index-con .sections .section.sec3 .con .title{
   width: 100%;
   height: 50px;
   border: 1px solid;
   box-sizing: border-box;  
-  background-color: brown;
+  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: flex-end;
   gap: 5px;
@@ -110,12 +110,34 @@
   
   flex:3;
   height: 300px;
-  background-color: rgb(100, 10, 255);
+  /*background-color: rgb(100, 10, 255);*/
   color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position:relative;
 }
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div{
+    width:100%;
+    height:inherit;
+    border:2px solid #ff0000;
+    box-sizing:border-box;
+    position:absolute;
+    font-size:20px;
+    color:#000;
+}
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con1 {
+    background: url(/images/sec1_bg1.jpg) no-repeat 50%;
+    background-size: cover;
+}
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 {
+    background: url(/images/sec1_bg2.jpg) no-repeat 50%;
+    background-size: cover;
+}
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div img{
+    width:100%;
+    display:block;
+}
+
+
 
 
 .index .index-con .sections .section.sec3 .con .bottom-con .center-con{
@@ -143,15 +165,22 @@
 /*pop*/
 
 .pop-con{
+  background:url(/images/pop.jpg);
   width:200px;
   height:100px;
-  background-color:#e5085d;
+  background-color:#ffffff;
+
+  box-shadow:1px 2px 3px #222222;
 
   position:fixed;
-    right:150px;
-    top:40%;
+  right:50px;
+  top:40%;
 
   z-index:999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
 
 
 }
