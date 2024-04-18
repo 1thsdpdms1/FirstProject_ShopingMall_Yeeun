@@ -42,9 +42,9 @@ public class BoardService implements BoardServiceInterface {
         if (boardDto.getBoardFile().isEmpty()) {
             //파일 없는 경우
             //dto->entity
-//            boardDto.setMemberEntity(MemberEntity.builder()
-//                    .id(boardDto.getMemberEntity().getId())
-//                    .build());
+            boardDto.setMemberEntity(MemberEntity.builder()
+                    .id(boardDto.getMemberEntity().getId())
+                    .build());
             //board 에 맞는 memberId 정보를 가져와야하는데 boardDto에 가져올 방법이
             // 없어서 MemberEntity로 바꿔서 boardDto로 가져온다.
             System.out.println("파일 없을때1");
