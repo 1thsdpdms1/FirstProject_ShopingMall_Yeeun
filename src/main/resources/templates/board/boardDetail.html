@@ -49,7 +49,7 @@
                             <label for="boardContent">내용 </label>
                         </li>
                         <li>
-                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}"></textarea>
+                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}" READONLY></textarea>
                         </li>
                         <!--                        <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
 

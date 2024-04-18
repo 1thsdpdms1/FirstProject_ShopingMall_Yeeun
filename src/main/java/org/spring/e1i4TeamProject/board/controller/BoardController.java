@@ -29,7 +29,10 @@ public class BoardController {
 
 
     @GetMapping("/boardWrite")
-    public String boardWrite(){
+    public String boardWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                             BoardDto boardDto, Model model){
+
+        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
 
         return "board/boardWrite";
     }
@@ -37,9 +40,10 @@ public class BoardController {
 
     @PostMapping("/boardWrite")
     public String boardWriteOK(@Valid BoardDto boardDto,
-                               BindingResult bindingResult) throws IOException {
+                               BindingResult bindingResult,Model model) throws IOException {
 
 //        boardService.boardInsertFile(boardDto);
+        model.addAttribute("boardDto",boardDto);
         boardService.boardInsert(boardDto);
 
         return "redirect:/board/boardList";

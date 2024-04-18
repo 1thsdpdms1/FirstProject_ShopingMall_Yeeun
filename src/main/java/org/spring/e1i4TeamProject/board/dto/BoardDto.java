@@ -19,6 +19,8 @@ public class BoardDto {
 
     private Long id;
 
+    public Long category;
+
     private String boardTitle;
 
     private String boardContent;
@@ -48,6 +50,7 @@ public class BoardDto {
 
         boardDto.setId(boardEntity.getId());
         boardDto.setBoardContent(boardEntity.getBoardContent());
+        boardDto.setCategory(boardEntity.getCategory());
         boardDto.setBoardWriter(boardEntity.getBoardWriter()); // 작성말고 회원의 이름정보만 받아오기?
         boardDto.setBoardHit(boardEntity.getBoardHit());
         boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
@@ -65,6 +68,7 @@ public class BoardDto {
 
         boardDto.setId(boardEntity.getId());
         boardDto.setBoardTitle(boardEntity.getBoardTitle());
+        boardDto.setCategory(boardEntity.getCategory());
         boardDto.setBoardWriter(boardEntity.getBoardWriter());
         boardDto.setBoardContent(boardEntity.getBoardContent());
         boardDto.setBoardHit(boardEntity.getBoardHit());

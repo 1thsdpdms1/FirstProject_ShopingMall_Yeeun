@@ -21,18 +21,19 @@
                             <div class="search-con">
                                 <form th:action="@{/board/boardList}" method="get">
                                     <select name="subject" id="subject">
-                                        <option value="freeBoard">자유게시판</option>
-                                        <option value="questionBoard">질문게시판</option>
+                                        <option value="" th:selected="${#strings.isEmpty(param.subject)}">::선택::</option>
+                                        <option value="freeBoard" th:selected="${#strings.equals(param.subject,'freeBoard')}">자유게시판</option>
+                                        <option value="questionBoard" th:selected="${#strings.equals(param.subject,'questionBoard')}">질문게시판</option>
 
                                     </select>
-                                    <input type="text" name="search" id="search">
+
+                                    <input type="text" name="search" id="search" th:value="${param.search}">
                                     <input type="submit" value="검색">
                                 </form>
                             </div>
                         </div>
                     </td>
                 </tr>
-
 
                 <tr>
 
@@ -52,28 +53,28 @@
 
                     <td th:text="${board.id}"></td>
 
-                    <td th:text="${board.id}"></td>
+                    <td th:text="${board.category}"></td>
                     <!--<td th:text="${board.종류}"></td>-->
 
-<!--                    <td th:text="${board.boardTitle}"></td>-->
-<!--                     th:href="@{/board/boardDetail/{id}(id=${board.id})}"-->
+                    <!--                    <td th:text="${board.boardTitle}"></td>-->
+                    <!--                     th:href="@{/board/boardDetail/{id}(id=${board.id})}"-->
                     <td>
                         <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
 
-<!--                            <label th:text="${board.boardTitle}"></label>-->
-                            <label th:text="${board.boardContent}"></label>
+                            <!--                            <label th:text="${board.boardTitle}"></label>-->
+                            <label th:text="${board.boardTitle}"></label>
                             <!--★★★★★★★★★★★★★★★boardContent는 불러와지는데 boardTitle은 안된다-->
 
-<!--                            <label>-->
+                            <!--                            <label>-->
 
-<!--                                <th:block th:if="${board.boardAttachFile==1}">-->
-<!--                                    <td>O</td>-->
-<!--                                </th:block>-->
+                            <!--                                <th:block th:if="${board.boardAttachFile==1}">-->
+                            <!--                                    <td>O</td>-->
+                            <!--                                </th:block>-->
 
-<!--                                <th:block th:unless="${board.boardAttachFile==1}">-->
-<!--                                    <td>X</td>-->
-<!--                                </th:block>-->
-<!--                            </label>-->
+                            <!--                                <th:block th:unless="${board.boardAttachFile==1}">-->
+                            <!--                                    <td>X</td>-->
+                            <!--                                </th:block>-->
+                            <!--                            </label>-->
                         </a>
                     </td>
                     <!--제목을 누르면 Detail로 이동-->
@@ -105,6 +106,19 @@
 
                 </tr>
                 </tbody>
+                <tfoot>
+                    <tr class="footer">
+                        <td class="footer-con">
+                            <div class="paging">
+
+                            </div>
+
+<!--                            <div class="boardWrite">-->
+<!--                                <a th:href="${board/boardWrite}"></a>-->
+<!--                            </div>-->
+                        </td>
+                    </tr>
+                </tfoot>
 
             </table>
         </div>
