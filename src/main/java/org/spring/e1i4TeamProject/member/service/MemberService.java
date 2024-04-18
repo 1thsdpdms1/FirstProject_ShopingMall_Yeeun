@@ -28,6 +28,7 @@ public class MemberService implements MemberServiceInterface {
 
     @Override
     public MemberDto memberDetail(Long id) {
+
         MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(()->{
             throw new IllegalArgumentException("해당 아이디가 없습니다.");
         });
