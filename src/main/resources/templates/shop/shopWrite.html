@@ -15,7 +15,7 @@
               th:object="${shopDto}">
           <ul>
             <li>
-              shop Write11
+              shop Write
             </li>
             <li>
               <label for="memberId">MEMBERID</label>
@@ -45,13 +45,8 @@
             </li>
             <p th:if="${#fields.hasErrors('Count')}" th:errors="*{Count}" class="error"></p>
             <li>
-              <label for="isSoldOut">isSoldOut</label>
-              <input type="text" id="isSoldOut" th:field="*{isSoldOut}">
-            </li>
-            <p th:if="${#fields.hasErrors('isSoldOut')}" th:errors="*{isSoldOut}" class="error"></p>
-            <li>
-              <label for="shopSeller">shopSeller</label>
-              <input type="text" id="shopSeller" th:field="*{shopSeller}">
+              <label for="ShopSeller">ShopSeller</label>
+              <input type="text" id="ShopSeller" th:field="*{ShopSeller}">
             </li>
             <li>
               <label for="shopFile">파일</label>

@@ -74,7 +74,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopHit(0);
         shopEntity.setShopAttachFile(0);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
@@ -89,7 +89,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopHit(0);
         shopEntity.setShopAttachFile(1);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
@@ -103,7 +103,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(0);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
 
@@ -115,7 +115,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(1);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
 

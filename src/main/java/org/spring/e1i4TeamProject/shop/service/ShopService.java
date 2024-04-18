@@ -31,7 +31,7 @@ public class ShopService implements ShopServiceImpl {
   public void insertShop(ShopDto shopDto) throws IOException {
     if (shopDto.getShopFile().isEmpty()) {
       shopDto.setMemberEntity(MemberEntity.builder()
-          .id(shopDto.getMemberEntity().getId())
+          .id(shopDto.getMemberId())
           .build());
       ShopEntity shopEntity = ShopEntity.toInsertShopEntity(shopDto);
       shopRepository.save(shopEntity);

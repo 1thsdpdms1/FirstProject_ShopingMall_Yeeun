@@ -17,10 +17,10 @@
           <form th:action="@{/shop/shopUpdate}" method="post" enctype="multipart/form-data">
             <div class="left">
               <div class="left-con">
-                <th:block th:if="${shop.attachFile==1}"> <!--  이미지 표시 -->
+                <th:block th:if="${shop.shopAttachFile==1}"> <!--  이미지 표시 -->
                   <img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구">
                 </th:block>
-                <th:block th:unless="${shop.attachFile==1}">  <!--  이미지 표시 -->
+                <th:block th:unless="${shop.shopAttachFile==1}">  <!--  이미지 표시 -->
                   <img src="https://placehold.co/400x500?text=NOIMAGE" alt="이미지대체문구">
                 </th:block>
               </div>
@@ -31,27 +31,41 @@
               </li>
               <li>
                 <label for="id">ID</label>           <!-- board.getMemberEntity().id -->
-                <input type="hidden" name="id" id="id" th:value="${board.id}" readonly>
+                <input type="hidden" name="id" id="id" th:value="${shop.id}" readonly>
               </li>
               <li>
                 <label for="memberId">MemberId</label>
-                <input type="text" name="memberId" id="memberId" th:value="${board.memberEntity.id}" readonly>
+                <input type="text" name="memberId" id="memberId" th:value="${shop.memberEntity.id}" readonly>
               </li>
               <li>
                 <label for="title">TITLE</label>
-                <input type="text" name="title" id="title" th:value="${board.title}">
+                <input type="text" name="title" id="title" th:value="${shop.title}">
               </li>
               <li>
                 <label for="content">CONTENT</label>
               </li>
               <li>
-                <textarea name="content" id="content" cols="30" rows="3" th:text="${board.content}"></textarea>
+                <textarea name="content" id="content" cols="30" rows="3" th:text="${shop.content}"></textarea>
               </li>
 
               <li>
                 <label for="shopHit">HIT</label>
                 <input type="text" name="shopHit" id="shopHit" th:value="${shop.shopHit}" readonly>
               </li>
+              <li>
+                <label for="shopPrice">금액</label>
+                <input type="text" name="shopPrice" id="shopPrice" th:value="${shop.shopPrice}" readonly>
+              </li>
+              <li>
+                <label for="shopSeller">선생님</label>
+                <input type="text" name="shopSeller" id="shopSeller" th:value="${shop.shopSeller}" readonly>
+              </li>
+              <li>
+                <label for="Count">HIT</label>
+                <input type="text" name="Count" id="Count" th:value="${shop.Count}" readonly>
+              </li>
+
+
               <li>
                 <label for="createTime">작성시간</label>
                 <td th:text="${#temporals.format(shop.createTime, 'yyyy년-MM월-dd일')}" id="createTime"></td>
