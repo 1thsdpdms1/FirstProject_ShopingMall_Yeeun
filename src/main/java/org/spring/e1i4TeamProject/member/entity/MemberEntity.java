@@ -56,8 +56,8 @@ public class MemberEntity extends BaseTimeEntity {
     @JsonIgnore
     @OneToMany
         (mappedBy = "memberEntity"
-            ,fetch = FetchType.LAZY
-            ,cascade = CascadeType.REMOVE)
+            , fetch = FetchType.LAZY
+            , cascade = CascadeType.REMOVE)
     private List<ShopEntity> shopEntityList;
 
     public static MemberEntity toMemberJoinEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
