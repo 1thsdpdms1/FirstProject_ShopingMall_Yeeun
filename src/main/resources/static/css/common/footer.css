@@ -1,0 +1,37 @@
+
+
+
+.footer {
+    background-color: pink;
+        width: 1600px;
+        height: 200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+
+
+}
+.footer img{
+    width:90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-top:7px;
+}
+
+.footer-con {
+    float:center;
+     width: 1600px;
+}
+.footer-con span{
+    font-size:20px;
+    color: white;
+}
+.footer-con p{
+    margin-top:5px;
+    color:white;
+}
+.footer-con img{
+    width:35px;
+    height:35px;
+    margin-top:10px;
+}

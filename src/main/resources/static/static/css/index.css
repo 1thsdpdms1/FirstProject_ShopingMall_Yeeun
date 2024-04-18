@@ -100,7 +100,18 @@
   display: flex;
   justify-content: flex-end;
   gap: 5px;
+
+  background-color: #ffffff;
+
+  padding: 5px;
 }
+.index .index-con .sections .section.sec3 .con .title span{
+  padding: 5px;
+}
+
+
+
+
 .index .index-con .sections .section.sec3 .con .bottom-con{
   
   display: flex;
