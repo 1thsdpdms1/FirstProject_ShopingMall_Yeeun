@@ -1,0 +1,211 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+/*@import url(/css/container/indexContainer.css);*/
+
+/* detail1 */
+.container{
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+.detail1{
+  width: 100%;
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.detail1 .detail1-con{
+  flex-basis: 1000px;
+  min-height: calc( 100vh - 70px - 150px );
+  /* display: flex;
+  justify-content: center;
+  align-items: flex-start; */
+}
+.detail1 .detail1-con .top{
+  width: 100%;
+  height: auto;
+}
+
+.detail1 .detail1-con .top .detail1-form{
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 20px 0px 0px 0px;
+}
+
+.detail1 .detail1-con .top .detail1-form form{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+/*left*/
+.detail1 .detail1-con .top .detail1-form  .left{
+  flex:4;
+}
+.detail1 .detail1-con .top .detail1-form  .left .left-con img{
+ width: 100%;
+ display: block;
+}
+/**/
+.detail1 .detail1-con .top .detail1-form ul{
+   flex:6;
+   display: flex;
+   flex-direction: column;
+   border-radius: 15px;
+   border: 1px solid;
+   gap: 5px;
+   padding: 20px;
+   box-sizing: border-box;
+}
+.detail1 .detail1-con  .top .detail1-form ul li{
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  font-size: 18px !important;
+}
+.detail1 .detail1-con .top .detail1-form ul li:nth-child(1){
+  padding: 5px 0;
+  justify-content: center;
+  font-size: 20px;
+  background-color: black;
+  color: #ffffff;
+}
+.detail1 .detail1-con .top .detail1-form ul li label{
+  flex:1;
+}
+.detail1 .detail1-con .top .detail1-form ul li input[type=text]{
+  flex:3;
+}
+.detail1 .detail1-con .top .detail1-form ul li select{
+  flex:3;
+  text-align: center;
+}
+.detail1 .detail1-con .top .detail1-form ul li textarea{
+  flex:1;
+  resize: none;
+}
+.detail1 .detail1-con .top .detail1-form ul li input[type=submit]{
+  flex:1;
+  padding: 8px ;
+  box-sizing: border-box;
+  background-color: black;
+  color: #ffffff;
+  cursor: pointer;
+}
+.detail1 .detail1-con .top .detail1-form ul li a.btn1{
+  flex:1;
+  display: inline-block;
+  width:80px;
+  background-color: blueviolet;
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  padding:8px;
+  font-size: 14px;
+}
+.detail1 .detail1-con .top .detail1-form ul li:last-child{
+  display: flex;
+  justify-content: space-between;
+  gap:5px;
+}
+
+.detail1 .detail1-con .top .detail1-form ul li:last-child .btn1{
+  flex:1;
+  display: block;
+  width:80px;
+  background-color: blueviolet;
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  height: 30px;
+  font-size: 14px;
+}
+.detail1 .detail1-con .top .detail1-form ul li:last-child a{
+  line-height: 30px;
+}
+
+.detail1 .detail1-con .bottom{
+  width: 100%;
+  height: 100px;
+  background-color: #ffffff;
+}
+.detail1 .detail1-con .bottom{
+witdh: 100%;
+height:auto;
+background-color: 222222;
+}
+.detail1 .detail1-con .bottom .reply{
+padding:20px;
+box-sizing:border-box;
+}
+.detail1 .detail1-con .bottom .reply .reply-con {
+   border: 1px solid;
+   box-sizing: border-box;
+   border-radius: 15px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+ }
+
+ .detail1 .detail1-con .bottom .reply .reply-con h1{
+   background-color: #6478FF;
+   color: #ffffff;
+   text-align: center;
+   padding: 10px 0;
+   box-sizing: border-box;
+ }
+ .detail1 .detail1-con .bottom .reply .reply-con form {
+   display: flex;
+   justify-content: space-between;
+   gap:5px;
+   padding: 5px 10px;
+   box-sizing: border-box;
+ }
+.detail1 .detail1-con .bottom .reply .reply-con  input{
+  flex:1;
+  line-height:20px;
+  text-align:center;
+  text-indent:5px;
+  }
+.detail1 .detail1-con .bottom .reply .reply-con form input[type=text]:nth-child(1){
+  flex:4;
+  }
+.detail1 .detail1-con .bottom .reply .reply-con form input[type=text]:nth-child(2){
+ flex:2;
+ }
+.detail1 .detail1-con .bottom .reply .reply-con form input[type=submit]{
+flex:1;
+text-align: center;
+background-color: black;
+color: #ffffff;
+cursor: pointer;
+}
+
+.detail1 .detail1-con .bottom .reply .reply-con table{
+width: 100%;
+}
+.detail1 .detail1-con .bottom .reply .reply-con table th{
+  background-color: aliceblue;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.detail1 .detail1-con .bottom .reply .reply-con table td{
+padding: 5px;
+box-sizing: border-box;
+font-size: 12px;
+text-align: center;
+}
+
+
+
+
+
+

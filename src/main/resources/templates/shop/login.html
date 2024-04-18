@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/member/login.css}">
+  <title>login</title>
+</head>
+<body>
+<div th:replace="~{/fragments/common/board/header :: headerFragment}"></div>
+<div class="login">
+  <div class="login-con">
+    <h1>로그인</h1>
+    <form th:action="@{/board/login}" method="POST">
+      <ul>
+        <li>
+          <label for="userEmail">이메일: </label>
+          <input type="email" name="userEmail" id="userEmail" placeholder="이메일입력">
+        </li>
+        <li>
+          <label for="userPw">비밀번호: </label>
+          <input type="text" name="userPw" id="userPw" placeholder="비밀번호입력">
+        </li>
+        <li class="last">
+          <input type="reset" value="초기화">
+          <input type="submit" value="로그인">
+        </li>
+      </ul>
+    </form>
+    <div class="sns">
+      <a th:href="@{/oauth2/authorization/google}"><img th:src="@{/images/google.png}" alt="google"></a>
+      <a th:href="@{/oauth2/authorization/kakao}"><img th:src="@{/images/kakao.png}" alt="google"></a>
+      <a th:href="@{/oauth2/authorization/naver}"><img th:src="@{/images/naver.png}" alt="google"></a>
+    </div>
+  </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

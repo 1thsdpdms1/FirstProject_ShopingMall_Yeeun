@@ -2,6 +2,7 @@ package org.spring.e1i4TeamProject.shop.entity;
 
 import lombok.*;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
+import org.spring.e1i4TeamProject.shop.dto.ShopFileDto;
 
 import javax.persistence.*;
 
@@ -27,4 +28,13 @@ public class ShopFileEntity extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id")
     private ShopEntity shopEntity;
+
+    public static ShopFileEntity toInsertShopFile(ShopFileDto shopfileDto) {
+        ShopFileEntity shopFileEntity=new ShopFileEntity();
+        shopFileEntity.setShopNewFileName(shopfileDto.getShopNewFileName());
+        shopFileEntity.setShopOldFileName(shopfileDto.getShopOldFileName());
+        shopFileEntity.setShopEntity(shopfileDto.getShopEntity());
+
+        return shopFileEntity;
+    }
 }
