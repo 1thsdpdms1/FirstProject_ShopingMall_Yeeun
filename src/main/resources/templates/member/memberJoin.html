@@ -15,7 +15,7 @@
             <h1 class="loginBtn"><a th:href="@{/member/memberLogin}">로그인</a></h1>
         </div>
         <div class="join-con">
-            <form th:action="@{/member/memberJoin}" method="post" th:object="${memberDto}">
+            <form th:action="@{/member/memberJoin}" method="post" th:object="${memberDto}" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label for="userEmail">이메일</label>
@@ -39,6 +39,10 @@
                     <li>
                         <label for="phoneNumber">전화번호</label>
                         <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="전화번호 입력"> <br>
+                    </li>
+                    <li>
+                        <label for="memberFile">파일</label>
+                        <input type="file" name="memberFile" id="memberFile">
                     </li>
 
                     <li class="li2">
