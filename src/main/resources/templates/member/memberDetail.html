@@ -12,7 +12,17 @@
     <div class="detail">
         <div class="detail-con">
             <h1 class="title">DETAIL</h1>
-            <form th:action="@{/member/update}" method="post">
+            <form th:action="@{/member/memberUpdate}" method="post" enctype="multipart/form-data">
+                <div class="left">
+                    <div class="left-con">
+                        <th:block th:if="${memberDto.memberAttachFile == 1}">
+                            <img th:src="@{|/upload/${memberDto.memberFileName}|}" alt="file">
+                        </th:block>
+                        <th:block th:unless="${memberDto.memberAttachFile == 1}">
+                            <img src="http://placehold.co/600X500?text=NOIMAGE" alt="이미지대체문구">
+                        </th:block>
+                    </div>
+                </div>
                 <ul>
                     <li>
                         <label for="id">ID</label>
@@ -32,14 +42,6 @@
                         <label for="name">NAME</label>
                         <input type="text" id="name" name="name" th:value="${memberDto.name}"> <br>
                     </li>
-                    <li>
-                        <label for="role">ROLE</label>
-                        <select name="role" id="role" class="role">
-                            <option th:value="${memberDto.role}">MEMBER</option>
-                            <option th:value="${memberDto.role}">MANAGER</option>
-                            <option th:value="${memberDto.role}">ADMIN</option>
-                        </select>
-                    </li>
 
                     <li>
                         <label for="address">ADDRESS</label>
@@ -48,6 +50,11 @@
                     <li>
                         <label for="phoneNumber">ADDRESS</label>
                         <input type="text" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}"> <br>
+                    </li>
+
+                    <li>
+                        <label for="boardFile">File</label>
+                        <input type="file" name="boardFile" id="boardFile">
                     </li>
 
                     <li>
