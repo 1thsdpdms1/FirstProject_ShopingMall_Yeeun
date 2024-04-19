@@ -31,7 +31,7 @@ public class ShopService implements ShopServiceImpl {
   public void insertShop(ShopDto shopDto) throws IOException {
     if (shopDto.getShopFile().isEmpty()) {
       shopDto.setMemberEntity(MemberEntity.builder()
-          .id(shopDto.getMemberEntity().getId())
+          .id(shopDto.getMemberId())
           .build());
       ShopEntity shopEntity = ShopEntity.toInsertShopEntity(shopDto);
       shopRepository.save(shopEntity);
@@ -42,7 +42,7 @@ public class ShopService implements ShopServiceImpl {
       UUID uuid = UUID.randomUUID(); //random id -> 랜덤한 값을 추출하는 클래스
 
       String newFileName = uuid + "_" + oldFilename; //저장파일이름 (보안)
-      String filePath = "E:/saveFile/saveFiles1/" + newFileName; //실제파일 저장경로+이름
+      String filePath = "C:/e1i4_file/" + newFileName; //실제파일 저장경로+이름
       //실제 파일 저장 실행
       shopFile.transferTo(new File(filePath));//저장 예외처리
 
@@ -74,8 +74,8 @@ public class ShopService implements ShopServiceImpl {
   }
 
   @Override
-  public ShopDto detail1(Long id) {
-    Optional<ShopEntity> optionalShopEntity = shopRepository.findById(id);
+  public ShopDto detail(Long Id) {
+    Optional<ShopEntity> optionalShopEntity = shopRepository.findById(Id);
     if (optionalShopEntity.isPresent()) {
       //조회할 게시물이 있으면
       ShopEntity shopEntity = optionalShopEntity.get();
@@ -117,7 +117,7 @@ public class ShopService implements ShopServiceImpl {
     //파일이 있으면 파일 기존 파일 삭제
     if (optionalFileEntity.isPresent()) {
       String fileNewName = optionalFileEntity.get().getShopNewFileName();
-      String filePath = "E:/saveFile/saveFiles1/" + fileNewName;
+      String filePath = "C:/e1i4_file/" + fileNewName;
       File deleteFile = new File(filePath);
       if (deleteFile.exists()) {
         deleteFile.delete();
@@ -141,8 +141,8 @@ public class ShopService implements ShopServiceImpl {
       MultipartFile shopFile = shopDto.getShopFile();
       String fileOldName = shopFile.getOriginalFilename();
       UUID uuid = UUID.randomUUID();
-      String filenewName = uuid + "_" + fileOldName;
-      String savaPath = "E:/saveFile/saveFiles1/" + filenewName;
+      String fileNewName = uuid + "_" + fileOldName;
+      String savaPath = "C:/e1i4_file/" + fileNewName;
       shopFile.transferTo(new File(savaPath));
 
       shopEntity = ShopEntity.toUpdateFileShopEntity(shopDto);
@@ -150,7 +150,7 @@ public class ShopService implements ShopServiceImpl {
 
       ShopFileEntity bFileEntity = ShopFileEntity.builder()
           .shopEntity(shopEntity)
-          .shopNewFileName(filenewName)
+          .shopNewFileName(fileNewName)
           .shopOldFileName(fileOldName)
           .build();
       Long fileId = shopFileRepository.save(bFileEntity).getId();

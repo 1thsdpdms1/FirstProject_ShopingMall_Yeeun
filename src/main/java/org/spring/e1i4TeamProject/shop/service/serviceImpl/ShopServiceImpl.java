@@ -12,7 +12,7 @@ public interface ShopServiceImpl {
 
   void updateShopHit(Long id);
 
-  ShopDto detail1(Long id);
+  ShopDto detail(Long id);
 
   Page<ShopDto> shopSearchPagingList(Pageable pageable, String subject, String search);
 

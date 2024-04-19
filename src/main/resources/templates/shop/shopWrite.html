@@ -45,11 +45,9 @@
             </li>
             <p th:if="${#fields.hasErrors('Count')}" th:errors="*{Count}" class="error"></p>
             <li>
-              <label for="isSoldOut">isSoldOut</label>
-              <input type="text" id="isSoldOut" th:field="*{isSoldOut}">
+              <label for="ShopSeller">ShopSeller</label>
+              <input type="text" id="ShopSeller" th:field="*{ShopSeller}">
             </li>
-            <p th:if="${#fields.hasErrors('isSoldOut')}" th:errors="*{isSoldOut}" class="error"></p>
-
             <li>
               <label for="shopFile">파일</label>
               <input type="file" name="shopFile" id="shopFile">

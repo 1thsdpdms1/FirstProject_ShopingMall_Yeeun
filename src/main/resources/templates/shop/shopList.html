@@ -31,6 +31,9 @@
           <th>제목</th>
           <th>내용</th>
           <th>조회수</th>
+          <th>금액</th>
+          <th>선생님</th>
+          <th>정원</th>
           <th>생성시간</th>
           <th:block sec:authorize="isAuthenticated()">
             <th>수정시간</th>
@@ -48,6 +51,9 @@
           <td th:text="${shop.shopTitle}"></td>
           <td th:text="${shop.shopContent}"></td>
           <td th:text="${shop.shopHit}"></td>
+          <td th:text="${shop.shopPrice}"></td>
+          <td th:text="${shop.shopSeller}"></td>
+          <td th:text="${shop.Count}"></td>
           <td th:text="${#temporals.format(shop.createTime, 'yyyy년-MM월-dd일 ')}"></td>
           <th:block sec:authorize="isAuthenticated()">
             <td th:text="${#temporals.format(shop.updateTime, 'yyyy년-MM월-dd일 ')}"></td>
@@ -73,12 +79,12 @@
               </script>
             </th:blcok>
           </th:block>
-          <!--          <th:block th:if="${board.attachFile==1}">-->
-          <!--            <td>o</td>-->
-          <!--          </th:block>-->
-          <!--          <th:block th:unless="${board.attachFile==1}">-->
-          <!--            <td>x</td>-->
-          <!--          </th:block>-->
+<!--                    <th:block th:if="${board.attachFile==1}">-->
+<!--                      <td>o</td>-->
+<!--                    </th:block>-->
+<!--                    <th:block th:unless="${board.attachFile==1}">-->
+<!--                      <td>x</td>-->
+<!--                    </th:block>-->
         </tr>
         </tbody>
         <tfoot>
