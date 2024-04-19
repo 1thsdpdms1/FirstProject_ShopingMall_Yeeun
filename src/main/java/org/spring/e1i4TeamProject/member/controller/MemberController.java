@@ -67,4 +67,15 @@ public class MemberController {
 
         return "member/memberDetail";
     }
+
+    @PostMapping("/memberUpdate")
+    public String memberUpdate(MemberDto memberDto, Model model) throws IOException {
+
+        memberService.memberUpdate(memberDto);
+
+
+
+        return "redirect:/member/memberDetail/"+memberDto.getId();
+    }
+
 }

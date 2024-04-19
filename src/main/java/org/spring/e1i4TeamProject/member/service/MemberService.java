@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.UUID;
 
 @Transactional
@@ -91,5 +92,81 @@ public class MemberService implements MemberServiceInterface {
     public String uploadMemberImg(MemberDto memberDto) {
 
         return null;
+    }
+
+    @Override
+    public void memberUpdate(MemberDto memberDto) throws IOException {
+        MemberEntity memberEntity = memberRepository.findById(memberDto.getId()).orElseThrow(() -> {
+            throw new IllegalArgumentException("해당 아이디가 없습니다.");
+        });
+
+        Optional<MemberFileEntity> optionalMemberFileEntity
+            = memberFileRepository.findByMemberEntityId(memberDto.getId());
+
+        if(optionalMemberFileEntity.isPresent()){
+            String fileNewName = optionalMemberFileEntity.get().getMemberNewFileName();
+            String filePath = "c:/e1i4_file"+fileNewName;
+            File deleteFile = new File(filePath);
+            if(deleteFile.exists()){
+                deleteFile.delete();
+            }
+            else{
+                System.out.println("파일이 존재하지 않습니다.");
+            }
+            memberFileRepository.delete(optionalMemberFileEntity.get());
+        }
+
+        String oldPw = memberEntity.getUserPw();
+
+        if(memberDto.getUserPw().equals(oldPw)){
+            MemberEntity memberEntity1 = MemberEntity.builder()
+                .id(memberDto.getId())
+                .userEmail(memberDto.getUserEmail())
+                .userPw(memberDto.getUserPw())
+                .name(memberDto.getName())
+                .role(memberDto.getRole())
+                .address(memberDto.getAddress())
+                .phoneNumber(memberDto.getPhoneNumber())
+                .build();
+
+            memberRepository.save(memberEntity1);
+        }
+//         memberRepository.findById(memberDto.getId());
+
+        if(memberDto.getMemberFile().isEmpty() || memberDto.getUserPw().equals(oldPw)){
+            memberEntity = MemberEntity.toMemberUpdateEntity0(memberDto);
+            memberRepository.save(memberEntity);
+        }else if(!memberDto.getMemberFile().isEmpty() || memberDto.getUserPw().equals(oldPw)){
+            MultipartFile memberFile = memberDto.getMemberFile();
+            String fileOldName = memberFile.getOriginalFilename();
+            UUID uuid = UUID.randomUUID();
+            String fileNewName = uuid + "_" + fileOldName;
+
+            String savePath = "c:/saveFile/" + fileNewName;
+            memberFile.transferTo(new File(savePath));
+
+            memberDto.setMemberFileName(fileNewName);
+
+            memberEntity = MemberEntity.toMemberUpdateEntity1(memberDto);
+
+            memberRepository.save(memberEntity);
+
+            MemberFileEntity memberFileEntity
+                = MemberFileEntity.builder()
+                .memberEntity(memberEntity)
+                .memberNewFileName(fileNewName)
+                .memberOldFileName(fileOldName)
+                .build();
+
+            Long fileId = memberFileRepository.save(memberFileEntity).getId();
+
+            memberRepository.findById(fileId).orElseThrow(IllegalArgumentException::new);
+        }
+
+        else {
+
+        }
+
+
     }
 }

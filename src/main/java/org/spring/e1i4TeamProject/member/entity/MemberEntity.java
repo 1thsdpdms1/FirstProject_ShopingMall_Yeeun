@@ -81,7 +81,6 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
         memberEntity.setMemberAttachFile(0);
-//        memberEntity.setMemberFileName(memberDto.);
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
         memberEntity.setRole(Role.MEMBER);
         memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
@@ -107,5 +106,39 @@ public class MemberEntity extends BaseTimeEntity {
         return memberEntity;
     }
 
+    public static MemberEntity toMemberUpdateEntity0(MemberDto memberDto) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(memberDto.getUserPw());
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setMemberAttachFile(0);
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(memberDto.getRole());
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+
+    }
+    public static MemberEntity toMemberUpdateEntity1(MemberDto memberDto) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(memberDto.getUserPw());
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setMemberAttachFile(1);
+        memberEntity.setMemberFileName(memberDto.getMemberFileName());
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(memberDto.getRole());
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+    }
 
 }
