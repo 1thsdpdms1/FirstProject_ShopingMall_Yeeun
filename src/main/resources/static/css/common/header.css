@@ -23,12 +23,25 @@
 
 
 .header .header-con .top-header .top-menu .right-menu{
-  /*border: 1px solid;*/
+/*  border: 1px solid;*/
   /*box-sizing: border-box;*/
 }
+/*.header .header-con .top-header .top-menu .right-menu ul::before{
+    display:block;
+    width: 1px;
+    height:10px;
+    background-color:#000;
+    margin 0 5px;
+    flex: 00 auto;
+}
+.header .header-con .top-header .top-menu .right-menu ul li:first-child::before{
+    content:"";
+    display:none;
+}*/
+
 
 .header .header-con .top-header .top-menu .right-menu ul{
- /* border: 1px solid;*/
+ /* border: 1px solid;
   /*box-sizing: border-box;*/
   display: flex;
   justify-content: space-between;
