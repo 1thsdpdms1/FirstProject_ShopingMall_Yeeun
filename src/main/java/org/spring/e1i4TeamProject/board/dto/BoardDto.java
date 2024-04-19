@@ -43,25 +43,29 @@ public class BoardDto {
 
     private LocalDateTime updateTime;
 
+    private Long memberId;
 
-    //Entity -> Dto (데이터 가져올때)
+
+    //Entity -> Dto (데이터 가져올때) List
     public static BoardDto toboardDto(BoardEntity boardEntity) {
         BoardDto boardDto=new BoardDto();
 
         boardDto.setId(boardEntity.getId());
+        boardDto.setBoardTitle(boardEntity.getBoardTitle());
         boardDto.setBoardContent(boardEntity.getBoardContent());
         boardDto.setCategory(boardEntity.getCategory());
         boardDto.setBoardWriter(boardEntity.getBoardWriter()); // 작성말고 회원의 이름정보만 받아오기?
         boardDto.setBoardHit(boardEntity.getBoardHit());
         boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
         boardDto.setBoardReplyEntityList(boardEntity.getBoardReplyEntityList());
+        boardDto.setMemberEntity(boardEntity.getMemberEntity());
         boardDto.setCreateTime(boardEntity.getCreateTime());
         boardDto.setUpdateTime(boardEntity.getUpdateTime());
 
         return boardDto;
 
     }
-    //엔티티 -> DTO
+    //엔티티 -> DTO  Detail
     public static BoardDto toBoardDetailDto(BoardEntity boardEntity) {
 
         BoardDto boardDto = new BoardDto();
@@ -74,6 +78,7 @@ public class BoardDto {
         boardDto.setBoardHit(boardEntity.getBoardHit());
         boardDto.setCreateTime(boardEntity.getCreateTime());
         boardDto.setUpdateTime(boardEntity.getUpdateTime());
+        boardDto.setMemberEntity(boardEntity.getMemberEntity());
         boardDto.setBoardFileEntityList(boardEntity.getBoardFileEntityList());
         boardDto.setBoardReplyEntityList(boardEntity.getBoardReplyEntityList());
 

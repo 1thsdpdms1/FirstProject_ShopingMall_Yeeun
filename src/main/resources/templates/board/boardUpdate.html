@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>boardDetail</title>
-        <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
+    <title>boardUpdate</title>
+    <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
 </head>
 <body>
 
@@ -14,18 +14,20 @@
         <div class="boardDetail-con">
             <div class="boardDetail-form">
                 <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
-                <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
+                <form th:action="@{/board/boardUpdateOk}" method="POST">  <!--th:object="${boardEntity}"-->
                     <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
 
                     <ul>
                         <li>
                             상세보기
                         </li>
-<!--                        <input th:text="${userId}">아이디</input> <br>-->
+                        <!--                        <input th:text="${userId}">아이디</input> <br>-->
                         <li>
 
-                            <label>category</label>
-                            <input th:value="${board.category}" readonly>
+                            <select name="category" id="category">
+                                <option value="1">자유게시판</option>
+                                <option value="2">질문게시판</option>
+                            </select>
                         </li>
 
                         <li>
@@ -40,7 +42,7 @@
 
                         <li>
                             <label for="boardTitle">제목</label>
-                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}" readonly>
+                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}" >
                         </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
                         <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
 
@@ -50,7 +52,7 @@
                         </li>
 
                         <li>
-                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}" READONLY></textarea>
+                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}" ></textarea>
                         </li>
 
 
@@ -58,20 +60,20 @@
                         <!-- <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
 
                         <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
-                                <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구" <!--width="400" height="200"--> >
+                            <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구" <!--width="400" height="200"--> >
                         </th:block>
 
                         <th:block th:unless="${board.boardAttachFile==1}">
-                                <img src="https://placehold.co/400x200?text=NOIMAGE" alt="이미지 대체문구">
+                            <img src="https://placehold.co/400x200?text=NOIMAGE" alt="이미지 대체문구">
                         </th:block>
 
 
 
 
                         <li>
-<!--                            권한 설정하기(자기글만 + 자기글/admin-->
+                            <!--                            권한 설정하기(자기글만 + 자기글/admin-->
 
-                            <a th:href="@{/board/boardUpdate}">수정</a>
+                            <a th:href="@{/board/boardUpdateOk}">수정</a>
                             <a th:href="@{/board/boardList}">목록</a>
                             <a th:href="@{/board/boardDelete/{id}(id=${board.id})}">삭제</a>
                         </li>

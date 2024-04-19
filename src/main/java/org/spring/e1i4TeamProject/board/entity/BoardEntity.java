@@ -62,7 +62,7 @@ public class BoardEntity extends BaseTimeEntity {
 
         BoardEntity boardEntity=new BoardEntity();
 
-        boardEntity.setCategory(boardEntity.getCategory());
+        boardEntity.setCategory(boardDto.getCategory());
         boardEntity.setBoardTitle(boardDto.getBoardTitle()); //게시글 제목
         boardEntity.setBoardContent(boardDto.getBoardContent());
         boardEntity.setBoardWriter(boardDto.getBoardWriter());
@@ -79,7 +79,7 @@ public class BoardEntity extends BaseTimeEntity {
 
         BoardEntity boardEntity=new BoardEntity();
 
-        boardEntity.setCategory(boardEntity.getCategory());
+        boardEntity.setCategory(boardDto.getCategory());
         boardEntity.setBoardTitle(boardDto.getBoardTitle()); //게시글 제목
         boardEntity.setBoardContent(boardDto.getBoardContent());
         boardEntity.setBoardWriter(boardDto.getBoardWriter());//게시글 작성자
@@ -90,4 +90,8 @@ public class BoardEntity extends BaseTimeEntity {
 
         return boardEntity;
     }
+
+
+
+
 }

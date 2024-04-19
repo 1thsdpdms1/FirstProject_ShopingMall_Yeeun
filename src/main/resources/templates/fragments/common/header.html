@@ -4,18 +4,6 @@
 
 <div class="header" th:fragment="headerFragment">
 
-    <div class="header-con">
-        <div class="top-header">
-            <div class="top-menu">
-                <div class="right-menu">
-                    <ul>
-                        <th:block sec:authorize="isAnonymous()">
-                            <li><a th:href="@{/member/memberLogin}">로그인</a></li>
-                            <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
-                        </th:block>
-                        <li><a href="#">장바구니</a></li>
-                        <li><a href="#">고객센터</a></li>
-
   <div class="header-con">
     <div class="top-header">
       <div class="top-menu">
@@ -34,7 +22,7 @@
             </th:block>
 
             <th:block sec:authorize="isAuthenticated()">
-              <li><a th:href="@{/board/write}">WRITE</a></li>
+              <li><a th:href="@{/board/boardWrite}">WRITE</a></li>
               <li>
                 <a th:href="@{member/detail/{id}(id=${#authentication.principal.memberEntity.id})}"
                    th:text="${#authentication.principal.username}"></a>
@@ -60,7 +48,7 @@
             <a href="#">Shop</a>
           </li>
           <li>
-            <a href="#">board</a>
+            <a th:href="@{/board/boardList}">board</a>
           </li>
           <li>
             <a href="#">admin</a>
@@ -84,7 +72,7 @@
             </ul>
           </li>
           <li>
-            <a href="#">board</a>
+            <a th:href="@{/board/boardList}">board</a>
             <ul class="sub">
               <li><a href="#">커뮤니티</a></li>
               <li><a href="#">공지사항</a></li>

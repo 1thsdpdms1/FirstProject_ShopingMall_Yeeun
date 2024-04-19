@@ -4,18 +4,25 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.spring.e1i4TeamProject.board.dto.BoardDto;
 import org.spring.e1i4TeamProject.board.dto.BoardReplyDto;
+import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.board.service.BoardReplyService;
 import org.spring.e1i4TeamProject.board.service.BoardService;
 import org.spring.e1i4TeamProject.config.MyUserDetailsImpl;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -32,6 +39,8 @@ public class BoardController {
     public String boardWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                              BoardDto boardDto, Model model){
 
+        model.addAttribute("memberId",myUserDetails.getMemberEntity().getId());
+        model.addAttribute("boardDto",boardDto);
         model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
 
         return "board/boardWrite";
@@ -39,12 +48,14 @@ public class BoardController {
 
 
     @PostMapping("/boardWrite")
-    public String boardWriteOK(@Valid BoardDto boardDto,
-                               BindingResult bindingResult,Model model) throws IOException {
+    public String boardWriteOK(BoardDto boardDto,
+                               @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                               Model model) throws IOException {
 
-//        boardService.boardInsertFile(boardDto);
-        model.addAttribute("boardDto",boardDto);
-        boardService.boardInsert(boardDto);
+//        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
+//        model.addAttribute("boardDto",boardDto);
+//        boardService.boardInsert(boardDto);
+        boardService.boardInsertFile(boardDto);
 
         return "redirect:/board/boardList";
         //글 작성후에 boardList 페이지로 이동
@@ -52,25 +63,56 @@ public class BoardController {
 
 
     @GetMapping("/boardList")
-    public String boardList(Model model, @AuthenticationPrincipal MyUserDetailsImpl myUserDetails){
-        List<BoardDto> boardDtoList = boardService.boardList();
+    public String boardList( @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                            @RequestParam(name = "subject",required = false) String subject,
+                            @RequestParam(name = "search",required = false) String search,
+                            @PageableDefault(page = 0, size = 3,sort = "id", direction = Sort.Direction.DESC)
+                            Pageable pageable,Model model){
+//        search
+        Page<BoardDto> boardDtoList = boardService.boardSearchPageList(pageable,subject,search);
 
         model.addAttribute("myUserDetails",myUserDetails);
+
+        //paging
+
+        int totalPages = boardDtoList.getTotalPages(); // 전체 페이지
+        int newPage=boardDtoList.getNumber(); // 현재 페이지
+//        Long totalElements= boardDtoList.getTotalElements(); // 전체레코드 개수
+//        int size = boardDtoList.getSize(); // 페이지당 보이는 갯수
+
+        int blockNum = 8;// 브라우저에 보이는 페이지번호
+
+        int startPage= (int)(
+                (Math.floor(newPage/blockNum)*blockNum)+1<=totalPages?(Math.floor(newPage/blockNum)*blockNum) + 1 : totalPages
+        );
+
+        int endPage = (startPage + blockNum) -1 <totalPages ? (startPage + blockNum) -1 :totalPages;
+
+
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("newPage",newPage);
+        model.addAttribute("endPage",endPage);
+
         model.addAttribute("boardDtoList",boardDtoList);
+
+        List<BoardDto> boardDtos =new ArrayList<>();
+        if(subject==null || search ==null){
+            boardDtos = boardService.boardList();
+        }else{
+            boardDtoList=  boardService.boardSearchPageList(pageable,subject,search);
+        }
 
         return "board/boardList";
     }
 
+    @Transactional
     @GetMapping("/boardDetail/{id}")
     public String boardDetail(Model model, @PathVariable("id")Long id){
 
-//        boardService.updateHit(id);
+        boardService.boardHit(id);
 
         //조회 -> BoardEntity id -> 파일이 있을 경우 FileEntity newFileName
         BoardDto board = boardService.boardDetail(id);
-
-        // "board" 라는 이름으로 조회한 게시글(파일 있으면 파일 포함)을 저장
-        // --> board/detail.html
 
         //게시글이 존재하면 -> 게시글에 연결된 덧글리스트
 //        List<BoardReplyDto> replyList= boardReplyService.boardReplyList(board.getId());
@@ -81,6 +123,36 @@ public class BoardController {
         return "board/boardDetail";
     }
 
+    @Transactional
+    @GetMapping("/boardUpdate")
+    public String boardUpdate(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                              @ModelAttribute BoardDto boardDto, Model model,
+                              @PathVariable("id")Long id){
+
+        BoardDto board = boardService.boardDetail(id);
+
+        return "board/boardUpdate" + boardDto.getId();
+    }
+
+
+
+
+    @PostMapping("/boardUpdateOk")
+    public String boardUpdateOk(@ModelAttribute BoardDto boardDto){
+
+        boardService.boardUpdate(boardDto);
+
+        return "redirect:/board/boardDetail" + boardDto.getId();
+    }
+
+    @Transactional
+    @GetMapping("/boardDelete/{id}")
+    public String delete(@PathVariable("id") Long id){
+
+        boardService.boardDeleteById(id);
+
+        return "redirect:/board/boardList";
+    }
 
 
 

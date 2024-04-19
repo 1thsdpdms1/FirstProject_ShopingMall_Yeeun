@@ -10,6 +10,9 @@ import org.spring.e1i4TeamProject.board.repository.BoardReplyRepository;
 import org.spring.e1i4TeamProject.board.repository.BoardRepository;
 import org.spring.e1i4TeamProject.board.service.serviceInterface.BoardServiceInterface;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,21 +32,17 @@ public class BoardService implements BoardServiceInterface {
     private final BoardFileRepository boardFileRepository;
     private final BoardReplyRepository boardReplyRepository;
 
-    @Override// 파일 고려하기 않고 데이텀나 입력할 때
-    public void boardInsert(BoardDto boardDto) {
-
-        BoardEntity boardEntity = BoardEntity.toInsertBoardEntity0(boardDto);
-        boardRepository.save(boardEntity);
-    }
 
     @Override // 파일을 고려한 매서드
     public void boardInsertFile(BoardDto boardDto) throws IOException {
         System.out.println("if로 들어가지도 못함");
+
         if (boardDto.getBoardFile().isEmpty()) {
             //파일 없는 경우
+            System.out.println("if첫 시작");
             //dto->entity
             boardDto.setMemberEntity(MemberEntity.builder()
-                    .id(boardDto.getMemberEntity().getId())
+                    .id(boardDto.getMemberId())
                     .build());
             //board 에 맞는 memberId 정보를 가져와야하는데 boardDto에 가져올 방법이
             // 없어서 MemberEntity로 바꿔서 boardDto로 가져온다.
@@ -80,7 +79,7 @@ public class BoardService implements BoardServiceInterface {
             // 1. 게시글 ->
             System.out.println("파일이 DB에 저장");
             boardDto.setMemberEntity(MemberEntity.builder()
-                    .id(boardDto.getMemberEntity().getId())
+                    .id(boardDto.getMemberId())
                     .build());
             BoardEntity boardEntity = BoardEntity.toInsertBoardEntity1(boardDto);
             Long id = boardRepository.save(boardEntity).getId();
@@ -122,9 +121,44 @@ public class BoardService implements BoardServiceInterface {
                 .collect(Collectors.toList());
 
         return boardDtoList;
-
-
     }
+
+
+    @Override
+    public Page<BoardDto> boardSearchPageList(Pageable pageable, String subject, String search) {
+
+        Page<BoardEntity> boardEntityPage = null;
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findAll(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitleContaining(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContentContaining(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findAll(pageable);
+            }
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+
+        return boardDtoPage;
+    }
+
+//    @Override//paging
+//    public Page<BoardDto> boardPageList(Pageable pageable) {
+//
+//        Page<BoardEntity> pagingEntity = boardRepository.findAll(pageable);
+//
+//        // paging처리 -> 페이징 객체 하나 BoardEntity -> BoardDto의 toSelectBoardDto 매서드에 추가
+//        Page<BoardDto> boardDtos= pagingEntity.map(BoardDto::toboardDto);
+//
+////        pagingEntity.get().forEach(boardEntity -> {
+////            BoardDto.toSelectBoardDto(boardEntity);
+////        });
+//        //하나씩 꺼내서 작업하는 것
+//
+//        return boardDtos;
+//    }
 
     @Override
     public BoardDto boardDetail(Long id) {
@@ -147,6 +181,45 @@ public class BoardService implements BoardServiceInterface {
         //        return null;
         }
 
+    @Override
+    public void boardHit(Long id) {
+
+        boardRepository.boardHitById(id);
+    }
+
+    @Override
+    public void boardUpdate(BoardDto boardDto) {
+
+        if(boardDto.getBoardAttachFile()==0){
+            BoardEntity boardEntity = BoardEntity.toInsertBoardEntity0(boardDto);
+            boardRepository.save(boardEntity);
+        }else{
+            BoardEntity boardEntity1 = BoardEntity.toInsertBoardEntity1(boardDto);
+            boardRepository.save(boardEntity1);
+
+        }
+//        Optional<BoardEntity> optionalBoardEntity
+//                =boardRepository.findById(boardDto.getId());
+//
 
     }
+
+    @Override
+    public void boardDeleteById(Long id) {
+
+        Optional<BoardEntity> boardEntity = boardRepository.findById(id);
+        if (boardEntity.isPresent()){
+            boardRepository.deleteById(id);
+        }
+        System.out.println("삭제 불가능");
+
+    }
+
+
+
+
+
+
+
+}
 
