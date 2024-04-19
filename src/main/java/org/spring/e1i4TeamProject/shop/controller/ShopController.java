@@ -46,13 +46,13 @@ public class ShopController {
     return "redirect:/shop/shopList";
   }
 
-  @GetMapping("/shopDetail/{id}")
-  public String shopDetail(@PathVariable("id") Long id,
+  @GetMapping("/shopDetail/{Id}")
+  public String shopDetail(@PathVariable("Id") Long Id,
                        @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                        Model model) {
 
-    shopService.updateShopHit(id);
-    ShopDto shopDto = shopService.detail1(id);
+    shopService.updateShopHit(Id);
+    ShopDto shopDto = shopService.detail(Id);
 
     List<ShopReplyDto> shopReplyDtoList = shopReplyService.shopReplyList(shopDto.getId());
 

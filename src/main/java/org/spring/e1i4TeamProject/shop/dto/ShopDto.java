@@ -59,6 +59,7 @@ public class ShopDto {
 
     public static ShopDto toselectShopDto(ShopEntity shopEntity) {
         ShopDto shopDto=new ShopDto();
+
         shopDto.setId(shopEntity.getId());
         shopDto.setShopTitle(shopEntity.getShopTitle());
         shopDto.setShopContent(shopEntity.getShopContent());

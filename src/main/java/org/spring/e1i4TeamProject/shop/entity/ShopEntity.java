@@ -99,6 +99,7 @@ public class ShopEntity extends BaseTimeEntity {
 
     public static ShopEntity toUpdateShopEntity(ShopDto shopDto) {
         ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setId(shopDto.getId());
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
@@ -111,6 +112,7 @@ public class ShopEntity extends BaseTimeEntity {
     }
     public static ShopEntity toUpdateFileShopEntity(ShopDto shopDto) {
         ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setId(shopDto.getId());
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
