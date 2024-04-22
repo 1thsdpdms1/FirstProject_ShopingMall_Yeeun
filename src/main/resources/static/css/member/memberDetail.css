@@ -63,7 +63,7 @@
 }
 
 .container .detail .detail-con .detail-form .left .left-con img {
-    /*width: 100%;*/
+    width: 600px;
     height: 583px;
 }
 
@@ -77,7 +77,7 @@
 
 .container .detail .detail-con .detail-form form .right ul li label {
     flex: 1;
-    background-color: #fdc926;
+    background-color: #666;
     color: white;
     padding: 5px;
     box-sizing: border-box;
@@ -88,6 +88,22 @@
     flex: 4;
     padding: 5px;
     box-sizing: border-box;
+}
+
+.container .detail .detail-con .detail-form form .right ul li a{
+    flex: 1;
+    text-align: center;
+    background-color: #666;
+    color: #ffffff;
+    padding: 5px 0;
+}
+
+.container .detail .detail-con .detail-form form .right ul li:last-child input{
+    flex: 1;
+    text-align: center;
+    background-color: #666;
+    color: #ffffff;
+    padding: 5px 0;
 }
 
 .container .detail .detail-con .detail-form form .right ul li.li2 {

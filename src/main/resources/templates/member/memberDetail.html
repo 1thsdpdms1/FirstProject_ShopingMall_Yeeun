@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <script th:src="@{/js/header.js}" defer></script>
     <title>개인 정보</title>
     <link rel="stylesheet" th:href="@{/css/member/memberDetail.css}">
 </head>
@@ -60,8 +59,14 @@
                                 </li>
 
                                 <li>
-                                    <label for="boardFile">File</label>
-                                    <input type="file" name="boardFile" id="boardFile">
+                                    <label for="role">PHONENUMBER</label>
+                                    <input type="text" id="role" name="role"
+                                           th:value="${memberDto.role}" readonly> <br>
+                                </li>
+
+                                <li>
+                                    <label for="memberFile">File</label>
+                                    <input type="file" name="memberFile" id="memberFile">
                                 </li>
 
                                 <li>
@@ -80,7 +85,7 @@
                                     <li class="li2">
                                         <a th:href="@{/member/memberList}">LIST</a>
                                         <input type="submit" value="UPDATE">
-                                        <a th:href="@{/member/delete/{id}(id=${memberDto.id})}">삭제</a>
+                                        <a th:href="@{/member/delete/{id}(id=${memberDto.id})}">회원 탈퇴</a>
                                     </li>
                                 </th:block>
                                 <th:block th:unless="${memberDto.userEmail == myUserDetails.username}">

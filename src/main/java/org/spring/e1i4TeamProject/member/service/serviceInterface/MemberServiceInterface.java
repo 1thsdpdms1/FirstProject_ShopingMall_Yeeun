@@ -9,7 +9,9 @@ public interface MemberServiceInterface {
 
     MemberDto memberDetail(Long id);
 
-    String uploadMemberImg(MemberDto memberDto);
-
     void memberUpdate(MemberDto memberDto) throws IOException;
+
+    void sellerJoin(MemberDto memberDto) throws IOException;
+
+    void memberDelete(Long id);
 }

@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div class="header" th:fragment="headerFragment">
+    <script th:src="@{/js/header.js}" defer></script>
     <div class="header-con">
         <div class="top-header">
             <div class="top-menu">
@@ -49,7 +50,7 @@
                     <a href="#">오늘의 강좌</a>
                 </h1>
                 <h1 class="logo">
-                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
+                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt="로고"></a>
                 </h1>
             </div>
         </div>
@@ -63,7 +64,7 @@
                         <a href="#">BOARD</a>
                     </li>
                     <li>
-                        <a href="#">ADMIN</a>
+                        <a href="#">SELLER</a>
                     </li>
                     <li>
                         <a href="#">MY HOME</a>
@@ -94,7 +95,7 @@
                         <a href="#">SELLER</a>
                         <ul class="sub">
                             <li><a href="#">강의 등록</a></li>
-                            <li><a href="#">강의 등록</a></li>
+                            <li><a href="#">강사 회원가입</a></li>
                             <li><a href="#">강의 등록</a></li>
 
                         </ul>
