@@ -1,0 +1,64 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+
+.container {
+  width: 100%;
+}
+
+.container .container-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 사이드바 */
+.side {
+  width: 300px;
+  height: 100VH;
+  background-color: #9debee;
+
+
+}
+
+.side .side-bar {
+  position: sticky;
+  top: 0;
+
+}
+
+/* list */
+
+.container .sellerList {
+  width: 100%;
+}
+
+.container .sellerList .sellerList-con .grid {
+  width: 1200px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+
+
+}
+
+.container .sellerList .sellerList-con .grid ul {
+
+}
+
+.container .sellerList .sellerList-con .grid ul>li {
+  border: 1px solid;
+  box-sizing: border-box;
+}
+.photo, .info {
+  display: flex;
+  align-items: center;
+}
+
+.photo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.info {
+  flex-grow: 1;
+  padding-left: 10px;
+}

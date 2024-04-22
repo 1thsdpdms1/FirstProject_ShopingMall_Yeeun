@@ -72,6 +72,14 @@ public class MemberDto {
         memberDto.setShopEntityList(memberEntity.getShopEntityList());
         memberDto.setCreateTime(memberEntity.getCreateTime());
         memberDto.setUpdateTime(memberEntity.getUpdateTime());
+        if(memberEntity.getMemberAttachFile()==0){
+            //파일 x
+            memberDto.setMemberAttachFile(memberDto.getMemberAttachFile());
+        }else {
+            memberDto.setMemberAttachFile(memberDto.getMemberAttachFile());
+            memberDto.setMemberNewFileName(memberEntity.getMemberFileEntityList().get(0).getMemberNewFileName());
+            memberDto.setMemberOldFileName(memberEntity.getMemberFileEntityList().get(0).getMemberOldFileName());
+        }
 
         if (memberEntity.getMemberAttachFile() == 0) {
             memberDto.setMemberAttachFile(memberEntity.getMemberAttachFile());

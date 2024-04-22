@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>선생님 목록</title>
+    <link rel="stylesheet" th:href="@{/css/seller/sellerList.css}">
+</head>
+<tbody>
+    <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+
+    <div class="container">
+        <div class="container-box">
+
+            <div class="side">
+                <div class="side-bar">
+                    <ul>
+                        <li><a th:href="@{/seller/sellerList}">선생님목록</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sellerList">
+                <div class="sellerList-con">
+                    <h1>선생님 리스트</h1>
+                    <div class="grid">
+                        <ul>
+                            <li th:each="seller : ${seller}">
+                                <div class="photo">
+                                    <th:block th:if="${seller.memberAttachFile==1}">
+                                        <!--  이미지 표시 -->
+                                        <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구">
+                                        </a>
+                                    </th:block>
+                                    <th:block th:unless="${seller.memberAttachFile==1}">
+                                        <!--  이미지 표시 -->
+                                        <img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구">
+                                        </a>
+                                    </th:block>
+                                </div>
+                                <div class="info">
+                                    <ul>
+                                        <li>
+                                            <span>이름: </span><span th:text="${seller.name}"></span>
+                                        </li>
+                                        <li>
+                                            <span>강의명: </span><span th:text="${seller.name}"></span>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="preText">
+                        <pre>소개글</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</tbody>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+
+</html>

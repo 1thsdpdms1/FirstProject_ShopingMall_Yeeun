@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>sellerList</title>
+    <link rel="stylesheet" th:href="@{/css/admin/sellerList.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+
+    <div class="sellerList">
+        <div class="sellerList-con">
+            <h1>선생님 리스트</h1>
+            <table>
+                <thead>
+                <tr>
+                    <td>
+                        <div class="search">
+                            <div class="search-con">
+                                <form th:action="@{/admin/sellerList}" method="get">
+                                    <select name="subject" id="subject">
+                                        <option value="" th:selected="${#strings.equals(param.subject)}">::선택::</option>
+                                        <option th:value="${sellerList.name}" th:selected="${#strings.equals(param.subject,'name')}">이름
+                                        </option>
+                                        <option value="" th:selected="${#strings.equals(param.subject,'phoneNumber')}">
+                                            전화번호
+                                        </option>
+                                        <option value="" th:selected="${#strings.equals(param.subject,'userEmail')}">
+                                            이메일
+                                        </option>
+                                    </select>
+                                    <input type="text" name="search" id="search" th:value="${param.search}">
+                                    <input type="submit" value="검색">
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>아이디</th>
+                    <th>이메일</th>
+                    <th>비밀번호</th>
+                    <th>이름</th>
+                    <th>주소</th>
+                    <th>전화번호</th>
+                    <th>권한</th>
+                    <th>가입일</th>
+                    <th>수정일</th>
+                    <th>보기</th>
+                    <th>삭제</th>
+                </tr>
+
+                <tr th:each="seller:${sellerList}">
+
+                    <td th:text="${seller.id}"></td>
+                    <td th:text="${seller.userEmail}"></td>
+                    <td th:text="${seller.userPw}"></td>
+                    <td th:text="${seller.name}"></td>
+                    <td th:text="${seller.address}"></td>
+                    <td th:text="${seller.phoneNumber}"></td>
+                    <td th:text="${seller.role}"></td>
+                    <td th:text="${seller.createTime}"></td>
+                    <td th:text="${seller.updateTime}"></td>
+                    <td><a th:href="@{/admin/sellerDetail/{id}(id=${seller.id})}">보기</a></td>
+                    <td><a th:href="@{/admin/sellerDetail/{id}(id=${seller.id})}">삭제</a></td>
+
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td colspan="10">
+                        <div class="paging">
+                            <ul>
+                                <li>
+                                    <span th:if="${sellerList.pageable.pageNumber+1 eq 1}" class="span0">START</span>
+                                    <span th:unless="${sellerList.pageable.pageNumber+1 eq 1}">
+                                     <a th:href="@{/admin/sellerList(page=0 , search=${param.search},subject=${param.subject} )}" class="span1">처음</a>
+                                     </span>
+                                </li>
+                                <li>
+                                    <!-- 이전페이지가 첫번째 페이지면 span표시 -->
+                                    <span th:if="${1==sellerList.pageable.pageNumber+1}" class="span0">PRE</span>
+                                    <span th:unless="${1==sellerList.pageable.pageNumber+1}">
+                                        <a th:href="@{/admin/sellerList(page=${sellerList.pageable.pageNumber-1}, search=${param.search},subject=${param.subject} )}" class="span1">이전</a>
+                                     </span>
+                                </li>
+                                <!--block -->
+                                <!-- 페이지번호 -->
+                                <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                                    <span th:if="${i==sellerList.pageable.pageNumber+1}" th:text="${i}"
+                                          class="now"></span>
+                                    <a th:unless="${i== sellerList.pageable.pageNumber+1}"
+                                       th:href="@{/admin/sellerList(page=${i - 1},search=${param.search},subject=${param.subject} )}"
+                                       th:text="${i}"></a>
+                                </li>
+                                <li>
+                                    <!-- 현재페이지가 마지막 페이지면 span 표시 -->
+                                    <span th:if="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}"
+                                          class="span0">NEXT</span>
+                                    <!-- 현재페이지가 마지막 페이지가아니면 a표시 현재페이지 +1 -->
+                                    <span th:unless="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}">
+                                     <a th:href="@{/admin/sellerList(page=${sellerList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}" class="span1">다음</a>
+                </span>
+                                </li>
+                                <li>
+                                    <!-- 현재페이지가 마지막 페이지면 span 표시 -->
+                                    <span th:if="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}"
+                                          class="span0">END</span>
+                                    <!-- 현재페이지가 마지막 페이지가아니면 마지막페이지로 이동해라  a -->
+                                    <span th:unless="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}">
+                                     <a th:href="@{//admin/sellerList(page=${sellerList.totalPages-1},search=${param.search},subject=${param.subject} )}" class="span1">마지막</a>
+                </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

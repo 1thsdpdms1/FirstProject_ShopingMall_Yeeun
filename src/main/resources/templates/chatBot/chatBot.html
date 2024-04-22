@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+    <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+    <script th:src="@{/js/chatBot.js}" ></script>
+    <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
+
+</head>
+<body>
+<div class="chat">
+    <button></button>
+    <div id="chat-bot">
+        <div class="wrap">
+            <button type="button" id="btn-chat-open"  onclick="openChat()">
+                OPEN
+            </button>
+            <dl id="chat-disp">
+                <dt id="chat-header">
+                    <span>챗봇_Sample</span>
+                    <span class="btn-wrap">
+				<button type="button" id="btn-chat-close" onclick="disconnect()">X</button>
+			</span>
+                </dt>
+                <dd id="chat-content">
+
+                </dd>
+                <dd id="chat-question" class="flex between">
+                    <span class="flex column center"><i></i></span>
+                    <input type="text" id="question"  placeholder="질문을 입력하세요">
+                    <button type="button" id="btn-msg-send" onclick="msgSendClickFn()">전송</button>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
