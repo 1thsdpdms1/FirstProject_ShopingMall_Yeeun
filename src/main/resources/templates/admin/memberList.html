@@ -18,6 +18,7 @@
                             <div class="search-con">
                                 <form th:action="@{/admin/memberList}" method="get">
                                     <select name="subject" id="subject">
+                                        <option value="" th:selected="${#strings.equals(param.subject)}">::선택::</option>
                                         <option value="name" th:selected="${#strings.equals( param.subject,'name')}">이름</option>
                                         <option value="phoneNumber" th:selected="${#strings.equals(param.subject,'phoneNumber')}">전화번호</option>
                                         <option value="userEmail" th:selected="${#strings.equals(param.subject,'userEmail')}">이메일</option>
@@ -54,7 +55,7 @@
                     <td th:text="${member.role}"></td>
                     <td th:text="${member.createTime}"></td>
                     <td th:text="${member.updateTime}"></td>
-                    <td><a th:href="@{/admin/memberDetail/{id}(id=${member.id})}">보기</a></td>
+                    <td><a th:href="@{/member/memberDetail/{id}(id=${member.id})}">보기</a></td>
                     <td><a th:href="@{/admin/memberListDelete/{id}(id=${member.id})}">삭제</a></td>
                 </tr>
                 </tbody>

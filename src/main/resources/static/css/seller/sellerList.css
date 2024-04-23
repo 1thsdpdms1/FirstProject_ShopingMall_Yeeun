@@ -3,62 +3,93 @@
 @import url(/css/common/header.css);
 
 .container {
-  width: 100%;
+width: 100%;
+display: flex;
+justify-content: center;
 }
 
-.container .container-box {
+.container .container-box{
+  width: 1300px;
   display: flex;
-  justify-content: space-between;
+
 }
+
 
 /* 사이드바 */
-.side {
+.container .side {
   width: 300px;
-  height: 100VH;
-  background-color: #9debee;
 
-
+  background-color: #7c7c7c;
 }
 
-.side .side-bar {
+.container .menu {
+  width: 300px;
+  overflow: hidden;
   position: sticky;
   top: 0;
+  /* 화면 맨 위에 위치하도록 지정합니다 */
+  left: 0;
+  /* 화면 왼쪽에 위치하도록 지정합니다 */
+  bottom: 0;
+  /* 화면 맨 아래까지 확장됩니다 */
+  /* margin: 150px auto; */
+}
+
+.container .menu h1 {
+  text-align: center;
 
 }
 
-/* list */
-
-.container .sellerList {
+.container .menu>li {
   width: 100%;
+  text-align: center;
+  line-height: 50px;
+  background-color: #7c7c7c;
 }
 
-.container .sellerList .sellerList-con .grid {
-  width: 1200px;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
+.container .menu>li img {
+  width: 40px;
+  height: 40px;
+  padding: 5px 5px;
+}
 
+.container .menu a {
+  color: #000000;
+}
+
+.container .submenu {
+  height: 0;
+  /* submenu가 안보이게 하기 위해 */
+  overflow: hidden;
+}
+
+.container .submenu>li {
+  /* line-height: 50px; */
+  background-color: #94a9ff;
 
 }
 
-.container .sellerList .sellerList-con .grid ul {
-
+.container .menu>li:hover {
+  /* menu부터 submenu01~5높이 생각해서 설정 */
+  height: 100px;
+  transition-duration: 0.5s;
 }
 
-.container .sellerList .sellerList-con .grid ul>li {
-  border: 1px solid;
-  box-sizing: border-box;
-}
-.photo, .info {
-  display: flex;
-  align-items: center;
+.container .menu>li:hover .submenu {
+  height: 100px;
+  /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 1s;
 }
 
-.photo img {
-  max-width: 100%;
-  height: auto;
+.container .menu>li.home:hover {
+  /* menu부터 submenu01~5높이 생각해서 설정 */
+  height: 50px;
+  transition-duration: 0.5s;
 }
 
-.info {
-  flex-grow: 1;
-  padding-left: 10px;
+.container .menu>li.home:hover .submenu {
+  height: 50px;
+  /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 1s;
 }
+

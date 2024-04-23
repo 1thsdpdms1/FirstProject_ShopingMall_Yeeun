@@ -9,16 +9,28 @@
     <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 
     <div class="container">
-        <div class="container-box">
 
             <div class="side">
-                <div class="side-bar">
-                    <ul>
-                        <li><a th:href="@{/seller/sellerList}">선생님목록</a></li>
-                    </ul>
-                </div>
+                <ul class="menu">
+                    <h1>카테고리</h1>
+                    <li class="home">
+                        <a href="#">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#">조회</a>
+                        <ul class="submenu">
+                            <li><img th:src="@{/images/users.png}" alt="icon"><a th:href="@{/seller/sellerList}">선생님목록</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">등록</a>
+                        <ul class="submenu">
+                            <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopWrite}">강의판매등록</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-
+        <div class="container-box">
             <div class="sellerList">
                 <div class="sellerList-con">
                     <h1>선생님 리스트</h1>

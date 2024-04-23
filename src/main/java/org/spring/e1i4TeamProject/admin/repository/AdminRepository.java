@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -17,14 +18,12 @@ public interface AdminRepository extends JpaRepository<MemberEntity,Long> {
 
     Page<MemberEntity> findByRole(Pageable pageable, Role role);
 
-    @Query(value = "select m from MemberEntity m where m.role = :role and m.name = :name")
-    Page<MemberEntity> findByRoleAndNameContains(Pageable pageable, String search, Role role);
 
-    Page<MemberEntity> findByNameContains(Pageable pageable, String search);
+    Page<MemberEntity> findByRoleAndNameContains(Pageable pageable, @Param("role") Role role,@Param("search")String search);
 
-    Page<MemberEntity> findByPhoneNumberContains(Pageable pageable, String search);
+    Page<MemberEntity> findByRoleAndPhoneNumberContains(Pageable pageable, @Param("role") Role role,@Param("search")String search);
 
-    Page<MemberEntity> findByUserEmailContains(Pageable pageable, String search);
+    Page<MemberEntity> findByRoleAndUserEmailContains(Pageable pageable, @Param("role") Role role,@Param("search")String search);
 
 
 //    @Query(value = "select m from MemberEntity m where m.role = :role and m.name = :name")

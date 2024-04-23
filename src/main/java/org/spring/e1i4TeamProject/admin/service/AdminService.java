@@ -22,16 +22,16 @@ public class AdminService implements AdminServiceInterface {
         Page<MemberEntity> memberEntityPage = null;
         if (subject != null) {
             if (subject.equals("name")) {
-                memberEntityPage = adminRepository.findByNameContains(pageable, search);
+                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable,Role.MEMBER, search);
             } else if (subject.equals("phoneNumber")) {
-                memberEntityPage = adminRepository.findByPhoneNumberContains(pageable, search);
+                memberEntityPage = adminRepository.findByRoleAndPhoneNumberContains(pageable,Role.MEMBER, search);
             } else if (subject.equals("userEmail")) {
-                memberEntityPage = adminRepository.findByUserEmailContains(pageable, search);
+                memberEntityPage = adminRepository.findByRoleAndUserEmailContains(pageable,Role.MEMBER, search);
             } else {
-                memberEntityPage = adminRepository.findAll(pageable);
+                memberEntityPage = adminRepository.findByRole(pageable,Role.MEMBER);
             }
         } else {
-            memberEntityPage = adminRepository.findAll(pageable);
+            memberEntityPage = adminRepository.findByRole(pageable,Role.MEMBER);
         }
         Page<MemberDto> memberDtos = memberEntityPage.map(MemberDto::toMemberDto);
 
@@ -52,21 +52,21 @@ public class AdminService implements AdminServiceInterface {
 
         Page<MemberEntity> memberEntityPage = null;
 
-
-        if (subject != null && search != null) {
+        if (subject != null) {
             if (subject.equals("name")) {
-                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable, search, Role.MANAGER);
+                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable,Role.MANAGER, search);
+            } else if (subject.equals("phoneNumber")) {
+                memberEntityPage = adminRepository.findByRoleAndPhoneNumberContains(pageable,Role.MANAGER, search);
+            } else if (subject.equals("userEmail")) {
+                memberEntityPage = adminRepository.findByRoleAndUserEmailContains(pageable,Role.MANAGER, search);
             } else {
-                memberEntityPage = adminRepository.findByRole(pageable, Role.MANAGER);
-
+                memberEntityPage = adminRepository.findByRole(pageable,Role.MANAGER);
             }
-
         } else {
-            memberEntityPage = adminRepository.findByRole(pageable, Role.MANAGER);
+            memberEntityPage = adminRepository.findByRole(pageable,Role.MANAGER);
         }
-
-
         Page<MemberDto> memberDtos = memberEntityPage.map(MemberDto::toMemberDto);
+
         return memberDtos;
 
     }

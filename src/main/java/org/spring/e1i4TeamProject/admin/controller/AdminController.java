@@ -31,7 +31,7 @@ public class AdminController {
     @GetMapping("/memberList")
     public String memberList(@PageableDefault(page = 0, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                              Model model,
-                             @RequestParam(name = "subject1", required = false) String subject,
+                             @RequestParam(name = "subject", required = false) String subject,
                              @RequestParam(name = "search", required = false) String search) {
 
         Page<MemberDto> memberList = adminService.memberList(pageable, subject, search);
@@ -57,7 +57,7 @@ public class AdminController {
     //선생님리스트
     @GetMapping("/sellerList")
     public String sellerList(@PageableDefault(page = 0, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
-                             Model model, MemberDto memberDto,
+                             Model model,
                              @RequestParam(name = "subject", required = false) String subject,
                              @RequestParam(name = "search", required = false) String search) {
 
@@ -84,12 +84,10 @@ public class AdminController {
     }
 
     @GetMapping("/memberListDelete/{id}")
-    public String delete(@PathVariable("id")Long id){
+    public String delete(@PathVariable("id") Long id) {
         adminService.memberListDelete(id);
         return "redirect:/admin/memberList";
     }
-
-
 
 
 }

@@ -17,17 +17,13 @@
                     <td>
                         <div class="search">
                             <div class="search-con">
-                                <form th:action="@{/admin/sellerList}" method="get">
+                                <form th:action="@{/admin/sellerList}" method="get" >
                                     <select name="subject" id="subject">
                                         <option value="" th:selected="${#strings.equals(param.subject)}">::선택::</option>
-                                        <option th:value="${sellerList.name}" th:selected="${#strings.equals(param.subject,'name')}">이름
-                                        </option>
-                                        <option value="" th:selected="${#strings.equals(param.subject,'phoneNumber')}">
-                                            전화번호
-                                        </option>
-                                        <option value="" th:selected="${#strings.equals(param.subject,'userEmail')}">
-                                            이메일
-                                        </option>
+                                        <option value="name" th:selected="${#strings.equals(param.subject,'name')}">이름</option>
+                                        <option value="phoneNumber" th:selected="${#strings.equals(param.subject,'phoneNumber')}">전화번호</option>
+<!--                                        <option value="${sellerList.name}" th:selected="${#strings.equals(param.subject,'name')}">이름</option>-->
+                                        <option value="userEmail" th:selected="${#strings.equals(param.subject,'userEmail')}">이메일</option>
                                     </select>
                                     <input type="text" name="search" id="search" th:value="${param.search}">
                                     <input type="submit" value="검색">
@@ -61,7 +57,7 @@
                     <td th:text="${seller.role}"></td>
                     <td th:text="${seller.createTime}"></td>
                     <td th:text="${seller.updateTime}"></td>
-                    <td><a th:href="@{/admin/sellerDetail/{id}(id=${seller.id})}">보기</a></td>
+                    <td><a th:href="@{/member/memberDetail/{id}(id=${seller.id})}">보기</a></td>
                     <td><a th:href="@{/admin/sellerDetail/{id}(id=${seller.id})}">삭제</a></td>
 
                 </tr>
