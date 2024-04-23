@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>개인 정보</title>
@@ -11,7 +12,7 @@
     <div class="detail">
         <div class="detail-con">
             <div class="detail-form">
-                <h1 class="title">DETAIL</h1>
+                <h1 class="title">개 인 정 보</h1>
                 <form th:action="@{/member/memberUpdate}" method="post" enctype="multipart/form-data">
                     <div class="left">
                         <div class="left-con">
@@ -27,56 +28,83 @@
                         <div class="right-con">
                             <ul>
                                 <li>
-                                    <label for="id">ID</label>
+                                    <label for="id">번 호</label>
+                                </li>
+                                <li>
                                     <input type="text" id="id" name="id" th:value="${memberDto.id}" readonly> <br>
                                 </li>
-
                                 <li>
-                                    <label for="userEmail">EMAIL</label>
+                                    <label for="userEmail">이 메 일</label>
+                                </li>
+                                <li>
                                     <input type="text" id="userEmail" name="userEmail"
                                            th:value="${memberDto.userEmail}">
                                     <br>
                                 </li>
 
                                 <li>
-                                    <label for="userPw">PASSWORD</label>
+                                    <label for="userPw">비 밀 번 호</label>
+                                </li>
+                                <li>
                                     <input type="text" id="userPw" name="userPw" th:value="${memberDto.userPw}"> <br>
                                 </li>
 
                                 <li>
-                                    <label for="name">NAME</label>
+                                    <label for="name">이 름</label>
+                                </li>
+                                <li>
                                     <input type="text" id="name" name="name" th:value="${memberDto.name}"> <br>
                                 </li>
 
                                 <li>
-                                    <label for="address">ADDRESS</label>
+                                    <label for="address">주 소</label>
+                                </li>
+                                <li>
                                     <input type="text" id="address" name="address" th:value="${memberDto.address}"> <br>
                                 </li>
                                 <li>
-                                    <label for="phoneNumber">PHONENUMBER</label>
+                                    <label for="phoneNumber">전 화 번 호</label>
+                                </li>
+                                <li>
                                     <input type="text" id="phoneNumber" name="phoneNumber"
                                            th:value="${memberDto.phoneNumber}"> <br>
                                 </li>
 
                                 <li>
-                                    <label for="role">PHONENUMBER</label>
+                                    <label for="role">역 할</label>
+                                </li>
+                                <li>
                                     <input type="text" id="role" name="role"
                                            th:value="${memberDto.role}" readonly> <br>
                                 </li>
 
-                                <li>
-                                    <label for="memberFile">File</label>
+                                <li class="file">
+                                    <label for="memberFile">사 진</label>
+
                                     <input type="file" name="memberFile" id="memberFile">
                                 </li>
 
+                                <th:block sec:authorize="hasAnyRole('MANAGER')">
+                                    <li>
+                                        <label for="license">자 격 증</label>
+                                    </li>
+                                    <li>
+                                        <input type="text" name="license" id="license" th:value="${memberDto.licence}">
+                                    </li>
+                                </th:block>
+
                                 <li>
-                                    <label for="createTime">CREATETIME</label>
+                                    <label for="createTime">생 성 시 간</label>
+                                </li>
+                                <li>
                                     <input type="text" id="createTime" name="createTime"
                                            th:value="${memberDto.createTime}"
                                            disabled> <br>
                                 </li>
                                 <li>
-                                    <label for="updateTime">UPDATETIME</label>
+                                    <label for="updateTime">수 정 시 간</label>
+                                </li>
+                                <li>
                                     <input type="text" id="updateTime" name="updateTime"
                                            th:value="${memberDto.updateTime}"
                                            disabled> <br>

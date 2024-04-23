@@ -24,13 +24,11 @@
 
 .container .detail .detail-con {
     /*width: 500px;*/
-    border: 1px solid #fdc926;
     padding: 10px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 5px #666666;
     gap: 10px;
 }
 
@@ -46,6 +44,11 @@
 
 .container .detail .detail-con .detail-form h1.title{
     text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222 ;
+    font-size: 30px;
+    font-family: "나눔고딕 ExtraBold";
 }
 
 .detail .detail-con .detail-form form {
@@ -63,8 +66,8 @@
 }
 
 .container .detail .detail-con .detail-form .left .left-con img {
-    width: 600px;
-    height: 583px;
+    width: 300px;
+    height: 300px;
 }
 
 .container .detail .detail-con .detail-form .right ul li {
@@ -77,33 +80,48 @@
 
 .container .detail .detail-con .detail-form form .right ul li label {
     flex: 1;
-    background-color: #666;
-    color: white;
     padding: 5px;
     box-sizing: border-box;
-    text-align: center;
+}
+.container .detail .detail-con .detail-form form .right ul li.file{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
 }
 
 .container .detail .detail-con .detail-form form .right ul li input {
     flex: 4;
-    padding: 5px;
+    padding: 15px;
+    border : 1px solid #ccc;
+    border-radius: 5px 5px;
     box-sizing: border-box;
+}
+
+.container .detail .detail-con .detail-form form .right ul li input[type=file]{
+    border: 0;
 }
 
 .container .detail .detail-con .detail-form form .right ul li a{
     flex: 1;
-    text-align: center;
-    background-color: #666;
-    color: #ffffff;
+    background-color: white;
+    margin-top: 20px;
+    font-size: 15px;
+    cursor: pointer;
     padding: 5px 0;
+    border: 1px solid #222;
+    border-radius: 5px 5px;
 }
 
 .container .detail .detail-con .detail-form form .right ul li:last-child input{
     flex: 1;
-    text-align: center;
-    background-color: #666;
-    color: #ffffff;
+    background-color: white;
+    margin-top: 20px;
+    font-size: 15px;
+    cursor: pointer;
     padding: 5px 0;
+    border: 1px solid #222;
+    border-radius: 5px 5px;
 }
 
 .container .detail .detail-con .detail-form form .right ul li.li2 {

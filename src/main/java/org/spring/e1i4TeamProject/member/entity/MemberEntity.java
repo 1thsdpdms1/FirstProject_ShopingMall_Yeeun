@@ -43,6 +43,9 @@ public class MemberEntity extends BaseTimeEntity {
     @Column(nullable = true)
     private String phoneNumber;
 
+    @Column(nullable = true)
+    private String licence;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -80,6 +83,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(0);
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
         memberEntity.setRole(Role.MEMBER);
@@ -96,6 +100,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(1);
         memberEntity.setMemberFileName(memberDto.getMemberFileName());
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
@@ -114,6 +119,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(0);
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
         memberEntity.setRole(Role.MANAGER);
@@ -130,6 +136,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(1);
         memberEntity.setMemberFileName(memberDto.getMemberFileName());
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
@@ -149,6 +156,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(0);
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
         memberEntity.setRole(memberDto.getRole());
@@ -167,6 +175,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(1);
         memberEntity.setMemberFileName(memberDto.getMemberFileName());
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());

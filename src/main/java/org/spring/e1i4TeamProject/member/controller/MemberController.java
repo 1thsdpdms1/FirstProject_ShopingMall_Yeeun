@@ -85,8 +85,6 @@ public class MemberController {
 
         memberService.memberUpdate(memberDto);
 
-
-
         return "redirect:/member/memberDetail/"+memberDto.getId();
     }
 

@@ -4,67 +4,72 @@
 
 .error {
     color: red;
-    border: 1px solid red;
 }
 
 .container {
     width: 100%;
+    height : auto;
+    display: flex;
+    justify-content: center;
 }
 
 .container .join {
-    width: 100%;
-    height: calc(100vh - 300px - 266px);
+    width: 700px;
+    height: 1200px;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 70px;
+    /*background-color: #eeeeee;*/
 }
 
-.container .join .join-con {
+.container .join>h2{
+    color: #666666;
+    margin-top: 20px;
+}
+
+.container .join .memberJoin-con {
     width: 500px;
     padding: 10px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 5px #666666;
+    /*box-shadow: 5px 5px #666666;*/
     gap: 10px;
 }
 
-/*.join .join-con h1.title {*/
-/*    background-color: #555555;*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*    padding: 10px;*/
-/*    box-sizing: border-box;*/
-/*}*/
-
 .container .join .joinLogin-con {
+    width: 800px;
     font-size: 30px;
     text-align: center;
     padding: 5px;
     box-sizing: border-box;
     display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
+    /*margin-bottom: 40px;*/
 }
 
 .container .join .joinLogin-con h1.joinBtn {
+    flex: 1;
     border-bottom: 1px solid black;
+    padding: 20px;
 }
 
 .container .join .joinLogin-con h1.loginBtn {
+    flex: 1;
     border-bottom: 1px solid #ccc;
+    padding: 20px;
 }
 
 .container .join .memberSellerBtn {
-    width: 300px;
+    width: 480px;
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
     gap: 20px;
 }
 
@@ -76,27 +81,23 @@
 
     cursor: pointer;
     font-size: 30px;
-    margin-bottom: 30px;
-    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
 .container .join .memberSellerBtn .memberJoinBtn {
     flex: 1;
-    border-bottom: 1px solid black;
+    border: 1px solid blue;
+    border-radius: 5px 5px;
+    color: blue;
 }
 
 .container .join .memberSellerBtn .sellerJoinBtn {
     flex: 1;
-    border-bottom: 1px solid #ccc;
-}
-
-.container .join .memberJoin-con > h2 {
-    text-align: center;
-    background-color: #666666;
-    color: white;
-    padding: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px;
+    color: #ccc;
 }
 
 .container .join .memberJoin-con ul {
@@ -114,41 +115,73 @@
 }
 
 .container .join .memberJoin-con ul li label {
-    flex: 3;
-    background-color: #666666;
-    color: white;
-    padding: 5px;
+    flex: 1;
+    /*background-color: #666666;*/
+    /*color: white;*/
+    color: #666;
+    padding-top: 10px;
+    font-size: 20px;
+    font-family:"나눔고딕 ExtraBold";
     box-sizing: border-box;
-    text-align: center;
+    /*text-align: center;*/
 }
 
+.container .join .memberJoin-con ul li.file label{
+    padding: 0;
+}
+
+.container .join .memberJoin-con ul li span.imp{
+    margin-left: 4px;
+    margin-bottom: 5px;
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px
+}
 
 .container .join .memberJoin-con ul li input {
-    flex: 9;
-    padding: 5px;
+    flex: 3;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 7px 7px;
     box-sizing: border-box;
+}
+
+.container .join .memberJoin-con ul li.file{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .join .memberJoin-con ul li input[type=file]{
+    border: 0;
 }
 
 .container .join .memberJoin-con ul li.li2 {
-    color: white;
-    padding: 5px 0;
-    cursor: pointer;
     border: 0;
+    border-top: 1px solid black;
+    color: white;
+    cursor: pointer;
     gap: 5px;
 }
-
-.container .join .memberJoin-con ul li input.phone1{
-    flex: 1;
-}
-
-.container .join .memberJoin-con ul li input.phone2{
-    flex: 6;
+.container .join .memberJoin-con ul li input[type=submit]{
+    background-color: white;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 0;
 }
 
 
 /*seller*/
 .container .join .sellerJoin-con {
     display: none;
+    width: 500px;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+    /*box-shadow: 5px 5px #666666;*/
+    gap: 10px;
 }
 
 .container .join .sellerJoin-con ul {
@@ -156,14 +189,6 @@
     flex-direction: column;
     gap: 5px;
 }
-.container .join .sellerJoin-con > h2 {
-    text-align: center;
-    background-color: #666666;
-    color: white;
-    padding: 10px;
-    border: 1px solid black;
-}
-
 .container .join .sellerJoin-con ul li {
     display: flex;
     justify-content: space-between;
@@ -172,25 +197,58 @@
     box-sizing: border-box;
 }
 
+.container .join .sellerJoin-con ul li span.imp{
+    margin-left: 4px;
+    margin-bottom: 5px;
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px
+}
+
 .container .join .sellerJoin-con ul li label {
     flex: 1;
-    background-color: #666666;
-    color: white;
-    padding: 5px;
+    font-size: 20px;
+    color: #666;
+    font-family:"나눔고딕 ExtraBold";
+    padding-top: 10px;
     box-sizing: border-box;
-    text-align: center;
 }
 
 .container .join .sellerJoin-con ul li input {
     flex: 3;
-    padding: 5px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 7px 7px;
     box-sizing: border-box;
+}
+.container .join .sellerJoin-con ul li input[type=file]{
+    border: 0;
+}
+
+.container .join .sellerJoin-con ul li.file{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .join .sellerJoin-con ul li.file label{
+    padding: 0;
 }
 
 .container .join .sellerJoin-con ul li.li2 {
-    color: white;
-    padding: 5px 0;
-    cursor: pointer;
     border: 0;
+    border-top: 1px solid black;
+    color: white;
+    cursor: pointer;
+
     gap: 5px;
+}
+
+.container .join .sellerJoin-con ul li input[type=submit]{
+    background-color: white;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 0;
 }

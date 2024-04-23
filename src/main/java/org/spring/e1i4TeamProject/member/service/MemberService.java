@@ -97,17 +97,17 @@ public class MemberService implements MemberServiceInterface {
         Optional<MemberFileEntity> optionalMemberFileEntity
             = memberFileRepository.findByMemberEntityId(memberDto.getId());
 
-        if (optionalMemberFileEntity.isPresent()) {
-            String newFileName = optionalMemberFileEntity.get().getMemberNewFileName();
-            String filePath = "c:/e1i4_file/" + newFileName;
-            File deleteFile = new File(filePath);
-            if (deleteFile.exists()) {
-                deleteFile.delete();
-            } else {
-                System.out.println("파일이 존재하지 않습니다.");
-            }
-            memberFileRepository.delete(optionalMemberFileEntity.get());
-        }
+//        if (optionalMemberFileEntity.isPresent()) {
+//            String newFileName = optionalMemberFileEntity.get().getMemberNewFileName();
+//            String filePath = "c:/e1i4_file/" + newFileName;
+//            File deleteFile = new File(filePath);
+//            if (deleteFile.exists()) {
+//                deleteFile.delete();
+//            } else {
+//                System.out.println("파일이 존재하지 않습니다.");
+//            }
+//            memberFileRepository.delete(optionalMemberFileEntity.get());
+//        }
 
         String oldPw = memberEntity.getUserPw();
 
