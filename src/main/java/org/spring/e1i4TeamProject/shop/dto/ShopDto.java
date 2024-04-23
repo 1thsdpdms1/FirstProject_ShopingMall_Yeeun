@@ -28,7 +28,7 @@ public class ShopDto {
 
     private int count;
 
-    private int isSoldOut;
+    private int category;
 
     private int shopHit;
 
@@ -65,7 +65,7 @@ public class ShopDto {
         shopDto.setShopContent(shopEntity.getShopContent());
         shopDto.setShopPrice(shopEntity.getShopPrice());
         shopDto.setCount(shopEntity.getCount());
-        shopDto.setIsSoldOut(shopEntity.getIsSoldOut());
+        shopDto.setCategory(shopEntity.getCategory());
         shopDto.setShopSeller(shopEntity.getShopSeller());
         shopDto.setShopHit(shopEntity.getShopHit());
         shopDto.setCreateTime(shopEntity.getCreateTime());

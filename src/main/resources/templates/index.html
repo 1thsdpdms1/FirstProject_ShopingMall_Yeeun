@@ -1,16 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< HEAD
+  <meta charset="UTF-8">
+  <title>index</title>
+  <script th:src="@{/js/header.js}" defer></script>
+  <script th:src="@{/js/index.js}" defer></script>
+
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+=======
     <meta charset="UTF-8">
     <title>index</title>
     <script th:src="@{/js/header.js}" defer></script>
     <script th:src="@{/js/index.js}" defer></script>
 
     <link rel="stylesheet" th:href="@{/css/index.css}">
+>>>>>>> dev
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 <div class="container">
+<<<<<<< HEAD
+  <div class="index">
+    <div class="index-con">
+      <div class="sections">
+        <div class="section sec1">
+          <div class="con">
+            이미지
+          </div>
+        </div>
+        <div class="section sec2">
+          <div class="con">
+            <div class="left-con">left</div>
+            <div class="center-con">center</div>
+            <div class="right-con">right</div>
+          </div>
+        </div>
+        <div class="section sec3">
+          <div class="con">
+            <div class="title">
+              <span class="left"><img th:src="@{/images/left.svg}" alt=""></span>
+              <span class="right"><img th:src="@{/images/right.svg}" alt=""></span>
+            </div>
+            <div class="bottom-con">
+              <div class="left-con">
+                <div class="con1 on">con1</div>
+                <div class="con2 off">con2</div>
+              </div>
+              <div class="center-con">center</div>
+              <div class="right-con">right</div>
+            </div>
+          </div>
+          <div class="pop-con">
+            <a href="#">수강신청바로가기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+=======
     <div class="index">
         <div class="index-con">
             <div class="sections">
@@ -48,6 +96,7 @@
             </div>
         </div>
     </div>
+>>>>>>> dev
 </div>
 <div th:replace="~{/fragments/common/footer :: footerFragment}">
 </div>

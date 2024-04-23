@@ -1,0 +1,67 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+
+/* 공통 스타일 */
+.container {
+    width: 100%;
+    height: auto;
+    display: flex; /* 왼쪽과 오른쪽 요소를 가로로 배치하기 위해 flex 사용 */
+}
+
+/* 왼쪽 네비게이션 */
+.left {
+    /* 왼쪽 요소 스타일 */
+}
+
+.nav-section {
+    grid-row: span 3;
+    background-color: #6AC793;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navigation li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* 오른쪽 메인 컨텐츠 */
+.right {
+    /* 오른쪽 요소 스타일 */
+}
+
+.main-content {
+    grid-row: span 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.shopList {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.shopList-con {
+    flex-basis: 1600px;
+    min-height: calc(100vh - 70px - 150px);
+    overflow: auto;
+    padding: 20px;
+    border: 1px solid;
+    box-sizing: border-box;
+}
+
+.shopList-con h1 {
+    background-color: #006400;
+    color: aliceblue;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}

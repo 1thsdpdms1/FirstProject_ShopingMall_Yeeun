@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/shopList.css}">
+</head>
+
+<body>
+  <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+  <div class="container">
+    <div class="shopList">
+      <div class="shopList-con">
+        <h1>shopList</h1>
+        <div class="search">
+          <form th:action="@{/board/shopList}" method="get">
+            <select name="subject" id="subject">
+              <option value="title">제목</option>
+              <option value="content">내용</option>
+              <option value="nickName">닉네임</option>
+            </select>
+            <input type="text" name="search" id="search">
+            <input type="submit" value="검색">
+          </form>
+        </div>
+       <div class="grid">
+        <ul>
+          <li th:each="shop : ${shopList}">
+            <div class="top">
+              <th:block th:if="${shopDto.shopAttachFile==1}"> <!--  이미지 표시 -->
+                <img th:src="@{|/upload/${shopDto.shopNewFileName}|}" alt="이미지대체문구">
+              </th:block>
+              <th:block th:unless="${shopDto.shopAttachFile==1}">  <!--  이미지 표시 -->
+                <img src="https://placehold.co/400x500?text=NOIMAGE" alt="이미지대체문구">
+              </th:block>
+            </div>
+            <div class="bottom">
+              <ul>
+                <li>
+                  <span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span> <br>
+                </li>
+                <li>
+                  <span>수업명: </span> <span th:text="${shop.shopTitle}"></span> <br>
+                </li>
+                <li>
+                  <span>수업내용: </span> <span th:text="${shop.shopContent}"></span> <br>
+                </li>
+                <li>
+                  <span>♥:</span> <span th:text="${shop.shopHit}"></span> <br>
+                </li>
+                <li>
+                  <span>수업가격: </span> <span th:text="${shop.shopPrice}"></span> <br>
+                </li>
+                <li>
+                  <span>선생님: </span> <span th:text="${shop.shopSeller}"></span> <br>
+                </li>
+                <li>
+                  <span>학생정원: </span> <span th:text="${shop.Count}"></span> <br>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+       </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+
+</html>

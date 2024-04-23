@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>detail1_2</title>
-  <link rel="stylesheet" th:href="@{/css/common/shop/shopDetail.css}">
+  <link rel="stylesheet" th:href="@{/css/shop/shopDetail.css}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script th:src="@{/js/reply.js}" defer></script>
 </head>
@@ -81,7 +81,9 @@
               <li>
                 <th:block sec:authorize="isAuthenticated()">
                 <th:blcok th:if="${shopDto.memberEntity.userEmail==myUserDetails.username}">
+
                 <input type="submit" value="수정" class="btn1">
+
                 <a th:href="@{/shop/shopDelete/{id}(id=${shopDto.id})}" class="btn1">삭제</a>
                 <a th:href="@{/shop/shopList}" class="btn1">목록</a>
                 </th:blcok>
@@ -91,6 +93,7 @@
                 <th:block sec:authorize="isAuthenticated()">
                 <th:blcok th:unless="${shopDto.memberEntity.userEmail==myUserDetails.username}">
                   <a th:href="@{/shop/shopList}" class="btn1">목록</a>
+                  <a th:href="@{/shop/cart/{id}(id=${shopDto.id})}" class="btn1">장바구니</a>
                 </th:blcok>
                 </th:block>
               </li>
