@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,12 +30,14 @@ public class MemberController {
 
     @PostMapping("/memberJoin")
     public String memberJoinOk(@Valid MemberDto memberDto,
-                               BindingResult bindingResult) {
+                               BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
             return "member/memberJoin";
         } else {
             memberService.memberJoin(memberDto);
         }
+
+        System.out.println(">>>>"+memberDto.getMemberAttachFile());
         return "redirect:/member/memberLogin";
     }
 
@@ -60,10 +63,7 @@ public class MemberController {
         if (myUserDetails != null) {
             model.addAttribute("myUserDetails", myUserDetails);
         }
-        Long memberId = memberDto.getId();
-        System.out.println(">>>>>" + memberDto.getId());
         model.addAttribute("memberDto", memberDto);
-        model.addAttribute("memberId", memberId);
 
         return "member/memberDetail";
     }

@@ -4,8 +4,10 @@ import lombok.*;
 import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.spring.e1i4TeamProject.member.entity.MemberFileEntity;
 import org.spring.e1i4TeamProject.member.role.Role;
 import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -35,6 +37,18 @@ public class MemberDto {
 
     private Role role;
 
+    private int memberAttachFile;
+
+    private MultipartFile memberFile;
+
+    private String memberNewFileName;
+
+    private String memberOldFileName;
+
+    private String memberFileName;
+
+    private List<MemberFileEntity> memberFileEntityList;
+
     private List<BoardEntity> boardEntityList;
 
     private List<ShopEntity> shopEntityList;
@@ -58,6 +72,15 @@ public class MemberDto {
         memberDto.setShopEntityList(memberEntity.getShopEntityList());
         memberDto.setCreateTime(memberEntity.getCreateTime());
         memberDto.setUpdateTime(memberEntity.getUpdateTime());
+
+        if (memberEntity.getMemberAttachFile() == 0) {
+            memberDto.setMemberAttachFile(memberEntity.getMemberAttachFile());
+        } else {
+            memberDto.setMemberAttachFile(memberEntity.getMemberAttachFile());
+            memberDto.setMemberFileName(memberEntity.getMemberFileEntityList().get(0).getMemberNewFileName());
+            memberDto.setMemberOldFileName(memberEntity.getMemberFileEntityList().get(0).getMemberOldFileName());
+            memberDto.setMemberNewFileName(memberEntity.getMemberFileEntityList().get(0).getMemberNewFileName());
+        }
 
         return memberDto;
     }

@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ShopRepository extends JpaRepository<ShopEntity,Long> {
 
@@ -19,5 +21,8 @@ public interface ShopRepository extends JpaRepository<ShopEntity,Long> {
   Page<ShopEntity> findByShopTitleContaining(Pageable pageable, String search);
 
   Page<ShopEntity> findByShopContentContaining(Pageable pageable, String search);
+
+
+  List<ShopEntity> findByCategory(int i);
 
 }
