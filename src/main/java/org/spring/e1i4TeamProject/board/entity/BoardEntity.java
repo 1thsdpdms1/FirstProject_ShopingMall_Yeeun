@@ -92,6 +92,37 @@ public class BoardEntity extends BaseTimeEntity {
     }
 
 
+    //파일이 없을 때 수정
+    public static BoardEntity toBoardUpdateEntity0(BoardDto boardDto) {
 
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setId(boardDto.getId());
+        boardEntity.setCategory(boardDto.getCategory());
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardWriter(boardDto.getBoardWriter());//게시글 작성자
+        boardEntity.setBoardAttachFile(0);
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
+        return boardEntity;
+    }
+
+
+    //파일이 있을 때 수정
+    public static BoardEntity toBoardUpdateEntity1(BoardDto boardDto) {
+
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setId(boardDto.getId());
+        boardEntity.setCategory(boardDto.getCategory());
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardAttachFile(1);
+        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
+        return boardEntity;
+    }
 
 }

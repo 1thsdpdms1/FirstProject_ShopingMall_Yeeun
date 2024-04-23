@@ -8,6 +8,7 @@ import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -45,6 +46,11 @@ public class BoardDto {
 
     private Long memberId;
 
+    private String newFileName;
+
+    private String oldFileName;
+
+
 
     //Entity -> Dto (데이터 가져올때) List
     public static BoardDto toboardDto(BoardEntity boardEntity) {
@@ -69,17 +75,37 @@ public class BoardDto {
     public static BoardDto toBoardDetailDto(BoardEntity boardEntity) {
 
         BoardDto boardDto = new BoardDto();
+BoardFileEntity boardFileEntity = new BoardFileEntity();
+
+        List<BoardFileEntity> boardFileEntityList = new ArrayList<>();
 
         boardDto.setId(boardEntity.getId());
+        boardDto.setMemberId(boardEntity.getId());
         boardDto.setBoardTitle(boardEntity.getBoardTitle());
         boardDto.setCategory(boardEntity.getCategory());
         boardDto.setBoardWriter(boardEntity.getBoardWriter());
         boardDto.setBoardContent(boardEntity.getBoardContent());
         boardDto.setBoardHit(boardEntity.getBoardHit());
+        boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
         boardDto.setCreateTime(boardEntity.getCreateTime());
         boardDto.setUpdateTime(boardEntity.getUpdateTime());
         boardDto.setMemberEntity(boardEntity.getMemberEntity());
-        boardDto.setBoardFileEntityList(boardEntity.getBoardFileEntityList());
+        if(boardEntity.getBoardAttachFile()==0){
+            //파일이 X
+            boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
+
+        }else{
+            // 파일이 있으면
+            boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
+
+            // 새이름
+            boardDto.setNewFileName(boardEntity.getBoardFileEntityList().get(0).getBoardNewFileName());
+
+            //원래 이름
+            boardDto.setOldFileName(boardEntity.getBoardFileEntityList().get(0).getBoardOldFileName());
+
+        }
+
         boardDto.setBoardReplyEntityList(boardEntity.getBoardReplyEntityList());
 
         return boardDto;

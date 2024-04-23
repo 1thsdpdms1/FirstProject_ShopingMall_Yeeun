@@ -19,7 +19,7 @@ public interface BoardServiceInterface {
 
     void boardDeleteById(Long id);
 
-    void boardUpdate(BoardDto boardDto);
+    void boardUpdate(BoardDto boardDto) throws IOException;
 
     Page<BoardDto> boardSearchPageList(Pageable pageable, String subject, String search);
 }

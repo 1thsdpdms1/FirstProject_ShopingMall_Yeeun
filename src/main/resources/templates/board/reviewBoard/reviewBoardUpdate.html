@@ -14,30 +14,27 @@
         <div class="boardDetail-con">
             <div class="boardDetail-form">
                 <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
-                <form th:action="@{/board/boardUpdate}" method="POST" enctype="multipart/form-data">  <!--th:object="${boardEntity}"-->
+                <form th:action="@{/board/boardUpdateOk}" method="get" enctype="multipart/form-data">  <!--th:object="${boardEntity}"-->
                     <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
 
                     <ul>
                         <li>
-                            게시글 수정
+                            수강후기 수정
                         </li>
-
+                        <!--                        <input th:text="${userId}">아이디</input> <br>-->
                         <li>
+
                             <select name="category" id="category">
-                                <option value="1">자유게시판</option>
-                                <option value="2">질문게시판</option>
+                                <option value="4">미술</option>
+                                <option value="5">체육</option>
+                                <option value="6">음악</option>
+                                <option value="7">요리</option>
                             </select>
                         </li>
 
                         <li>
-                            <label for="id">글번호</label>
-                            <input type="text" name="id" id="id" th:value="${board.id}" readonly>
-                        </li>
-
-                        <li>
-<!--                            <label for="memberId" hidden="hidden">회원아이디</label>-->
-                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}" readonly >
-
+                            <label for="boardId">글번호</label>
+                            <input type="text" name="boardId" id="boardId" th:value="${board.id}" readonly>
                         </li>
 
                         <li>
@@ -59,11 +56,13 @@
                             <textarea name="boardContent" id="boardContent"
                                       cols="30" rows="10" th:text="${board.boardContent}"></textarea>
                         </li>
+
+
+
                         <!-- <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
 
-
                         <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
-                            <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지 대체문구" >
+                            <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구" <!--width="400" height="200"--> >
                         </th:block>
 
                         <th:block th:unless="${board.boardAttachFile==1}">
@@ -79,6 +78,7 @@
 
                         <li>
                             <!--                            권한 설정하기(자기글만 + 자기글/admin-->
+
                             <input type="submit" value="수정">
                             <a th:href="@{/board/boardList}">목록</a>
                             <a th:href="@{/board/boardDelete/{id}(id=${board.id})}">삭제</a>

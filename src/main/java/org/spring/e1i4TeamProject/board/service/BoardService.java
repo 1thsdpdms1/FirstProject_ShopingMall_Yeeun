@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
@@ -63,8 +65,8 @@ public class BoardService implements BoardServiceInterface {
             // 이름 암호화 -> DB 저장, local에 저장 할 이름
             String oldFileName = boardFile.getOriginalFilename();// 원본파일 이름
             UUID uuid = UUID.randomUUID(); //random id -> 랜덤한 값을 추출하는 플래스
-            // ex) "gasdga_shop0.jpg"
-            // ex) "gasdga"+"_"+"shop0.jpg"
+            // ex) "gasdga_board0.jpg"
+            // ex) "gasdga"+"_"+"board0.jpg"
             String newFileName = uuid + "_" + oldFileName; // 저장파일이름 (보완)
 
 //            String filePath="C:/spring_savefile/"+newFileName; // 실제 파일 저장경로+이름
@@ -128,21 +130,43 @@ public class BoardService implements BoardServiceInterface {
     public Page<BoardDto> boardSearchPageList(Pageable pageable, String subject, String search) {
 
         Page<BoardEntity> boardEntityPage = null;
-        if(subject==null || search==null){
-            boardEntityPage = boardRepository.findAll(pageable);
-        }else {
-            if (subject.equals("boardTitle")){
-                boardEntityPage=boardRepository.findByBoardTitleContaining(pageable,search);
-            } else if (subject.equals("boardContent")) {
-                boardEntityPage=boardRepository.findByBoardContentContaining(pageable,search);
+
+            if(subject==null || search==null){
+                boardEntityPage = boardRepository.findAll(pageable);
             }else {
-                boardEntityPage= boardRepository.findAll(pageable);
+                if (subject.equals("boardTitle")){
+                    boardEntityPage=boardRepository.findByBoardTitleContaining(pageable,search);
+                } else if (subject.equals("boardContent")) {
+                    boardEntityPage=boardRepository.findByBoardContentContaining(pageable,search);
+                }else {
+                    boardEntityPage= boardRepository.findAll(pageable);
+                }
             }
-        }
         Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
 
         return boardDtoPage;
     }
+
+//    @Override
+//    public Page<BoardDto> boardSearchPageList1_2(Pageable pageable, String subject, String search) {
+//
+//        Page<BoardEntity> boardEntityPage = null;
+//
+//        if(subject==null || search==null){
+//            boardEntityPage = boardRepository.findAll(pageable);
+//        }else {
+//            if (subject.equals("boardTitle")){
+//                boardEntityPage=boardRepository.findByBoardTitleContaining(pageable,search);
+//            } else if (subject.equals("boardContent")) {
+//                boardEntityPage=boardRepository.findByBoardContentContaining(pageable,search);
+//            }else {
+//                boardEntityPage= boardRepository.category1and2(pageable,id1,id2);
+//            }
+//        }
+//        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+//
+//        return boardDtoPage;
+//    }
 
 //    @Override//paging
 //    public Page<BoardDto> boardPageList(Pageable pageable) {
@@ -159,7 +183,7 @@ public class BoardService implements BoardServiceInterface {
 //
 //        return boardDtos;
 //    }
-
+    @Transactional
     @Override
     public BoardDto boardDetail(Long id) {
 
@@ -180,7 +204,7 @@ public class BoardService implements BoardServiceInterface {
 
         //        return null;
         }
-
+    @Transactional
     @Override
     public void boardHit(Long id) {
 
@@ -188,22 +212,75 @@ public class BoardService implements BoardServiceInterface {
     }
 
     @Override
-    public void boardUpdate(BoardDto boardDto) {
+    public void boardUpdate(BoardDto boardDto) throws IOException {
 
-        if(boardDto.getBoardAttachFile()==0){
-            BoardEntity boardEntity = BoardEntity.toInsertBoardEntity0(boardDto);
-            boardRepository.save(boardEntity);
-        }else{
-            BoardEntity boardEntity1 = BoardEntity.toInsertBoardEntity1(boardDto);
-            boardRepository.save(boardEntity1);
+        //게시물 유무 체크
+        boardRepository.findById(boardDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("수정할 게시글 없음"));
+        BoardEntity boardEntity;
 
+        System.out.println("여기는 오니?1");
+        //파일체크
+        Optional<BoardFileEntity> optionalBoardFileEntity = boardFileRepository.findById(boardDto.getId());
+//        int boardDto1 = boardDto.getBoardAttachFile();
+//        Optional<BoardFileEntity> optionalBoardFileEntity = boardFileRepository.findById(boardDto.getBoardAttachFile());
+//        Optional<BoardEntity> optionalBoardEntity = board.findById(boardDto.getId());
+
+//        파일이 있으면 파일 기존 파일 삭제
+        if (optionalBoardFileEntity.isPresent()) {
+            String fileNewName = optionalBoardFileEntity.get().getBoardNewFileName();
+            String filePath = "C:/E1I4_file/" + fileNewName;
+            File deleteFile = new File(filePath);
+            if (deleteFile.exists()) {
+                deleteFile.delete();
+                System.out.println("파일을 삭제하였습니다");
+            } else {
+                System.out.println("파일이 존재하지않습니다");
+            }
+            boardFileRepository.delete(optionalBoardFileEntity.get());//파일 테이블 레코드 삭제
         }
-//        Optional<BoardEntity> optionalBoardEntity
-//                =boardRepository.findById(boardDto.getId());
-//
+//        //수정
+        System.out.println("여기는 오니?2");
+        MemberEntity memberEntity = MemberEntity.builder()
+                .id(boardDto.getMemberId()).build();
+        boardDto.setMemberEntity(memberEntity);
+
+        if (boardDto.getBoardFile().isEmpty()) {
+            //파일 없는경우
+            boardEntity = BoardEntity.toBoardUpdateEntity0(boardDto);
+            boardRepository.save(boardEntity);
+        } else {
+            System.out.println("여기는 오니?3");
+            //파일있는경우
+            MultipartFile boardFile = boardDto.getBoardFile();
+            String fileOldName = boardFile.getOriginalFilename();
+            UUID uuid = UUID.randomUUID();
+            String fileNewName = uuid + "_" + fileOldName;
+            String savePath = "C:/E1I4_file/" + fileNewName;
+            boardFile.transferTo(new File(savePath));
+
+            boardEntity = BoardEntity.toBoardUpdateEntity1(boardDto);
+            boardRepository.save(boardEntity);
+
+            BoardFileEntity boardFileEntity = BoardFileEntity.builder()
+                    .boardEntity(boardEntity)
+                    .boardNewFileName(fileNewName)
+                    .boardOldFileName(fileOldName)
+                    .build();
+
+            Long fileId = boardFileRepository.save(boardFileEntity).getId();
+            boardFileRepository.findById(fileId).orElseThrow(() -> {
+                throw new IllegalArgumentException("파일등록 실패");
+            });
+        }
+        //게시글 수정 확인
+        boardRepository.findById(boardDto.getId()).orElseThrow(() -> {
+            throw new IllegalArgumentException("게시글 수정실패");
+        });
 
     }
 
+    @Transactional
     @Override
     public void boardDeleteById(Long id) {
 

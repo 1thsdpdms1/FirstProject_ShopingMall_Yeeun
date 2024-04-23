@@ -3,100 +3,118 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div class="header" th:fragment="headerFragment">
+    <div class="header-con">
+        <div class="top-header">
+            <div class="top-menu">
+                <div class="right-menu">
+                    <ul>
+                        <th:block sec:authorize="isAnonymous()">
+                            <li><a th:href="@{/member/memberLogin}">로그인</a></li>
+                            <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
+                        </th:block>
+                        <li><a href="#">장바구니</a></li>
+                        <li><a href="#">고객센터</a></li>
 
-  <div class="header-con">
-    <div class="top-header">
-      <div class="top-menu">
-        <div class="right-menu">
-          <ul>
-            <th:block sec:authorize="isAnonymous()">
-              <li><a th:href="@{/member/memberLogin}">로그인</a></li>
-              <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
-            </th:block>
-            <li><a href="#">장바구니</a></li>
-            <li><a href="#">고객센터</a></li>
 
-
-            <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER','MEMBER')">
-              <li><a th:href="@{/member/user}">MEMBERSHIP</a></li>
-            </th:block>
-
-            <th:block sec:authorize="isAuthenticated()">
-              <li><a th:href="@{/board/boardWrite}">WRITE</a></li>
-              <li>
-                <a th:href="@{member/detail/{id}(id=${#authentication.principal.memberEntity.id})}"
-                   th:text="${#authentication.principal.username}"></a>
-              </li>
-              <li><a th:href="@{/member/logout}">LOGOUT</a></li>
-            </th:block>
-          </ul>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <li><a th:href="@{/board/write}">WRITE</a></li>
+                            <li>
+                                <a th:href="@{member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                   th:text="${#authentication.principal.username}"></a>
+                            </li>
+                            <li>
+                                <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
+                                    <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}" alt="photo" height="24px">
+                                </th:block>
+                                <th:block th:unless="${#authentication.principal.memberEntity.memberAttachFile == 1}">
+                                    <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
+                                </th:block>
+                            </li>
+                            <th:block sec:authorize="hasAnyRole('ADMIN')">
+                                <li><a th:href="@{/admin/index}">ADMIN</a></li>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyRole('MANAGER')">
+                                <li>MANAGER</li>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                <li>MEMBER</li>
+                            </th:block>
+                            <li><a th:href="@{/member/logout}">LOGOUT</a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-menu">
+                <h1 class="left">
+                    <a href="#">오늘의 강좌</a>
+                </h1>
+                <h1 class="logo">
+                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
+                </h1>
+            </div>
         </div>
-      </div>
-      <div class="bottom-menu">
-        <h1 class="left">
-          <a href="#">오늘의 강좌</a>
-        </h1>
-        <h1 class="logo">
-          <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
-        </h1>
-      </div>
+        <div class="bottom-header">
+            <div class="pre-gnb on">
+                <ul>
+                    <li>
+                        <a href="#">SHOP</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/board/boardList}">BOARD</a>
+                    </li>
+                    <li>
+                        <a href="#">ADMIN</a>
+                    </li>
+                    <li>
+                        <a href="#">MY HOME</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="gnb off">
+                <ul>
+                    <li>
+                        <a th:href="@{/shop}">SHOP</a>
+                        <ul class="sub">
+                            <li><a th:href="@{/shop/shopWrite}">미술</a></li>
+                            <li><a th:href="@{/shop/shopList}">체육</a></li>
+                            <li><a href="#">음악</a></li>
+                            <li><a href="#">요식</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a th:href="@{/board/boardList}">BOARD</a>
+                        <ul class="sub">
+                            <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
+                            <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
+                            <li><a th:href="@{/board/reviewBoardList}">수강후기</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">SELLER</a>
+                        <ul class="sub">
+                            <li><a href="#">강의 등록</a></li>
+                            <li><a href="#">강의 등록</a></li>
+                            <li><a href="#">강의 등록</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">MY HOME</a>
+                        <ul class="sub">
+                            <li><a href="#">시간표</a></li>
+                            <th:block sec:authorize="isAuthenticated()">
+                                <li>
+                                    <a th:href="@{member/memberDetail/{id}
+                                    (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
+                                </li>
+                            </th:block>
+                            <li><a href="#">1:1문의내역</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="bottom-header">
-      <div class="pre-gnb on">
-        <ul>
-          <li>
-            <a href="#">Shop</a>
-          </li>
-          <li>
-            <a th:href="@{/board/boardList}">board</a>
-          </li>
-          <li>
-            <a href="#">admin</a>
-          </li>
-          <li>
-            <a href="#">나의강의실</a>
-          </li>
-        </ul>
-      </div>
-
-
-      <div class="gnb off">
-        <ul>
-          <li>
-            <a th:href="@{/shop}">Shop</a>
-            <ul class="sub">
-              <li><a th:href="@{/shop/shopWrite}">미술</a></li>
-              <li><a th:href="@{/shop/shopList}">체육</a></li>
-              <li><a href="#">음악</a></li>
-              <li><a href="#">요식</a></li>
-            </ul>
-          </li>
-          <li>
-            <a th:href="@{/board/boardList}">board</a>
-            <ul class="sub">
-              <li><a href="#">커뮤니티</a></li>
-              <li><a href="#">공지사항</a></li>
-              <li><a href="#">수강후기</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">admin</a>
-            <ul class="sub">
-              <li><a href="#">memberList</a></li>
-
-            </ul>
-          </li>
-          <li>
-            <a href="#">나의강의실</a>
-            <ul class="sub">
-              <li><a href="#">시간표</a></li>
-              <li><a href="#">개인정보</a></li>
-              <li><a href="#">1:1문의내역</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </div>
 </html>

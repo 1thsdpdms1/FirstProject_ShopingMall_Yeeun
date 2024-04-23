@@ -23,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "member")
 public class MemberEntity extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
@@ -46,6 +47,17 @@ public class MemberEntity extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String memberFileName;
+
+    @Column(nullable = false)
+    private int memberAttachFile; //게시글 작성시 파일이 존재하면 1, 없으면 0
+
+    @JsonIgnore // ajax시 순환참조 방지
+    @OneToMany(mappedBy = "memberEntity"
+        , fetch = FetchType.LAZY
+        , cascade = CascadeType.REMOVE)
+    private List<MemberFileEntity> memberFileEntityList;
+
     @JsonIgnore
     @OneToMany
         (mappedBy = "memberEntity"
@@ -56,11 +68,11 @@ public class MemberEntity extends BaseTimeEntity {
     @JsonIgnore
     @OneToMany
         (mappedBy = "memberEntity"
-            ,fetch = FetchType.LAZY
-            ,cascade = CascadeType.REMOVE)
+            , fetch = FetchType.LAZY
+            , cascade = CascadeType.REMOVE)
     private List<ShopEntity> shopEntityList;
 
-    public static MemberEntity toMemberJoinEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+    public static MemberEntity toMemberJoinEntity0(MemberDto memberDto, PasswordEncoder passwordEncoder) {
 
         MemberEntity memberEntity = new MemberEntity();
 
@@ -69,6 +81,27 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setMemberAttachFile(0);
+//        memberEntity.setMemberFileName(memberDto.);
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(Role.MEMBER);
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+
+    }
+    public static MemberEntity toMemberJoinEntity1(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(passwordEncoder.encode(memberDto.getUserPw()));
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setMemberAttachFile(1);
+        memberEntity.setMemberFileName(memberDto.getMemberFileName());
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
         memberEntity.setRole(Role.MEMBER);
         memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
 

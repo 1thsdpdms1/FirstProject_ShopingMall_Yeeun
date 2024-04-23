@@ -12,7 +12,7 @@
 <div class="container">
     <div class="boardList">
         <div class="boardList-con">
-            <h1>★자유/질문 게시판(커뮤니티)★</h1>
+            <h1>boardDtoList</h1>
             <table>
                 <thead>
                 <tr>
@@ -51,28 +51,20 @@
                 <tbody>
                 <tr th:each="board: ${boardDtoList}">
 
-<!--                    <th:block th:if="${board.category eq 1 || board.category eq 2}">-->
-
                     <td th:text="${board.id}"></td>
 
-
-                    <td th:if="${board.category eq 1}" th:text="자유" ></td>
-                    <td th:if="${board.category eq 2}" th:text="질문" ></td>
-
-
+                    <td th:if="${board.category eq 4}" th:text="미술"></td>
+                    <td th:if="${board.category eq 5}" th:text="체육"></td>
+                    <td th:if="${board.category eq 6}" th:text="요리"></td>
+                    <td th:if="${board.category eq 7}" th:text="공예"></td>
 
                     <td>
                         <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
 
                             <label th:text="${board.boardTitle}"></label>
+                            <!--제목에 해당글의 사진이 보이도록-->
+                            <img th:src="@{board.newFileName}" alt="img">
 
-<!--                            <th:block th:if="${board.boardAttachFile==1}">-->
-<!--                                <td>O</td>-->
-<!--                            </th:block>-->
-
-<!--                            <th:block th:unless="${board.boardAttachFile==1}">-->
-<!--                                <td>X</td>-->
-<!--                            </th:block>-->
 
                         </a>
                     </td>
@@ -88,11 +80,7 @@
 
                     <td th:text="${board.boardHit}"></td>
 
-<!--                    </th:block>-->
 
-<!--                    <th:block th:unless="${board.category eq 1 || board.category eq 2}">-->
-
-<!--                    </th:block>-->
                 </tr>
                 </tbody>
 
@@ -156,7 +144,7 @@
             <!--로그인 한 회원만 글 작성 버튼이 보이도록 or 글작성 버튼은 모두에게 보이고 비회원은 alert 창 띄우기-->
             <th:block sec:authorize="isAuthenticated()">
                 <div class="writeButton">
-                    <a th:href="@{/board/boardWrite}"> 글 작성 </a>
+                    <a th:href="@{/board/reviewBoardWrite}"> 글 작성 </a>
                 </div>
             </th:block>
         </div>

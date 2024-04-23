@@ -43,6 +43,7 @@ public class WebSecurityConfigClass {
             .usernameParameter("userEmail")
             // *** password : 실제로는 userPw
             .passwordParameter("userPw")
+
             // 로그인 폼 post <form th:action="@{/member/memberLogin}" method="post">
             .loginProcessingUrl("/member/memberLogin")
             // 로그인 성공시

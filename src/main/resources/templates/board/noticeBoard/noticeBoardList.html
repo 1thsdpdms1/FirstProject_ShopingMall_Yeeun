@@ -12,7 +12,7 @@
 <div class="container">
     <div class="boardList">
         <div class="boardList-con">
-            <h1>★자유/질문 게시판(커뮤니티)★</h1>
+            <h1>boardDtoList</h1>
             <table>
                 <thead>
                 <tr>
@@ -51,13 +51,13 @@
                 <tbody>
                 <tr th:each="board: ${boardDtoList}">
 
-<!--                    <th:block th:if="${board.category eq 1 || board.category eq 2}">-->
-
-                    <td th:text="${board.id}"></td>
 
 
-                    <td th:if="${board.category eq 1}" th:text="자유" ></td>
-                    <td th:if="${board.category eq 2}" th:text="질문" ></td>
+                    <td th:text="${board.id}" hidden="hidden"></td>
+
+                    <td th:if="${board.category eq 3}" th:text="공지" ></td>
+                    <td th:text="${board.category}"></td>
+
 
 
 
@@ -88,11 +88,7 @@
 
                     <td th:text="${board.boardHit}"></td>
 
-<!--                    </th:block>-->
 
-<!--                    <th:block th:unless="${board.category eq 1 || board.category eq 2}">-->
-
-<!--                    </th:block>-->
                 </tr>
                 </tbody>
 
@@ -107,7 +103,7 @@
                                     <span th:if="${boardDtoList.pageable.pageNumber+1 eq 1}" class="span0">START</span>
                                     <!--                                      2222현재 페이지가 첫번째 페이지가 아니면 아래a태그를 표시하라-->
                                     <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">
-                                          <a th:href="@{/board/boardList(page=0)}" class="span1">처음</a>
+                                          <a th:href="@{/board/noticeBoardList(page=0)}" class="span1">처음</a>
                                       </span>
                                 </li>
 
@@ -116,7 +112,7 @@
                                     <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
                                     <!--                                        2222현재페이지가 첫번째 페이지가 아니면 아래 a태그 표시 -->
                                     <span th:unless="${1==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/boardList(page=${boardDtoList.pageable.pageNumber-1})}" class="span1">이전</a>
+                                          <a th:href="@{/board/noticeBoardList(page=${boardDtoList.pageable.pageNumber-1})}" class="span1">이전</a>
                                       </span>
                                 </li>
 
@@ -125,7 +121,7 @@
                                 <li th:each="i: ${#numbers.sequence(startPage,endPage)}" class="block">
                                     <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
                                     <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"
-                                       th:href="@{/board/boardList(page=${i-1})}" th:text="${i}"></a>
+                                       th:href="@{/board/noticeBoardList(page=${i-1})}" th:text="${i}"></a>
                                 </li>
 
                                 <li>
@@ -133,7 +129,7 @@
                                     <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
                                     <!--                                      현재 페이지가 마지막 페이지가 아니면 a 표시   현재페이지+1-->
                                     <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/boardList(page=${boardDtoList.pageable.pageNumber+1})}" class="span1">다음</a>
+                                          <a th:href="@{/board/noticeBoardList(page=${boardDtoList.pageable.pageNumber+1})}" class="span1">다음</a>
                                       </span>
                                 </li>
 
@@ -142,7 +138,7 @@
                                     <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0">END</span>
                                     <!--                                      현재 페이지가 마지막 페이지가 아니면 마지막 페이지로 이동해라 a태그-->
                                     <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/boardList(page=${boardDtoList.totalPages-1})}" class="span1">마지막</a>
+                                          <a th:href="@{/board/noticeBoardList(page=${boardDtoList.totalPages-1})}" class="span1">마지막</a>
                                       </span>
                                 </li>
 
@@ -156,7 +152,7 @@
             <!--로그인 한 회원만 글 작성 버튼이 보이도록 or 글작성 버튼은 모두에게 보이고 비회원은 alert 창 띄우기-->
             <th:block sec:authorize="isAuthenticated()">
                 <div class="writeButton">
-                    <a th:href="@{/board/boardWrite}"> 글 작성 </a>
+                    <a th:href="@{/board/noticeBoardWrite}"> 글 작성 </a>
                 </div>
             </th:block>
         </div>
