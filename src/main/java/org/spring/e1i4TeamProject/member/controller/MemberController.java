@@ -40,6 +40,18 @@ public class MemberController {
         System.out.println(">>>>"+memberDto.getMemberAttachFile());
         return "redirect:/member/memberLogin";
     }
+    @PostMapping("/sellerJoin")
+    public String sellerJoinOk(@Valid MemberDto memberDto,
+                               BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "member/memberJoin";
+        } else {
+            memberService.sellerJoin(memberDto);
+        }
+
+        System.out.println(">>>>"+memberDto.getMemberAttachFile());
+        return "redirect:/member/memberLogin";
+    }
 
     @GetMapping("/memberLogin")
     public String memberLogin(@RequestParam(value = "error", required = false) String error,
@@ -66,5 +78,27 @@ public class MemberController {
         model.addAttribute("memberDto", memberDto);
 
         return "member/memberDetail";
+    }
+
+    @PostMapping("/memberUpdate")
+    public String memberUpdate(MemberDto memberDto) throws IOException {
+
+        memberService.memberUpdate(memberDto);
+
+        return "redirect:/member/memberDetail/"+memberDto.getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public String memberDelete(@PathVariable("id")Long id){
+
+        memberService.memberDelete(id);
+
+        String html = "<script>" +
+            "alert('회원 탈퇴 성공');" +
+            "location.href='/member/logout'" +
+            "</script>";
+
+        return html;
     }
 }
