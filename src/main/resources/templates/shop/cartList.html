@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/shop/cartList.css}">
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="boardList">
+    <div class="boardList-con">
+      <h1>CartList</h1>
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>제목</th>
+          <th>금액</th>
+          <th>선생님</th>
+          <th>정원</th>
+          <th>수량</th>
+          <th:block sec:authorize="isAuthenticated()">
+            <th>삭제</th>
+          </th:block>
+          <th:block sec:authorize="isAnonymous()">
+
+          </th:block>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cart : ${cartShopListDto}">
+          <td th:text="${cart.id}"></td>
+          <td th:text="${cart.shopEntity.shopTitle}"></td>
+          <td th:text="${cart.shopEntity.shopPrice}"></td>
+          <td th:text="${cart.shopEntity.shopSeller}"></td>
+          <td th:text="${cart.shopEntity.count}"></td>
+          <td th:text="${cart.count}"></td>
+<!--          <th:block sec:authorize="isAuthenticated()">-->
+<!--            <th:blcok th:if="${cart.memberEntity.userEmail==myUserDetails.username}">-->
+<!--              <td><a th:href="@{/shop/shopDelete/{id}(id=${shop.id})}" class="a" onclick="delete1(event)">삭제 </a></td>-->
+<!--              <script>-->
+<!--                function delete1(event){-->
+
+<!--                         alert('정상적으로 삭제 처리되셨습니다');-->
+<!--                         }-->
+<!--              </script>-->
+<!--            </th:blcok>-->
+<!--            <th:blcok th:unless="${cart.memberEntity.userEmail==myUserDetails.username}">-->
+<!--              <td><a href="#" onclick="deleteId(event)">삭제</a></td>-->
+<!--              <script>-->
+<!--                function deleteId(event){-->
+<!--                event.preventDefault();-->
+<!--                alert('본인글이 아니면 삭제 할수 없습니다');-->
+<!--                }-->
+<!--              </script>-->
+<!--            </th:blcok>-->
+<!--          </th:block>-->
+<!--                    <th:block th:if="${board.attachFile==1}">-->
+<!--                      <td>o</td>-->
+<!--                    </th:block>-->
+<!--                    <th:block th:unless="${board.attachFile==1}">-->
+<!--                      <td>x</td>-->
+<!--                    </th:block>-->
+        </tr>
+        </tbody>
+<!--        <tfoot>-->
+<!--        <tr>-->
+<!--          <td colspan="11">-->
+<!--            <div class="paging">-->
+<!--              <ul>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 현재페이지가  첫번째 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${shopList.pageable.pageNumber+1 eq 1}" class="span0">START</span>-->
+<!--                  &lt;!&ndash; 처음 페이지가 아니면  a &ndash;&gt;-->
+<!--                  <span th:unless="${shopList.pageable.pageNumber+1 eq 1}">-->
+<!--                    <a th:href="@{/shop/shopList(page=0 , search=${param.search}, subject=${param.subject}  )}"-->
+<!--                       class="span1">처음</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 이전페이지가  첫번째 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${1==shopList.pageable.pageNumber+1}" class="span0">PRE</span>-->
+<!--                  <span th:unless="${1==shopList.pageable.pageNumber+1}">-->
+<!--                    &lt;!&ndash;itemList.pageable.pageNumber 현재페이지 -1 &ndash;&gt;-->
+<!--                    <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber-1} ,search=${param.search},subject=${param.subject} )}"-->
+<!--                       class="span1">이전</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--                &lt;!&ndash; block  &ndash;&gt;-->
+<!--                &lt;!&ndash; 페이지 번호 &ndash;&gt;-->
+<!--                <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">-->
+<!--                  <span th:if="${i == shopList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>-->
+<!--                  <a th:unless="${i == shopList.pageable.pageNumber+1}"-->
+<!--                     th:href="@{/shop/shopList(page=${ i - 1},search=${param.search},subject=${param.subject} )}"-->
+<!--                     th:text="${i}"></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">NEXT</span>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 &ndash;&gt;-->
+<!--                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">-->
+<!--                        <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"-->
+<!--                           class="span1">다음</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">END</span>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a &ndash;&gt;-->
+<!--                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">-->
+<!--                    <a th:href="@{/shop/shopList(page=${shopList.totalPages-1},search=${param.search},subject=${param.subject} )}"-->
+<!--                       class="span1">마지막</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        </tfoot>-->
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+
+</html>

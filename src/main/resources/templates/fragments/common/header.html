@@ -13,7 +13,7 @@
                             <li><a th:href="@{/member/memberLogin}">로그인</a></li>
                             <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
                         </th:block>
-                        <li><a href="#">장바구니</a></li>
+                        <li><a th:href="@{/shop/cartList}">장바구니</a></li>
                         <li><a href="#">고객센터</a></li>
 
 
@@ -78,10 +78,11 @@
                     <li>
                         <a th:href="@{/shop}">SHOP</a>
                         <ul class="sub">
-                            <li><a th:href="@{/shop/shopWrite}">미술</a></li>
-                            <li><a th:href="@{/shop/shopList}">체육</a></li>
-                            <li><a href="#">음악</a></li>
-                            <li><a href="#">요식</a></li>
+                            <li><a th:href="@{/shop/shopList}">전체</a></li>
+                            <li><a th:href="@{/shop/shopList1}">미술</a></li>
+                            <li><a th:href="@{/shop/shopList2}">체육</a></li>
+                            <li><a th:href="@{/shop/shopList3}">음악</a></li>
+                            <li><a th:href="@{/shop/shopList3}">요리</a></li>
                         </ul>
                     </li>
                     <li>
@@ -95,8 +96,8 @@
                     <li>
                         <a href="#">SELLER</a>
                         <ul class="sub">
+                            <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
                             <li><a href="#">강의 등록</a></li>
-                            <li><a href="#">강사 회원가입</a></li>
                             <li><a href="#">강의 등록</a></li>
 
                         </ul>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>write</title>
-  <link rel="stylesheet" th:href="@{/css/common/shop/shopWrite.css}">
+  <link rel="stylesheet" th:href="@{/css/shop/shopWrite.css}">
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
@@ -45,11 +45,15 @@
             </li>
             <p th:if="${#fields.hasErrors('Count')}" th:errors="*{Count}" class="error"></p>
             <li>
-              <label for="isSoldOut">isSoldOut</label>
-              <input type="text" id="isSoldOut" th:field="*{isSoldOut}">
+                <label><input type="checkbox" name="category" id="미술" value="1">미술</label>
+                <label><input type="checkbox" name="category" id="체육" value="2">체육</label>
+                <label><input type="checkbox" name="category" id="음악" value="3">음악</label>
+                <label><input type="checkbox" name="category" id="요리" value="4">요리</label>
             </li>
-            <p th:if="${#fields.hasErrors('isSoldOut')}" th:errors="*{isSoldOut}" class="error"></p>
-
+            <li>
+              <label for="ShopSeller">ShopSeller</label>
+              <input type="text" id="ShopSeller" th:field="*{ShopSeller}">
+            </li>
             <li>
               <label for="shopFile">파일</label>
               <input type="file" name="shopFile" id="shopFile">

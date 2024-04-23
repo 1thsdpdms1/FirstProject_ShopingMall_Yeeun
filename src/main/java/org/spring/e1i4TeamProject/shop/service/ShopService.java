@@ -1,11 +1,19 @@
 package org.spring.e1i4TeamProject.shop.service;
 
 import lombok.RequiredArgsConstructor;
+import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.spring.e1i4TeamProject.member.repository.MemberRepository;
+import org.spring.e1i4TeamProject.member.role.Role;
+import org.spring.e1i4TeamProject.shop.dto.CartShopListDto;
 import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.spring.e1i4TeamProject.shop.dto.ShopFileDto;
+import org.spring.e1i4TeamProject.shop.entity.CartEntity;
+import org.spring.e1i4TeamProject.shop.entity.CartShopListEntity;
 import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
 import org.spring.e1i4TeamProject.shop.entity.ShopFileEntity;
+import org.spring.e1i4TeamProject.shop.repository.CartRepository;
+import org.spring.e1i4TeamProject.shop.repository.CartShopListRepository;
 import org.spring.e1i4TeamProject.shop.repository.ShopFileRepository;
 import org.spring.e1i4TeamProject.shop.repository.ShopRepository;
 import org.spring.e1i4TeamProject.shop.service.serviceImpl.ShopServiceImpl;
@@ -17,8 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Transactional
 @RequiredArgsConstructor
@@ -26,12 +38,15 @@ import java.util.UUID;
 public class ShopService implements ShopServiceImpl {
   private final ShopRepository shopRepository;
   private final ShopFileRepository shopFileRepository;
+  private final MemberRepository memberRepository;
+  private final CartRepository cartRepository;
+  private final CartShopListRepository cartShopListRepository;
 
   @Override
   public void insertShop(ShopDto shopDto) throws IOException {
     if (shopDto.getShopFile().isEmpty()) {
       shopDto.setMemberEntity(MemberEntity.builder()
-          .id(shopDto.getMemberEntity().getId())
+          .id(shopDto.getMemberId())
           .build());
       ShopEntity shopEntity = ShopEntity.toInsertShopEntity(shopDto);
       shopRepository.save(shopEntity);
@@ -42,7 +57,7 @@ public class ShopService implements ShopServiceImpl {
       UUID uuid = UUID.randomUUID(); //random id -> 랜덤한 값을 추출하는 클래스
 
       String newFileName = uuid + "_" + oldFilename; //저장파일이름 (보안)
-      String filePath = "E:/saveFile/saveFiles1/" + newFileName; //실제파일 저장경로+이름
+      String filePath = "C:/e1i4_file/" + newFileName; //실제파일 저장경로+이름
       //실제 파일 저장 실행
       shopFile.transferTo(new File(filePath));//저장 예외처리
 
@@ -74,8 +89,8 @@ public class ShopService implements ShopServiceImpl {
   }
 
   @Override
-  public ShopDto detail1(Long id) {
-    Optional<ShopEntity> optionalShopEntity = shopRepository.findById(id);
+  public ShopDto detail(Long Id) {
+    Optional<ShopEntity> optionalShopEntity = shopRepository.findById(Id);
     if (optionalShopEntity.isPresent()) {
       //조회할 게시물이 있으면
       ShopEntity shopEntity = optionalShopEntity.get();
@@ -115,18 +130,18 @@ public class ShopService implements ShopServiceImpl {
     //파일체크
     Optional<ShopFileEntity> optionalFileEntity = shopFileRepository.findByShopEntityId(shopDto.getId());
     //파일이 있으면 파일 기존 파일 삭제
-    if (optionalFileEntity.isPresent()) {
-      String fileNewName = optionalFileEntity.get().getShopNewFileName();
-      String filePath = "E:/saveFile/saveFiles1/" + fileNewName;
-      File deleteFile = new File(filePath);
-      if (deleteFile.exists()) {
-        deleteFile.delete();
-        System.out.println("파일을 삭제하였습니다");
-      } else {
-        System.out.println("파일이 존재하지않습니다");
-      }
-      shopFileRepository.delete(optionalFileEntity.get());//파일 테이블 레코드 삭제
-    }
+//    if (optionalFileEntity.isPresent()) {
+//      String fileNewName = optionalFileEntity.get().getShopNewFileName();
+//      String filePath = "C:/e1i4_file/" + fileNewName;
+//      File deleteFile = new File(filePath);
+//      if (deleteFile.exists()) {
+//        deleteFile.delete();
+//        System.out.println("파일을 삭제하였습니다");
+//      } else {
+//        System.out.println("파일이 존재하지않습니다");
+//      }
+//      shopFileRepository.delete(optionalFileEntity.get());//파일 테이블 레코드 삭제
+//    }
     //수정
     Optional<ShopEntity> optionalShopEntity = shopRepository.findById(shopDto.getId());
     MemberEntity memberEntity = MemberEntity.builder().id(shopDto.getMemberId()).build();
@@ -141,8 +156,8 @@ public class ShopService implements ShopServiceImpl {
       MultipartFile shopFile = shopDto.getShopFile();
       String fileOldName = shopFile.getOriginalFilename();
       UUID uuid = UUID.randomUUID();
-      String filenewName = uuid + "_" + fileOldName;
-      String savaPath = "E:/saveFile/saveFiles1/" + filenewName;
+      String fileNewName = uuid + "_" + fileOldName;
+      String savaPath = "C:/e1i4_file/" + fileNewName;
       shopFile.transferTo(new File(savaPath));
 
       shopEntity = ShopEntity.toUpdateFileShopEntity(shopDto);
@@ -150,7 +165,7 @@ public class ShopService implements ShopServiceImpl {
 
       ShopFileEntity bFileEntity = ShopFileEntity.builder()
           .shopEntity(shopEntity)
-          .shopNewFileName(filenewName)
+          .shopNewFileName(fileNewName)
           .shopOldFileName(fileOldName)
           .build();
       Long fileId = shopFileRepository.save(bFileEntity).getId();
@@ -172,4 +187,76 @@ public class ShopService implements ShopServiceImpl {
     });
     shopRepository.delete(shopEntity);
   }
+
+  @Override
+  public void addCart(Long id, Long shopId) {
+    MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    Optional<CartEntity> cartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
+    CartEntity cartEntity1=null;
+    if(!cartEntity.isPresent()) {
+      cartEntity1=CartEntity.builder().memberEntity(memberEntity).build();
+      cartRepository.save(cartEntity1);
+    }else{
+      cartEntity1=cartRepository.findByMemberEntityId(memberEntity.getId()).orElseThrow(IllegalArgumentException::new);
+    }
+    //shop 확인
+    ShopEntity shopEntity=shopRepository.findById(shopId).orElseThrow(IllegalArgumentException::new);
+    //shopListEntity 확인
+    List<CartShopListEntity> cartShopListEntity
+        =cartShopListRepository.findByCartEntityIdAndShopEntityId(cartEntity1.getId(),shopEntity.getId());
+    if(cartShopListEntity.isEmpty()){
+      CartShopListEntity cartShopListEntity1=CartShopListEntity.builder()
+          .count(1)
+          .cartEntity(cartEntity1)
+          .shopEntity(shopEntity)
+          .build();
+      cartShopListRepository.save(cartShopListEntity1);
+    }else{
+      cartShopListRepository.save(CartShopListEntity.builder()
+          .id(cartShopListEntity.get(0).getId())
+          .count(cartShopListEntity.get(0).getCount()+1)
+          .cartEntity(cartEntity1)
+          .shopEntity(shopEntity)
+          .build());
+
+    }
+  }
+  @Override
+  public List<ShopDto> shopList1() {
+    List<ShopEntity> shopEntityList=new ArrayList<>();
+
+    shopEntityList=shopRepository.findByCategory(1);
+    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+  }
+  @Override
+  public List<ShopDto> shopList2() {
+    List<ShopEntity> shopEntityList=new ArrayList<>();
+
+    shopEntityList=shopRepository.findByCategory(2);
+    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+  }
+  @Override
+  public List<ShopDto> shopList3() {
+    List<ShopEntity> shopEntityList=new ArrayList<>();
+
+    shopEntityList=shopRepository.findByCategory(3);
+    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+  }
+  @Override
+  public List<ShopDto> shopList4() {
+    List<ShopEntity> shopEntityList=new ArrayList<>();
+
+    shopEntityList=shopRepository.findByCategory(4);
+    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+  }
+
+
+
+
+
+
+
+
+
+
 }
