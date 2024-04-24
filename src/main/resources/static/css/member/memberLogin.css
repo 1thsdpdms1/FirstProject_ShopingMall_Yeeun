@@ -75,6 +75,11 @@
     border-bottom: 1px solid black;
     padding: 20px;
 }
+.container .login .joinLogin-con h1.joinBtn:hover{
+    opacity: 1;
+    transition : 1s;
+    border-bottom: 1px solid black;
+}
 
 
 .login .login-con form {

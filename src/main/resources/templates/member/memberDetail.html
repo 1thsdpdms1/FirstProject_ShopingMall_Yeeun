@@ -4,10 +4,127 @@
 <head>
     <meta charset="UTF-8">
     <title>개인 정보</title>
+    <script th:src="@{/js/header.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/member/memberDetail.css}">
 </head>
 <body>
-<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="header">
+    <div class="header-con">
+        <div class="top-header">
+            <div class="top-menu">
+                <div class="right-menu">
+                    <ul>
+                        <th:block sec:authorize="isAnonymous()">
+                            <li><a th:href="@{/member/memberLogin}">로그인</a></li>
+                            <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
+                        </th:block>
+                        <li><a th:href="@{/shop/cartList}">장바구니</a></li>
+                        <li><a href="#">고객센터</a></li>
+
+                        <th:block sec:authorize="isAuthenticated()">
+                            <li><a th:href="@{/board/write}">글쓰기</a></li>
+
+                            <li>
+                                <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
+                                    <img th:src="@{|/upload/${memberDto.memberFileName}|}"
+                                         alt="photo" height="24px">
+                                </th:block>
+                                <th:block th:unless="${#authentication.principal.memberEntity.memberAttachFile == 1}">
+                                    <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
+                                </th:block>
+                            </li>
+                            <li>
+                                <a th:href="@{member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                   th:text="${#authentication.principal.username}"></a>
+                            </li>
+                            <th:block sec:authorize="hasAnyRole('ADMIN')">
+                                <li><a th:href="@{/admin/index}">ADMIN</a></li>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyRole('MANAGER')">
+                                <li>MANAGER</li>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                <li>MEMBER</li>
+                            </th:block>
+                            <li><a th:href="@{/member/logout}">LOGOUT</a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-menu">
+                <h1 class="left">
+                    <a href="#">오늘의 강좌</a>
+                </h1>
+                <h1 class="logo">
+                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt="로고"></a>
+                </h1>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="pre-gnb on">
+                <ul>
+                    <li>
+                        <a href="#">SHOP</a>
+                    </li>
+                    <li>
+                        <a href="#">BOARD</a>
+                    </li>
+                    <li>
+                        <a href="#">SELLER</a>
+                    </li>
+                    <li>
+                        <a href="#">MY HOME</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="gnb off">
+                <ul>
+                    <li>
+                        <a th:href="@{/shop}">SHOP</a>
+                        <ul class="sub">
+                            <li><a th:href="@{/shop/shopList}">전체</a></li>
+                            <li><a th:href="@{/shop/shopList1}">미술</a></li>
+                            <li><a th:href="@{/shop/shopList2}">체육</a></li>
+                            <li><a th:href="@{/shop/shopList3}">음악</a></li>
+                            <li><a th:href="@{/shop/shopList3}">요리</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">BOARD</a>
+                        <ul class="sub">
+                            <li><a href="#">커뮤니티</a></li>
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">수강후기</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">SELLER</a>
+                        <ul class="sub">
+                            <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
+                            <li><a href="#">강의 등록</a></li>
+                            <li><a href="#">강의 등록</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">MY HOME</a>
+                        <ul class="sub">
+                            <li><a href="#">시간표</a></li>
+                            <th:block sec:authorize="isAuthenticated()">
+                                <li>
+                                    <a th:href="@{member/memberDetail/{id}
+                                    (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
+                                </li>
+                            </th:block>
+                            <li><a href="#">1:1문의내역</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="detail">
         <div class="detail-con">
@@ -16,6 +133,7 @@
                 <form th:action="@{/member/memberUpdate}" method="post" enctype="multipart/form-data">
                     <div class="left">
                         <div class="left-con">
+                            <h2>프 로 필 사 진</h2>
                             <th:block th:if="${memberDto.memberAttachFile == 1}">
                                 <img th:src="@{|/upload/${memberDto.memberFileName}|}" alt="file">
                             </th:block>
@@ -46,7 +164,8 @@
                                     <label for="userPw">비 밀 번 호</label>
                                 </li>
                                 <li>
-                                    <input type="text" id="userPw" name="userPw" th:value="${memberDto.userPw}"> <br>
+                                    <input type="text" id="userPw" name="userPw" th:value="${memberDto.userPw}">
+                                    <br>
                                 </li>
 
                                 <li>
@@ -60,7 +179,8 @@
                                     <label for="address">주 소</label>
                                 </li>
                                 <li>
-                                    <input type="text" id="address" name="address" th:value="${memberDto.address}"> <br>
+                                    <input type="text" id="address" name="address" th:value="${memberDto.address}">
+                                    <br>
                                 </li>
                                 <li>
                                     <label for="phoneNumber">전 화 번 호</label>
@@ -89,26 +209,11 @@
                                         <label for="license">자 격 증</label>
                                     </li>
                                     <li>
-                                        <input type="text" name="license" id="license" th:value="${memberDto.licence}">
+                                        <input type="text" name="license" id="license"
+                                               th:value="${memberDto.licence}">
                                     </li>
                                 </th:block>
 
-                                <li>
-                                    <label for="createTime">생 성 시 간</label>
-                                </li>
-                                <li>
-                                    <input type="text" id="createTime" name="createTime"
-                                           th:value="${memberDto.createTime}"
-                                           disabled> <br>
-                                </li>
-                                <li>
-                                    <label for="updateTime">수 정 시 간</label>
-                                </li>
-                                <li>
-                                    <input type="text" id="updateTime" name="updateTime"
-                                           th:value="${memberDto.updateTime}"
-                                           disabled> <br>
-                                </li>
                                 <th:block th:if="${memberDto.userEmail == myUserDetails.username}">
                                     <li class="li2">
                                         <a th:href="@{/member/memberList}">LIST</a>

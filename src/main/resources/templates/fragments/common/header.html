@@ -18,7 +18,7 @@
 
 
                         <th:block sec:authorize="isAuthenticated()">
-                            <li><a th:href="@{/board/write}">WRITE</a></li>
+                            <li><a th:href="@{/board/write}">글쓰기</a></li>
 
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
@@ -113,8 +113,6 @@
                                 </li>
                             </th:block>
                             <li><a th:href="@{/board/boardInquiry}">1:1문의내역</a></li>
-
-
                         </ul>
                     </li>
                 </ul>

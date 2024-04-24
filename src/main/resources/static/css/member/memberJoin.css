@@ -62,6 +62,11 @@
     border-bottom: 1px solid #ccc;
     padding: 20px;
 }
+.container .join .joinLogin-con h1.loginBtn:hover{
+    opacity: 1;
+    transition : 1s;
+    border-bottom: 1px solid black;
+}
 
 .container .join .memberSellerBtn {
     width: 480px;
@@ -112,6 +117,12 @@
     /*gap: 5px;*/
     /*border: 1px solid #ccc;*/
     box-sizing: border-box;
+}
+.container .join .memberJoin-con ul li .memberShowPw{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 10px;
 }
 
 .container .join .memberJoin-con ul li label {
@@ -195,6 +206,12 @@
     /*gap: 5px;*/
     /*border: 1px solid #ccc;*/
     box-sizing: border-box;
+}
+.container .join .sellerJoin-con ul li .sellerShowPw{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 10px;
 }
 
 .container .join .sellerJoin-con ul li span.imp{
