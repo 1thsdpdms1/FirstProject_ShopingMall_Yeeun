@@ -23,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "member")
 public class MemberEntity extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")

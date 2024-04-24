@@ -18,7 +18,11 @@
 
 
                         <th:block sec:authorize="isAuthenticated()">
+<<<<<<< HEAD
+                            <li><a th:href="@{/board/writeLink}">WRITE</a></li>
+=======
                             <li><a th:href="@{/board/write}">글쓰기</a></li>
+>>>>>>> dev
 
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
@@ -62,7 +66,7 @@
                         <a href="#">SHOP</a>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a th:href="@{/board/boardList}">BOARD</a>
                     </li>
                     <li>
                         <a href="#">SELLER</a>
@@ -86,11 +90,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a th:href="@{/board/boardList}">BOARD</a>
                         <ul class="sub">
-                            <li><a href="#">커뮤니티</a></li>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">수강후기</a></li>
+                            <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
+                            <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
+                            <li><a th:href="@{/board/reviewBoardList}">수강후기</a></li>
                         </ul>
                     </li>
                     <li>

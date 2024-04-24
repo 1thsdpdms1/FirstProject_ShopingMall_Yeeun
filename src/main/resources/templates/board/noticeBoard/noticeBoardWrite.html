@@ -14,36 +14,28 @@
         <div class="boardWrite-con">
             <div class="boardWrite-form">
                 <!--                <form th:action="@{/board/boardWrite}" method="POST" enctype="multipart/form-data">-->
-                <form th:action="@{/board/boardWrite}" method="POST"   enctype="multipart/form-data"    >
+                <form th:action="@{/board/noticeBoardWrite}" method="POST"   enctype="multipart/form-data"    >
 <!--                    enctype="multipart/form-data"-->
 <!--                    th:object="${boardDto}"-->
                     <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
                     <ul>
                         <li>
-                            글작성
+                            공지사항 글작성
                         </li>
 
                         <li>
-<!--                            <label for="category">category</label>-->
-                                <!--boardEntity에 category column 을 만들어서 데이터 저장하고 불러올 수 있나?-->
-                            <select name="category" id="category">
-                                <option value="1">자유게시판</option>
-                                <option value="2">질문게시판</option>
-                            </select>
-
+                            <input type="hidden" name="category" id="category" value="3">
                         </li>
 
                         <li>
-                            <label for="memberId" hidden="hidden">회원아이디</label>
-                            <input type="text" name="memberId" id="memberId" th:value="${memberId}" readonly hidden="hidden">
+
+                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}" readonly>
 
                         </li>
 
                         <li>
-<!--                            <label for="boardWriter" hidden="hidden">글쓴이</label>-->
+<!--                            <label for="boardWriter" hidden="hidden">작성자</label>-->
                             <input type="hidden" id="boardWriter" name="boardWriter" th:value="${memberName}" hidden="hidden">
-<!--                            <td th:text="${myUserDetails.getName()}" id="boardWriter" ></td>-->
-<!--                            <td th:text="${memberEntity.name()}" id="boardWriter" ></td>-->
                         </li>
                         <!--회원이름으로 불러오기  1. 글작성할때 boardWriter를 memberName으로 불러와서 쓸지
                                             2. 여기에서 바로 memberName 으로 받아올지-->
