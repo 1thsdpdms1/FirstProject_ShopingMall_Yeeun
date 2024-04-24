@@ -19,7 +19,7 @@
                     <td colspan="10">
                         <div class="search">
                             <div class="search-con">
-                                <form th:action="@{/board/boardList}" method="get">
+                                <form th:action="@{/board/reviewBoardList}" method="get">
                                     <select name="subject" id="subject">
                                         <option value="" th:selected="${#strings.isEmpty(param.subject)}">::선택::</option>
                                         <option value="boardTitle" th:selected="${#strings.equals(param.subject,'boardTitle')}">제목</option>
@@ -61,9 +61,9 @@
                     <td>
                         <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
 
+                            <img th:src="@{|/upload/${board.newFileName}|}" alt="img">
                             <label th:text="${board.boardTitle}"></label>
                             <!--제목에 해당글의 사진이 보이도록-->
-                            <img th:src="@{board.newFileName}" alt="img">
 
 
                         </a>
@@ -95,7 +95,7 @@
                                     <span th:if="${boardDtoList.pageable.pageNumber+1 eq 1}" class="span0">START</span>
                                     <!--                                      2222현재 페이지가 첫번째 페이지가 아니면 아래a태그를 표시하라-->
                                     <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">
-                                          <a th:href="@{/board/boardList(page=0)}" class="span1">처음</a>
+                                          <a th:href="@{/board/reviewBoardList(page=0)}" class="span1">처음</a>
                                       </span>
                                 </li>
 
@@ -104,7 +104,7 @@
                                     <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
                                     <!--                                        2222현재페이지가 첫번째 페이지가 아니면 아래 a태그 표시 -->
                                     <span th:unless="${1==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/boardList(page=${boardDtoList.pageable.pageNumber-1})}" class="span1">이전</a>
+                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.pageable.pageNumber-1})}" class="span1">이전</a>
                                       </span>
                                 </li>
 
@@ -113,7 +113,7 @@
                                 <li th:each="i: ${#numbers.sequence(startPage,endPage)}" class="block">
                                     <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
                                     <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"
-                                       th:href="@{/board/boardList(page=${i-1})}" th:text="${i}"></a>
+                                       th:href="@{/board/reviewBoardList(page=${i-1})}" th:text="${i}"></a>
                                 </li>
 
                                 <li>
@@ -121,7 +121,7 @@
                                     <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
                                     <!--                                      현재 페이지가 마지막 페이지가 아니면 a 표시   현재페이지+1-->
                                     <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/boardList(page=${boardDtoList.pageable.pageNumber+1})}" class="span1">다음</a>
+                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.pageable.pageNumber+1})}" class="span1">다음</a>
                                       </span>
                                 </li>
 
@@ -130,7 +130,7 @@
                                     <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0">END</span>
                                     <!--                                      현재 페이지가 마지막 페이지가 아니면 마지막 페이지로 이동해라 a태그-->
                                     <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/boardList(page=${boardDtoList.totalPages-1})}" class="span1">마지막</a>
+                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.totalPages-1})}" class="span1">마지막</a>
                                       </span>
                                 </li>
 

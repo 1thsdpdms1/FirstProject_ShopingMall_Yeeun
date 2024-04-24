@@ -11,7 +11,6 @@ import org.spring.e1i4TeamProject.board.repository.BoardRepository;
 import org.spring.e1i4TeamProject.board.service.serviceInterface.BoardServiceInterface;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -126,47 +125,95 @@ public class BoardService implements BoardServiceInterface {
     }
 
 
+//    @Override
+//    public Page<BoardDto> boardSearchPageList(Pageable pageable, String subject, String search) {
+//
+//        Page<BoardEntity> boardEntityPage = null;
+//
+//            if(subject==null || search==null){
+//                boardEntityPage = boardRepository.findByCategoryContains(pageable);
+//            }else {
+//                if (subject.equals("boardTitle")){
+//                    boardEntityPage=boardRepository.findByBoardTitleContains(pageable,search);
+//                } else if (subject.equals("boardContent")) {
+//                    boardEntityPage=boardRepository.findByBoardContentContains(pageable,search);
+//                }else {
+//                    boardEntityPage= boardRepository.findByCategoryContains(pageable);
+//                }
+//            }
+//        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+//
+//        return boardDtoPage;
+//    }
+
     @Override
-    public Page<BoardDto> boardSearchPageList(Pageable pageable, String subject, String search) {
+    public Page<BoardDto> boardSearchPageList1_2(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
 
         Page<BoardEntity> boardEntityPage = null;
 
-            if(subject==null || search==null){
-                boardEntityPage = boardRepository.findAll(pageable);
+//        if (boardEntity.getCategory().equals(1) || boardEntity.getCategory().equals(2)){
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory1_2Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle1_2Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent1_2Contains(pageable,search);
             }else {
-                if (subject.equals("boardTitle")){
-                    boardEntityPage=boardRepository.findByBoardTitleContaining(pageable,search);
-                } else if (subject.equals("boardContent")) {
-                    boardEntityPage=boardRepository.findByBoardContentContaining(pageable,search);
-                }else {
-                    boardEntityPage= boardRepository.findAll(pageable);
-                }
+                boardEntityPage= boardRepository.findByCategory1_2Contains(pageable);
             }
+        }
+//        }
         Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
 
         return boardDtoPage;
     }
 
-//    @Override
-//    public Page<BoardDto> boardSearchPageList1_2(Pageable pageable, String subject, String search) {
-//
-//        Page<BoardEntity> boardEntityPage = null;
-//
-//        if(subject==null || search==null){
-//            boardEntityPage = boardRepository.findAll(pageable);
-//        }else {
-//            if (subject.equals("boardTitle")){
-//                boardEntityPage=boardRepository.findByBoardTitleContaining(pageable,search);
-//            } else if (subject.equals("boardContent")) {
-//                boardEntityPage=boardRepository.findByBoardContentContaining(pageable,search);
-//            }else {
-//                boardEntityPage= boardRepository.category1and2(pageable,id1,id2);
-//            }
-//        }
-//        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
-//
-//        return boardDtoPage;
-//    }
+    @Override
+    public Page<BoardDto> boardSearchPageList3(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
+        Page<BoardEntity> boardEntityPage = null;
+
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory3Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle3Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent3Contains(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findByCategory3Contains(pageable);
+            }
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+
+        return boardDtoPage;
+    }
+
+    @Override
+    public Page<BoardDto> boardSearchPageList4_7(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
+        Page<BoardEntity> boardEntityPage = null;
+
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory4_7Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle4_7Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent4_7Contains(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findByCategory4_7Contains(pageable);
+            }
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+
+        return boardDtoPage;
+    }
 
 //    @Override//paging
 //    public Page<BoardDto> boardPageList(Pageable pageable) {

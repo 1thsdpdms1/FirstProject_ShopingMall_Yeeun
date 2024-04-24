@@ -12,6 +12,7 @@ import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -52,9 +53,6 @@ public class BoardController {
                                @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                                Model model) throws IOException {
 
-//        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
-//        model.addAttribute("boardDto",boardDto);
-//        boardService.boardInsert(boardDto);
         boardService.boardInsertFile(boardDto);
 
         return "redirect:/board/boardList";
@@ -66,10 +64,10 @@ public class BoardController {
     public String boardList( @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                             @RequestParam(name = "subject",required = false) String subject,
                             @RequestParam(name = "search",required = false) String search,
-                            @PageableDefault(page = 0, size = 3,sort = "id", direction = Sort.Direction.DESC)
+                            @PageableDefault(page = 0, size = 3,sort = "board_id", direction = Sort.Direction.DESC)
                             Pageable pageable,Model model){
 //        search
-        Page<BoardDto> boardDtoList = boardService.boardSearchPageList(pageable,subject,search);
+        Page<BoardDto> boardDtoList = boardService.boardSearchPageList1_2(pageable,subject,search);
 
         model.addAttribute("myUserDetails",myUserDetails);
 
@@ -95,13 +93,13 @@ public class BoardController {
 
         model.addAttribute("boardDtoList",boardDtoList);
 
-        List<BoardDto> boardDtos =new ArrayList<>();
-        if(subject==null || search ==null){
-            boardDtos = boardService.boardList();
-        }else{
-            boardDtoList=  boardService.boardSearchPageList(pageable,subject,search);
-        }
-
+//        List<BoardDto> boardDtoList1 =new ArrayList<>();
+//        if(subject==null || search ==null){
+//            boardService.boardSearchPageList1_2(pageable,subject,search);
+//        }else{
+//            boardDtoList=  boardService.boardSearchPageList1_2(pageable,subject,search);
+//        }
+//        boardService.boardSearchPageList1_2(pageable,subject,search);
         return "board/boardList";
     }
 
@@ -189,19 +187,19 @@ public class BoardController {
 //        boardService.boardInsert(boardDto);
         boardService.boardInsertFile(boardDto);
 
-        return "redirect:/board/noticeBoard/noticeBoardList";
+        return "redirect:/board/noticeBoardList";
         //글 작성후에 boardList 페이지로 이동
     }
 
 
     @GetMapping("/noticeBoardList")
-    public String noticeBoardList( @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                             @RequestParam(name = "subject",required = false) String subject,
-                             @RequestParam(name = "search",required = false) String search,
-                             @PageableDefault(page = 0, size = 3,sort = "id", direction = Sort.Direction.DESC)
-                             Pageable pageable,Model model){
+    public String noticeBoardList(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                  @RequestParam(name = "subject",required = false) String subject,
+                                  @RequestParam(name = "search",required = false) String search,
+                                  @PageableDefault(page = 0, size = 3,sort = "board_id", direction = Sort.Direction.DESC)
+                                     Pageable pageable, Model model){
 //      search
-        Page<BoardDto> boardDtoList = boardService.boardSearchPageList(pageable,subject,search);
+        Page<BoardDto> boardDtoList = boardService.boardSearchPageList3(pageable,subject,search);
 
         model.addAttribute("myUserDetails",myUserDetails);
 
@@ -231,11 +229,11 @@ public class BoardController {
         BoardEntity boardEntity = new BoardEntity();
 
 
-            if(subject==null || search ==null){
-                boardDtos = boardService.boardList();
-            }else{
-                boardDtoList=  boardService.boardSearchPageList(pageable,subject,search);
-            }
+//            if(subject==null || search ==null){
+//                boardDtos = boardService.boardSearchPageList3(pageable);
+//            }else{
+//                boardDtoList=  boardService.boardSearchPageList3(pageable,subject,search);
+//            }
 
 
         return "board/noticeBoard/noticeBoardList";
@@ -327,8 +325,7 @@ public class BoardController {
 //        boardService.boardInsert(boardDto);
         boardService.boardInsertFile(boardDto);
 
-        return "redirect:/board/reviewBoard/reviewBoardList";
-        //글 작성후에 boardList 페이지로 이동
+        return "redirect:/board/reviewBoardList";
     }
 
 
@@ -336,10 +333,10 @@ public class BoardController {
     public String reviewBoardList( @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                                    @RequestParam(name = "subject",required = false) String subject,
                                    @RequestParam(name = "search",required = false) String search,
-                                   @PageableDefault(page = 0, size = 3,sort = "id", direction = Sort.Direction.DESC)
+                                   @PageableDefault(page = 0, size = 3,sort = "board_id", direction = Sort.Direction.DESC)
                                    Pageable pageable,Model model){
 //      search
-        Page<BoardDto> boardDtoList = boardService.boardSearchPageList(pageable,subject,search);
+        Page<BoardDto> boardDtoList = boardService.boardSearchPageList4_7(pageable,subject,search);
 
         model.addAttribute("myUserDetails",myUserDetails);
 
@@ -369,11 +366,11 @@ public class BoardController {
         BoardEntity boardEntity = new BoardEntity();
 
 
-        if(subject==null || search ==null){
-            boardDtos = boardService.boardList();
-        }else{
-            boardDtoList=  boardService.boardSearchPageList(pageable,subject,search);
-        }
+//        if(subject==null || search ==null){
+//            boardDtos = boardService.boardList();
+//        }else{
+//            boardDtoList=  boardService.boardSearchPageList(pageable,subject,search);
+//        }
 
 
         return "board/reviewBoard/reviewBoardList";
@@ -397,7 +394,7 @@ public class BoardController {
         model.addAttribute("board",board);
 //        model.addAttribute("replyList",replyList);
 
-        return "board/review/reviewBoardDetail";
+        return "board/reviewBoard/reviewBoardDetail";
     }
 
 
