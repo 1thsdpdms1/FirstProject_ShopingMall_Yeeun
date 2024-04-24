@@ -62,10 +62,10 @@ public class BoardController {
 
     @GetMapping("/boardList")
     public String boardList( @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                            @RequestParam(name = "subject",required = false) String subject,
-                            @RequestParam(name = "search",required = false) String search,
-                            @PageableDefault(page = 0, size = 3,sort = "board_id", direction = Sort.Direction.DESC)
-                            Pageable pageable,Model model){
+                             @RequestParam(name = "subject",required = false) String subject,
+                             @RequestParam(name = "search",required = false) String search,
+                             @PageableDefault(page = 0, size = 3,sort = "board_id", direction = Sort.Direction.DESC)
+                             Pageable pageable,Model model){
 //        search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList1_2(pageable,subject,search);
 
@@ -164,10 +164,10 @@ public class BoardController {
         return "redirect:/board/boardList";
     }
 
-///////////////////////////////공지사항////////////////////
+    ///////////////////////////////공지사항////////////////////
     @GetMapping("/noticeBoardWrite")
     public String noticeBoardWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                             BoardDto boardDto, Model model){
+                                   BoardDto boardDto, Model model){
 
         model.addAttribute("memberId",myUserDetails.getMemberEntity().getId());
         model.addAttribute("boardDto",boardDto);
@@ -179,8 +179,8 @@ public class BoardController {
 
     @PostMapping("/noticeBoardWrite")
     public String noticeBoardWriteOK(BoardDto boardDto,
-                               @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                               Model model) throws IOException {
+                                     @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                     Model model) throws IOException {
 
 //        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
 //        model.addAttribute("boardDto",boardDto);
@@ -197,7 +197,7 @@ public class BoardController {
                                   @RequestParam(name = "subject",required = false) String subject,
                                   @RequestParam(name = "search",required = false) String search,
                                   @PageableDefault(page = 0, size = 3,sort = "board_id", direction = Sort.Direction.DESC)
-                                     Pageable pageable, Model model){
+                                  Pageable pageable, Model model){
 //      search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList3(pageable,subject,search);
 
@@ -241,7 +241,7 @@ public class BoardController {
 
     @GetMapping("/noticeBoardDetail/{id}")
     public String noticeBoardDetail(Model model, @PathVariable("id")Long id,
-                              @AuthenticationPrincipal MyUserDetailsImpl myUserDetails){
+                                    @AuthenticationPrincipal MyUserDetailsImpl myUserDetails){
 
         boardService.boardHit(id);
 
@@ -265,8 +265,8 @@ public class BoardController {
     @GetMapping("/noticeBoardUpdate/{id}")
     public String noticeBoardUpdate(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
 //                              @ModelAttribute BoardDto boardDto,
-                              Model model,
-                              @PathVariable("id") Long id){
+                                    Model model,
+                                    @PathVariable("id") Long id){
 
         BoardDto board = boardService.boardDetail(id);
         model.addAttribute("board",board);

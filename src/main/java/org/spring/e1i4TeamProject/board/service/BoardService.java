@@ -325,7 +325,9 @@ public class BoardService implements BoardServiceInterface {
             throw new IllegalArgumentException("게시글 수정실패");
         });
 
-    }
+
+
+}
 
     @Transactional
     @Override

@@ -57,17 +57,27 @@
     gap: 10px;
 }
 
-.container .detail .detail-con .detail-form form .left {
+/*.container .detail .detail-con .detail-form form .left {*/
+/*    flex: 4;*/
+/*}*/
+.container .detail .detail-con .detail-form .left .left-con{
     flex: 4;
+    border-right: 1px solid #333333;
+    padding-right: 20px;
 }
 
 .container .detail .detail-con .detail-form form .right {
     flex: 6;
 }
 
+.container .detail .detail-con .detail-form .left .left-con>h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .container .detail .detail-con .detail-form .left .left-con img {
-    width: 300px;
-    height: 300px;
+    width: 480px;
+    height: 619px;
 }
 
 .container .detail .detail-con .detail-form .right ul li {
@@ -105,7 +115,7 @@
 .container .detail .detail-con .detail-form form .right ul li a{
     flex: 1;
     background-color: white;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 15px;
     cursor: pointer;
     padding: 5px 0;
@@ -116,7 +126,7 @@
 .container .detail .detail-con .detail-form form .right ul li:last-child input{
     flex: 1;
     background-color: white;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 15px;
     cursor: pointer;
     padding: 5px 0;

@@ -33,13 +33,18 @@ public class MemberController {
                                BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
             return "member/memberJoin";
+        } else if (!memberDto.getUserPw().equals(memberDto.getUserPwCheck())) {
+            bindingResult.rejectValue("userPwCheck","passwordIncorrect",
+                "두개의 비밀번호가 일치하지 않습니다.");
+            return "member/memberJoin";
         } else {
             memberService.memberJoin(memberDto);
         }
 
-        System.out.println(">>>>"+memberDto.getMemberAttachFile());
+        System.out.println(">>>>" + memberDto.getMemberAttachFile());
         return "redirect:/member/memberLogin";
     }
+
     @PostMapping("/sellerJoin")
     public String sellerJoinOk(@Valid MemberDto memberDto,
                                BindingResult bindingResult) throws IOException {
@@ -49,7 +54,7 @@ public class MemberController {
             memberService.sellerJoin(memberDto);
         }
 
-        System.out.println(">>>>"+memberDto.getMemberAttachFile());
+        System.out.println(">>>>" + memberDto.getMemberAttachFile());
         return "redirect:/member/memberLogin";
     }
 
@@ -85,12 +90,12 @@ public class MemberController {
 
         memberService.memberUpdate(memberDto);
 
-        return "redirect:/member/memberDetail/"+memberDto.getId();
+        return "redirect:/member/memberDetail/" + memberDto.getId();
     }
 
     @GetMapping("/delete/{id}")
     @ResponseBody
-    public String memberDelete(@PathVariable("id")Long id){
+    public String memberDelete(@PathVariable("id") Long id) {
 
         memberService.memberDelete(id);
 
