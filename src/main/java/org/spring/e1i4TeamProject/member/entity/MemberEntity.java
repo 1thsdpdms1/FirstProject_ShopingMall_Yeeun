@@ -43,6 +43,9 @@ public class MemberEntity extends BaseTimeEntity {
     @Column(nullable = true)
     private String phoneNumber;
 
+    @Column(nullable = true)
+    private String licence;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -80,14 +83,13 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(0);
-//        memberEntity.setMemberFileName(memberDto.);
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
         memberEntity.setRole(Role.MEMBER);
         memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
 
         return memberEntity;
-
     }
     public static MemberEntity toMemberJoinEntity1(MemberDto memberDto, PasswordEncoder passwordEncoder) {
 
@@ -98,6 +100,7 @@ public class MemberEntity extends BaseTimeEntity {
         memberEntity.setName(memberDto.getName());
         memberEntity.setAddress(memberDto.getAddress());
         memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
         memberEntity.setMemberAttachFile(1);
         memberEntity.setMemberFileName(memberDto.getMemberFileName());
         memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
@@ -107,5 +110,79 @@ public class MemberEntity extends BaseTimeEntity {
         return memberEntity;
     }
 
+    public static MemberEntity toSellerJoinEntity0(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(passwordEncoder.encode(memberDto.getUserPw()));
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
+        memberEntity.setMemberAttachFile(0);
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(Role.MANAGER);
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+    }
+    public static MemberEntity toSellerJoinEntity1(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(passwordEncoder.encode(memberDto.getUserPw()));
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
+        memberEntity.setMemberAttachFile(1);
+        memberEntity.setMemberFileName(memberDto.getMemberFileName());
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(Role.MANAGER);
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+    }
+
+    public static MemberEntity toMemberUpdateEntity0(MemberDto memberDto) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setId(memberDto.getId());
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(memberDto.getUserPw());
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
+        memberEntity.setMemberAttachFile(0);
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(memberDto.getRole());
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+
+    }
+    public static MemberEntity toMemberUpdateEntity1(MemberDto memberDto) {
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setId(memberDto.getId());
+        memberEntity.setUserEmail(memberDto.getUserEmail());
+        memberEntity.setUserPw(memberDto.getUserPw());
+        memberEntity.setName(memberDto.getName());
+        memberEntity.setAddress(memberDto.getAddress());
+        memberEntity.setPhoneNumber(memberDto.getPhoneNumber());
+        memberEntity.setLicence(memberDto.getLicence());
+        memberEntity.setMemberAttachFile(1);
+        memberEntity.setMemberFileName(memberDto.getMemberFileName());
+        memberEntity.setMemberFileEntityList(memberDto.getMemberFileEntityList());
+        memberEntity.setRole(memberDto.getRole());
+        memberEntity.setBoardEntityList(memberDto.getBoardEntityList());
+
+        return memberEntity;
+    }
 
 }

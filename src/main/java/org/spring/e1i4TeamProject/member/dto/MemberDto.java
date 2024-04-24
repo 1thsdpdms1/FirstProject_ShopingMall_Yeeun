@@ -35,6 +35,8 @@ public class MemberDto {
 
     private String phoneNumber;
 
+    private String licence;
+
     private Role role;
 
     private int memberAttachFile;
@@ -68,6 +70,7 @@ public class MemberDto {
         memberDto.setAddress(memberEntity.getAddress());
         memberDto.setPhoneNumber(memberEntity.getPhoneNumber());
         memberDto.setRole(memberEntity.getRole());
+        memberDto.setLicence(memberEntity.getLicence());
         memberDto.setBoardEntityList(memberEntity.getBoardEntityList());
         memberDto.setShopEntityList(memberEntity.getShopEntityList());
         memberDto.setCreateTime(memberEntity.getCreateTime());

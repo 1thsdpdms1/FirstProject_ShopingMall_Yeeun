@@ -35,7 +35,7 @@ public class ShopEntity extends BaseTimeEntity {
     private int count;
 
     @Column(nullable = false)
-    private int isSoldOut;
+    private int category;
 
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int shopHit;
@@ -70,11 +70,13 @@ public class ShopEntity extends BaseTimeEntity {
 
     public static ShopEntity toInsertShopEntity(ShopDto shopDto) {
         ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setId(shopDto.getId());
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
+        shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopHit(0);
         shopEntity.setShopAttachFile(0);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
@@ -85,11 +87,13 @@ public class ShopEntity extends BaseTimeEntity {
 
     public static ShopEntity toInsertFileShopEntity(ShopDto shopDto) {
         ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setId(shopDto.getId());
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
+        shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopHit(0);
         shopEntity.setShopAttachFile(1);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
@@ -99,11 +103,13 @@ public class ShopEntity extends BaseTimeEntity {
 
     public static ShopEntity toUpdateShopEntity(ShopDto shopDto) {
         ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setId(shopDto.getId());
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setCategory(shopDto.getCategory());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(0);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
 
@@ -111,11 +117,13 @@ public class ShopEntity extends BaseTimeEntity {
     }
     public static ShopEntity toUpdateFileShopEntity(ShopDto shopDto) {
         ShopEntity shopEntity=new ShopEntity();
+        shopEntity.setId(shopDto.getId());
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
-        shopEntity.setIsSoldOut(shopDto.getIsSoldOut());
+        shopEntity.setCategory(shopDto.getCategory());
+        shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(1);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
 
