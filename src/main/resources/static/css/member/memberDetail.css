@@ -23,50 +23,64 @@
 }
 
 .container .detail .detail-con {
-    width: 500px;
-    border: 1px solid #fdc926;
+    /*width: 500px;*/
     padding: 10px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 5px #666666;
     gap: 10px;
 }
 
-/*.detail .detail-con h1.title {*/
-/*    background-color: #555555;*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*    padding: 10px;*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-.container .detail .detailLogin-con {
-    font-size: 30px;
-    text-align: center;
-    padding: 5px;
+.container .detail .detail-con .detail-form {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    background-color: white;
     box-sizing: border-box;
     display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.container .detail  .detailLogin-con h1.detailBtn{
-    border-bottom: 1px solid black;
-}
-
-.container .detail .detailLogin-con h1.loginBtn{
-    border-bottom: 1px solid #ccc;
-}
-
-.container .detail .detail-con ul {
-    display: flex;
     flex-direction: column;
-    gap: 5px;
 }
 
-.container .detail .detail-con ul li {
+.container .detail .detail-con .detail-form h1.title{
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222 ;
+    font-size: 30px;
+    font-family: "나눔고딕 ExtraBold";
+}
+
+.detail .detail-con .detail-form form {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/*.container .detail .detail-con .detail-form form .left {*/
+/*    flex: 4;*/
+/*}*/
+.container .detail .detail-con .detail-form .left .left-con{
+    flex: 4;
+    border-right: 1px solid #333333;
+    padding-right: 20px;
+}
+
+.container .detail .detail-con .detail-form form .right {
+    flex: 6;
+}
+
+.container .detail .detail-con .detail-form .left .left-con>h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container .detail .detail-con .detail-form .left .left-con img {
+    width: 480px;
+    height: 619px;
+}
+
+.container .detail .detail-con .detail-form .right ul li {
     display: flex;
     justify-content: space-between;
     /*gap: 5px;*/
@@ -74,25 +88,56 @@
     box-sizing: border-box;
 }
 
-.container .detail .detail-con ul li label {
+.container .detail .detail-con .detail-form form .right ul li label {
     flex: 1;
-    background-color: #fdc926;
-    color: white;
-    padding: 5px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.container .detail .detail-con ul li input {
-    flex: 3;
     padding: 5px;
     box-sizing: border-box;
 }
+.container .detail .detail-con .detail-form form .right ul li.file{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+}
 
-.container .detail .detail-con ul li.li2{
-    color : white;
-    padding: 5px 0;
-    cursor : pointer;
+.container .detail .detail-con .detail-form form .right ul li input {
+    flex: 4;
+    padding: 15px;
+    border : 1px solid #ccc;
+    border-radius: 5px 5px;
+    box-sizing: border-box;
+}
+
+.container .detail .detail-con .detail-form form .right ul li input[type=file]{
     border: 0;
-    gap : 5px;
+}
+
+.container .detail .detail-con .detail-form form .right ul li a{
+    flex: 1;
+    background-color: white;
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 0;
+    border: 1px solid #222;
+    border-radius: 5px 5px;
+}
+
+.container .detail .detail-con .detail-form form .right ul li:last-child input{
+    flex: 1;
+    background-color: white;
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 0;
+    border: 1px solid #222;
+    border-radius: 5px 5px;
+}
+
+.container .detail .detail-con .detail-form form .right ul li.li2 {
+    color: white;
+    padding: 5px 0;
+    cursor: pointer;
+    border: 0;
+    gap: 5px;
 }

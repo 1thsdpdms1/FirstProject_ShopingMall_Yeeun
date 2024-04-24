@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div class="header" th:fragment="headerFragment">
+<script th:src="@{/js/header.js}" defer></script>
     <div class="header-con">
         <div class="top-header">
             <div class="top-menu">
@@ -17,11 +18,10 @@
 
 
                         <th:block sec:authorize="isAuthenticated()">
-                            <li><a th:href="@{/board/write}">WRITE</a></li>
-                            <li>
-                                <a th:href="@{member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
-                                   th:text="${#authentication.principal.username}"></a>
-                            </li>
+
+                            <li><a th:href="@{/board/writeLink}">글쓰기</a></li>
+
+
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
                                     <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}" alt="photo" height="24px">
@@ -30,8 +30,12 @@
                                     <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
                                 </th:block>
                             </li>
+                            <li>
+                                <a th:href="@{member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                   th:text="${#authentication.principal.username}"></a>
+                            </li>
                             <th:block sec:authorize="hasAnyRole('ADMIN')">
-                                <li><a th:href="@{/admin/index}">ADMIN</a></li>
+                                <li><a th:href="@{/admin/memberList}">ADMIN</a></li>
                             </th:block>
                             <th:block sec:authorize="hasAnyRole('MANAGER')">
                                 <li>MANAGER</li>
@@ -49,7 +53,7 @@
                     <a href="#">오늘의 강좌</a>
                 </h1>
                 <h1 class="logo">
-                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt=""></a>
+                    <a th:href="@{/index}"><img th:src="@{/images/logo.png}" alt="로고"></a>
                 </h1>
             </div>
         </div>
@@ -60,10 +64,10 @@
                         <a href="#">SHOP</a>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a th:href="@{/board/boardList}">BOARD</a>
                     </li>
                     <li>
-                        <a href="#">ADMIN</a>
+                        <a href="#">SELLER</a>
                     </li>
                     <li>
                         <a href="#">MY HOME</a>
@@ -84,11 +88,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a th:href="@{/board/boardList}">BOARD</a>
                         <ul class="sub">
-                            <li><a href="#">커뮤니티</a></li>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">수강후기</a></li>
+                            <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
+                            <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
+                            <li><a th:href="@{/board/reviewBoardList}">수강후기</a></li>
                         </ul>
                     </li>
                     <li>
@@ -110,7 +114,7 @@
                                     (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
                                 </li>
                             </th:block>
-                            <li><a href="#">1:1문의내역</a></li>
+                            <li><a th:href="@{/board/boardInquiry}">1:1문의내역</a></li>
                         </ul>
                     </li>
                 </ul>

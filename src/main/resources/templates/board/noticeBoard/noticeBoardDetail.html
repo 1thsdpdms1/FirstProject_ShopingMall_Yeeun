@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>boardDetail</title>
+        <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
+</head>
+<body>
+
+<div th:replace="~{/fragments/common/header :: headerFragment }"></div>
+
+<div class="container">
+    <div class="boardDetail">
+        <div class="boardDetail-con">
+            <div class="boardDetail-form">
+                <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
+                <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
+                    <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+
+                    <ul>
+                        <li>
+                            공지사항 상세보기
+                        </li>
+<!--                        <input th:text="${userId}">아이디</input> <br>-->
+
+                        <li>
+                            <label>category</label>
+                            <span th:if="${board.category eq 3}" th:text="공지사항" ></span>
+                        </li>
+
+                        <li>
+                            <label for="boardId">글번호</label>
+                            <input type="text" name="boardId" id="boardId" th:value="${board.id}" readonly>
+                        </li>
+
+                        <li>
+                            <label for="boardWriter">글쓴이</label>
+                            <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}" readonly>
+                        </li>
+
+                        <li>
+                            <label for="boardTitle">제목</label>
+                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}" readonly>
+                        </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
+                        <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
+
+
+                        <li>
+                            <label for="boardContent">내용</label>
+                        </li>
+
+                        <li>
+                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}" READONLY></textarea>
+                        </li>
+
+
+
+                        <!-- <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
+
+                        <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
+<!--                                <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구"  >&lt;!&ndash;width="400" height="200"&ndash;&gt;-->
+                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지 대체문구"  ><!--width="400" height="200"-->
+                        </th:block>
+
+                        <th:block th:unless="${board.boardAttachFile==1}">
+                                <img src="https://placehold.co/400x200?text=NOIMAGE" alt="이미지 대체문구">
+                        </th:block>
+
+                        <li>
+                            <label for="createTime">작성시간 :</label>
+                            <td th:text="${#temporals.format(board.createTime, 'yyyy년-MM월-dd일')}" id="createTime"></td>
+                        </li>
+                        <li>
+                            <label for="updateTime">수정시간 :</label>
+                            <td th:text="${#temporals.format(board.updateTime, 'yyyy년-MM월-dd일')}" id="updateTime"></td>
+                        </li>
+
+
+
+
+                        <li>
+<!--                            권한 설정하기(자기글만 + 자기글/admin-->
+
+                            <a th:href="@{/board/boardUpdate/{id}(id=${board.id})}">수정</a>
+                            <a th:href="@{/board/boardList}">목록</a>
+                            <a th:href="@{/board/boardDelete/{id}(id=${board.id})}">삭제</a>
+                        </li>
+
+
+                    </ul>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+</body>
+</html>

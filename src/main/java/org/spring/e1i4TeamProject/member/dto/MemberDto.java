@@ -25,15 +25,20 @@ public class MemberDto {
     @Size(min = 3, max = 15)
     private String userEmail;
 
-    @NotBlank(message = "비밀번호를 입력하세요")
+    @NotBlank(message = "비밀번호는 필수 사항입니다.")
     private String userPw;
 
-    @NotBlank(message = "이름을 입력하세요")
+    @NotBlank(message = "비밀번호를 확인 해주세요.")
+    private String userPwCheck;
+
+    @NotBlank(message = "이름은 필수 사항입니다.")
     private String name;
 
     private String address;
 
     private String phoneNumber;
+
+    private String licence;
 
     private Role role;
 
@@ -68,10 +73,19 @@ public class MemberDto {
         memberDto.setAddress(memberEntity.getAddress());
         memberDto.setPhoneNumber(memberEntity.getPhoneNumber());
         memberDto.setRole(memberEntity.getRole());
+        memberDto.setLicence(memberEntity.getLicence());
         memberDto.setBoardEntityList(memberEntity.getBoardEntityList());
         memberDto.setShopEntityList(memberEntity.getShopEntityList());
         memberDto.setCreateTime(memberEntity.getCreateTime());
         memberDto.setUpdateTime(memberEntity.getUpdateTime());
+        if(memberEntity.getMemberAttachFile()==0){
+            //파일 x
+            memberDto.setMemberAttachFile(memberDto.getMemberAttachFile());
+        }else {
+            memberDto.setMemberAttachFile(memberDto.getMemberAttachFile());
+            memberDto.setMemberNewFileName(memberEntity.getMemberFileEntityList().get(0).getMemberNewFileName());
+            memberDto.setMemberOldFileName(memberEntity.getMemberFileEntityList().get(0).getMemberOldFileName());
+        }
 
         if (memberEntity.getMemberAttachFile() == 0) {
             memberDto.setMemberAttachFile(memberEntity.getMemberAttachFile());

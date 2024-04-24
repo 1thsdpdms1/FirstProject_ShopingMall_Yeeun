@@ -14,8 +14,6 @@ public class HomeController {
     @GetMapping({"/","/index"})
     public String index(MemberDto memberDto, Model model){
 
-        memberService.uploadMemberImg(memberDto);
-
         model.addAttribute("memberDto", memberDto);
 
         return "index";
