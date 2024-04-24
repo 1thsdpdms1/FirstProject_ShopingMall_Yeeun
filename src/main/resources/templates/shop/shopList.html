@@ -46,7 +46,7 @@
             <li th:each="shop : ${shopList}">
               <div class="top">
                 <th:block th:if="${shop.shopAttachFile==1}"> <!--  이미지 표시 -->
-                  <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}"><img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구"></a>
+                  <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}">
                   <img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구">
                 </th:block>
                 <th:block th:unless="${shop.shopAttachFile==1}">  <!--  이미지 표시 -->

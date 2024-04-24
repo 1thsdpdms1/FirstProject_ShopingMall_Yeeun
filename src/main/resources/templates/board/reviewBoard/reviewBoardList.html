@@ -61,7 +61,10 @@
                     <td>
                         <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
 
-                            <img th:src="@{|/upload/${board.newFileName}|}" alt="img">
+<!--                            <a th:href="@{/board/reviewBoard/reviewBoardDetail/{id}(id=${board.id})}">-->
+<!--                                <img th:src="@{|/upload/${board.shopNewFileName}|}" alt="이미지대체문구"></a>-->
+                            <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">
+
                             <label th:text="${board.boardTitle}"></label>
                             <!--제목에 해당글의 사진이 보이도록-->
 
