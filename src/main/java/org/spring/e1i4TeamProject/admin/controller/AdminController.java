@@ -9,6 +9,7 @@ import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.spring.e1i4TeamProject.member.role.Role;
 import org.spring.e1i4TeamProject.member.service.MemberService;
+import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -84,10 +85,18 @@ public class AdminController {
     }
 
     @GetMapping("/memberListDelete/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    public String memberDelete(@PathVariable("id")Long id){
         adminService.memberListDelete(id);
         return "redirect:/admin/memberList";
     }
+
+    @GetMapping("/sellerListDelete/{id}")
+    public String sellerDelete(@PathVariable("id")Long id){
+        adminService.sellerListDelete(id);
+        return "redirect:/admin/sellerList";
+    }
+
+
 
 
 }

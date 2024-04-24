@@ -10,86 +10,68 @@ justify-content: center;
 
 .container .container-box{
   width: 1300px;
-  display: flex;
+  /* display: flex; */
+  
+
+}
+
+
+.container .container-box .sellerList .sellerList-con .grid{
+  grid-template-columns: repeat(4,1fr);
+
 
 }
 
 
 /* 사이드바 */
-.container .side {
-  width: 300px;
-
-  background-color: #7c7c7c;
+.menu {
+  display: block;
+  width: 200px;
+  background-color: #949494;
+  color: #fff;
+  /* border-radius: 20px; */
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden; /* 반응형 애니메이션용 */
+  transition: all 0.5s ease; /* 반응형 애니메이션 */
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.container .menu {
-  width: 300px;
-  overflow: hidden;
-  position: sticky;
-  top: 0;
-  /* 화면 맨 위에 위치하도록 지정합니다 */
-  left: 0;
-  /* 화면 왼쪽에 위치하도록 지정합니다 */
-  bottom: 0;
-  /* 화면 맨 아래까지 확장됩니다 */
-  /* margin: 150px auto; */
+/*  */
+.menu ul li {
+  display: flex; /* 아이콘과 텍스트를 가로로 나열 */
+  align-items: center; /* 세로 가운데 정렬 */
+  margin-bottom: 10px; /* 각 아이템 사이의 간격 설정 */
+  font-size: 20px;
 }
 
-.container .menu h1 {
-  text-align: center;
-
-}
-
-.container .menu>li {
-  width: 100%;
-  text-align: center;
-  line-height: 50px;
-  background-color: #7c7c7c;
-}
-
-.container .menu>li img {
-  width: 40px;
-  height: 40px;
-  padding: 5px 5px;
-}
-
-.container .menu a {
-  color: #000000;
-}
-
-.container .submenu {
-  height: 0;
-  /* submenu가 안보이게 하기 위해 */
-  overflow: hidden;
-}
-
-.container .submenu>li {
-  /* line-height: 50px; */
-  background-color: #94a9ff;
+.menu a, .menu > label {
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
 
 }
 
-.container .menu>li:hover {
-  /* menu부터 submenu01~5높이 생각해서 설정 */
-  height: 100px;
-  transition-duration: 0.5s;
+.menu ul li a{
+  display: block;
+  line-height: 60px;
 }
 
-.container .menu>li:hover .submenu {
-  height: 100px;
-  /*서브메뉴 li한개의 높이 50*5*/
-  transition-duration: 1s;
-}
+.menu ul li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
 
-.container .menu>li.home:hover {
-  /* menu부터 submenu01~5높이 생각해서 설정 */
-  height: 50px;
-  transition-duration: 0.5s;
 }
-
-.container .menu>li.home:hover .submenu {
-  height: 50px;
-  /*서브메뉴 li한개의 높이 50*5*/
-  transition-duration: 1s;
+.menu a:hover {
+  color: #000;
 }
-
+.menu ul li:hover{
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+}

@@ -4,32 +4,21 @@
 <head>
     <title>선생님 목록</title>
     <link rel="stylesheet" th:href="@{/css/seller/sellerList.css}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <tbody>
     <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 
     <div class="container">
 
-            <div class="side">
-                <ul class="menu">
-                    <h1>카테고리</h1>
-                    <li class="home">
-                        <a href="#">HOME</a>
-                    </li>
-                    <li>
-                        <a href="#">조회</a>
-                        <ul class="submenu">
-                            <li><img th:src="@{/images/users.png}" alt="icon"><a th:href="@{/seller/sellerList}">선생님목록</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">등록</a>
-                        <ul class="submenu">
-                            <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopWrite}">강의판매등록</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="menu">
+            <label>메뉴</label>
+            <ul>
+                <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
+                <li><img th:src="@{/images/users.png}" alt="icon"><a th:href="@{/seller/sellerList}">선생님</a></li>
+                <li><img th:src="@{/images/plus.png}" alt="icon"><a href="#" class="item">강의등록</a></li>
+            </ul>
+        </div>
         <div class="container-box">
             <div class="sellerList">
                 <div class="sellerList-con">

@@ -22,16 +22,16 @@ public class AdminService implements AdminServiceInterface {
         Page<MemberEntity> memberEntityPage = null;
         if (subject != null) {
             if (subject.equals("name")) {
-                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable,Role.MEMBER, search);
+                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable, Role.MEMBER, search);
             } else if (subject.equals("phoneNumber")) {
-                memberEntityPage = adminRepository.findByRoleAndPhoneNumberContains(pageable,Role.MEMBER, search);
+                memberEntityPage = adminRepository.findByRoleAndPhoneNumberContains(pageable, Role.MEMBER, search);
             } else if (subject.equals("userEmail")) {
-                memberEntityPage = adminRepository.findByRoleAndUserEmailContains(pageable,Role.MEMBER, search);
+                memberEntityPage = adminRepository.findByRoleAndUserEmailContains(pageable, Role.MEMBER, search);
             } else {
-                memberEntityPage = adminRepository.findByRole(pageable,Role.MEMBER);
+                memberEntityPage = adminRepository.findByRole(pageable, Role.MEMBER);
             }
         } else {
-            memberEntityPage = adminRepository.findByRole(pageable,Role.MEMBER);
+            memberEntityPage = adminRepository.findByRole(pageable, Role.MEMBER);
         }
         Page<MemberDto> memberDtos = memberEntityPage.map(MemberDto::toMemberDto);
 
@@ -46,6 +46,12 @@ public class AdminService implements AdminServiceInterface {
         return 0;
     }
 
+    @Override
+    public int sellerListDelete(Long id) {
+        adminRepository.deleteById(id);
+        return 0;
+    }
+
 
     @Override
     public Page<MemberDto> sellerList(Pageable pageable, String subject, String search) {
@@ -54,16 +60,16 @@ public class AdminService implements AdminServiceInterface {
 
         if (subject != null) {
             if (subject.equals("name")) {
-                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable,Role.MANAGER, search);
+                memberEntityPage = adminRepository.findByRoleAndNameContains(pageable, Role.MANAGER, search);
             } else if (subject.equals("phoneNumber")) {
-                memberEntityPage = adminRepository.findByRoleAndPhoneNumberContains(pageable,Role.MANAGER, search);
+                memberEntityPage = adminRepository.findByRoleAndPhoneNumberContains(pageable, Role.MANAGER, search);
             } else if (subject.equals("userEmail")) {
-                memberEntityPage = adminRepository.findByRoleAndUserEmailContains(pageable,Role.MANAGER, search);
+                memberEntityPage = adminRepository.findByRoleAndUserEmailContains(pageable, Role.MANAGER, search);
             } else {
-                memberEntityPage = adminRepository.findByRole(pageable,Role.MANAGER);
+                memberEntityPage = adminRepository.findByRole(pageable, Role.MANAGER);
             }
         } else {
-            memberEntityPage = adminRepository.findByRole(pageable,Role.MANAGER);
+            memberEntityPage = adminRepository.findByRole(pageable, Role.MANAGER);
         }
         Page<MemberDto> memberDtos = memberEntityPage.map(MemberDto::toMemberDto);
 
@@ -71,19 +77,5 @@ public class AdminService implements AdminServiceInterface {
 
     }
 }
-//        SELECT m FROM MemberEntity m WHERE m.role = :role AND m.name = :name")
-
-
-//        else {
-//            if (subject.equals("name")) {
-//                memberEntityPage = adminRepository.findByNameContains(pageable, search);
-//            } else if (subject.equals("phoneNumber")) {
-//                memberEntityPage = adminRepository.findByPhoneNumberContains(pageable, search);
-//            } else if (subject.equals("userEmail")) {
-//                memberEntityPage = adminRepository.findByUserEmailContains(pageable, search);
-//            } else {
-//                memberEntityPage = adminRepository.findAll(pageable);
-//            }
-//        }
 
 
