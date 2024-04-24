@@ -61,7 +61,20 @@
 }
 .header .header-con .top-header .top-menu .right-menu >ul>li{
     font-size: 12px;
+    position:relative;
+    box-sizing:border-box;
 }
+.header .header-con .top-header .top-menu .right-menu >ul>li:not(:last-child)::after{
+    content:'';
+    display:block;
+    width:2px;
+    height:100%;
+    position:absolute;
+    top:0;
+    right:-5px;
+    background-color:#cccccc;
+}
+
 .header .header-con .top-header .top-menu .right-menu >ul>li a{
   font-size: inherit;
   padding: 0 5px;

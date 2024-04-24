@@ -2,6 +2,7 @@ package org.spring.e1i4TeamProject.board.dto;
 
 import lombok.*;
 import org.spring.e1i4TeamProject.board.entity.BoardEntity;
+import org.spring.e1i4TeamProject.board.entity.BoardReplyEntity;
 
 import java.time.LocalDateTime;
 
@@ -23,4 +24,21 @@ public class BoardReplyDto {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+
+    // 글 번호
+
+
+    public static BoardReplyDto toSelectReplyDto(BoardReplyEntity boardReplyEntity) {
+        BoardReplyDto boardReplyDto=new BoardReplyDto();
+        boardReplyDto.setId(boardReplyEntity.getId());
+        boardReplyDto.setBoardReplyContent(boardReplyEntity.getBoardReplyContent());
+        boardReplyDto.setBoardEntity(boardReplyEntity.getBoardEntity());
+        boardReplyDto.setCreateTime(boardReplyEntity.getCreateTime());
+        boardReplyDto.setUpdateTime(boardReplyEntity.getUpdateTime());
+
+        return boardReplyDto;
+
+
+    }
 }

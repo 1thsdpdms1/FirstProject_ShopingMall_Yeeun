@@ -1,37 +1,39 @@
-
-
-
 .footer {
     background-color: pink;
-        width: 1600px;
-        height: 200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-
-
+    width: 100%; /* 전체 너비로 설정 */
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 세로 중앙 정렬 */
 }
-.footer img{
-    width:90px;
+
+.footer img {
+    width: 90px;
     height: 90px;
     border-radius: 50%;
-    margin-top:7px;
+    margin-top: 7px;
+    margin-right: 20px; /* 이미지 사이의 간격 조정 */
 }
 
 .footer-con {
-    float:center;
-     width: 1600px;
+    max-width: 1200px; /* 최대 너비 설정 */
+    width: 80%; /* 너비를 일정한 비율로 설정 */
+    text-align: center; /* 내용 가운데 정렬 */
 }
-.footer-con span{
-    font-size:20px;
+
+.footer-con span {
+    font-size: 20px;
     color: white;
 }
-.footer-con p{
-    margin-top:5px;
-    color:white;
+
+.footer-con p {
+    margin-top: 5px;
+    color: white;
 }
-.footer-con img{
-    width:35px;
-    height:35px;
-    margin-top:10px;
+
+.footer-con img {
+    width: 35px;
+    height: 35px;
+    margin-top: 10px;
+    margin-right: 10px; /* 아이콘 간격 조정 */
 }

@@ -13,20 +13,20 @@ function autoGalleryFn(){
 
     autoGalleryli.forEach((el,idx)=>{
         if(idx==i){
-            autoGalleryli[idx].classList.add('fadeIn');
+            el.classList.add('fadeIn');
 
         }else{
-            autoGalleryli[idx].classList.remove('fadeIn');
+            el.classList.remove('fadeIn');
         }
     });
     itemsli.forEach((el,idx)=>{
         if(idx==i){
-            itemsli[idx].classList.add('on');
+            el.classList.add('liOn');
         }else{
-            itemsli[idx].classList.remove('on');
+            el.classList.remove('liOn');
         }
     })
-    if(autoGalleryli.length-1<=i) i=-1;
+    if(autoGalleryli.length-1 <= i) i=-1;
 }
 
 //3초마다 autoGallery 함수를 실행

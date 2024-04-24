@@ -14,4 +14,6 @@ public interface BoardServiceInterface {
     void boardInsert(BoardDto boardDto);
 
     BoardDto boardDetail(Long id);
+
+
 }
