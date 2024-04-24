@@ -62,6 +62,11 @@
     border-bottom: 1px solid #ccc;
     padding: 20px;
 }
+.container .join .joinLogin-con h1.loginBtn:hover{
+    opacity: 1;
+    transition : 1s;
+    border-bottom: 1px solid black;
+}
 
 .container .join .memberSellerBtn {
     width: 480px;
