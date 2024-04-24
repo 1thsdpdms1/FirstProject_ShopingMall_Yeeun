@@ -25,10 +25,13 @@ public class MemberDto {
     @Size(min = 3, max = 15)
     private String userEmail;
 
-    @NotBlank(message = "비밀번호를 입력하세요")
+    @NotBlank(message = "비밀번호는 필수 사항입니다.")
     private String userPw;
 
-    @NotBlank(message = "이름을 입력하세요")
+    @NotBlank(message = "비밀번호를 확인 해주세요.")
+    private String userPwCheck;
+
+    @NotBlank(message = "이름은 필수 사항입니다.")
     private String name;
 
     private String address;

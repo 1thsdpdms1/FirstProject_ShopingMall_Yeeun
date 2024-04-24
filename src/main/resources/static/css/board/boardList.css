@@ -1,3 +1,102 @@
 @import url(../common/reset.css);
 @import url(../common/header.css);
 @import url(../common/footer.css);
+
+
+.container {  width: 100%;  height: auto;}
+
+.boardList {
+
+width: 100%;
+
+ /* border: 1px solid; */
+
+ box-sizing: border-box;
+
+display: flex;
+
+justify-content: center;
+
+}
+
+.boardList .boardList-con {
+
+flex-basis: 1400px;
+
+/*  min-height: calc(100vh - 70px - 150px);*/
+
+height: calc(100vh - 70px - 150px);
+
+/* overflow: scroll; */
+
+/* border: 1px solid; */
+
+  box-sizing: border-box;
+
+}
+
+.boardList .boardList-con h1{
+
+ background-color: black;
+
+color: aliceblue;
+
+text-align: center;
+
+ padding: 10px;
+
+ box-sizing: border-box;
+
+}
+
+.boardList .boardList-con .search{
+
+ background-color: #ffffff;
+
+ display: flex;
+
+ justify-content: flex-end;
+
+ padding: 10px;
+
+ box-sizing: border-box;
+
+}
+
+.boardList .boardList-con table{
+
+ width: 100%;
+
+}
+
+th,td{
+
+border: 1px solid #cccccc;
+
+}
+
+.boardList .boardList-con table th{
+
+ background-color: #b43aae;
+
+ color: white;
+
+padding: 5px;
+
+box-sizing: border-box;
+
+}
+
+.boardList .boardList-con table tbody td{
+
+ background-color: antiquewhite;
+
+color: black;
+
+  padding: 2px;
+
+ box-sizing: border-box;
+
+ text-align: center;
+
+}

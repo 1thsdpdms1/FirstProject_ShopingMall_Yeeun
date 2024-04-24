@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>writeLink</title>
+    <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
+</head>
+<body>
+
+<div th:replace="~{/fragments/common/header :: headerFragment }"></div>
+
+<a th:href="@{board/boardWrite}">커뮤니티 글쓰러 바로가기</a>
+<a th:href="@{board/noticeWrite}">공지사항 글쓰러 바로가기(관리자만)</a>
+<a th:href="@{board/reviewWrite}">수강후기 글쓰러 바로가기</a>
+
+<div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+
+</body>
+</html>

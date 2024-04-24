@@ -1,3 +1,93 @@
 @import url(../common/reset.css);
 @import url(../common/header.css);
 @import url(../common/footer.css);
+
+
+
+/* boardDetailContainer */
+.container{
+  width: 100%;
+}
+
+
+.container .boardDetail{
+  width: 100%;
+  height: calc( 100vh - 100px - 150px );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container .boardDetail .boardDetail-con{
+  width: 500px;
+  border: 1px solid;
+  padding: 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px ;
+}
+
+
+.container .boardDetail .boardDetail-con h1{
+  background-color: black;
+  color: aliceblue;
+  text-align: center;
+
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 20px;
+
+}
+
+
+.container .boardDetail .boardDetail-con ul{
+ display: flex;
+ flex-direction: column;
+ gap: 5px;
+
+}
+
+.container .boardDetail .boardDetail-con ul li{
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+}
+
+.container .boardDetail .boardDetail-con ul li label{
+  flex:1;
+  background-color: rgb(98, 141, 141);
+  color: rgb(194, 194, 206);
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.container .boardDetail .boardDetail-con ul li input{
+  flex: 3;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.container .boardDetail .boardDetail-con ul li textarea{
+  width: 100%;
+  resize: none;
+}
+
+.container .boardDetail .boardDetail-con ul li:last-child input{
+
+  background-color: rgb(224, 166, 166);
+  color: #ffffff;
+  padding: 5px 0;
+  cursor: pointer;
+  border: 0;
+}
+
+.container .boardDetail .boardDetail-con ul li:last-child input:hover{
+  background-color: blanchedalmond;
+  color: black;
+}

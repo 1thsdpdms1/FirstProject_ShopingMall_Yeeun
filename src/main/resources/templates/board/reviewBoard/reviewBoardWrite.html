@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>boardWrite</title>
+        <link rel="stylesheet" th:href="@{/css/board/boardWrite.css}">
+</head>
+<body>
+
+<div th:replace="~{/fragments/common/header :: headerFragment }"></div>
+
+<div class="container">
+    <div class="boardWrite">
+        <div class="boardWrite-con">
+            <div class="boardWrite-form">
+                <!--                <form th:action="@{/board/boardWrite}" method="POST" enctype="multipart/form-data">-->
+                <form th:action="@{/board/reviewBoardWrite}" method="POST"   enctype="multipart/form-data"    >
+<!--                    enctype="multipart/form-data"-->
+<!--                    th:object="${boardDto}"-->
+                    <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+                    <ul>
+                        <li>
+                            글작성
+                        </li>
+
+                        <li>
+<!--                            <label for="category">category</label>-->
+                                <!--boardEntity에 category column 을 만들어서 데이터 저장하고 불러올 수 있나?-->
+                            <select name="category" id="category">
+                                <option value="4">미술</option>
+                                <option value="5">체육</option>
+                                <option value="6">음악</option>
+                                <option value="7">요리</option>
+                            </select>
+
+                        </li>
+
+                        <li>
+<!--                            <label for="memberId" >회원아이디</label>-->
+                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}" readonly hidden="hidden">
+
+                        </li>
+
+                        <li>
+<!--                            <label for="boardWriter" >글쓴이</label>-->
+                            <input type="hidden" id="boardWriter" name="boardWriter" th:value="${memberName}" hidden="hidden">
+<!--                            <td th:text="${myUserDetails.getName()}" id="boardWriter" ></td>-->
+<!--                            <td th:text="${memberEntity.name()}" id="boardWriter" ></td>-->
+                        </li>
+                        <!--회원이름으로 불러오기  1. 글작성할때 boardWriter를 memberName으로 불러와서 쓸지
+                                            2. 여기에서 바로 memberName 으로 받아올지-->
+
+                        <li>
+                            <label>작성자</label>
+                            <span th:text="${memberName}"></span>
+                        </li>
+
+                        <li>
+                            <label for="boardTitle">제목(구매강좌명을 작성해주세요)</label>
+                            <input type="text" id="boardTitle" name="boardTitle">
+                        </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
+                        <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
+
+                        <li>
+                            <!--구매 후기 별점 주는것 넣기-->
+                        </li>
+
+
+                        <li>
+                            <label for="boardContent">내용 </label>
+                        </li>
+                        <li>
+                            <textarea name="boardContent" id="boardContent" cols="30" rows="10"></textarea>
+                        </li>
+                        <!--                        <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
+
+                        <li>
+                            <label for="boardFile">파일</label>
+                            <input type="file" name="boardFile" id="boardFile">
+                        </li>
+
+                        <li>
+                            <input type="reset" value="초기화">
+                            <input type="submit" value="작성">
+                        </li>
+
+
+                    </ul>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+</body>
+</html>
