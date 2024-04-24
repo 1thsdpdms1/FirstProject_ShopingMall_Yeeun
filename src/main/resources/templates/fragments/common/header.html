@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div class="header" th:fragment="headerFragment">
-    <script th:src="@{/js/header.js}" defer></script>
+<script th:src="@{/js/header.js}" defer></script>
     <div class="header-con">
         <div class="top-header">
             <div class="top-menu">
@@ -112,7 +112,9 @@
                                     (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
                                 </li>
                             </th:block>
-                            <li><a href="#">1:1문의내역</a></li>
+                            <li><a th:href="@{/board/boardInquiry}">1:1문의내역</a></li>
+
+
                         </ul>
                     </li>
                 </ul>

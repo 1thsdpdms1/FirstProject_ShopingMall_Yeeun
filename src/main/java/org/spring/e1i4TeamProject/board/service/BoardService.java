@@ -41,6 +41,7 @@ public class BoardService implements BoardServiceInterface {
         System.out.println("if로 들어가지도 못함");
         if (boardDto.getBoardFile().isEmpty()) {
             //파일 없는 경우
+            System.out.println("if첫 시작");
             //dto->entity
 //            boardDto.setMemberEntity(MemberEntity.builder()
 //                    .id(boardDto.getMemberEntity().getId())
@@ -148,5 +149,7 @@ public class BoardService implements BoardServiceInterface {
         }
 
 
-    }
+
+
+}
 

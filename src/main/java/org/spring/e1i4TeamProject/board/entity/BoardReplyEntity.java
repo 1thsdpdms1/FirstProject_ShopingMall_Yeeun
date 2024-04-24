@@ -2,6 +2,7 @@ package org.spring.e1i4TeamProject.board.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.spring.e1i4TeamProject.board.dto.BoardReplyDto;
 import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 
 import javax.persistence.*;
@@ -25,8 +26,22 @@ public class BoardReplyEntity extends BaseTimeEntity {
     @Column(nullable = false, length = 500)
     private String boardReplyContent;
 
-    @JsonIgnore // ajax시 순환참조 방지
+    @JsonIgnore // ajax시 순환0참조 방지
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
+
+    public static BoardReplyEntity toInsertReplyEntity(BoardReplyDto boardReplyDto) {
+        BoardReplyEntity boardReplyEntity=new BoardReplyEntity();
+
+        boardReplyEntity.setBoardEntity(boardReplyDto.getBoardEntity());
+        boardReplyEntity.setBoardReplyContent(boardReplyDto.getBoardReplyContent());
+        boardReplyEntity.setBoardReplyWriter(boardReplyDto.getBoardReplyWriter());
+
+
+        return boardReplyEntity;
+
+
+
+    }
 }

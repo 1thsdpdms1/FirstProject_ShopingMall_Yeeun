@@ -1,0 +1,100 @@
+/* 글쓰기 폼 스타일 */
+.writeForm {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.writeForm input[type="text"],
+.writeForm textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 테두리의 곡률을 조금 더 부드럽게 만듭니다. */
+    box-sizing: border-box;
+    font-size: 16px; /* 폰트 크기를 조절합니다. */
+    background-color: #f0f0f0;
+    background-imge: linear-gradient(to bottom, #fff, #f0f0f0);
+}
+
+.writeForm textarea {
+    width:100%
+    height: 200px; /* 내용 입력 영역의 높이를 더 높게 조절합니다. */
+    padding :15px;
+    margin-bottom:10px;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+    font-size:16px;
+    background-color:#f0f0f0;
+    background-image: linear-gradient(to bottom, #fff, #f0f0f0);
+}
+
+.writeForm input[type="text"]:focus, writeForm textarea:focus{
+    outline: none;
+    border-color:#007bff;
+}
+
+
+.writeForm button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px; /* 버튼의 패딩을 조금 줄입니다. */
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    background-image: linear-gradient(to bottom, #007bff, #0056b3); /* 그라데이션 추가 */
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px; /* 버튼의 폰트 크기를 조절합니다. */
+    transition: background-color 0.3s ease; /* 버튼에 호버 효과를 추가합니다. */
+}
+
+.writeForm button[type="submit"]:hover {
+    background-color: #0056b3;
+    background-image: linear-gradient(to bottom, #0056b3, #003c80); /* 호버 시 그라데이션 변경 */
+}
+
+.reply{
+    margin-top:20px;
+}
+.reply-con{
+    background-color:#f9f9f9;
+    border:1px solid #ccc;
+    border-radius:5px;
+    padding:20px;
+}
+.reply-con .title{
+    font-size:20px;
+    margin-bottom:15px;
+}
+.reply-con form input[type="text"]{
+    width:calc(50%-10px); /*입력 필드를 반으로 나눕니다.*/
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+    font-size:16px;
+}
+
+.reply-con form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.reply-con form input[type="submit"]:hover {
+    background-color: #0056b3;
+    }
+
