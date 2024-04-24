@@ -30,9 +30,9 @@ public class BoardController {
 
     @GetMapping("/boardWrite")
     public String boardWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                             BoardDto boardDto, Model model){
+                             BoardDto boardDto, Model model) {
 
-        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
+        model.addAttribute("memberName", myUserDetails.getMemberEntity().getName());
 
         return "board/boardWrite";
     }
@@ -40,10 +40,10 @@ public class BoardController {
 
     @PostMapping("/boardWrite")
     public String boardWriteOK(@Valid BoardDto boardDto,
-                               BindingResult bindingResult,Model model) throws IOException {
+                               BindingResult bindingResult, Model model) throws IOException {
 
 //        boardService.boardInsertFile(boardDto);
-        model.addAttribute("boardDto",boardDto);
+        model.addAttribute("boardDto", boardDto);
         boardService.boardInsert(boardDto);
 
         return "redirect:/board/boardList";
@@ -52,17 +52,17 @@ public class BoardController {
 
 
     @GetMapping("/boardList")
-    public String boardList(Model model, @AuthenticationPrincipal MyUserDetailsImpl myUserDetails){
+    public String boardList(Model model, @AuthenticationPrincipal MyUserDetailsImpl myUserDetails) {
         List<BoardDto> boardDtoList = boardService.boardList();
 
-        model.addAttribute("myUserDetails",myUserDetails);
-        model.addAttribute("boardDtoList",boardDtoList);
+        model.addAttribute("myUserDetails", myUserDetails);
+        model.addAttribute("boardDtoList", boardDtoList);
 
         return "board/boardList";
     }
 
     @GetMapping("/boardDetail/{id}")
-    public String boardDetail(Model model, @PathVariable("id")Long id){
+    public String boardDetail(Model model, @PathVariable("id") Long id) {
 
 //        boardService.updateHit(id);
 
@@ -72,21 +72,37 @@ public class BoardController {
         // "board" 라는 이름으로 조회한 게시글(파일 있으면 파일 포함)을 저장
         // --> board/detail.html
 
-        //게시글이 존재하면 -> 게시글에 연결된 덧글리스트
-//        List<BoardReplyDto> replyList= boardReplyService.boardReplyList(board.getId());
 
-        model.addAttribute("board",board);
-//        model.addAttribute("replyList",replyList);
+        //게시글이 존재하면 -> 게시글에 연결된 덧글리스트
+        List<BoardReplyDto> replyList = boardReplyService.boardReplyList(board.getId());
+
+        model.addAttribute("board", board);
+        model.addAttribute("replyList", replyList);
 
         return "board/boardDetail";
     }
 
+    @GetMapping({"/", "/boardInquiry"})
+    public String inquiry() {
+        return "board/boardInquiry";
+    }
 
 
-
-
-
+    @PostMapping("/boardInquiry")
+    public String Inquiry(BoardDto boardDto, @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                          Model model) throws IOException {
+        boardService.boardInsertFile(boardDto);
+        return "redirect:/board/boardList"; // 글 작성 후 글 목록 페이지로 리다이렉트
+    }
 }
+
+
+
+
+
+
+
+
 
 
 

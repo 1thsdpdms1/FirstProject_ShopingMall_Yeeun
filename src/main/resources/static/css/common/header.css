@@ -23,12 +23,25 @@
 
 
 .header .header-con .top-header .top-menu .right-menu{
-  /*border: 1px solid;*/
+/*  border: 1px solid;*/
   /*box-sizing: border-box;*/
 }
+/*.header .header-con .top-header .top-menu .right-menu ul::before{
+    display:block;
+    width: 1px;
+    height:10px;
+    background-color:#000;
+    margin 0 5px;
+    flex: 00 auto;
+}
+.header .header-con .top-header .top-menu .right-menu ul li:first-child::before{
+    content:"";
+    display:none;
+}*/
+
 
 .header .header-con .top-header .top-menu .right-menu ul{
- /* border: 1px solid;*/
+ /* border: 1px solid;
   /*box-sizing: border-box;*/
   display: flex;
   justify-content: space-between;
@@ -48,7 +61,20 @@
 }
 .header .header-con .top-header .top-menu .right-menu >ul>li{
     font-size: 12px;
+    position:relative;
+    box-sizing:border-box;
 }
+.header .header-con .top-header .top-menu .right-menu >ul>li:not(:last-child)::after{
+    content:'';
+    display:block;
+    width:2px;
+    height:100%;
+    position:absolute;
+    top:0;
+    right:-5px;
+    background-color:#cccccc;
+}
+
 .header .header-con .top-header .top-menu .right-menu >ul>li a{
   font-size: inherit;
   padding: 0 5px;

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>index</title>
-  <script th:src="@{/js/header.js}" defer></script>
-  <script th:src="@{/js/index.js}" defer></script>
+    <meta charset="UTF-8">
+    <title>index</title>
 
-  <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:src="@{/js/index.js}" defer></script>
+    <script th:src="@{/js/AutoGallery.js}" defer></script>
+
+
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
@@ -16,14 +18,39 @@
             <div class="sections">
                 <div class="section sec1">
                     <div class="con">
-                        이미지
+
                     </div>
                 </div>
                 <div class="section sec2">
                     <div class="con">
-                        <div class="left-con">left</div>
-                        <div class="center-con">center</div>
-                        <div class="right-con">right</div>
+                        <div class="left-con">
+                            left
+                        </div>
+                        <div class="right-con">
+                            <div class="autoGallery">
+                                <ul>
+                                    <li class="fadeIn"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                            <div class="center-arrow">
+                                <span class="arrow arrowLeft"></span>
+                                <span class="arrow arrowRight"></span>
+                            </div>
+                            <div class="items">
+                                <ul>
+                                    <li class="liOn"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<div class="right-con">right</div>-->
                     </div>
                 </div>
                 <div class="section sec3">
@@ -37,14 +64,14 @@
                                 <div class="con1 on">con1</div>
                                 <div class="con2 off">con2</div>
                             </div>
-                            <div class="center-con">center</div>
-                            <div class="right-con">right</div>
+                            <!-- <div class="center-con">center</div>-->
+                            <!--<div class="right-con">right</div>-->
                         </div>
                     </div>
-                    <div class="pop-con">
-                        <a href="#">수강신청바로가기</a>
-                    </div>
                 </div>
+            </div>
+            <div class="pop-con">
+                <a href="#">수강신청바로가기</a>
             </div>
         </div>
     </div>
