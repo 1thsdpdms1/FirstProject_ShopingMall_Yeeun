@@ -1,4 +1,4 @@
-sellerlet stompClient = null;
+let stompClient = null;
 //id="btn-chat-open" 클릭하면
 function openChat(){
     setConnectStated(true);// 잡속 버튼 클릭시
@@ -52,13 +52,11 @@ function connect() {
 }
 
 // $("#chat-content")에 추가 -> 처음 +1+2,,,,
-
 function showMessage(message) {
     $("#chat-content").append(message);
     //대화창 스크롤을 항상 최하위에 배치
     $("#chat-content").scrollTop($("#chat-content").prop("scrollHeight"));
 }
-
 
 function inputTagString(text){
     let  now=new Date();
@@ -98,15 +96,11 @@ function msgSendClickFn(){
 }
 
 
-$(function(){
-    $("#question").keyup(qKeyupFn); // window load시 처음 실행
-});
+//$(function(){
+//    $("#question").keyup(qKeyupFn); // window load시 처음 실행
+//});
 //엔터가 입력이되면 질문을 텍스트 화면에 표현
-function qKeyupFn(event){
-    if(event.keyCode!=13) return; // enter키 제외하고
-    msgSendClickFn() // 실행
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////
-
+//function qKeyupFn(event){
+//    if(event.keyCode!=13) return; // enter키 제외하고
+//    msgSendClickFn() // 실행
+//}
