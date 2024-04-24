@@ -148,12 +148,11 @@ table td{
 /* 사이드바css */
 .menu {
   display: block;
-  width: 200px;
-  background-color: #949494;
-  color: #fff;
+  width: 250px;
+  background-color: #ffffff;
+  color: #000000;
   /* border-radius: 20px; */
   padding: 10px;
-  box-sizing: border-box;
   overflow: hidden; /* 반응형 애니메이션용 */
   transition: all 0.5s ease; /* 반응형 애니메이션 */
 }
@@ -173,7 +172,7 @@ table td{
 
 .menu a, .menu > label {
   padding: 8px;
-  color: #fff;
+  color: #000000;
   font-size: 20px;
 
 }
@@ -181,6 +180,22 @@ table td{
 .menu ul li a{
   display: block;
   line-height: 60px;
+}
+
+.menu ul li a.under{
+  border-bottom: 1px solid black;
+}
+
+.menu ul li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
+
+}
+.menu a:hover {
+  opacity: 1;
+  transition : 1s;
+  border-bottom: 1px solid black;
 }
 
 .menu ul li img{

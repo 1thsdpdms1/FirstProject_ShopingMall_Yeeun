@@ -148,9 +148,9 @@ table td{
 /* 사이드바css */
 .menu {
   display: block;
-  width: 200px;
-  background-color: #949494;
-  color: #fff;
+  width: 250px;
+  background-color: #ffffff;
+  color: #000000;
   /* border-radius: 20px; */
   padding: 10px;
   box-sizing: border-box;
@@ -173,7 +173,7 @@ table td{
 
 .menu a, .menu > label {
   padding: 8px;
-  color: #fff;
+  color: #000000;
   font-size: 20px;
 
 }
@@ -183,6 +183,10 @@ table td{
   line-height: 60px;
 }
 
+.menu ul li a.under{
+  border-bottom: 1px solid black;
+}
+
 .menu ul li img{
   width: 30px;
   height: 30px;
@@ -190,11 +194,13 @@ table td{
 
 }
 .menu a:hover {
-  color: #000;
+  opacity: 1;
+  transition : 1s;
+  border-bottom: 1px solid black;
 }
-.menu ul li:hover{
-  background-color: #fff;
-  color: #000;
+/* .menu ul li:hover{
+  background-color: #000000;
+  color: #ffffff;
   border-radius: 10px;
-}
+} */
 
