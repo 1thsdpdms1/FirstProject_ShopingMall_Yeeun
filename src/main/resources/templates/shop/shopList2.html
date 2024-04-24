@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/shop/shopList.css}">
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="left">
+      <div class="nav-section">
+        <div>"카테고리"</div>
+        <div class="navigation" style="display: block;">
+          <li><a th:href="@{/shop/shopList}">전체</a></li>
+          <li><a th:href="@{/shop/shopList1}">미술</a></li>
+          <li><a th:href="@{/shop/shopList2}">체육</a></li>
+          <li><a th:href="@{/shop/shopList3}">음악</a></li>
+          <li><a th:href="@{/shop/shopList3}">요리</a></li>
+        </div>
+      </div>
+  </div>
+  <div class="right">
+
+  <div class="main-content">
+  <div class="shopList">
+  </div>
+    <div class="shopList-con">
+      <h1>원데이클라스</h1>
+      <div class="search">
+        <form th:action="@{/shop/shopList}" method="get">
+          <select name="subject" id="subject">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+<!--            <option value="ShopPrice">가격</option>-->
+          </select>
+          <input type="text" name="search" id="search">
+          <input type="submit" value="검색">
+        </form>
+        </tr>
+        </thead>
+        <div class="grid">
+          <ul>
+            <li th:each="shop : ${shopDtoList2}">
+              <div class="top">
+                <th:block th:if="${shop.shopAttachFile==1}"> <!--  이미지 표시 -->
+                  <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}"><img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구"></a>
+                  <img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구">
+                </th:block>
+                <th:block th:unless="${shop.shopAttachFile==1}">  <!--  이미지 표시 -->
+                  <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}">  <img src="https://placehold.co/400x500?text=NOIMAGE" alt="이미지대체문구">
+                </th:block>
+              </div>
+              <div class="bottom">
+                <ul>
+                  <li>
+                    <span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span> <br>
+                  </li>
+                  <li>
+                    <span>수업명: </span> <span th:text="${shop.shopTitle}"></span> <br>
+                  </li>
+                  <li>
+                    <span>수업내용: </span> <span th:text="${shop.shopContent}"></span> <br>
+                  </li>
+                  <li>
+                    <span>♥:</span> <span th:text="${shop.shopHit}"></span> <br>
+                  </li>
+                  <li>
+                    <span>수업가격: </span> <span th:text="${shop.shopPrice}"></span> <br>
+                  </li>
+                  <li>
+                    <span>선생님: </span> <span th:text="${shop.shopSeller}"></span> <br>
+                  </li>
+                  <li>
+                    <span>학생정원: </span> <span th:text="${shop.Count}"></span> <br>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+  </div>
+<!--        <tfoot>-->
+<!--        <tr>-->
+<!--          <td colspan="11">-->
+<!--            <div class="paging">-->
+<!--              <ul>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 현재페이지가  첫번째 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${shopList.pageable.pageNumber+1 eq 1}" class="span0">START</span>-->
+<!--                  &lt;!&ndash; 처음 페이지가 아니면  a &ndash;&gt;-->
+<!--                  <span th:unless="${shopList.pageable.pageNumber+1 eq 1}">-->
+<!--                    <a th:href="@{/shop/shopList(page=0 , search=${param.search}, subject=${param.subject}  )}"-->
+<!--                       class="span1">처음</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 이전페이지가  첫번째 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${1==shopList.pageable.pageNumber+1}" class="span0">PRE</span>-->
+<!--                  <span th:unless="${1==shopList.pageable.pageNumber+1}">-->
+<!--                    &lt;!&ndash;itemList.pageable.pageNumber 현재페이지 -1 &ndash;&gt;-->
+<!--                    <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber-1} ,search=${param.search},subject=${param.subject} )}"-->
+<!--                       class="span1">이전</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--                &lt;!&ndash; block  &ndash;&gt;-->
+<!--                &lt;!&ndash; 페이지 번호 &ndash;&gt;-->
+<!--                <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">-->
+<!--                  <span th:if="${i == shopList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>-->
+<!--                  <a th:unless="${i == shopList.pageable.pageNumber+1}"-->
+<!--                     th:href="@{/shop/shopList(page=${ i - 1},search=${param.search},subject=${param.subject} )}"-->
+<!--                     th:text="${i}"></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">NEXT</span>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 &ndash;&gt;-->
+<!--                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">-->
+<!--                        <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"-->
+<!--                           class="span1">다음</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지이면   span표시 &ndash;&gt;-->
+<!--                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">END</span>-->
+<!--                  &lt;!&ndash; 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a &ndash;&gt;-->
+<!--                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">-->
+<!--                    <a th:href="@{/shop/shopList(page=${shopList.totalPages-1},search=${param.search},subject=${param.subject} )}"-->
+<!--                       class="span1">마지막</a>-->
+<!--                  </span>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        </tfoot>-->
+      <th:block sec:authorize="isAuthenticated()">
+        <div class="writeButton">
+          <a href="/shop/shopWrite" class><img src="/images/btn_write.jpg" alt="글쓰기"></a>
+        </div>
+      </th:block>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+
+</html>

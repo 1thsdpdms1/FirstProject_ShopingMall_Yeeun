@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,12 +30,26 @@ public class MemberController {
 
     @PostMapping("/memberJoin")
     public String memberJoinOk(@Valid MemberDto memberDto,
-                               BindingResult bindingResult) {
+                               BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
             return "member/memberJoin";
         } else {
             memberService.memberJoin(memberDto);
         }
+
+        System.out.println(">>>>"+memberDto.getMemberAttachFile());
+        return "redirect:/member/memberLogin";
+    }
+    @PostMapping("/sellerJoin")
+    public String sellerJoinOk(@Valid MemberDto memberDto,
+                               BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "member/memberJoin";
+        } else {
+            memberService.sellerJoin(memberDto);
+        }
+
+        System.out.println(">>>>"+memberDto.getMemberAttachFile());
         return "redirect:/member/memberLogin";
     }
 
@@ -60,11 +75,30 @@ public class MemberController {
         if (myUserDetails != null) {
             model.addAttribute("myUserDetails", myUserDetails);
         }
-        Long memberId = memberDto.getId();
-        System.out.println(">>>>>" + memberDto.getId());
         model.addAttribute("memberDto", memberDto);
-        model.addAttribute("memberId", memberId);
 
         return "member/memberDetail";
+    }
+
+    @PostMapping("/memberUpdate")
+    public String memberUpdate(MemberDto memberDto) throws IOException {
+
+        memberService.memberUpdate(memberDto);
+
+        return "redirect:/member/memberDetail/"+memberDto.getId();
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public String memberDelete(@PathVariable("id")Long id){
+
+        memberService.memberDelete(id);
+
+        String html = "<script>" +
+            "alert('회원 탈퇴 성공');" +
+            "location.href='/member/logout'" +
+            "</script>";
+
+        return html;
     }
 }
