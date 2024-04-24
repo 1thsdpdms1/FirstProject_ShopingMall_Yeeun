@@ -113,6 +113,12 @@
     /*border: 1px solid #ccc;*/
     box-sizing: border-box;
 }
+.container .join .memberJoin-con ul li .memberShowPw{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 10px;
+}
 
 .container .join .memberJoin-con ul li label {
     flex: 1;
@@ -195,6 +201,12 @@
     /*gap: 5px;*/
     /*border: 1px solid #ccc;*/
     box-sizing: border-box;
+}
+.container .join .sellerJoin-con ul li .sellerShowPw{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 10px;
 }
 
 .container .join .sellerJoin-con ul li span.imp{
