@@ -22,7 +22,19 @@ public interface ShopRepository extends JpaRepository<ShopEntity,Long> {
 
   Page<ShopEntity> findByShopContentContaining(Pageable pageable, String search);
 
-
+  
   List<ShopEntity> findByCategory(int i);
 
+
+  List<ShopEntity> findByMemberEntityId(Long id);
+
+    Page<ShopEntity> findByShopTitleContains(Pageable pageable, String search);
+
+  Page<ShopEntity> findByShopContentContains(Pageable pageable, String search);
+
+
+
 }
+
+
+

@@ -216,15 +216,12 @@
 
                                 <th:block th:if="${memberDto.userEmail == myUserDetails.username}">
                                     <li class="li2">
-                                        <a th:href="@{/member/memberList}">LIST</a>
                                         <input type="submit" value="UPDATE">
-                                        <a th:href="@{/member/delete/{id}(id=${memberDto.id})}">회원 탈퇴</a>
+                                        <a th:href="@{/seller/sellerListDelete/{id}(id=${memberDto.id})}">회원 탈퇴</a>
                                     </li>
                                 </th:block>
                                 <th:block th:unless="${memberDto.userEmail == myUserDetails.username}">
-                                    <li class="li2">
-                                        <a th:href="@{/member/memberList}">LIST</a>
-                                    </li>
+
                                 </th:block>
                             </ul>
                         </div>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>sellerList</title>
+    <link rel="stylesheet" th:href="@{/css/admin/shopList.css}">
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="sellerList">
+        <div class="menu">
+            <label>메뉴</label>
+            <ul>
+                <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
+                <li><img th:src="@{/images/member.png}" alt="icon"><a th:href="@{/admin/memberList}" >회원조회</a></li>
+                <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/admin/sellerList}" >선생님조회</a></li>
+                <li><img th:src="@{/images/bag.png}" alt="icon"><a th:href="@{/admin/shopList}" class="under">상품조회</a></li>
+                <li><img th:src="@{/images/api.png}" alt="icon"><a href="#">naverApi</a></li>
+            </ul>
+        </div>
+        <div class="sellerList-con">
+            <h1>상품 리스트</h1>
+            <thead>
+            <div class="search">
+                <div class="search-con">
+                    <form th:action="@{/admin/shopList}" method="get">
+                        <select name="subject" id="subject">
+                            <option value="" th:selected="${#strings.equals(param.subject)}">::선택::</option>
+                            <option value="shopTitle" th:selected="${#strings.equals(param.subject,'shopTitle')}">수강명</option>
+                            <option value="shopContent" th:selected="${#strings.equals(param.subject,'shopContent')}">수강내용</option>
+                            <option value="category" th:selected="${#strings.equals(param.subject,'category')}">카테고리</option>
+                        </select>
+                        <input type="text" name="search" id="search" th:value="${param.search}">
+                        <input type="submit" value="검색">
+                    </form>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>수강명</th>
+                    <th>수강내용</th>
+                    <th>가격</th>
+                    <th>정원</th>
+                    <th>카테고리</th>
+<!--                    <th>장소</th>-->
+                    <th>조회수</th>
+                    <th>담당선생님</th>
+                    <th>게시일</th>
+                    <th>수정일</th>
+                    <th>보기</th>
+                    <th>삭제</th>
+                </tr>
+                <tr th:each="shop:${shopList}">
+                    <td th:text="${shop.id}"></td>
+                    <td th:text="${shop.shopTitle}"></td>
+                    <td th:text="${shop.shopContent}"></td>
+                    <td th:text="${shop.shopPrice}"></td>
+                    <td th:text="${shop.count}"></td>
+                    <td>
+                        <span th:if="${shop.category == 1}">미술</span>
+                        <span th:if="${shop.category == 2}">체육</span>
+                        <span th:if="${shop.category == 3}">음악</span>
+                        <span th:if="${shop.category == 4}">요리</span>
+                    </td>
+<!--                    <td th:text="${shop.place}"></td>-->
+                    <td th:text="${shop.shopHit}"></td>
+                    <td th:text="${shop.shopSeller}"></td>
+                    <td th:text="${#temporals.format(shop.createTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                    <td th:text="${#temporals.format(shop.updateTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                    <td><a th:href="@{/member/memberDetail/{id}(id=${shop.id})}">보기</a></td>
+                    <td><a th:href="@{/admin/sellerListDelete/{id}(id=${shop.id})}" onclick="return deleteConfirmation()">삭제</a></td>
+                    <script>
+                        function deleteConfirmation() {
+                            var result = confirm("정말로 이 회원을 삭제하시겠습니까?");
+                            if (result) {
+                                alert("회원이 삭제되었습니다.");
+                                return true; // "확인"을 클릭한 경우 링크 이동 실행
+                            } else {
+                                alert("회원 삭제가 취소되었습니다.");
+                                return false; // "취소"를 클릭한 경우 링크 이동 취소
+                            }
+                        }
+                    </script>
+                </tr>
+            </table>
+            </thead>
+            <tfoot>
+            <div class="paging">
+                <ul>
+                    <li>
+                        <span th:if="${shopList.pageable.pageNumber+1 eq 1}" class="span0">&laquo</span>
+                        <span th:unless="${shopList.pageable.pageNumber+1 eq 1}">
+                                     <a th:href="@{/admin/shopList(page=0 , search=${param.search},subject=${param.subject} )}"
+                                        class="span1">&laquo</a>
+                                     </span>
+                    </li>
+                    <li>
+                        <!-- 이전페이지가 첫번째 페이지면 span표시 -->
+                        <span th:if="${1==shopList.pageable.pageNumber+1}" class="span0">&lt</span>
+                        <span th:unless="${1==shopList.pageable.pageNumber+1}">
+                                        <a th:href="@{/admin/shopList(page=${shopList.pageable.pageNumber-1}, search=${param.search},subject=${param.subject} )}"
+                                           class="span1">&lt</a>
+                                     </span>
+                    </li>
+                    <!--block -->
+                    <!-- 페이지번호 -->
+                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                                    <span th:if="${i==shopList.pageable.pageNumber+1}" th:text="${i}"
+                                          class="now"></span>
+                        <a th:unless="${i== shopList.pageable.pageNumber+1}"
+                           th:href="@{/admin/shopList(page=${i - 1},search=${param.search},subject=${param.subject} )}"
+                           th:text="${i}"></a>
+                    </li>
+                    <li>
+                        <!-- 현재페이지가 마지막 페이지면 span 표시 -->
+                        <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}"
+                              class="span0">&gt</span>
+                        <!-- 현재페이지가 마지막 페이지가아니면 a표시 현재페이지 +1 -->
+                        <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">
+                                     <a th:href="@{/admin/shopList(page=${shopList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
+                                        class="span1">&gt</a>
+                </span>
+                    </li>
+                    <li>
+                        <!-- 현재페이지가 마지막 페이지면 span 표시 -->
+                        <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}"
+                              class="span0">&raquo</span>
+                        <!-- 현재페이지가 마지막 페이지가아니면 마지막페이지로 이동해라  a -->
+                        <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">
+                                     <a th:href="@{/admin/shopList(page=${shopList.totalPages-1},search=${param.search},subject=${param.subject} )}"
+                                        class="span1">&raquo</a>
+                </span>
+                    </li>
+                </ul>
+            </div>
+            </tfoot>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

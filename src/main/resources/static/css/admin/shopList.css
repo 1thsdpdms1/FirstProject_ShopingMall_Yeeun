@@ -1,9 +1,7 @@
 @import url(/css/common/reset.css);
 @import url(/css/common/footer.css);
 @import url(/css/common/header.css);
-
 /* 페이징 */
-
 .paging {
   width: 100%;
   padding: 10px 0;
@@ -74,10 +72,8 @@
 }
 
 span.now {
-  /* color: #ffffff; */
   font-weight: bold;
   border-radius: 10px;
-  /* background-color: #0000ff; */
   text-decoration: underline;
 
   padding: 0 10px;
@@ -107,13 +103,6 @@ span.now {
  line-height: 2;
  padding-left: 20px;
 
-}
-
-.container .sellerList .sellerList-con button.delete{
-  background: #000000;
-  padding: 5px;
-  color: white;
-  border: 1px solid #ffffff;
 }
 
 .container .sellerList h1{
@@ -157,12 +146,7 @@ table td{
   padding: 5px;
 }
 
-table td.ellipsis {
-  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 함 */
-      overflow: hidden; /* 요소의 내용이 넘칠 때 숨김 */
-      text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 추가 */
-      max-width: 200px; /* 요소의 최대 너비 지정 */
-}
+
 
 /* 사이드바css */
 .menu {
@@ -175,6 +159,7 @@ table td.ellipsis {
   box-sizing: border-box;
   box-shadow: 5px 20px 5px rgb(68 67 67 / 34%);
 }
+
 .menu ul {
   list-style: none;
   margin: 0;

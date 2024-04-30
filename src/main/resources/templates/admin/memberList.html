@@ -14,9 +14,10 @@
             <label>메뉴</label>
             <ul>
                 <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
-                <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/admin/memberList}"  class="under">회원조회</a></li>
-                <li><img th:src="@{/images/users.png}" alt="icon"><a th:href="@{/admin/sellerList}">선생님조회</a></li>
-                <li><img th:src="@{/images/users.png}" alt="icon"><a href="#">naverApi</a></li>
+                <li><img th:src="@{/images/member.png}" alt="icon"><a th:href="@{/admin/memberList}" class="under">회원조회</a></li>
+                <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/admin/sellerList}">선생님조회</a></li>
+                <li><img th:src="@{/images/bag.png}" alt="icon"><a th:href="@{/admin/shopList}">상품조회</a></li>
+                <li><img th:src="@{/images/api.png}" alt="icon"><a href="#">naverApi</a></li>
             </ul>
         </div>
         <div class="memberList-con">
@@ -41,64 +42,82 @@
             </div>
             </thead>
             <tbody>
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>이메일</th>
-                    <th>비밀번호</th>
-                    <th>이름</th>
-                    <th>주소</th>
-                    <th>전화번호</th>
-                    <th>권한</th>
-                    <th>가입일</th>
-                    <th>수정일</th>
-                    <th>보기</th>
-                    <th>삭제</th>
-                </tr>
-                <tr th:each="member:${memberList}">
-                    <td th:text="${member.id}"></td>
-                    <td th:text="${member.userEmail}"></td>
-                    <td th:text="${member.userPw}"></td>
-                    <td th:text="${member.name}"></td>
-                    <td th:text="${member.address}"></td>
-                    <td th:text="${member.phoneNumber}"></td>
-                    <td th:text="${member.role}"></td>
-                    <td th:text="${#temporals.format(member.createTime, 'yy/MM/dd HH:mm:ss')}"></td>
-                    <td th:text="${#temporals.format(member.updateTime, 'yy/MM/dd HH:mm:ss')}"></td>
-                    <td><a th:href="@{/member/memberDetail/{id}(id=${member.id})}">보기</a></td>
-                    <td><a th:href="@{/admin/memberListDelete/{id}(id=${member.id})}" onclick="return deleteConfirmation()">삭제</a></td>
-                    <script>
-                        function deleteConfirmation() {
-                            var result = confirm("정말로 이 회원을 삭제하시겠습니까?");
-                            if (result) {
-                                alert("회원이 삭제되었습니다.");
-                                return true; // "확인"을 클릭한 경우 링크 이동 실행
-                            } else {
-                                alert("회원 삭제가 취소되었습니다.");
-                                return false; // "취소"를 클릭한 경우 링크 이동 취소
-                            }
-                        }
-                    </script>
-                </tr>
-            </table>
-            </tbody>
-            <tfoot>
+            <form id="deleteForm" action="/admin/memberListDelete" method="post">
+                <table>
+                    <thead>
+                    <tr>
+                        <th><button type="submit" class="delete">선택삭제</button></th>
+                        <th>Id</th>
+                        <th>이메일</th>
+                        <th>비밀번호</th>
+                        <th>이름</th>
+                        <th>주소</th>
+                        <th>전화번호</th>
+                        <th>권한</th>
+                        <th>가입일</th>
+                        <th>수정일</th>
+                        <th>보기</th>
+                        <th>삭제</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="member:${memberList}">
+                        <td>
+                            <input type="checkbox" name="selectedIds" th:value="${member.id}">
+                        </td>
+                        <td th:text="${member.id}"></td>
+                        <td th:text="${member.userEmail}"></td>
+                        <td th:text="${member.userPw}"></td>
+                        <td th:text="${member.name}"></td>
+                        <td th:text="${member.address}"></td>
+                        <td th:text="${member.phoneNumber}"></td>
+                        <td th:text="${member.role}"></td>
+                        <td th:text="${#temporals.format(member.createTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                        <td th:text="${#temporals.format(member.updateTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                        <td><a th:href="@{/member/memberDetail/{id}(id=${member.id})}">보기</a></td>
+                        <td><a th:href="@{/admin/memberListDelete/{id}(id=${member.id})}"
+                               onclick="return deleteConfirmation()">삭제</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+            <script>
+                function deleteConfirmation() {
+                    var result = confirm("정말로 이 회원을 삭제하시겠습니까?");
+                    if (result) {
+                        alert("회원이 삭제되었습니다.");
+                        return true; // "확인"을 클릭한 경우 링크 이동 실행
+                    } else {
+                        alert("회원 삭제가 취소되었습니다.");
+                        return false; // "취소"를 클릭한 경우 링크 이동 취소
+                    }
+                }
 
+                 function deleteSelectedItems() {
+                var checkboxes = document.querySelectorAll("input[name=selectedIds]:checked");
+                checkboxes.forEach(function(checkbox) {
+                checkbox.closest("tr").remove(); // 부모 tr 요소를 삭제
+                  });
+                }
+            </script>
+            </tbody>
+
+            <tfoot>
             <div class="paging">
                 <ul>
                     <li>
-                        <span th:if="${memberList.pageable.pageNumber+1 eq 1}" class="span0">START</span>
+                        <span th:if="${memberList.pageable.pageNumber+1 eq 1}" class="span0"> &laquo</span>
                         <span th:unless="${memberList.pageable.pageNumber+1 eq 1}">
                                      <a th:href="@{/admin/memberList(page=0 , search=${param.search},subject=${param.subject} )}"
-                                        class="span1">처음</a>
+                                        class="span1"> &laquo</a>
                                      </span>
                     </li>
                     <li>
                         <!-- 이전페이지가 첫번째 페이지면 span표시 -->
-                        <span th:if="${1==memberList.pageable.pageNumber+1}" class="span0">PRE</span>
+                        <span th:if="${1==memberList.pageable.pageNumber+1}" class="span0">&lt</span>
                         <span th:unless="${1==memberList.pageable.pageNumber+1}">
                                         <a th:href="@{/admin/memberList(page=${memberList.pageable.pageNumber-1}, search=${param.search},subject=${param.subject} )}"
-                                           class="span1">이전</a>
+                                           class="span1">&lt</a>
                                      </span>
                     </li>
                     <!--block -->
@@ -113,26 +132,25 @@
                     <li>
                         <!-- 현재페이지가 마지막 페이지면 span 표시 -->
                         <span th:if="${memberList.totalPages ==memberList.pageable.pageNumber+1}"
-                              class="span0">NEXT</span>
+                              class="span0">&gt</span>
                         <!-- 현재페이지가 마지막 페이지가아니면 a표시 현재페이지 +1 -->
                         <span th:unless="${memberList.totalPages ==memberList.pageable.pageNumber+1}">
                                      <a th:href="@{/admin/memberList(page=${memberList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
-                                        class="span1">다음</a>
+                                        class="span1">&gt</a>
                 </span>
                     </li>
                     <li>
                         <!-- 현재페이지가 마지막 페이지면 span 표시 -->
                         <span th:if="${memberList.totalPages ==memberList.pageable.pageNumber+1}"
-                              class="span0">END</span>
+                              class="span0">&raquo</span>
                         <!-- 현재페이지가 마지막 페이지가아니면 마지막페이지로 이동해라  a -->
                         <span th:unless="${memberList.totalPages ==memberList.pageable.pageNumber+1}">
-                                     <a th:href="@{//admin/memberList(page=${memberList.totalPages-1},search=${param.search},subject=${param.subject} )}"
-                                        class="span1">마지막</a>
+                                     <a th:href="@{/admin/memberList(page=${memberList.totalPages-1},search=${param.search},subject=${param.subject} )}"
+                                        class="span1">&raquo</a>
                 </span>
                     </li>
                 </ul>
             </div>
-
             </tfoot>
 
         </div>

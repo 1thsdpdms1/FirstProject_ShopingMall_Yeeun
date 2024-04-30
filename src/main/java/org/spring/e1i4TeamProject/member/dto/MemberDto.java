@@ -78,6 +78,7 @@ public class MemberDto {
         memberDto.setShopEntityList(memberEntity.getShopEntityList());
         memberDto.setCreateTime(memberEntity.getCreateTime());
         memberDto.setUpdateTime(memberEntity.getUpdateTime());
+        memberDto.setLicence(memberEntity.getLicence());
         if(memberEntity.getMemberAttachFile()==0){
             //파일 x
             memberDto.setMemberAttachFile(memberDto.getMemberAttachFile());
