@@ -10,9 +10,13 @@ import org.spring.e1i4TeamProject.board.repository.BoardReplyRepository;
 import org.spring.e1i4TeamProject.board.repository.BoardRepository;
 import org.spring.e1i4TeamProject.board.service.serviceInterface.BoardServiceInterface;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.spring.e1i4TeamProject.member.repository.MemberRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,10 +25,12 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class BoardService implements BoardServiceInterface {
 
+    private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
     private final BoardFileRepository boardFileRepository;
     private final BoardReplyRepository boardReplyRepository;
@@ -149,7 +155,66 @@ public class BoardService implements BoardServiceInterface {
         }
 
 
+    @Override
+    public List<BoardDto> boardMemberCategoryList(Long id, Long category) {
+
+       MemberEntity memberEntity= MemberEntity.builder().id(id).build();
+
+        List<BoardEntity> boardEntityList
+           =boardRepository.findByMemberEntity(memberEntity);
+
+       for(BoardEntity boardEntity: boardEntityList){
+           System.out.println(boardEntity);
+       }
+
+     return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
+   }
 
 
+
+    /////
+
+    @Override
+    public BoardDto boardMemberCategorySave(BoardDto boardDto) {
+
+        Long id= boardRepository.save(BoardEntity.toInsertBoardEntity0(boardDto)).getId();
+
+        BoardEntity boardEntity= boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        return BoardDto.toboardDto1(boardEntity);
+    }
+
+//    @Override
+//    public Page<BoardDto> getBoardMemberCategoryPagingList(Pageable pageable, Long id, Long category) {
+//        Page<BoardEntity> boardEntityList = boardRepository.findByMemberAndCategory(id, category, pageable); // 적절한 필터링 메서드로 대체
+//
+//        return boardEntityList.map(BoardDto::toselectBoardDto);
+//
+//    }
+
+  /*  @Override
+    public Page<BoardDto> getBoardMemberCategoryPagingList(Pageable pageable) {
+        Page<BoardEntity> boardEntityPage = boardRepository.findByCategory(pageable); // 적절한 필터링 메서드로 대체
+
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+        return boardDtoPage;
+
+    }*/
+
+
+    @Override
+    public Page<BoardDto> shopSearchPagingList(Pageable pageable, String subject, String search) {
+        return null;
+    }
+
+    @Override
+    public Page<BoardDto> inquirySearchPagingList(Pageable pageable) {
+
+      Long category=8L;
+
+       Page<BoardEntity> pageList=boardRepository.findAllByCategory(pageable,category);
+
+        return pageList.map(BoardDto::toselectBoardDto);
+    }
 }
 

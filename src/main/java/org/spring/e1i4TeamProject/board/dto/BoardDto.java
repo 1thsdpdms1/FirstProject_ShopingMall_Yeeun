@@ -37,6 +37,7 @@ public class BoardDto {
 
     private List<BoardFileEntity> boardFileEntityList;
 
+
     private List<BoardReplyEntity> boardReplyEntityList;
 
     private LocalDateTime createTime;
@@ -44,9 +45,27 @@ public class BoardDto {
     private LocalDateTime updateTime;
 
 
+    public static BoardDto toboardDto1(BoardEntity boardEntity) {
+        BoardDto boardDto = new BoardDto();
+
+        boardDto.setId(boardEntity.getId());
+        boardDto.setBoardContent(boardEntity.getBoardContent());
+        boardDto.setBoardTitle(boardEntity.getBoardTitle());
+        boardDto.setCategory(boardEntity.getCategory());
+        boardDto.setBoardWriter(boardEntity.getBoardWriter()); // 작성말고 회원의 이름정보만 받아오기?
+        boardDto.setBoardHit(boardEntity.getBoardHit());
+        boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
+//        boardDto.setBoardReplyEntityList(boardEntity.getBoardReplyEntityList());
+        boardDto.setCreateTime(boardEntity.getCreateTime());
+        boardDto.setUpdateTime(boardEntity.getUpdateTime());
+
+        return boardDto;
+
+    }
+
     //Entity -> Dto (데이터 가져올때)
     public static BoardDto toboardDto(BoardEntity boardEntity) {
-        BoardDto boardDto=new BoardDto();
+        BoardDto boardDto = new BoardDto();
 
         boardDto.setId(boardEntity.getId());
         boardDto.setBoardContent(boardEntity.getBoardContent());
@@ -61,6 +80,7 @@ public class BoardDto {
         return boardDto;
 
     }
+
     //엔티티 -> DTO
     public static BoardDto toBoardDetailDto(BoardEntity boardEntity) {
 
@@ -80,4 +100,43 @@ public class BoardDto {
         return boardDto;
 
     }
+
+    //Entity -> Dto (데이터 가져올때)
+    public static BoardDto toboardDto2(BoardEntity boardEntity) {
+        BoardDto boardDto = new BoardDto();
+
+        boardDto.setId(boardEntity.getId());
+        boardDto.setBoardContent(boardEntity.getBoardContent());
+        boardDto.setBoardTitle(boardEntity.getBoardTitle());
+        boardDto.setCategory(boardEntity.getCategory());
+        boardDto.setBoardWriter(boardEntity.getBoardWriter()); // 작성말고 회원의 이름정보만 받아오기?
+        boardDto.setBoardHit(boardEntity.getBoardHit());
+        boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
+        boardDto.setCreateTime(boardEntity.getCreateTime());
+        boardDto.setUpdateTime(boardEntity.getUpdateTime());
+
+        return boardDto;
+
+    }
+
+    public static BoardDto toselectBoardDto(BoardEntity boardEntity) {
+        BoardDto boardDto = new BoardDto();
+
+        boardDto.setId(boardEntity.getId());
+        boardDto.setBoardContent(boardEntity.getBoardContent());
+        boardDto.setBoardTitle(boardEntity.getBoardTitle());
+        boardDto.setCategory(boardEntity.getCategory());
+        boardDto.setBoardWriter(boardEntity.getBoardWriter()); // 작성말고 회원의 이름정보만 받아오기?
+        boardDto.setBoardHit(boardEntity.getBoardHit());
+        boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
+        boardDto.setCreateTime(boardEntity.getCreateTime());
+        boardDto.setUpdateTime(boardEntity.getUpdateTime());
+
+        return boardDto;
+
+    }
 }
+
+
+
+

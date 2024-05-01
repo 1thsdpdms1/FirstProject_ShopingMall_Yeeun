@@ -19,6 +19,9 @@ public class BoardReplyDto {
 
     private String boardReplyContent;
 
+    private Long boardId;
+
+
     private BoardEntity boardEntity;
 
     private LocalDateTime createTime;
@@ -32,6 +35,7 @@ public class BoardReplyDto {
     public static BoardReplyDto toSelectReplyDto(BoardReplyEntity boardReplyEntity) {
         BoardReplyDto boardReplyDto=new BoardReplyDto();
         boardReplyDto.setId(boardReplyEntity.getId());
+        boardReplyDto.setBoardReplyWriter(boardReplyEntity.getBoardReplyWriter());
         boardReplyDto.setBoardReplyContent(boardReplyEntity.getBoardReplyContent());
         boardReplyDto.setBoardEntity(boardReplyEntity.getBoardEntity());
         boardReplyDto.setCreateTime(boardReplyEntity.getCreateTime());

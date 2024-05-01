@@ -1,5 +1,6 @@
 .footer {
-    background-color: pink;
+    /* background-color: pink; */
+    background:linear-gradient(to left ,#fbb9ff, #a9cdf3);
     width: 100%; /* 전체 너비로 설정 */
     height: 200px;
     display: flex;
@@ -23,12 +24,12 @@
 
 .footer-con span {
     font-size: 20px;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .footer-con p {
     margin-top: 5px;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .footer-con img {

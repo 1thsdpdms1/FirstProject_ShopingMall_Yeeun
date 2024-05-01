@@ -27,19 +27,21 @@ public class BoardReplyService implements BoardReplyInterface {
     public void insertReply(BoardReplyDto boardReplyDto) {
 
         // 글번호
-       BoardEntity boardEntity= boardRepository.findById(boardReplyDto.getBoardEntity().getId()).orElseThrow(()->{
-          throw new IllegalArgumentException("아이디가 없습니다.");
-       });
+        BoardEntity boardEntity= boardRepository.findById(boardReplyDto.getBoardId()).orElseThrow(()->{
+            throw new IllegalArgumentException("아이디가 없습니다.");
+        });
 
-       if(boardEntity !=null){
-           BoardEntity boardEntity1=BoardEntity.builder()
-                   .id(boardReplyDto.getId())
-                   .build();
-           boardReplyDto.setBoardEntity(boardEntity1);
+        if(boardEntity !=null){
+            BoardReplyEntity boardReplyEntity = BoardReplyEntity.builder()
+                    .boardEntity(BoardEntity.builder().id(boardReplyDto.getBoardId()).build())
+                    .boardReplyContent(boardReplyDto.getBoardReplyContent())
+                    .boardReplyWriter(boardReplyDto.getBoardReplyWriter())
+                    .build();
+//           boardReplyEntity.setBoardEntity(boardReplyDto);
 
-           BoardReplyEntity boardReplyEntity=BoardReplyEntity.toInsertReplyEntity(boardReplyDto);
-           replyRepository.save(boardReplyEntity);
-       }
+//           boardReplyEntity = BoardReplyEntity.toInsertReplyEntity(boardReplyDto);
+            replyRepository.save(boardReplyEntity);
+        }
 
     }
 
