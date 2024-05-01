@@ -37,8 +37,8 @@ public class ShopEntity extends BaseTimeEntity {
     @Column(nullable = false)
     private int category;
 
-    @Column(nullable = false)
-    private String place;
+//    @Column(nullable = false)
+//    private String place;
 
     
 

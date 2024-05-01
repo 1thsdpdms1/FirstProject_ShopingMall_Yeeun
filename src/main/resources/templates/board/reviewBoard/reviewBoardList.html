@@ -10,146 +10,198 @@
 <div th:replace="~{fragments/common/header :: headerFragment}"></div>
 
 <div class="container">
-    <div class="boardList">
-        <div class="boardList-con">
-            <h1>boardDtoList</h1>
-            <table>
-                <thead>
-                <tr>
-                    <td colspan="10">
-                        <div class="search">
-                            <div class="search-con">
-                                <form th:action="@{/board/reviewBoardList}" method="get">
-                                    <select name="subject" id="subject">
-                                        <option value="" th:selected="${#strings.isEmpty(param.subject)}">::선택::</option>
-                                        <option value="boardTitle" th:selected="${#strings.equals(param.subject,'boardTitle')}">제목</option>
-                                        <option value="boardContent" th:selected="${#strings.equals(param.subject,'boardContent')}">내용</option>
+<div th:replace="~{board/fragments/leftFragment :: leftFragment}"></div>
 
-                                    </select>
+<!--    <div class="left">-->
+<!--        <div class="menu">-->
+<!--            <label>-->
+<!--                <ul>-->
+<!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/boardList}">커뮤니티</a></li>-->
+<!--                    <li><img th:src="@{/images/sidenotice.png}" alt="icon"><a th:href="@{/board/noticeBoardList}">공지사항</a>-->
+<!--                    </li>-->
+<!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/reviewBoardList}">수강후기</a>-->
+<!--                    </li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList4}">미술</a></li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList5}">체육</a></li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList6}">음악</a></li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList7}">요리</a></li>-->
+<!--                </ul>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--    </div>-->
 
-                                    <input type="text" name="search" id="search" th:value="${param.search}">
-                                    <input type="submit" value="검색">
-                                </form>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+    <div class="right">
 
-                <tr>
+        <div class="main-content">
+            <div class="boardList">
+                <div class="boardList-con">
+                    <h1>♥수강후기♥</h1>
 
-                    <th>글번호</th>
-                    <th>종류</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성날짜</th>
-                    <th>조회수</th>
-
-                </tr>
-
-                </thead>
-
-                <tbody>
-                <tr th:each="board: ${boardDtoList}">
-
-                    <td th:text="${board.id}"></td>
-
-                    <td th:if="${board.category eq 4}" th:text="미술"></td>
-                    <td th:if="${board.category eq 5}" th:text="체육"></td>
-                    <td th:if="${board.category eq 6}" th:text="요리"></td>
-                    <td th:if="${board.category eq 7}" th:text="공예"></td>
-
-                    <td>
-                        <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
-
-<!--                            <a th:href="@{/board/reviewBoard/reviewBoardDetail/{id}(id=${board.id})}">-->
-<!--                                <img th:src="@{|/upload/${board.shopNewFileName}|}" alt="이미지대체문구"></a>-->
-                            <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">
-
-                            <label th:text="${board.boardTitle}"></label>
-                            <!--제목에 해당글의 사진이 보이도록-->
+                    <!--사이드 바-->
 
 
-                        </a>
-                    </td>
-                    <!--제목을 누르면 Detail로 이동-->
+                    <table>
+                        <thead>
+                        <tr>
+                            <td colspan="10">
+                                <div class="search">
+                                    <div class="search-con">
+                                        <form th:action="@{/board/reviewBoardList}" method="get">
+                                            <select name="subject" id="subject">
+                                                <option value="" th:selected="${#strings.isEmpty(param.subject)}">
+                                                    ::선택::
+                                                </option>
+                                                <option value="boardTitle"
+                                                        th:selected="${#strings.equals(param.subject,'boardTitle')}">제목
+                                                </option>
+                                                <option value="boardContent"
+                                                        th:selected="${#strings.equals(param.subject,'boardContent')}">내용
+                                                </option>
+                                                <!---->
+<!--                                                <option value="category"-->
+<!--                                                        th:selected="${#strings.equals(param.subject,'category')}">종류-->
+<!--                                                </option>-->
+                                                <!---->
 
-                    <td th:text="${board.boardWriter}"></td>
-                    <!--회원이름으로 불러오기  1. 글작성할때 boardWriter를 memberName으로 불러와서 쓸지
-                                            2. 여기에서 바로 memberName 으로 받아올지-->
+                                            </select>
 
-                    <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd')}"></td>
-                    <!--                    <td th:text="${board.memberId}"></td>-->
+                                            <input type="text" name="search" id="search" th:value="${param.search}">
+                                            <input type="submit" value="검색">
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <th>글번호</th>
+                            <th>종류</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성날짜</th>
+                            <th>조회수</th>
+                            <th>댓글수</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="board: ${boardDtoList}">
+
+                            <td th:text="${board.id}"></td>
+
+                            <td th:if="${board.category eq 4}" th:text="미술"></td>
+                            <td th:if="${board.category eq 5}" th:text="체육"></td>
+                            <td th:if="${board.category eq 6}" th:text="음악"></td>
+                            <td th:if="${board.category eq 7}" th:text="요리"></td>
+
+                            <td>
+
+                                <th:block th:if="${board.boardAttachFile==1}"> <!--  이미지 표시 -->
+                                    <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
+                                        <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">
+                                        <label th:text="${board.boardTitle}"></label></a>
+                                </th:block>
+
+                                <th:block th:unless="${board.boardAttachFile==1}">  <!--  이미지 표시 -->
+                                    <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
+                                        <img src="https://placehold.co/300x200?text=NOIMAGE" alt="이미지대체문구">
+                                        <label th:text="${board.boardTitle}"></label></a>
+                                </th:block>
+
+                                </a>
+                            </td>
+                            <!--제목을 누르면 Detail로 이동-->
+
+                            <td th:text="${board.boardWriter}"></td>
+                            <!--회원이름으로 불러오기  1. 글작성할때 boardWriter를 memberName으로 불러와서 쓸지
+                                                    2. 여기에서 바로 memberName 으로 받아올지-->
+
+                            <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd')}"></td>
+                            <!--                    <td th:text="${board.memberId}"></td>-->
 
 
-                    <td th:text="${board.boardHit}"></td>
+                            <td th:text="${board.boardHit}"></td>
+                            <td th:text="${board.replyCount}"></td>
 
 
-                </tr>
-                </tbody>
+                        </tr>
+                        </tbody>
 
-                <tfoot>
+                        <tfoot>
 
-                <tr>
-                    <td colspan="10">
-                        <div class="paging">
-                            <ul>
-                                <li>
-                                    <!--                                      1111현재페이지가 첫번째 페이지이면 span태그 표시하라-->
-                                    <span th:if="${boardDtoList.pageable.pageNumber+1 eq 1}" class="span0">START</span>
-                                    <!--                                      2222현재 페이지가 첫번째 페이지가 아니면 아래a태그를 표시하라-->
-                                    <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">
+                        <tr>
+                            <td colspan="10">
+                                <div class="paging">
+                                    <ul>
+                                        <li>
+                                            <!--                                      1111현재페이지가 첫번째 페이지이면 span태그 표시하라-->
+                                            <span th:if="${boardDtoList.pageable.pageNumber+1 eq 1}"
+                                                  class="span0">START</span>
+                                            <!--                                      2222현재 페이지가 첫번째 페이지가 아니면 아래a태그를 표시하라-->
+                                            <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">
                                           <a th:href="@{/board/reviewBoardList(page=0)}" class="span1">처음</a>
                                       </span>
-                                </li>
+                                        </li>
 
-                                <li>
-                                    <!--                                      1111현재페이지가 첫번째 페이지이면 span표시-->
-                                    <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
-                                    <!--                                        2222현재페이지가 첫번째 페이지가 아니면 아래 a태그 표시 -->
-                                    <span th:unless="${1==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.pageable.pageNumber-1})}" class="span1">이전</a>
+                                        <li>
+                                            <!--                                      1111현재페이지가 첫번째 페이지이면 span표시-->
+                                            <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
+                                            <!--                                        2222현재페이지가 첫번째 페이지가 아니면 아래 a태그 표시 -->
+                                            <span th:unless="${1==boardDtoList.pageable.pageNumber+1}">
+                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.pageable.pageNumber-1})}"
+                                             class="span1">이전</a>
                                       </span>
-                                </li>
+                                        </li>
 
-                                <!--                                  block-->
-                                <!--                                  페이지번호-->
-                                <li th:each="i: ${#numbers.sequence(startPage,endPage)}" class="block">
-                                    <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
-                                    <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"
-                                       th:href="@{/board/reviewBoardList(page=${i-1})}" th:text="${i}"></a>
-                                </li>
+                                        <!--                                  block-->
+                                        <!--                                  페이지번호-->
+                                        <li th:each="i: ${#numbers.sequence(startPage,endPage)}" class="block">
+                                            <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}"
+                                                  class="now"></span>
+                                            <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"
+                                               th:href="@{/board/reviewBoardList(page=${i-1})}" th:text="${i}"></a>
+                                        </li>
 
-                                <li>
-                                    <!--                                      현재페이지가 마지막페이지이면 span표시-->
-                                    <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
-                                    <!--                                      현재 페이지가 마지막 페이지가 아니면 a 표시   현재페이지+1-->
-                                    <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.pageable.pageNumber+1})}" class="span1">다음</a>
+                                        <li>
+                                            <!--                                      현재페이지가 마지막페이지이면 span표시-->
+                                            <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}"
+                                                  class="span0"></span>
+                                            <!--                                      현재 페이지가 마지막 페이지가 아니면 a 표시   현재페이지+1-->
+                                            <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
+                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.pageable.pageNumber+1})}"
+                                             class="span1">다음</a>
                                       </span>
-                                </li>
+                                        </li>
 
-                                <li>
-                                    <!--                                      현재페이지가 마지막 페이지이면 span 표시-->
-                                    <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0">END</span>
-                                    <!--                                      현재 페이지가 마지막 페이지가 아니면 마지막 페이지로 이동해라 a태그-->
-                                    <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.totalPages-1})}" class="span1">마지막</a>
+                                        <li>
+                                            <!--                                      현재페이지가 마지막 페이지이면 span 표시-->
+                                            <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}"
+                                                  class="span0">END</span>
+                                            <!--                                      현재 페이지가 마지막 페이지가 아니면 마지막 페이지로 이동해라 a태그-->
+                                            <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
+                                          <a th:href="@{/board/reviewBoardList(page=${boardDtoList.totalPages-1})}"
+                                             class="span1">마지막</a>
                                       </span>
-                                </li>
+                                        </li>
 
-                            </ul>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                    <!--로그인 한 회원만 글 작성 버튼이 보이도록 or 글작성 버튼은 모두에게 보이고 비회원은 alert 창 띄우기-->
+                    <th:block sec:authorize="isAuthenticated()">
+                        <div class="writeButton">
+                            <a th:href="@{/board/reviewBoardWrite}"><img src="/images/btn_write.jpg" alt="글쓰기"> </a>
                         </div>
-                    </td>
-                </tr>
-                </tfoot>
-
-            </table>
-            <!--로그인 한 회원만 글 작성 버튼이 보이도록 or 글작성 버튼은 모두에게 보이고 비회원은 alert 창 띄우기-->
-            <th:block sec:authorize="isAuthenticated()">
-                <div class="writeButton">
-                    <a th:href="@{/board/reviewBoardWrite}"> 글 작성 </a>
+                    </th:block>
                 </div>
-            </th:block>
+            </div>
         </div>
     </div>
 </div>

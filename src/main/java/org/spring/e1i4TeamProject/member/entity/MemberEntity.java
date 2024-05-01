@@ -44,12 +44,12 @@ public class MemberEntity extends BaseTimeEntity {
     @Column(nullable = true)
     private String phoneNumber;
 
-    @Column(nullable = true)
     private String licence;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(nullable = true)
     private String memberFileName;
 
     @Column(nullable = false)

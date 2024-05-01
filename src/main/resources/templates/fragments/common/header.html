@@ -19,7 +19,8 @@
 
                         <th:block sec:authorize="isAuthenticated()">
 
-                            <li><a th:href="@{/board/writeLink}">WRITE</a></li>
+                            <li><a th:href="@{/board/writeLink}">글쓰기</a></li>
+
 
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
@@ -30,11 +31,11 @@
                                 </th:block>
                             </li>
                             <li>
-                                <a th:href="@{member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                <a th:href="@{/member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
                                    th:text="${#authentication.principal.username}"></a>
                             </li>
                             <th:block sec:authorize="hasAnyRole('ADMIN')">
-                                <li><a th:href="@{/admin/index}">ADMIN</a></li>
+                                <li><a th:href="@{/admin/memberList}">ADMIN</a></li>
                             </th:block>
                             <th:block sec:authorize="hasAnyRole('MANAGER')">
                                 <li>MANAGER</li>
@@ -109,7 +110,7 @@
                             <li><a href="#">시간표</a></li>
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
-                                    <a th:href="@{member/memberDetail/{id}
+                                    <a th:href="@{/member/memberDetail/{id}
                                     (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
                                 </li>
                             </th:block>

@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface BoardReplyRepository extends JpaRepository<BoardReplyEntity, Long> {
     List<BoardReplyEntity> findAllByBoardEntity(BoardEntity boardEntity);
+
 }
