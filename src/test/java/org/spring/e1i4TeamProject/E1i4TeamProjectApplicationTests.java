@@ -26,10 +26,10 @@ class E1i4TeamProjectApplicationTests {
 //		System.out.println(list.toString());
 
 
-		Pageable pageable=null;
-		Page<BoardEntity> page=boardRepository.findByCategoryContaining(pageable,1L);
+//		Pageable pageable=null;
+//		Page<BoardEntity> page=boardRepository.findByCategoryContaining(pageable,1L);
 
-		System.out.println(page);
+//		System.out.println(page);
 	}
 
 }

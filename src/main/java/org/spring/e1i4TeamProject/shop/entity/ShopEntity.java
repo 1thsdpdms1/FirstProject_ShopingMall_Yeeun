@@ -37,9 +37,12 @@ public class ShopEntity extends BaseTimeEntity {
     @Column(nullable = false)
     private int category;
 
+<<<<<<< HEAD
     @Column(nullable = false)
     private String place;
 
+=======
+>>>>>>> dev
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int shopHit;
 

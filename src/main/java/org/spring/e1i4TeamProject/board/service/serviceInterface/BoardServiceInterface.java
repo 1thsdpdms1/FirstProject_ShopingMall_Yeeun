@@ -15,6 +15,18 @@ public interface BoardServiceInterface {
     List<BoardDto> boardList();
 
 
+    Page<BoardDto> boardSearchPageList4(Pageable pageable, String subject, String search);
+
+    //카테고리 5만
+    Page<BoardDto> boardSearchPageList5(Pageable pageable, String subject, String search);
+
+    //카테고리 6만
+    Page<BoardDto> boardSearchPageList6(Pageable pageable, String subject, String search)//카테고리 5만
+    ;
+
+    //카테고리 7만
+    Page<BoardDto> boardSearchPageList7(Pageable pageable, String subject, String search)//카테고리 6만
+    ;
 
     BoardDto boardDetail(Long id);
 

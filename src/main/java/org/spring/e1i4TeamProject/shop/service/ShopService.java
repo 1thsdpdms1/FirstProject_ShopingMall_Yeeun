@@ -197,6 +197,7 @@ public class ShopService implements ShopServiceImpl {
     MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     Optional<CartEntity> cartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
     CartEntity cartEntity1=null;
+
     if(!cartEntity.isPresent()) {
       cartEntity1=CartEntity.builder().memberEntity(memberEntity).build();
       cartRepository.save(cartEntity1);
