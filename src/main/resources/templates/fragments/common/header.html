@@ -111,6 +111,7 @@
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
                                     <a th:href="@{member/memberDetail/{id}
+
                                     (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
                                 </li>
                             </th:block>

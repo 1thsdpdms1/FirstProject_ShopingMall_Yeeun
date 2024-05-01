@@ -40,8 +40,6 @@ public class ShopEntity extends BaseTimeEntity {
     @Column(nullable = false)
     private String place;
 
-    
-
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int shopHit;
 
@@ -50,6 +48,7 @@ public class ShopEntity extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String shopSeller;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "shopEntity"
@@ -80,6 +79,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPlace(shopDto.getPlace());
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopHit(0);
@@ -97,6 +97,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPlace(shopDto.getPlace());
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopHit(0);
@@ -113,6 +114,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPlace(shopDto.getPlace());
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(0);
@@ -127,6 +129,7 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
         shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPlace(shopDto.getPlace());
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(1);

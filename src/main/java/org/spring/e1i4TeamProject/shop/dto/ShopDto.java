@@ -35,6 +35,8 @@ public class ShopDto {
 
     private int shopAttachFile;
 
+    private String place;
+
     private Long memberId;
 
     private MultipartFile shopFile;

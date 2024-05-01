@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.util.List;
 
-@Repository
 public interface ShopServiceImpl {
   void insertShop(ShopDto shopDto) throws IOException;
 

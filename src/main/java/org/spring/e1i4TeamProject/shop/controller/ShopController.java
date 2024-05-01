@@ -63,7 +63,6 @@ public class ShopController {
     List<ShopReplyDto> shopReplyDtoList = shopReplyService.shopReplyList(shopDto.getId());
 
     model.addAttribute("shopDto", shopDto);
-//    model.addAttribute("memberId", )
     model.addAttribute("shopReplyDtoList", shopReplyDtoList);
     model.addAttribute("myUserDetails", myUserDetails);
 
@@ -169,6 +168,8 @@ public class ShopController {
 
     return "shop/cartList";
   }
+
+
 
 
 
