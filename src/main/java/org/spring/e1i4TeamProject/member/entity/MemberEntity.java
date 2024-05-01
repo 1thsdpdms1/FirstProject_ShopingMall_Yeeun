@@ -7,6 +7,7 @@ import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.role.Role;
 
+import org.spring.e1i4TeamProject.shop.entity.CartEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
@@ -54,6 +55,12 @@ public class MemberEntity extends BaseTimeEntity {
 
     @Column(nullable = false)
     private int memberAttachFile; //게시글 작성시 파일이 존재하면 1, 없으면 0
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "memberEntity"
+        , fetch = FetchType.LAZY
+        , cascade = CascadeType.REMOVE)
+    private CartEntity cartEntity;
 
     @JsonIgnore // ajax시 순환참조 방지
     @OneToMany(mappedBy = "memberEntity"
