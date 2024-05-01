@@ -11,23 +11,6 @@
 
 <div class="container">
     <div th:replace="~{board/fragments/leftFragment :: leftFragment}"></div>
-<!--    <div class="left">-->
-<!--        <div class="menu">-->
-<!--            <label>-->
-<!--                <ul>-->
-<!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/boardList}">커뮤니티</a></li>-->
-<!--                    <li><img th:src="@{/images/sidenotice.png}" alt="icon"><a th:href="@{/board/noticeBoardList}">공지사항</a>-->
-<!--                    </li>-->
-<!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/reviewBoardList}">수강후기</a>-->
-<!--                    </li>-->
-<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList4}">미술</a></li>-->
-<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList5}">체육</a></li>-->
-<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList6}">음악</a></li>-->
-<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList7}">요리</a></li>-->
-<!--                </ul>-->
-<!--            </label>-->
-<!--        </div>-->
-<!--    </div>-->
 
     <div class="right">
 
@@ -91,13 +74,7 @@
                             <td th:if="${board.category eq 4}" th:text="미술"></td>
 
                             <td>
-                                <!--                        <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">-->
-                                <!--&lt;!&ndash;                            <a th:href="@{/board/reviewBoard/reviewBoardDetail/{id}(id=${board.id})}">&ndash;&gt;-->
-                                <!--&lt;!&ndash;                                <img th:src="@{|/upload/${board.shopNewFileName}|}" alt="이미지대체문구"></a>&ndash;&gt;-->
-                                <!--                            <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">-->
 
-                                <!--                            <label th:text="${board.boardTitle}"></label>-->
-                                <!--                            &lt;!&ndash;제목에 해당글의 사진이 보이도록&ndash;&gt;-->
                                 <th:block th:if="${board.boardAttachFile==1}"> <!--  이미지 표시 -->
                                     <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
                                         <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구"> <br>
@@ -141,7 +118,7 @@
                                                   class="span0">START</span>
                                             <!--                                      2222현재 페이지가 첫번째 페이지가 아니면 아래a태그를 표시하라-->
                                             <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">
-                                          <a th:href="@{/board/reviewBoardList4(page=0)}" class="span1">처음</a>
+                                          <a th:href="@{/board/reviewBoardList4(page=0,search=${param.search},subject=${param.subject})}" class="span1">처음</a>
                                       </span>
                                         </li>
 
@@ -150,7 +127,7 @@
                                             <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
                                             <!--                                        2222현재페이지가 첫번째 페이지가 아니면 아래 a태그 표시 -->
                                             <span th:unless="${1==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.pageable.pageNumber-1})}"
+                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.pageable.pageNumber-1},search=${param.search},subject=${param.subject})}"
                                              class="span1">이전</a>
                                       </span>
                                         </li>
@@ -161,7 +138,7 @@
                                             <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}"
                                                   class="now"></span>
                                             <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"
-                                               th:href="@{/board/reviewBoardList4(page=${i-1})}" th:text="${i}"></a>
+                                               th:href="@{/board/reviewBoardList4(page=${i-1},search=${param.search},subject=${param.subject})}" th:text="${i}"></a>
                                         </li>
 
                                         <li>
@@ -170,7 +147,7 @@
                                                   class="span0"></span>
                                             <!--                                      현재 페이지가 마지막 페이지가 아니면 a 표시   현재페이지+1-->
                                             <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.pageable.pageNumber+1})}"
+                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.pageable.pageNumber+1},search=${param.search},subject=${param.subject})}"
                                              class="span1">다음</a>
                                       </span>
                                         </li>
@@ -181,7 +158,7 @@
                                                   class="span0">END</span>
                                             <!--                                      현재 페이지가 마지막 페이지가 아니면 마지막 페이지로 이동해라 a태그-->
                                             <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.totalPages-1})}"
+                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.totalPages-1},search=${param.search},subject=${param.subject})}"
                                              class="span1">마지막</a>
                                       </span>
                                         </li>
