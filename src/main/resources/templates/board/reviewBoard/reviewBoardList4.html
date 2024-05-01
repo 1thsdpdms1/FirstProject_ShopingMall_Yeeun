@@ -11,29 +11,34 @@
 
 <div class="container">
     <div th:replace="~{board/fragments/leftFragment :: leftFragment}"></div>
-    <!--    <div class="left">-->
-    <!--        <div class="menu">-->
-    <!--            <label>-->
-    <!--                <ul>-->
-    <!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/boardList}">커뮤티니</a></li>-->
-    <!--                    <li><img th:src="@{/images/sidenotice.png}" alt="icon"><a th:href="@{/board/noticeBoardList}">공지사항</a>-->
-    <!--                    </li>-->
-    <!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/reviewBoardList}">수강후기</a>-->
-    <!--                    </li>-->
-    <!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList4}">미술</a></li>-->
-    <!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList5}">체육</a></li>-->
-    <!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList6}">음악</a></li>-->
-    <!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList7}">요리</a></li>-->
-    <!--                </ul>-->
-    <!--            </label>-->
-    <!--        </div>-->
-    <!--    </div>-->
+<!--    <div class="left">-->
+<!--        <div class="menu">-->
+<!--            <label>-->
+<!--                <ul>-->
+<!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/boardList}">커뮤니티</a></li>-->
+<!--                    <li><img th:src="@{/images/sidenotice.png}" alt="icon"><a th:href="@{/board/noticeBoardList}">공지사항</a>-->
+<!--                    </li>-->
+<!--                    <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/board/reviewBoardList}">수강후기</a>-->
+<!--                    </li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList4}">미술</a></li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList5}">체육</a></li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList6}">음악</a></li>-->
+<!--                    <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/board/reviewBoardList7}">요리</a></li>-->
+<!--                </ul>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--    </div>-->
+
     <div class="right">
 
         <div class="main-content">
+
             <div class="boardList">
                 <div class="boardList-con">
-                    <h1><img src="/images/notice2.png" alt="공지">※공지사항※</h1>
+                    <h1>(이미지)미술 수강후기</h1>
+
+                    <!--사이드 바-->
+
 
                     <table>
                         <thead>
@@ -41,9 +46,10 @@
                             <td colspan="10">
                                 <div class="search">
                                     <div class="search-con">
-                                        <form th:action="@{/board/noticeBoardList}" method="get">
+                                        <form th:action="@{/board/reviewBoardList4}" method="get">
                                             <select name="subject" id="subject">
-                                                <option value="" th:selected="${#strings.isEmpty(param.subject)}">::선택::
+                                                <option value="" th:selected="${#strings.isEmpty(param.subject)}">
+                                                    ::선택::
                                                 </option>
                                                 <option value="boardTitle"
                                                         th:selected="${#strings.equals(param.subject,'boardTitle')}">제목
@@ -82,21 +88,27 @@
 
                             <td th:text="${board.id}"></td>
 
-                            <!--                    <td th:if="${board.category eq 3}" th:text="공지"></td>-->
-                            <td th:if="${board.category eq 3}"><img src="/images/notice2.png" alt="공지"></td>
+                            <td th:if="${board.category eq 4}" th:text="미술"></td>
 
                             <td>
-                                <a th:href="@{/board/noticeBoardDetail/{id}(id=${board.id})}">
+                                <!--                        <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">-->
+                                <!--&lt;!&ndash;                            <a th:href="@{/board/reviewBoard/reviewBoardDetail/{id}(id=${board.id})}">&ndash;&gt;-->
+                                <!--&lt;!&ndash;                                <img th:src="@{|/upload/${board.shopNewFileName}|}" alt="이미지대체문구"></a>&ndash;&gt;-->
+                                <!--                            <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">-->
 
-                                    <label th:text="${board.boardTitle}"><h1 th:text="${board.replyCount}"></h1></label>
+                                <!--                            <label th:text="${board.boardTitle}"></label>-->
+                                <!--                            &lt;!&ndash;제목에 해당글의 사진이 보이도록&ndash;&gt;-->
+                                <th:block th:if="${board.boardAttachFile==1}"> <!--  이미지 표시 -->
+                                    <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
+                                        <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구"> <br>
+                                        <label th:text="${board.boardTitle}"></label></a>
+                                </th:block>
 
-                                    <!--                            <th:block th:if="${board.boardAttachFile==1}">-->
-                                    <!--                                <td>O</td>-->
-                                    <!--                            </th:block>-->
-
-                                    <!--                            <th:block th:unless="${board.boardAttachFile==1}">-->
-                                    <!--                                <td>X</td>-->
-                                    <!--                            </th:block>-->
+                                <th:block th:unless="${board.boardAttachFile==1}">  <!--  이미지 표시 -->
+                                    <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
+                                        <img src="https://placehold.co/300x200?text=NOIMAGE" alt="이미지대체문구"> <br>
+                                        <label th:text="${board.boardTitle}"></label></a>
+                                </th:block>
 
                                 </a>
                             </td>
@@ -129,7 +141,7 @@
                                                   class="span0">START</span>
                                             <!--                                      2222현재 페이지가 첫번째 페이지가 아니면 아래a태그를 표시하라-->
                                             <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">
-                                          <a th:href="@{/board/noticeBoardList(page=0)}" class="span1">처음</a>
+                                          <a th:href="@{/board/reviewBoardList4(page=0)}" class="span1">처음</a>
                                       </span>
                                         </li>
 
@@ -138,7 +150,7 @@
                                             <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0"></span>
                                             <!--                                        2222현재페이지가 첫번째 페이지가 아니면 아래 a태그 표시 -->
                                             <span th:unless="${1==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/noticeBoardList(page=${boardDtoList.pageable.pageNumber-1})}"
+                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.pageable.pageNumber-1})}"
                                              class="span1">이전</a>
                                       </span>
                                         </li>
@@ -146,10 +158,10 @@
                                         <!--                                  block-->
                                         <!--                                  페이지번호-->
                                         <li th:each="i: ${#numbers.sequence(startPage,endPage)}" class="block">
-                                    <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}"
-                                          class="now"></span>
+                                            <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}"
+                                                  class="now"></span>
                                             <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"
-                                               th:href="@{/board/noticeBoardList(page=${i-1})}" th:text="${i}"></a>
+                                               th:href="@{/board/reviewBoardList4(page=${i-1})}" th:text="${i}"></a>
                                         </li>
 
                                         <li>
@@ -158,7 +170,7 @@
                                                   class="span0"></span>
                                             <!--                                      현재 페이지가 마지막 페이지가 아니면 a 표시   현재페이지+1-->
                                             <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/noticeBoardList(page=${boardDtoList.pageable.pageNumber+1})}"
+                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.pageable.pageNumber+1})}"
                                              class="span1">다음</a>
                                       </span>
                                         </li>
@@ -169,7 +181,7 @@
                                                   class="span0">END</span>
                                             <!--                                      현재 페이지가 마지막 페이지가 아니면 마지막 페이지로 이동해라 a태그-->
                                             <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}">
-                                          <a th:href="@{/board/noticeBoardList(page=${boardDtoList.totalPages-1})}"
+                                          <a th:href="@{/board/reviewBoardList4(page=${boardDtoList.totalPages-1})}"
                                              class="span1">마지막</a>
                                       </span>
                                         </li>
@@ -183,18 +195,18 @@
                     </table>
                     <!--로그인 한 회원만 글 작성 버튼이 보이도록 or 글작성 버튼은 모두에게 보이고 비회원은 alert 창 띄우기-->
                     <th:block sec:authorize="isAuthenticated()">
-                        <th:block sec:authorize="hasAnyRole('ADMIN')">
-                            <div class="writeButton">
-                                <a th:href="@{/board/noticeBoardWrite}"><img src="/images/btn_write.jpg" alt="글쓰기"> </a>
-                            </div>
-                        </th:block>
+                        <div class="writeButton">
+                            <a th:href="@{/board/reviewBoardWrite}"> <img src="/images/btn_write.jpg" alt="글쓰기"> </a>
+                        </div>
                     </th:block>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <div th:replace="~{fragments/common/footer :: footerFragment}"></div>
 
 </body>
 </html>
+

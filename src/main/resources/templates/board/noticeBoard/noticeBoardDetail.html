@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>boardDetail</title>
-        <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
 </head>
 <body>
 
@@ -12,86 +12,192 @@
 <div class="container">
     <div class="boardDetail">
         <div class="boardDetail-con">
-            <div class="boardDetail-form">
-                <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
-                <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
-                    <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+            <div class="top">
+                <div class="boardDetail-form">
+                    <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
+                    <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
+                        <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
 
-                    <ul>
-                        <li>
-                            공지사항 상세보기
-                        </li>
-<!--                        <input th:text="${userId}">아이디</input> <br>-->
+                        <ul>
+                            <li>
+                                공지사항 상세보기
+                            </li>
+                            <!--                        <input th:text="${userId}">아이디</input> <br>-->
 
-                        <li>
-                            <label>category</label>
-                            <span th:if="${board.category eq 3}" th:text="공지사항" ></span>
-                        </li>
+                            <li>
+                                <label>category</label>
+                                <input type="text" value="공지사항" th:if="${board.category eq 3}">
+                            </li>
 
-                        <li>
-                            <label for="boardId">글번호</label>
-                            <input type="text" name="boardId" id="boardId" th:value="${board.id}" readonly>
-                        </li>
+                            <li>
+                                <label for="boardId">글번호</label>
+                                <input type="text" name="boardId" id="boardId" th:value="${board.id}" readonly>
+                            </li>
 
-                        <li>
-                            <label for="boardWriter">글쓴이</label>
-                            <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}" readonly>
-                        </li>
+                            <li>
+                                <label for="boardWriter">글쓴이</label>
+                                <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}"
+                                       readonly>
+                            </li>
 
-                        <li>
-                            <label for="boardTitle">제목</label>
-                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}" readonly>
-                        </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
-                        <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
-
-
-                        <li>
-                            <label for="boardContent">내용</label>
-                        </li>
-
-                        <li>
-                            <textarea name="boardContent" id="boardContent" cols="30" rows="10" th:text="${board.boardContent}" READONLY></textarea>
-                        </li>
+                            <li>
+                                <label for="boardTitle">제목</label>
+                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
+                                       readonly>
+                            </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
+                            <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
 
 
+                            <li>
+                                <label for="boardContent">내용</label>
+                            </li>
 
-                        <!-- <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
+                            <li>
+                                <textarea name="boardContent" id="boardContent" cols="30" rows="10"
+                                          th:text="${board.boardContent}" READONLY></textarea>
+                            </li>
 
-                        <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
-<!--                                <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구"  >&lt;!&ndash;width="400" height="200"&ndash;&gt;-->
-                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지 대체문구"  ><!--width="400" height="200"-->
-                        </th:block>
 
-                        <th:block th:unless="${board.boardAttachFile==1}">
+                            <!-- <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
+
+                            <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
+                                <!--                                <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구"  >&lt;!&ndash;width="400" height="200"&ndash;&gt;-->
+                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지 대체문구">
+                                <!--width="400" height="200"-->
+                            </th:block>
+
+                            <th:block th:unless="${board.boardAttachFile==1}">
                                 <img src="https://placehold.co/400x200?text=NOIMAGE" alt="이미지 대체문구">
+                            </th:block>
+
+                            <li>
+                                <label for="createTime">작성시간 :</label>
+                                <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"
+                                    id="createTime"></td>
+                            </li>
+                            <li>
+                                <label for="updateTime">수정시간 :</label>
+                                <td th:text="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"
+                                    id="updateTime"></td>
+                            </li>
+
+
+                            <th:block sec:authorize="isAuthenticated()">
+                                <th:block sec:authorize="hasAnyRole('ADMIN')">
+                                    <li>
+                                        <th:block th:if="${board.memberEntity.userEmail==myUserDetails.username}">
+                                            <a th:href="@{/board/noticeBoardUpdate/{id}(id=${board.id})}">수정</a>
+                                        </th:block>
+                                        <a th:href="@{/board/noticeBoardDelete/{id}(id=${board.id})}">삭제</a>
+                                        <a th:href="@{/board/noticeBoardList}">목록</a>
+
+                                    </li>
+
+                                </th:block>
+
+                                <th:block th:if="${board.memberEntity.userEmail==myUserDetails.username}">
+                                    <th:block sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+                                        <li>
+                                            <a th:href="@{/board/noticeBoardUpdate/{id}(id=${board.id})}">수정</a>
+                                            <a th:href="@{/board/noticeBoardDelete/{id}(id=${board.id})}">삭제</a>
+                                            <a th:href="@{/board/noticeBoardList}">목록</a>
+                                        </li>
+                                    </th:block>
+                                    <!--admin이 자기가 쓴 글을 볼때에는 위에거랑 아래거랑 둘다 출력됨-->
+                                </th:block>
+                                <th:block th:unless="${board.memberEntity.userEmail==myUserDetails.username}">
+                                    <a th:href="@{/board/noticeBoardList}">목록</a>
+                                </th:block>
+
+                            </th:block>
+
+                            <th:block sec:authorize="isAnonymous()">
+                                <li>
+                                    <a th:href="@{/board/noticeBoardList}">목록</a>
+                                </li>
+
+
+                        </ul>
+
+
+                    </form>
+                </div>
+            </div>
+
+            <!--댓글-->
+            <div class="bottom">
+                <div class="reply">
+                    <div class="reply-con">
+                        <h1>REVIEW LIST</h1>
+
+                        <th:block sec:authorize="isAuthenticated()">
+                            <form th:action="@{/reply/noticeBoardReplyWrite}" method="post">
+                                <!--            <form th:action="@{/reply/replyWrite}" method="post">-->
+                                <!--                                <input type="hidden" name="boardId" id="board_id" th:value="${board.id}" readonly>-->
+                                <input type="text" name="boardId" th:value="${board.id}" readonly>
+                                <input type="hidden" name="boardReplyId">
+
+                                <input type="text" name="boardReplyWriter" id="boardReplyWriter"
+                                       th:value="${myUserDetails.name}" readonly>
+
+                                <!--로그인되어 있으면 회원의 이름이 replyWriter 자리에 출력되도록 함-->
+                                <input type="text" name="boardReplyContent" id="boardReplyContent" placeholder="덧글내용">
+                                <input type="submit" value="댓글작성">
+                            </form>
                         </th:block>
 
-                        <li>
-                            <label for="createTime">작성시간 :</label>
-                            <td th:text="${#temporals.format(board.createTime, 'yyyy년-MM월-dd일')}" id="createTime"></td>
-                        </li>
-                        <li>
-                            <label for="updateTime">수정시간 :</label>
-                            <td th:text="${#temporals.format(board.updateTime, 'yyyy년-MM월-dd일')}" id="updateTime"></td>
-                        </li>
+                        <th:block sec:authorize="isAnonymous()">
+                            <h1>
+                                댓글을 작성하려면 로그인하세요!
+                                <a th:href="@{/member/memberLogin}">
+                                    <img th:src="@{/images/btn_write}" alt="로그인"></a>
+                            </h1>
 
+                        </th:block>
 
+                        </form>
+                        <!--            </form>-->
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>글 번호</th>
+                                <!--                <span id="replyId" th:text="${replyList.get(0).id}"-->
+                                <th>번호</th>
+                                <th>내용</th>
+                                <th>작성자</th>
+                                <th>작성시간</th>
+                            </tr>
+                            </thead>
+                            <tbody class="tData">
 
+                            <tr th:each="boardReply:${boardReplyList}">
+                                <!--&lt;!&ndash;reply.getBoardEntity.getId() &ndash;&gt;-->
+                                <td th:text="${boardReply.boardEntity.id}"></td>
+                                <td th:text="${boardReply.id}"></td>
+                                <td th:text="${boardReply.boardReplyContent}"></td>
+                                <td th:text="${boardReply.boardReplyWriter}"></td>
+                                <!--                                <td th:text="${boardReply.createTime}"></td>-->
+                                <td th:text="${#temporals.format(boardReply.createTime, 'yyyy-MM-dd HH:mm')}"></td>
+                                <th:block sec:authorize="isAuthenticated()">
+                                    <th:block sec:authorize="hasAnyRole('ADMIN')">
+                                        <td><a th:href="@{/reply/noticeReplyDelete/{id}(id=${boardReply.id})}">삭제</a>
+                                        </td>
+                                    </th:block>
 
-                        <li>
-<!--                            권한 설정하기(자기글만 + 자기글/admin-->
-
-                            <a th:href="@{/board/boardUpdate/{id}(id=${board.id})}">수정</a>
-                            <a th:href="@{/board/boardList}">목록</a>
-                            <a th:href="@{/board/boardDelete/{id}(id=${board.id})}">삭제</a>
-                        </li>
-
-
-                    </ul>
-
-
-                </form>
+                                    <!--자기 글일 때 삭제가능(member,manager 권한 따로 준것은 admin이 자기글일 때 중복해서 출력되기 때문-->
+                                    <th:block th:if="${board.memberEntity.userEmail==myUserDetails.username}  or ${boardReply.boardReplyWriter==myUserDetails.name}">
+                                        <th:block sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+                                            <td><a th:href="@{/reply/noticeReplyDelete/{id}(id=${boardReply.id})}">삭제</a></td>
+                                        </th:block>
+                                    </th:block>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            <!--댓글-->
+
         </div>
     </div>
 </div>

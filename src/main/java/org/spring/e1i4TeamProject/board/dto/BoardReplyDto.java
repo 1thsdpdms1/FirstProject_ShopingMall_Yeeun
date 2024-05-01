@@ -25,6 +25,7 @@ public class BoardReplyDto {
 
     private LocalDateTime updateTime;
 
+    private Long boardId;
 
     // 글 번호
 
@@ -34,11 +35,11 @@ public class BoardReplyDto {
         boardReplyDto.setId(boardReplyEntity.getId());
         boardReplyDto.setBoardReplyContent(boardReplyEntity.getBoardReplyContent());
         boardReplyDto.setBoardEntity(boardReplyEntity.getBoardEntity());
+        boardReplyDto.setBoardReplyWriter(boardReplyEntity.getBoardReplyWriter());
         boardReplyDto.setCreateTime(boardReplyEntity.getCreateTime());
         boardReplyDto.setUpdateTime(boardReplyEntity.getUpdateTime());
 
         return boardReplyDto;
-
-
     }
+
 }

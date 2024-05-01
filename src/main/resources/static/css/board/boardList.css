@@ -3,7 +3,150 @@
 @import url(../common/footer.css);
 
 
-.container {  width: 100%;  height: auto;}
+.container {
+ width: 100%;
+     height: auto;
+     display: flex;
+     justify-content: space-between;
+
+  }
+/*사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 */
+/*.left {
+     flex: 0 0 200px;
+ }
+ .menu {
+   display: block;
+   width: 200px;
+   background-color: #949494;
+   color: #fff;
+   *//* border-radius: 20px; *//*
+   padding: 10px;
+   box-sizing: border-box;
+   overflow: hidden; *//* 반응형 애니메이션용 *//*
+   transition: all 0.5s ease; *//* 반응형 애니메이션 *//*
+ }
+ .menu ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+ }
+
+
+ .menu ul li {
+   display: flex; *//* 아이콘과 텍스트를 가로로 나열 *//*
+   align-items: center; *//* 세로 가운데 정렬 *//*
+   margin-bottom: 10px; *//* 각 아이템 사이의 간격 설정 *//*
+   font-size: 20px;
+ }
+
+ .menu a, .menu > label {
+   padding: 8px;
+   color: #fff;
+   font-size: 20px;
+
+ }
+
+ .menu ul li a{
+   display: block;
+   line-height: 60px;
+ }
+
+ .menu ul li img{
+   width: 30px;
+   height: 30px;
+   padding: 15px 10px;
+
+ }
+ .menu a:hover {
+   color: #000;
+ }
+
+*//*메뉴 li에 마우스 호버시*//*
+ .menu ul li:hover{
+   background-color: #fff;
+   color: #000;
+   border-radius: 10px;
+ }
+
+*//*drop css*//*
+ .submenu{
+    height:0; *//*submenu 안보이게*//*
+    overflow:hidden;
+ }
+
+ .submenu >li{
+    background-color:#94a9ff;
+ }
+
+ .submenu >li:hover{
+ *//* menu부터 submenu01~5높이 생각해서 설정 *//*
+    height:300px;
+    transition-duration:0.5s;
+ }
+
+ .menu > li:hover .submenu{
+ height: 300px; *//*submenu li 한 개 높이 (내가 계산하기)*//*
+ transition-duration: 1s;
+ }*/
+
+ .left{
+ width:300px;
+ height:100vh;
+ background-color:#9debee;
+ }
+
+ .menu {
+   width: 300px;
+   overflow: hidden;
+   /*position: fixed;*/
+   /* margin: 150px auto; */
+ }
+
+ .menu > li {
+   width: 100%;
+   text-align: center;
+   line-height: 50px;
+   background-color: #9debee;
+ }
+
+ .menu a {
+   color: #fff;
+ }
+
+.submenu {
+  height: 0; /* submenu가 안보이게 하기 위해 */
+  overflow: hidden;
+}
+.submenu > li {
+  /* line-height: 50px; */
+  background-color: #94a9ff;
+}
+
+/*.menu > li:hover {
+  *//* menu부터 submenu01~5높이 생각해서 설정 *//*
+  height: 300px;
+  transition-duration: 0.5s;
+}*/
+
+.menu > li:hover .submenu {
+  height: 350px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 1s;
+}
+
+
+
+
+/*main main main main main main main main main main */
+
+
+.right {
+      flex: 1;
+  }
+
+  .main-content {
+      padding: 20px;
+  }
+
 
 .boardList {
 
@@ -100,3 +243,74 @@ color: black;
  text-align: center;
 
 }
+/* ////////////////페이징////////////////////// */
+.paging{
+  padding:10px 0;
+  box-sizing:border-box;
+     background-color:#ebf9f8;
+          display:flex;
+          justify-content:center;
+}
+.paging > ul{
+/*  flex-basis:600px;*/
+  background-color:#cee76b;
+           display:flex;
+           justify-content:space-between;
+           gap:5px;
+           padding:5px;
+           box-sizing:border-box;
+}
+
+.paging > ul> li{
+ /* flex:1;*/
+  background-color:#58cc00;
+
+}
+.paging > ul> li.block{
+flex:1;
+      display:flex;
+               justify-content:center;
+               gap:5px;
+}
+.paging > ul> li.block a{
+   color:#ffffff;
+   font-weight:bold;
+   background-color:#000000;
+   padding:0 10px;
+  display:block;
+}
+.paging > ul> li span{
+  font-size:12px;
+}
+.paging > ul> li a{
+
+  border-radius:5px;
+  font-size:12px;
+  font-weight:bold;
+}
+.paging > ul> li span.span0{
+  background-color:#000000;
+  color:#cccccc;
+   padding:2px 10px;
+   border-radius:5px;
+}
+
+.paging > ul> li span a.span1{
+  padding:2px 10px;
+  background-color:#ff0000;
+  color:#ffffff;
+}
+ span.now{
+   color:#ffffff;
+   font-weight:bold;
+   border-radius:10px;
+   background-color:#0000ff;
+   padding:0 10px;
+   position:relative;
+   cursor:pointer;
+ }
+
+
+ /*   사이드바   */
+
+

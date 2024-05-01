@@ -14,12 +14,10 @@
                             <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
                         </th:block>
                         <li><a th:href="@{/shop/cartList}">장바구니</a></li>
-                        <li><a href="#">고객센터</a></li>
 
 
                         <th:block sec:authorize="isAuthenticated()">
 
-                            <li><a th:href="@{/board/writeLink}">글쓰기</a></li>
 
 
                             <li>
@@ -107,7 +105,6 @@
                     <li>
                         <a href="#">MY HOME</a>
                         <ul class="sub">
-                            <li><a href="#">시간표</a></li>
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
                                     <a th:href="@{/member/memberDetail/{id}
