@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>개인 정보</title>
     <script th:src="@{/js/header.js}" defer></script>
+    <script th:src="@{/js/member.js}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/member/memberDetail.css}">
 </head>
 <body>
@@ -216,20 +218,54 @@
 
                                 <th:block th:if="${memberDto.userEmail == myUserDetails.username}">
                                     <li class="li2">
-                                        <a th:href="@{/member/memberList}">LIST</a>
                                         <input type="submit" value="UPDATE">
                                         <a th:href="@{/member/delete/{id}(id=${memberDto.id})}">회원 탈퇴</a>
                                     </li>
                                 </th:block>
                                 <th:block th:unless="${memberDto.userEmail == myUserDetails.username}">
-                                    <li class="li2">
-                                        <a th:href="@{/member/memberList}">LIST</a>
-                                    </li>
+
                                 </th:block>
                             </ul>
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="cartList">
+                <div class="cartList-con">
+                    <div class="cartListTable">
+                        <a id="closeCartListBtn" href="#">
+                            <img th:src="@{/images/cross.png}" alt="대체이미지">
+                        </a>
+                        <h2 class="title">장 바 구 니</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>제 목</th>
+                                <th>가 격 (&#8361)</th>
+                                <th>수 량</th>
+                            </tr>
+                            </thead>
+                            <tbody class="tData">
+
+                            </tbody>
+                        </table>
+                        <ul>
+                            <li class="totalPrice">
+
+                            </li>
+                            <li>
+                                <a th:href="@{/shop/cartList}" class="cartListDetailBtn">장바구니 자세히 보기</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="cartListBtn">
+                        <a id="memberCartListBtn" href="#">
+                            <!--                           th:href="@{/member/memberCartList/{id}(id=${memberDto.id})} ">-->
+                            <img th:src="@{/images/cart.png}" alt="대체이미지">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
