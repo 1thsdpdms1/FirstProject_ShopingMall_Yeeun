@@ -19,9 +19,11 @@ public interface AdminServiceInterface {
 
     int sellerListDelete(Long id);
 
-    Page<ShopDto> shopList(Pageable pageable, String subject, String search);
+
 
     void deleteMembers(List<Long> id);
 
     void deleteSeller(List<Long> ids);
+
+    Page<ShopDto> shopList(Pageable pageable, String subject1, String subject2, String search);
 }

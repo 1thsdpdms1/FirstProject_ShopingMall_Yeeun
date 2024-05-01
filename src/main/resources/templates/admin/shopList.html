@@ -26,12 +26,17 @@
             <div class="search">
                 <div class="search-con">
                     <form th:action="@{/admin/shopList}" method="get">
-                        <select name="subject" id="subject">
-                            <option value="" th:selected="${#strings.equals(param.subject)}">::선택::</option>
-                            <option value="shopTitle" th:selected="${#strings.equals(param.subject,'shopTitle')}">수강명</option>
-                            <option value="shopContent" th:selected="${#strings.equals(param.subject,'shopContent')}">수강내용</option>
-                            <option value="category" th:selected="${#strings.equals(param.subject,'category')}">카테고리</option>
+                        <select name="subject1" id="subject1">
+                            <option value="1" th:selected="${#strings.equals(param.subject1,'1')}">미술</option>
+                            <option value="2" th:selected="${#strings.equals(param.subject1,'2')}">체육</option>
+                            <option value="3" th:selected="${#strings.equals(param.subject1,'3')}">음악</option>
+                            <option value="4" th:selected="${#strings.equals(param.subject1,'4')}">요리</option>
                         </select>
+                        <select name="subject2" id="subject2">
+                            <option value="shopTitle" th:selected="${#strings.equals(param.subject2,'shopTitle')}">수강명</option>
+                            <option value="shopContent" th:selected="${#strings.equals(param.subject2,'shopContent')}">수강내용</option>
+                        </select>
+
                         <input type="text" name="search" id="search" th:value="${param.search}">
                         <input type="submit" value="검색">
                     </form>

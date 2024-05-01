@@ -84,15 +84,16 @@ public class AdminController {
         return "admin/sellerList";
     }
 
-    //선생님리스트
+    //상품리스트
     @GetMapping("/shopList")
     public String shopList(@PageableDefault(page = 0, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                              Model model,
-                             @RequestParam(name = "subject", required = false) String subject,
+                             @RequestParam(name = "subject1", required = false) String subject1,
+                           @RequestParam(name = "subject2", required = false) String subject2,
                              @RequestParam(name = "search", required = false) String search) {
 
 
-        Page<ShopDto> shopList = adminService.shopList(pageable, subject, search);
+        Page<ShopDto> shopList = adminService.shopList(pageable, subject1, subject2, search);
 
 
         int totalPage = shopList.getTotalPages();//전체page

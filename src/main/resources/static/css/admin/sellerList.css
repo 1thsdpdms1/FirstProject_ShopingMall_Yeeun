@@ -88,8 +88,10 @@ span.now {
 /* 검색 css */
 .container {
   width: 100%;
+  height: calc(100vh - 200px - 350px);
   display: flex;
   justify-content: center;
+
   /* padding: 20px; */
 
 }

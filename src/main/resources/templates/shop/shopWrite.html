@@ -27,14 +27,6 @@
               <input type="text" id="shopTitle" th:field="*{shopTitle}">
             </li>
             <p th:if="${#fields.hasErrors('shopTitle')}" th:errors="*{shopTitle}" class="error"></p>
-            <li>
-              <label for="shopContent">CONTENT</label>
-            </li>
-            <li>
-              <textarea th:field="*{shopContent}" id="shopContent" cols="30" rows="10"></textarea>
-            </li>
-            <p th:if="${#fields.hasErrors('shopContent')}" th:errors="*{shopContent}" class="error"></p>
-            <li>
               <label for="ShopPrice">ShopPrice</label>
               <input type="text" id="ShopPrice" th:field="*{ShopPrice}">
             </li>
