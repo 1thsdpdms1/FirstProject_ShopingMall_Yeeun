@@ -23,33 +23,60 @@ import java.util.stream.Collectors;
 @Transactional
 @RequiredArgsConstructor
 public class CartShopService implements CartShopServiceImpl {
-  private final ShopRepository shopRepository;
-  private final ShopFileRepository shopFileRepository;
-  private final MemberRepository memberRepository;
-  private final CartRepository cartRepository;
-  private final CartShopListRepository cartShopListRepository;
 
-  @Override
-  public List<CartShopListDto> cartList(Long id) {
-    MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    private final ShopRepository shopRepository;
+    private final ShopFileRepository shopFileRepository;
+    private final MemberRepository memberRepository;
+    private final CartRepository cartRepository;
+    private final CartShopListRepository cartShopListRepository;
 
-    Optional<CartEntity> optionalCartEntity=cartRepository.findByMemberEntityId(memberEntity.getId());
+    @Override
+    public List<CartShopListDto> cartList(Long id) {
+        MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
 
-    if (!optionalCartEntity.isPresent()){
-      throw new IllegalArgumentException("장바구니 내역이 없습니다");
+        Optional<CartEntity> optionalCartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
+
+        if (!optionalCartEntity.isPresent()) {
+            throw new IllegalArgumentException("장바구니 내역이 없습니다");
+        }
+
+        List<CartShopListEntity> cartShopListEntity = cartShopListRepository.findAllByCartEntityId(optionalCartEntity.get().getId());
+        List<CartShopListDto> cartShopListDtos = new ArrayList<>();
+        cartShopListDtos = cartShopListEntity.stream().map(shop -> CartShopListDto.builder()
+            .id(shop.getId())
+            .count(shop.getCount())
+            .cartEntity(shop.getCartEntity())
+            .shopEntity(shop.getShopEntity())
+            .build()
+        ).collect(Collectors.toList());
+
+        return cartShopListDtos;
     }
 
-    List<CartShopListEntity> cartShopListEntity=cartShopListRepository.findAllByCartEntityId(optionalCartEntity.get().getId());
-    List<CartShopListDto> cartShopListDtos=new ArrayList<>();
-    cartShopListDtos = cartShopListEntity.stream().map(shop-> CartShopListDto.builder()
-        .id(shop.getId())
-        .count(shop.getCount())
-        .cartEntity(shop.getCartEntity())
-        .shopEntity(shop.getShopEntity())
-        .build()
-    ).collect(Collectors.toList());
+    @Override
+    public List<CartShopListDto> memberCartList(Long id) {
 
-    return cartShopListDtos;
-  }
+        MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(() -> {
+            throw new NullPointerException("존재하지 않는 아이디입니다");
+        });
 
+        CartEntity cartEntity = cartRepository.findByMemberEntity(memberEntity)
+            .orElseThrow(() -> {
+                throw new IllegalArgumentException("예외");
+            });
+
+//    List<CartShopListEntity> cartShopListEntity
+//        = cartShopListRepository.findByCartEntity(CartEntity.builder().id(1L).build());
+
+        List<CartShopListEntity> cartShopListEntityList
+            = cartShopListRepository.findByCartEntity(CartEntity.builder().id(cartEntity.getId()).build());
+
+        return cartShopListEntityList.stream().map((shop) -> CartShopListDto.builder()
+                .id(shop.getId())
+                .count(shop.getCount())
+                .cartEntity(shop.getCartEntity())
+                .shopEntity(shop.getShopEntity())
+                .build())
+            .collect(Collectors.toList());
+    }
 }

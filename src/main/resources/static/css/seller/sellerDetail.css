@@ -164,6 +164,12 @@ table td{
   text-align: center;
   padding: 5px;
 }
+table td.long{
+ white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 함 */
+      overflow: hidden; /* 요소의 내용이 넘칠 때 숨김 */
+      text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 추가 */
+      max-width: 200px; /* 요소의 최대 너비 지정 */
+}
 
 /* 사이드바css */
 .menu {

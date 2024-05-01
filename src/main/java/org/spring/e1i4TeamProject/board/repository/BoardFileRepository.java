@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface BoardFileRepository extends JpaRepository<BoardFileEntity, Long> {
+    Optional<BoardFileEntity> findByBoardEntityId(Long id);
 
 
-//    Optional<BoardFileEntity> findByBoardEntityId(Long id);
 }

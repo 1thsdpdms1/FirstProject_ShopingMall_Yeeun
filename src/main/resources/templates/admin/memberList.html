@@ -42,7 +42,7 @@
             </div>
             </thead>
             <tbody>
-            <form id="deleteForm" action="/admin/memberListDelete" method="post">
+            <form id="deleteForm" th:action="@{/admin/memberListDelete}" method="post">
                 <table>
                     <thead>
                     <tr>
@@ -67,7 +67,7 @@
                         </td>
                         <td th:text="${member.id}"></td>
                         <td th:text="${member.userEmail}"></td>
-                        <td th:text="${member.userPw}"></td>
+                        <td class="ellipsis" th:text="${member.userPw}"></td>
                         <td th:text="${member.name}"></td>
                         <td th:text="${member.address}"></td>
                         <td th:text="${member.phoneNumber}"></td>

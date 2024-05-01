@@ -5,8 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public interface CartShopServiceImpl {
 
   List<CartShopListDto> cartList(Long id);
+
+    List<CartShopListDto> memberCartList(Long id);
 }

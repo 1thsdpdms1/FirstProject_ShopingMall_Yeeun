@@ -36,20 +36,16 @@ public class BoardService implements BoardServiceInterface {
 
     @Override // 파일을 고려한 매서드
     public void boardInsertFile(BoardDto boardDto) throws IOException {
-        System.out.println("if로 들어가지도 못함");
 
         if (boardDto.getBoardFile().isEmpty()) {
             //파일 없는 경우
-            System.out.println("if첫 시작");
             //dto->entity
             boardDto.setMemberEntity(MemberEntity.builder()
                     .id(boardDto.getMemberId())
                     .build());
             //board 에 맞는 memberId 정보를 가져와야하는데 boardDto에 가져올 방법이
             // 없어서 MemberEntity로 바꿔서 boardDto로 가져온다.
-            System.out.println("파일 없을때1");
             BoardEntity boardEntity = BoardEntity.toInsertBoardEntity0(boardDto);
-            System.out.println("파일 없을때2");
 
             boardRepository.save(boardEntity);
 
@@ -59,7 +55,6 @@ public class BoardService implements BoardServiceInterface {
             // 저장 경로(실제 경로) -> 파일 저장
             // 테이블 저장(게시글 ,파일)
             ////////////////////////////////////파일이 실제 경로에 저장//////////////////////////////
-            System.out.println("파일이 실제경로에 저장");
             MultipartFile boardFile = boardDto.getBoardFile();// 1. 파일을 가져온다. Dto
             // 이름 암호화 -> DB 저장, local에 저장 할 이름
             String oldFileName = boardFile.getOriginalFilename();// 원본파일 이름
@@ -78,7 +73,6 @@ public class BoardService implements BoardServiceInterface {
 
             ///////////////////////////////////파일이 DB에 저장///////////////////////////
             // 1. 게시글 ->
-            System.out.println("파일이 DB에 저장");
             boardDto.setMemberEntity(MemberEntity.builder()
                     .id(boardDto.getMemberId())
                     .build());
@@ -89,7 +83,6 @@ public class BoardService implements BoardServiceInterface {
             Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
             if (optionalBoardEntity.isPresent()) { // -> 게시글이 존재한다면
                 //게시글 0
-                System.out.println("게시글이 존재한다면");
                 BoardEntity boardEntity1 = optionalBoardEntity.get(); //Entity
 
                 //게시글이 저장되면 -> 파일을 Entity에 저장
@@ -114,7 +107,7 @@ public class BoardService implements BoardServiceInterface {
     @Override
     public List<BoardDto> boardList() {
 
-        List<BoardEntity> boardEntityList = boardRepository.findAll();
+        List<BoardEntity> boardEntityList = boardRepository.findByCategory();
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         boardDtoList = boardEntityList.stream()
@@ -148,11 +141,10 @@ public class BoardService implements BoardServiceInterface {
 
     @Override
     public Page<BoardDto> boardSearchPageList1_2(Pageable pageable, String subject, String search) {
-        BoardEntity boardEntity=new BoardEntity();
+//        BoardEntity boardEntity=new BoardEntity();
 
         Page<BoardEntity> boardEntityPage = null;
 
-//        if (boardEntity.getCategory().equals(1) || boardEntity.getCategory().equals(2)){
 
         if(subject==null || search==null){
             boardEntityPage = boardRepository.findByCategory1_2Contains(pageable);
@@ -165,7 +157,11 @@ public class BoardService implements BoardServiceInterface {
                 boardEntityPage= boardRepository.findByCategory1_2Contains(pageable);
             }
         }
-//        }
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
+
         Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
 
         return boardDtoPage;
@@ -188,16 +184,20 @@ public class BoardService implements BoardServiceInterface {
                 boardEntityPage= boardRepository.findByCategory3Contains(pageable);
             }
         }
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
         Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
 
         return boardDtoPage;
     }
 
+    //카테고리 4~7
     @Override
     public Page<BoardDto> boardSearchPageList4_7(Pageable pageable, String subject, String search) {
         BoardEntity boardEntity=new BoardEntity();
         Page<BoardEntity> boardEntityPage = null;
-
 
         if(subject==null || search==null){
             boardEntityPage = boardRepository.findByCategory4_7Contains(pageable);
@@ -210,10 +210,122 @@ public class BoardService implements BoardServiceInterface {
                 boardEntityPage= boardRepository.findByCategory4_7Contains(pageable);
             }
         }
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDetailDto);
 
         return boardDtoPage;
     }
+
+    //카테고리 4만
+    @Override
+    public Page<BoardDto> boardSearchPageList4(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
+        Page<BoardEntity> boardEntityPage = null;
+
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory4Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle4Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent4Contains(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findByCategory4Contains(pageable);
+            }
+        }
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDetailDto);
+
+        return boardDtoPage;
+    }//카테고리 4만
+
+    //카테고리 5만
+    @Override
+    public Page<BoardDto> boardSearchPageList5(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
+        Page<BoardEntity> boardEntityPage = null;
+
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory5Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle5Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent5Contains(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findByCategory5Contains(pageable);
+            }
+        }
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDetailDto);
+
+        return boardDtoPage;
+    }//카테고리 5만
+
+    //카테고리 6만
+    @Override
+    public Page<BoardDto> boardSearchPageList6(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
+        Page<BoardEntity> boardEntityPage = null;
+
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory6Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle6Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent6Contains(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findByCategory6Contains(pageable);
+            }
+        }
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDetailDto);
+
+        return boardDtoPage;
+    }//카테고리 6만
+
+    //카테고리 7만
+    @Override
+    public Page<BoardDto> boardSearchPageList7(Pageable pageable, String subject, String search) {
+        BoardEntity boardEntity=new BoardEntity();
+        Page<BoardEntity> boardEntityPage = null;
+
+
+        if(subject==null || search==null){
+            boardEntityPage = boardRepository.findByCategory7Contains(pageable);
+        }else {
+            if (subject.equals("boardTitle")){
+                boardEntityPage=boardRepository.findByBoardTitle7Contains(pageable,search);
+            } else if (subject.equals("boardContent")) {
+                boardEntityPage=boardRepository.findByBoardContent7Contains(pageable,search);
+            }else {
+                boardEntityPage= boardRepository.findByCategory7Contains(pageable);
+            }
+        }
+        for (BoardEntity boardEntity1 : boardEntityPage) {
+            int replyCount = boardRepository.replyCount(boardEntity1.getId());
+            boardEntity1.setReplyCount(replyCount);
+        }
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDetailDto);
+
+        return boardDtoPage;
+    }//카테고리 7만
 
 //    @Override//paging
 //    public Page<BoardDto> boardPageList(Pageable pageable) {
@@ -258,20 +370,16 @@ public class BoardService implements BoardServiceInterface {
         boardRepository.boardHitById(id);
     }
 
+    @Transactional
     @Override
     public void boardUpdate(BoardDto boardDto) throws IOException {
 
         //게시물 유무 체크
-        boardRepository.findById(boardDto.getId())
+        BoardEntity boardEntity =  boardRepository.findById(boardDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("수정할 게시글 없음"));
-        BoardEntity boardEntity;
 
-        System.out.println("여기는 오니?1");
         //파일체크
-        Optional<BoardFileEntity> optionalBoardFileEntity = boardFileRepository.findById(boardDto.getId());
-//        int boardDto1 = boardDto.getBoardAttachFile();
-//        Optional<BoardFileEntity> optionalBoardFileEntity = boardFileRepository.findById(boardDto.getBoardAttachFile());
-//        Optional<BoardEntity> optionalBoardEntity = board.findById(boardDto.getId());
+        Optional<BoardFileEntity> optionalBoardFileEntity = boardFileRepository.findByBoardEntityId(boardDto.getId());
 
 //        파일이 있으면 파일 기존 파일 삭제
         if (optionalBoardFileEntity.isPresent()) {
@@ -287,7 +395,6 @@ public class BoardService implements BoardServiceInterface {
             boardFileRepository.delete(optionalBoardFileEntity.get());//파일 테이블 레코드 삭제
         }
 //        //수정
-        System.out.println("여기는 오니?2");
         MemberEntity memberEntity = MemberEntity.builder()
                 .id(boardDto.getMemberId()).build();
         boardDto.setMemberEntity(memberEntity);
@@ -297,7 +404,6 @@ public class BoardService implements BoardServiceInterface {
             boardEntity = BoardEntity.toBoardUpdateEntity0(boardDto);
             boardRepository.save(boardEntity);
         } else {
-            System.out.println("여기는 오니?3");
             //파일있는경우
             MultipartFile boardFile = boardDto.getBoardFile();
             String fileOldName = boardFile.getOriginalFilename();
@@ -324,9 +430,6 @@ public class BoardService implements BoardServiceInterface {
         boardRepository.findById(boardDto.getId()).orElseThrow(() -> {
             throw new IllegalArgumentException("게시글 수정실패");
         });
-
-
-
 }
 
     @Transactional
@@ -340,8 +443,6 @@ public class BoardService implements BoardServiceInterface {
         System.out.println("삭제 불가능");
 
     }
-
-
 
 
 

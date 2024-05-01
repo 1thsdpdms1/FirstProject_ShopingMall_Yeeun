@@ -100,7 +100,7 @@
                         <tr th:each="shop:${shop}">
 
                             <td th:text="${shop.shopTitle}"></td>
-                            <td th:text="${shop.shopContent}"></td>
+                            <td th:text="${shop.shopContent}" class="long"></td>
                             <td th:text="${shop.shopPrice}"></td>
                             <td th:text="${shop.shopSeller}"></td>
                             <td><a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}">바로가기</a></td>

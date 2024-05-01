@@ -27,6 +27,14 @@
               <input type="text" id="shopTitle" th:field="*{shopTitle}">
             </li>
             <p th:if="${#fields.hasErrors('shopTitle')}" th:errors="*{shopTitle}" class="error"></p>
+            <li>
+              <label for="shopContent">CONTENT</label>
+            </li>
+            <li>
+              <textarea th:field="*{shopContent}" id="shopContent" cols="30" rows="10"></textarea>
+            </li>
+            <p th:if="${#fields.hasErrors('shopContent')}" th:errors="*{shopContent}" class="error"></p>
+            <li>
               <label for="ShopPrice">ShopPrice</label>
               <input type="text" id="ShopPrice" th:field="*{ShopPrice}">
             </li>
@@ -37,10 +45,10 @@
             </li>
             <p th:if="${#fields.hasErrors('Count')}" th:errors="*{Count}" class="error"></p>
             <li>
-                <label><input type="checkbox" name="category" id="미술" value="1">미술</label>
-                <label><input type="checkbox" name="category" id="체육" value="2">체육</label>
-                <label><input type="checkbox" name="category" id="음악" value="3">음악</label>
-                <label><input type="checkbox" name="category" id="요리" value="4">요리</label>
+              <label><input type="checkbox" name="category" id="미술" value="1">미술</label>
+              <label><input type="checkbox" name="category" id="체육" value="2">체육</label>
+              <label><input type="checkbox" name="category" id="음악" value="3">음악</label>
+              <label><input type="checkbox" name="category" id="요리" value="4">요리</label>
             </li>
             <li>
               <label for="ShopSeller">ShopSeller</label>

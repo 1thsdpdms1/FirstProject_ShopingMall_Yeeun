@@ -30,7 +30,7 @@ public class AdminController {
 
     //회원리스트
     @GetMapping("/memberList")
-    public String memberList(@PageableDefault(page = 0, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+    public String memberList(@PageableDefault(page = 0, size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                              Model model,
                              @RequestParam(name = "subject", required = false) String subject,
                              @RequestParam(name = "search", required = false) String search) {
@@ -57,7 +57,7 @@ public class AdminController {
 
     //선생님리스트
     @GetMapping("/sellerList")
-    public String sellerList(@PageableDefault(page = 0, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+    public String sellerList(@PageableDefault(page = 0, size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                              Model model,
                              @RequestParam(name = "subject", required = false) String subject,
                              @RequestParam(name = "search", required = false) String search) {
@@ -86,7 +86,7 @@ public class AdminController {
 
     //상품리스트
     @GetMapping("/shopList")
-    public String shopList(@PageableDefault(page = 0, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+    public String shopList(@PageableDefault(page = 0, size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                              Model model,
                              @RequestParam(name = "subject1", required = false) String subject1,
                            @RequestParam(name = "subject2", required = false) String subject2,

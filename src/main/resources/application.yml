@@ -14,7 +14,9 @@ spring:
     prefix: classpath:templates/
     suffix: .html
     cache: false
-
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   #jpa ??
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
@@ -38,3 +40,4 @@ logging:
     org.hibernate.type: trace
 
 filePath: file:///c:/e1i4_file/
+

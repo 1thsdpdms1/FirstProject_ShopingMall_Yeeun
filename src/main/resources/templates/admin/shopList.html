@@ -61,7 +61,7 @@
                 <tr th:each="shop:${shopList}">
                     <td th:text="${shop.id}"></td>
                     <td th:text="${shop.shopTitle}"></td>
-                    <td th:text="${shop.shopContent}"></td>
+                    <td th:text="${shop.shopContent}" class="ellipsis"></td>
                     <td th:text="${shop.shopPrice}"></td>
                     <td th:text="${shop.count}"></td>
                     <td>

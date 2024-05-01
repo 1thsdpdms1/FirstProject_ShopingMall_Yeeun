@@ -36,6 +36,8 @@ public class BoardDto {
 
     private MemberEntity memberEntity;
 
+    private int replyCount;
+
     private List<BoardFileEntity> boardFileEntityList;
 
     private List<BoardReplyEntity> boardReplyEntityList;
@@ -65,6 +67,7 @@ public class BoardDto {
         boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
         boardDto.setBoardReplyEntityList(boardEntity.getBoardReplyEntityList());
         boardDto.setMemberEntity(boardEntity.getMemberEntity());
+        boardDto.setReplyCount(boardEntity.getReplyCount());
         boardDto.setCreateTime(boardEntity.getCreateTime());
         boardDto.setUpdateTime(boardEntity.getUpdateTime());
 
@@ -90,6 +93,7 @@ BoardFileEntity boardFileEntity = new BoardFileEntity();
         boardDto.setCreateTime(boardEntity.getCreateTime());
         boardDto.setUpdateTime(boardEntity.getUpdateTime());
         boardDto.setMemberEntity(boardEntity.getMemberEntity());
+        boardDto.setReplyCount(boardEntity.getReplyCount());
         if(boardEntity.getBoardAttachFile()==0){
             //파일이 X
             boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
@@ -97,10 +101,8 @@ BoardFileEntity boardFileEntity = new BoardFileEntity();
         }else{
             // 파일이 있으면
             boardDto.setBoardAttachFile(boardEntity.getBoardAttachFile());
-
             // 새이름
             boardDto.setNewFileName(boardEntity.getBoardFileEntityList().get(0).getBoardNewFileName());
-
             //원래 이름
             boardDto.setOldFileName(boardEntity.getBoardFileEntityList().get(0).getBoardOldFileName());
 
