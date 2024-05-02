@@ -133,28 +133,6 @@ public class AdminService implements AdminServiceInterface {
     }
 
 
-    //    @Override
-//    public Page<ShopDto> shopList(Pageable pageable, String subject, String search) {
-//        Page<ShopEntity> shopEntityPage = null;
-//        int searchNumber;
-//        if (subject != null) {
-//            if (subject.equals("shopTitle")) {
-//                shopEntityPage = shopRepository.findByShopTitleContains(pageable, search);
-//            } else if (subject.equals("shopContent")) {
-//                shopEntityPage = shopRepository.findByShopContentContains(pageable, search);
-//            } else if (subject.equals("category")) {
-//                shopEntityPage = null;
-//
-//            } else {
-//                shopEntityPage = shopRepository.findAll(pageable);
-//            }
-//        } else {
-//            shopEntityPage = shopRepository.findAll(pageable);
-//        }
-//        Page<ShopDto> shopDtos = shopEntityPage.map(ShopDto::toselectShopDto);
-//
-//        return shopDtos;
-//    }
 
     //체크삭제
     @Transactional
