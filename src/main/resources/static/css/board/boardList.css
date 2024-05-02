@@ -10,108 +10,52 @@
      justify-content: space-between;
 
   }
-/*사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 사이드바 */
-/*.left {
-     flex: 0 0 200px;
- }
- .menu {
-   display: block;
-   width: 200px;
-   background-color: #949494;
-   color: #fff;
-   *//* border-radius: 20px; *//*
-   padding: 10px;
-   box-sizing: border-box;
-   overflow: hidden; *//* 반응형 애니메이션용 *//*
-   transition: all 0.5s ease; *//* 반응형 애니메이션 *//*
- }
- .menu ul {
-   list-style: none;
-   margin: 0;
-   padding: 0;
- }
-
-
- .menu ul li {
-   display: flex; *//* 아이콘과 텍스트를 가로로 나열 *//*
-   align-items: center; *//* 세로 가운데 정렬 *//*
-   margin-bottom: 10px; *//* 각 아이템 사이의 간격 설정 *//*
-   font-size: 20px;
- }
-
- .menu a, .menu > label {
-   padding: 8px;
-   color: #fff;
-   font-size: 20px;
-
- }
-
- .menu ul li a{
-   display: block;
-   line-height: 60px;
- }
-
- .menu ul li img{
-   width: 30px;
-   height: 30px;
-   padding: 15px 10px;
-
- }
- .menu a:hover {
-   color: #000;
- }
-
-*//*메뉴 li에 마우스 호버시*//*
- .menu ul li:hover{
-   background-color: #fff;
-   color: #000;
-   border-radius: 10px;
- }
-
-*//*drop css*//*
- .submenu{
-    height:0; *//*submenu 안보이게*//*
-    overflow:hidden;
- }
-
- .submenu >li{
-    background-color:#94a9ff;
- }
-
- .submenu >li:hover{
- *//* menu부터 submenu01~5높이 생각해서 설정 *//*
-    height:300px;
-    transition-duration:0.5s;
- }
-
- .menu > li:hover .submenu{
- height: 300px; *//*submenu li 한 개 높이 (내가 계산하기)*//*
- transition-duration: 1s;
- }*/
 
  .left{
- width:300px;
+  width: 250px;
  height:100vh;
- background-color:#9debee;
+ background-color: #ffffff;
+ color: #000000;
  }
 
  .menu {
-   width: 300px;
+    width: 250px;
    overflow: hidden;
+   padding: 10px;
+   padding-top: 80px;
+   box-sizing: border-box;
+   box-shadow: 5px 20px 5px rgb(68 67 67 / 34%);
    /*position: fixed;*/
    /* margin: 150px auto; */
  }
 
- .menu > li {
+
+ .menu li {
    width: 100%;
    text-align: center;
    line-height: 50px;
-   background-color: #9debee;
+   background-color: #ffffff;
+   color: #000000;
  }
 
- .menu a {
-   color: #fff;
- }
+ .menu li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
+}
+
+ .menu a, .menu > label {
+  padding: 8px;
+  color: #000000;
+  font-size: 20px;
+
+}
+
+.menu a:hover {
+  opacity: 1;
+  transition : 1s;
+  border-bottom: 1px solid black;
+}
 
 .submenu {
   height: 0; /* submenu가 안보이게 하기 위해 */
@@ -119,7 +63,8 @@
 }
 .submenu > li {
   /* line-height: 50px; */
-  background-color: #94a9ff;
+  background-color: #8d8c8c;
+
 }
 
 /*.menu > li:hover {

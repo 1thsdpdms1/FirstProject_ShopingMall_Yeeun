@@ -259,18 +259,109 @@
     font-size:20px;
     color:#000;
 }
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con1 {
+/* .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con1 {
     background: url(/images/sec1_bg1.jpg) no-repeat 50%;
     background-size: cover;
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 {
-    background: url(/images/sec1_bg2.jpg) no-repeat 50%;
-    background-size: cover;
+} */
+
+
+
+/* .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 {
+  background: url(/images/sec1_bg2.jpg) no-repeat 50%;
+  background-size: cover;
 }
 .index .index-con .sections .section.sec3 .con .bottom-con .left-con div img{
-    width:100%;
-    display:block;
+  width:100%;
+  display:block;
+} */
+
+/* .index .index-con .sections .section.sec3 .con .bottom{
+  position: relative;
 }
+
+.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper{
+
+  position: absolute;
+    width: calc(100vw - 10px);
+    height: calc(13.857142857142858rem* 2 + 16px);
+    left: calc((-100vw + 5.714285714285714rem) / 2 + 50%);
+    overflow: hidden;
+}
+
+.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list{
+
+}
+
+
+.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products{
+
+  animation: leftMoveLoop 90s infinite linear;
+}
+@keyframes leftMoveLoop {
+  
+  0% {
+    transform: translateX(0); 
+  }
+  100% {
+    transform: translateX(-100%); 
+  }
+}
+.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products ..index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products{
+  display: flex;
+  width: auto;
+}
+.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products ..index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products .item{
+  width: 13.857142857142858rem;
+    height: 13.857142857142858rem;
+    border-radius: 4.285714285714286rem;
+    margin: 0 .5714285714285714rem;
+    overflow: hidden;
+}
+ */
+
+.bottom-wrapper-list-products {
+  margin-top: 20px;
+  overflow: hidden; /* 넘치는 부분을 숨김 */
+}
+
+.bottom-wrapper-list-products-items {
+  display: flex;
+  animation: leftMoveLoop 1500s  infinite linear; /* 애니메이션 무한 반복 설정 */
+  width: calc(320px*1000); 
+}
+
+.bottom-wrapper-list-products-items .item {
+
+  width: 300px;
+  height: 300px;
+
+  margin: 0 10px; /* 여백을 좌우로만 지정합니다 */
+  animation-delay: -260s;
+}
+.bottom-wrapper-list-products-items .item a img{
+width : 300px;
+height :300px;
+border-radius: 4.285714285714286rem;
+text-align : center;
+line-height : 300px;
+}
+
+@keyframes leftMoveLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+
+  
+}
+
+
+
+
+
+
 
 
 

@@ -64,22 +64,36 @@
                             <span class="left"><img th:src="@{/images/left.svg}" alt=""></span>
                             <span class="right"><img th:src="@{/images/right.svg}" alt=""></span>
                         </div>
-                        <div class="bottom-con">
-                            <div class="left-con">
-                                <div class="con1 on">
-                                    <!--                                    <div class="con1-left">-->
-                                    <!--                                            <label th:text="${boardDtoList.boardTitle}"></label>-->
-                                    <!--                                            <label th:text="${boardDtoList.boardContent}"></label>-->
-                                    <!--                                            <label th:text="${boardDtoList.newFileName}"></label>-->
-                                    <!--                                    </div>-->
 
+                        <div class="bottom">
+                            <div class="bottom-wrapper">
+                                <div class="bottom-wrapper-list">
+                                    <div class="bottom-wrapper-list-products">
+                                        <div class="bottom-wrapper-list-products-items">
+                                            <!-- 원본 항목 템플릿 -->
+                                            <div class="item"><a th:href="@{/#}"><img th:src="@{/images/auto1.jpg}" alt="item"></a></div>
+                                            <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}" alt="item"></a></div>
+                                            <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}" alt="item"></a></div>
+                                            <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}" alt="item"></a></div>
+                                            <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}" alt="item"></a></div>
+                                        </div>
+                                        <!-- 항목을 복제하기 위한 JavaScript -->
+                                        <script>
+                                            // 아이템 요소를 복제하여 추가합니다.
+                                            const itemsContainer = document.querySelector('.bottom-wrapper-list-products-items');
+                                            const itemTemplates = itemsContainer.querySelectorAll('.item');
+                                            for (let j = 0; j < 1000; j++) { // 각 항목을 다섯 번씩 반복
+                                                itemTemplates.forEach(itemTemplate => {
+                                                    const newItem = itemTemplate.cloneNode(true);
+                                                    itemsContainer.appendChild(newItem);
+                                                });
+                                            }
+                                        </script>
+                                    </div>
                                 </div>
-
-                                <div class="con2 off">con2</div>
                             </div>
-                            <!-- <div class="center-con">center</div>-->
-                            <!--<div class="right-con">right</div>-->
                         </div>
+
                     </div>
                 </div>
             </div>

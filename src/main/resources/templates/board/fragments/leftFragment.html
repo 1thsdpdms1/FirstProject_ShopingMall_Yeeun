@@ -4,6 +4,9 @@
 <div class="left" th:fragment="leftFragment">
     <div class="menu">
 <!--        <label>-->
+    <label>메뉴</label>
+    
+
 <!--            <ul>-->
                 <li>
                     <img th:src="@{/images/sidecommunity.png}" alt="icon"><a th:href="@{/board/boardList}">커뮤니티</a>
@@ -20,12 +23,15 @@
 
                 <li>
                     <img th:src="@{/images/sidereview.png}" alt="icon"><a th:href="@{/board/reviewBoardList}">수강후기</a>
+
                     <ul class="submenu">
                         <li>
                             <img th:src="@{/images/sideart.png}" alt="icon"><a
                                 th:href="@{/board/reviewBoardList4}">미술</a>
                         </li>
+                        <li>
                         <img th:src="@{/images/sidesport.png}" alt="icon"><a th:href="@{/board/reviewBoardList5}">체육</a>
+                        </li>
                         <li>
                             <img th:src="@{/images/sidemusic.png}" alt="icon"><a
                                 th:href="@{/board/reviewBoardList6}">음악</a>
