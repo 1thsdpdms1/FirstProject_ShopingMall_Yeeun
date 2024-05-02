@@ -72,7 +72,7 @@ public class ReplyController {
     public String boardReplyDelete(@PathVariable("id") Long id) {
         Long boardId = boardReplyService.boardReplyDeleteById(id);
 
-        return "redirect:/board/reviewBoardDetail/" + boardId;
+        return "redirect:/board/boardDetail/" + boardId;
     }
 
 

@@ -546,12 +546,6 @@ public class BoardController {
         return "redirect:/board/reviewBoardList";
     }
 
-    @GetMapping("/writeLink")
-    public String writeLink() {
-
-        return "board/writeLink";
-    }
-
 }
 
 

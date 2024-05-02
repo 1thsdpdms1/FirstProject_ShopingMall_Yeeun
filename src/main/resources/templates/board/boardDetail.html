@@ -27,8 +27,8 @@
                             </li>
                             <li>
                                 <label>카테고리</label>
-                                <input type="text" value="자유게시판" th:if="${board.category eq 1}" readonly></input>
-                                <input type="text" value="질문게시판" th:if="${board.category eq 2}" readonly></input>
+                                <input type="text" value="자유게시판" th:if="${board.category eq 1}" readonly>
+                                <input type="text" value="질문게시판" th:if="${board.category eq 2}" readonly>
                             </li>
 
                             <li>
@@ -148,7 +148,7 @@
                             <h1>
                                 댓글을 작성하려면 로그인하세요!
                                 <a th:href="@{/member/memberLogin}">
-                                    <img th:src="@{/images/btn_write}" alt="로그인"></a>
+                                    <img th:src="@{/images/user.png}" alt="로그인"></a>
                             </h1>
 
                         </th:block>
@@ -168,7 +168,6 @@
                             <tbody class="tData">
 
                             <tr th:each="boardReply:${boardReplyList}">
-                                <!--&lt;!&ndash;reply.getBoardEntity.getId() &ndash;&gt;-->
                                 <td th:text="${boardReply.boardEntity.id}"></td>
                                 <td th:text="${boardReply.id}"></td>
                                 <td th:text="${boardReply.boardReplyContent}"></td>
