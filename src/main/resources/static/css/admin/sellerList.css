@@ -1,90 +1,18 @@
 @import url(/css/common/reset.css);
 @import url(/css/common/footer.css);
 @import url(/css/common/header.css);
-
-/* 페이징 */
-
-.paging {
-  width: 100%;
-  padding: 10px 0;
-  box-sizing: border-box;
-  background-color: #ebf9f8;
-  display: flex;
-  justify-content: center;
-}
-
-.paging>ul {
-  flex-basis: 400px;
-  background-color: #cee76b;
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.paging>ul>li {
-  /* flex:1;*/
-  background-color: #58cc00;
-
-}
-
-.paging>ul>li.block {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-}
-
-.paging>ul>li.block a {
-  color: #ffffff;
-  font-weight: bold;
-  background-color: #000000;
-  padding: 0 10px;
-  display: block;
-}
-
-.paging>ul>li span {
+@import url(/css/common/paging.css);
+@import url(/css/common/sideBar.css);
 
 
-  font-size: 12px;
-}
-
-.paging>ul>li a {
-
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.paging>ul>li span.span0 {
-  background-color: #000000;
-  color: #cccccc;
-  padding: 2px 10px;
-  border-radius: 5px;
-}
-
-.paging>ul>li span a.span1 {
-  padding: 2px 10px;
-  background-color: #ff0000;
-  color: #ffffff;
-}
-
-span.now {
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 10px;
-  background-color: #0000ff;
-  padding: 0 10px;
-  position: relative;
-  cursor: pointer;
-}
 
 /* 검색 css */
 .container {
   width: 100%;
+  height: calc(100vh - 200px - 350px);
   display: flex;
   justify-content: center;
+
   /* padding: 20px; */
 
 }
@@ -98,10 +26,17 @@ span.now {
 
 .container .sellerList .sellerList-con{
   width: 100%;
-
  /* justify-content: center;*/
  line-height: 2;
+ padding-left: 20px;
+ padding-top : 50px;
+}
 
+.container .sellerList .sellerList-con button.delete{
+  background: #000000;
+  padding: 5px;
+  color: white;
+  border: 1px solid #ffffff;
 }
 
 .container .sellerList h1{
@@ -145,56 +80,10 @@ table td{
   padding: 5px;
 }
 
-/* 사이드바css */
-.menu {
-  display: block;
-  width: 200px;
-  background-color: #949494;
-  color: #fff;
-  /* border-radius: 20px; */
-  padding: 10px;
-  box-sizing: border-box;
-  overflow: hidden; /* 반응형 애니메이션용 */
-  transition: all 0.5s ease; /* 반응형 애니메이션 */
-}
-.menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/*  */
-.menu ul li {
-  display: flex; /* 아이콘과 텍스트를 가로로 나열 */
-  align-items: center; /* 세로 가운데 정렬 */
-  margin-bottom: 10px; /* 각 아이템 사이의 간격 설정 */
-  font-size: 20px;
-}
-
-.menu a, .menu > label {
-  padding: 8px;
-  color: #fff;
-  font-size: 20px;
-
-}
-
-.menu ul li a{
-  display: block;
-  line-height: 60px;
-}
-
-.menu ul li img{
-  width: 30px;
-  height: 30px;
-  padding: 15px 10px;
-
-}
-.menu a:hover {
-  color: #000;
-}
-.menu ul li:hover{
-  background-color: #fff;
-  color: #000;
-  border-radius: 10px;
+table td.ellipsis {
+  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 함 */
+      overflow: hidden; /* 요소의 내용이 넘칠 때 숨김 */
+      text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 추가 */
+      max-width: 200px; /* 요소의 최대 너비 지정 */
 }
 

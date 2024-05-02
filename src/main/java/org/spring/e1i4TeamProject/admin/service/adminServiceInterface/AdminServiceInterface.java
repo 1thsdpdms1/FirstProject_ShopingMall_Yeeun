@@ -5,6 +5,8 @@ import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface AdminServiceInterface {
 
     Page<MemberDto> memberList(Pageable pageable, String subject, String search);
@@ -16,4 +18,12 @@ public interface AdminServiceInterface {
 
 
     int sellerListDelete(Long id);
+
+
+
+    void deleteMembers(List<Long> id);
+
+    void deleteSeller(List<Long> ids);
+
+    Page<ShopDto> shopList(Pageable pageable, String subject1, String subject2, String search);
 }

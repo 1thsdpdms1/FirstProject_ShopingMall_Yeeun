@@ -10,30 +10,67 @@ justify-content: center;
 
 .container .container-box{
   width: 1300px;
-  /* display: flex; */
-  
-
+  display: flex;
+  padding: 50px;
+  box-sizing: border-box;
 }
 
+.container .container-box h1{
+  text-align: center;
+  background-color: #000000;
+  color: white;
+  padding: 10px;
+}
+.container-box .sellerList .sellerList-con .grid{
+  width: 100%;
+  border:1px solid #cccccc;
+  padding:10px;
+  box-sizing:border-box;
+}
 
-.container .container-box .sellerList .sellerList-con .grid{
+.container-box .sellerList .sellerList-con .grid ul{
+  display:grid;
   grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(2,500px);
+  grid-auto-rows: 500px; 
+}
 
+.grid .top img {
+  width: 300px; 
+  height: 400px; 
+  object-fit: cover; 
+  transition: transform 0.5s ease;
+}
 
+.grid .top:hover img {
+  transform: scale(1.1);
 }
 
 
-/* 사이드바 */
+.container-box .sellerList .sellerList-con .grid .bottom ul{
+  display: block;
+  background-color: #f8f8f8; 
+  font-size: 15px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.container-box .sellerList .sellerList-con .grid .bottom ul li{
+
+} 
+
+
+/* 사이드바css */
 .menu {
   display: block;
-  width: 200px;
-  background-color: #949494;
-  color: #fff;
+  width: 250px;
+  background-color: #ffffff;
+  color: #000000;
   /* border-radius: 20px; */
   padding: 10px;
   box-sizing: border-box;
-  overflow: hidden; /* 반응형 애니메이션용 */
-  transition: all 0.5s ease; /* 반응형 애니메이션 */
+  box-shadow: 10px 10px 5px rgba(68, 67, 67, 0.459);
+
 }
 .menu ul {
   list-style: none;
@@ -41,7 +78,6 @@ justify-content: center;
   padding: 0;
 }
 
-/*  */
 .menu ul li {
   display: flex; /* 아이콘과 텍스트를 가로로 나열 */
   align-items: center; /* 세로 가운데 정렬 */
@@ -51,7 +87,7 @@ justify-content: center;
 
 .menu a, .menu > label {
   padding: 8px;
-  color: #fff;
+  color: #000000;
   font-size: 20px;
 
 }
@@ -61,6 +97,10 @@ justify-content: center;
   line-height: 60px;
 }
 
+.menu ul li a.under{
+  border-bottom: 1px solid black;
+}
+
 .menu ul li img{
   width: 30px;
   height: 30px;
@@ -68,10 +108,7 @@ justify-content: center;
 
 }
 .menu a:hover {
-  color: #000;
-}
-.menu ul li:hover{
-  background-color: #fff;
-  color: #000;
-  border-radius: 10px;
+  opacity: 1;
+  transition : 1s;
+  border-bottom: 1px solid black;
 }
