@@ -3,7 +3,6 @@ package org.spring.e1i4TeamProject.board.dto;
 import lombok.*;
 import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.board.entity.BoardReplyEntity;
-
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -21,7 +20,6 @@ public class BoardReplyDto {
 
     private Long boardId;
 
-
     private BoardEntity boardEntity;
 
     private LocalDateTime createTime;
@@ -38,11 +36,11 @@ public class BoardReplyDto {
         boardReplyDto.setBoardReplyWriter(boardReplyEntity.getBoardReplyWriter());
         boardReplyDto.setBoardReplyContent(boardReplyEntity.getBoardReplyContent());
         boardReplyDto.setBoardEntity(boardReplyEntity.getBoardEntity());
+        boardReplyDto.setBoardReplyWriter(boardReplyEntity.getBoardReplyWriter());
         boardReplyDto.setCreateTime(boardReplyEntity.getCreateTime());
         boardReplyDto.setUpdateTime(boardReplyEntity.getUpdateTime());
 
         return boardReplyDto;
-
-
     }
+
 }

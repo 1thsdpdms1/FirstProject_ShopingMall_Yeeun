@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "board_reply")
 public class BoardReplyEntity extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_reply_id")
@@ -38,10 +39,21 @@ public class BoardReplyEntity extends BaseTimeEntity {
         boardReplyEntity.setBoardReplyContent(boardReplyDto.getBoardReplyContent());
         boardReplyEntity.setBoardReplyWriter(boardReplyDto.getBoardReplyWriter());
 
-
         return boardReplyEntity;
 
+    }
 
+    //dto -> entity  심지섭꺼
+    public static BoardReplyEntity toInsertBoardReplyEntity(BoardReplyDto boardReplyDto) {
+        BoardReplyEntity boardReplyEntity=new BoardReplyEntity();
+        BoardEntity boardEntity = new BoardEntity();
+
+//        boardReplyEntity.boardEntity.setId(boardReplyDto.getBoardEntity().getId()); // 해당 글
+        boardReplyEntity.setBoardEntity(boardReplyDto.getBoardEntity());
+        boardReplyEntity.setBoardReplyWriter(boardReplyDto.getBoardReplyWriter());
+        boardReplyEntity.setBoardReplyContent(boardReplyDto.getBoardReplyContent());
+
+        return boardReplyEntity;
 
     }
 }

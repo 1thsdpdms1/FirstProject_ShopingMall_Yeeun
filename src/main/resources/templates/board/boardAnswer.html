@@ -14,10 +14,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 
         <!--관리자 매니저만 문의작성보이게하기  -->
         <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
-
-
-
-
             <form th:action="@{/reply/replyWrite}" method="POST">
 
                 <input type="hidden" name="boardId" th:value="${board.id}" readonly>
@@ -25,8 +21,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
                 <input type="text" name="boardReplyContent" placeholder="문의답변">
                 <input type="hidden" name="category" id="category" value="9">
                 <input type="submit">
-
-
             </form>
            </th:block>
 

@@ -19,12 +19,12 @@ public class CartShopListEntity extends BaseTimeEntity {
     @Column(name = "cart_shop_list_id")
     private Long id;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private CartEntity cartEntity;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id")
     private ShopEntity shopEntity;

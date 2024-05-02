@@ -1,0 +1,77 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+
+.container {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.container .container-box{
+  width: 1300px;
+  /* display: flex; */
+  
+
+}
+
+
+.container .container-box .sellerList .sellerList-con .grid{
+  grid-template-columns: repeat(4,1fr);
+
+
+}
+
+
+/* 사이드바 */
+.menu {
+  display: block;
+  width: 200px;
+  background-color: #949494;
+  color: #fff;
+  /* border-radius: 20px; */
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden; /* 반응형 애니메이션용 */
+  transition: all 0.5s ease; /* 반응형 애니메이션 */
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*  */
+.menu ul li {
+  display: flex; /* 아이콘과 텍스트를 가로로 나열 */
+  align-items: center; /* 세로 가운데 정렬 */
+  margin-bottom: 10px; /* 각 아이템 사이의 간격 설정 */
+  font-size: 20px;
+}
+
+.menu a, .menu > label {
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
+
+}
+
+.menu ul li a{
+  display: block;
+  line-height: 60px;
+}
+
+.menu ul li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
+
+}
+.menu a:hover {
+  color: #000;
+}
+.menu ul li:hover{
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+}

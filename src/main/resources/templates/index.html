@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="UTF-8">
     <title>index</title>
-
     <script th:src="@{/js/index.js}" defer></script>
     <script th:src="@{/js/AutoGallery.js}" defer></script>
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+    <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+    <script th:src="@{/js/chatBot.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
     <link rel="stylesheet" th:href="@{/css/index.css}">
+
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+
 <div class="container">
     <div class="index">
         <div class="index-con">
@@ -64,7 +69,15 @@
                         </div>
                         <div class="bottom-con">
                             <div class="left-con">
-                                <div class="con1 on">con1</div>
+                                <div class="con1 on">
+<!--                                    <div class="con1-left">-->
+<!--                                            <label th:text="${boardDtoList.boardTitle}"></label>-->
+<!--                                            <label th:text="${boardDtoList.boardContent}"></label>-->
+<!--                                            <label th:text="${boardDtoList.newFileName}"></label>-->
+<!--                                    </div>-->
+
+                                </div>
+
                                 <div class="con2 off">con2</div>
                             </div>
                             <!-- <div class="center-con">center</div>-->
@@ -78,8 +91,35 @@
             </div>
         </div>
     </div>
+
 </div>
 <div th:replace="~{/fragments/common/footer :: footerFragment}">
+</div>
+<div class="chat">
+    <div id="chat-bot">
+        <div class="wrap">
+            <button type="button" id="btn-chat-open"  onclick="openChat()">
+                <img th:src="@{/images/bot.png}" alt="버튼">
+            </button>
+            <dl id="chat-disp">
+                <dt id="chat-header">
+                    <span>챗봇_Sample</span>
+                    <span class="btn-wrap">
+				<button type="button" id="btn-chat-close" onclick="disconnect()">X</button>
+			</span>
+                </dt>
+                <dd id="chat-content">
+
+                </dd>
+                <dd id="chat-question" class="flex between">
+                    <span class="flex column center"><i></i></span>
+                    <input type="text" id="question"  placeholder="질문을 입력하세요">
+                    <button type="button" id="btn-msg-send" onclick="msgSendClickFn()">전송</button>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

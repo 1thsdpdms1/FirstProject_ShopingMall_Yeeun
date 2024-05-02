@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CartShopListDto {
+
     private Long id;
 
     private CartEntity cartEntity;

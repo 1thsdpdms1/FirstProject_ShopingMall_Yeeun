@@ -9,108 +9,65 @@
 </head>
 
 <body>
-    <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
-    <div class="inquiry">
-        <div class="inquiry-con">
-            <div class="left">
-                <div class="left-con">
-                    <div class="writeForm">
-                        <form action="/board/inquiry/write" method="POST">
-                            <input type="text" name="boardWriter" id="boardWriter" placeholder="작성자" />
-                            <!-- 추가된 부분 -->
-                            <input type="text" name="boardTitle" id="boardTitle" placeholder="문의제목을 입력해주세요" />
-                            <textarea name="boardContent" id="boardContent" placeholder="문의내용을 입력해주세요"></textarea>
-                            <input type="hidden" name="category" id="category" value="8" />
-                            <!-- 추가된 부분 -->
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="inquiry">
+    <div class="inquiry-con">
+        <div class="left">
+            <div class="left-con">
+                <div class="writeForm">
+                    <form action="/board/inquiry/write" method="POST">
+                        <input type="text" name="boardWriter" id="boardWriter" placeholder="작성자" />
+                        <!-- 추가된 부분 -->
+                        <input type="text" name="boardTitle" id="boardTitle" placeholder="문의제목을 입력해주세요" />
+                        <textarea name="boardContent" id="boardContent" placeholder="문의내용을 입력해주세요"></textarea>
+                        <input type="hidden" name="category" id="category" value="8" />
+                        <!-- 추가된 부분 -->
 
-                            <button type="submit" onclick="ajaxInquiry(event)">작성</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="right">
-                <div class="right-con">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>제목</th>
-                                <th>문의내용</th>
-                                <th>작성자</th>
-                                <th>문의답변</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="inquiry : ${boardList}">
-                                <td th:text="${inquiry.boardTitle}"></td>
-                                <td th:text="${inquiry.boardContent}"></td>
-                                <td th:text="${inquiry.boardWriter}">작성자</td>
-                                <td>
-                                    <a th:href="@{/board/boardAnswer(id=${inquiry.id})}" class="inquiry-answer">문의답변</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="10">
-                                    <div class="paging">
-                                        <!--                                <ul>-->
-                                        <!--                                    <li>-->
-                                        <!--                                        <span th:if="${boardDtoList.pageable.pageNumber+1 eq 1}" class="span0">START</span>-->
-                                        <!--                                        <span th:unless="${boardDtoList.pageable.pageNumber+1 eq 1}">-->
-                                        <!--                                            <a th:href="@{/board/boardInquiry(page=0)}" class="span1">처음</a>-->
-                                        <!--                                        </span>-->
-                                        <!--                                    </li>-->
-
-                                        <!--                                    <li>-->
-                                        <!--                                        <span th:if="${1==boardDtoList.pageable.pageNumber+1}" class="span0">이전</span>-->
-                                        <!--                                        <span th:unless="{1=boardDtoList,pageable.pageNumber+1}">-->
-                                        <!--                                            <a th:href="@{/board/boardInquiry(page=${boardDtoList.pageable.pageNumber-1})}" class="span1">이전</a>-->
-                                        <!--                                        </span>-->
-                                        <!--                                    </li>-->
-
-                                        <!--                                    <li th:each="i:${numbers.sequence(startPage,endPage)}" class="block">-->
-                                        <!--                                        <span th:if="${i==boardDtoList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>-->
-                                        <!--                                        <a th:unless="${i==boardDtoList.pageable.pageNumber+1}"-->
-                                        <!--                                        th:href="@{/board/boardInquiry(page=${i-1})}" th:text="${i}"></a>-->
-                                        <!--                                    </li>-->
-
-                                        <!--                                    <li>-->
-                                        <!--                                        <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0"></span>-->
-                                        <!--                                        <span th:unless="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}"></span>-->
-                                        <!--                                        <a th:href="@{/board/boardInquiry(page=${boardDtoList.pageable.pageNumber+1})}" class="span1">다음</a>-->
-                                        <!--                                        </li>-->
-
-                                        <!--                                    <li>-->
-                                        <!--                                        <span th:if="${boardDtoList.totalPages==boardDtoList.pageable.pageNumber+1}" class="span0">END</span>-->
-                                        <!--                                        <span th:unless="@{/board/boardInquiry(page=${boardDtoList.totalPages-1})}"class="span1">마지막</span>-->
-                                        <!--                                    </li>-->
-
-                                        <!--                                </ul>-->
-                                    </div>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                        <button type="submit" onclick="ajaxInquiry(event)">작성</button>
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="right">
+            <div class="right-con">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>제목</th>
+                        <th>문의내용</th>
+                        <th>작성자</th>
+                        <th>문의답변</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="inquiry : ${boardList}">
+                        <td th:text="${inquiry.boardTitle}"></td>
+                        <td th:text="${inquiry.boardContent}"></td>
+                        <td th:text="${inquiry.boardWriter}">작성자</td>
+
+                        <th:block sec:authorize="isAuthenticated()">
+
+                                <td>
+                                    <a th:href="@{/board/boardAnswer(id=${inquiry.id})}">문의 답변</a>
+                                </td>
+                            </th:block>
+
+<!--                        <td>-->
+<!--                            <a th:href="@{/board/boardAnswer(id=${inquiry.id})}" th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''MANAGER'')')}">문의답변</a>-->
+<!--                        </td>-->
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
     </div>
+</div>
 
-    <!-- 여기에 1:1문의내역 표시-->
-    <!--<div class="reply">-->
-    <!--    <div class="reply-con">-->
-    <!--        <h1 class="title">댓글작성</h1>-->
-    <!--        <form th:action="@{/reply/replyWrite}" method="POST">-->
-    <!--            &lt;!&ndash; <input type="hidden" name="inquiryId" th:value="${inquiry.id}">&ndash;&gt;-->
-    <!--            <input type="text" name="replyContent" placeholder="문의답변내용">-->
-    <!--            <input type="text" name="replyWriter" placeholder="작성자">-->
-    <!--            <input type="submit" value="댓글작성 ">-->
 
-    <!--        </form>-->
-    <!--    </div>-->
-    <!--</div>-->
 
-    <div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 </body>
 
 </html>

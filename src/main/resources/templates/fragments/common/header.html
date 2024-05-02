@@ -14,11 +14,9 @@
                             <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
                         </th:block>
                         <li><a th:href="@{/shop/cartList}">장바구니</a></li>
-                        <li><a href="#">고객센터</a></li>
 
 
                         <th:block sec:authorize="isAuthenticated()">
-                            <li><a th:href="@{/board/write}">WRITE</a></li>
 
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
@@ -29,11 +27,11 @@
                                 </th:block>
                             </li>
                             <li>
-                                <a th:href="@{member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                <a th:href="@{/member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
                                    th:text="${#authentication.principal.username}"></a>
                             </li>
                             <th:block sec:authorize="hasAnyRole('ADMIN')">
-                                <li><a th:href="@{/admin/index}">ADMIN</a></li>
+                                <li><a th:href="@{/admin/memberList}">ADMIN</a></li>
                             </th:block>
                             <th:block sec:authorize="hasAnyRole('MANAGER')">
                                 <li>MANAGER</li>
@@ -62,7 +60,7 @@
                         <a href="#">SHOP</a>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a th:href="@{/board/boardList}">BOARD</a>
                     </li>
                     <li>
                         <a href="#">SELLER</a>
@@ -86,11 +84,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a th:href="@{/board/boardList}">BOARD</a>
                         <ul class="sub">
-                            <li><a href="#">커뮤니티</a></li>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">수강후기</a></li>
+                            <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
+                            <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
+                            <li><a th:href="@{/board/reviewBoardList}">수강후기</a></li>
                         </ul>
                     </li>
                     <li>
@@ -105,16 +103,24 @@
                     <li>
                         <a href="#">MY HOME</a>
                         <ul class="sub">
-                            <li><a href="#">시간표</a></li>
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
+
                                     <a th:href="@{member/memberDetail/{id}
                                     (id=${#authentication.principal.memberEntity.id} )}">개인정보</a>
                                 </li>
+                                <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+                                    <li><a th:href="@{/board/boardInquiry/category/{category}
+                                    (category=8)}">1:1문의내역</a></li>
+                                </th:block>
 
-                            <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
+                                <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                    <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
                                     (id=${#authentication.principal.memberEntity.id} , category=8 )}">1:1문의내역</a></li>
+                                </th:block>
+
                             </th:block>
+
 
                         </ul>
                     </li>

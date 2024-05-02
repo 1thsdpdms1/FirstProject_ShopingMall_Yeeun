@@ -21,7 +21,8 @@ $(document).ready(function () {
 function loadBoardList() {
   $.ajax({
     type: 'GET',
-    url: '/boardList', // 글 목록을 가져오는 컨트롤러의 URL
+   url: '/boardList',
+    /*url: '/boardInquiry/category/{category}', // 글 목록을 가져오는 컨트롤러의 URL*/
     success: function (data) {
       $('#boardList').html(data); // 가져온 데이터를 목록 영역에 삽입
     }
@@ -70,14 +71,14 @@ function ajaxInquiry(event) {
               `;
 
       $('tbody').append(html);
-      ajaxDataListFn();
+//      ajaxDataListFn();
     }
   });
 }
 
 
 //let ajaxDataList=new Object();
-
+/*
 function ajaxDataListFn() {
   $.ajax({
         type: 'GET',
@@ -96,57 +97,11 @@ function ajaxDataListFn() {
                                     </tr>
                                   `;
               $('tbody').html(htmlTag);
+            });
+           }
+          });
+       }*/
 
-//              let span1 = ``;
-//              if (data.inquiryList.pageable.pageNumber + 1 == 1) {
-//                span1 = `<span class="span0">START</span>`
-//              } else {
-//                span1 = ` <a th:href="@{/board/boardInquiry(page=0)}" class="span1">처음</a>`
-//              }
-//
-//              let span2 = ``;
-//              if (1 == data.inquiryList.pageable.pageNumber + 1) {
-//                span2 = `<span class="span0">이전</span>`
-//              } else {
-//                span2 = `  <a href="/board/boardInquiry/${data.inquiryList.pageable.pageNumber-1}" class="span1">이전</a> `
-//              }
-//              let span3 = ``;
-//              if (data.inquiryList.totalPages == data.inquiryList.pageable.pageNumber + 1) {
-//                span3 = `<span class="span0">다음</span>`
-//              } else {
-//                span3 = `  <a href="/board/boardInquiry/${data.inquiryList.pageable.pageNumber+1}" class="span1">다음</a> `
-//              }
-//              let span4 = ``;
-//              if (data.inquiryList.totalPages == data.inquiryList.pageable.pageNumber + 1) {
-//                span4 = `<span class="span0">END</span>`
-//              } else {
-//                span4 = `  <a href="/board/boardInquiry/${data.inquiryList.totalPages-1}"class="span1">마지막</span> `
-//              }
-//              let paging = `
-//               <ul>
-//                                              <li>
-//                                                  ${span1}
-//                                              </li>
-//
-//                                              <li>
-//                                                  ${span2}
-//                                              </li>
-//                                              <li>
-//                                                ${span3}
-//                                                </li>
-//
-//                                              <li>
-//                                                  ${span4}
-//                                              </li>
-//                                          </ul>
-//                 `;
-//
-//              $('.paging').html(paging); // 가져온 데이터를 목록 영역에 삽입
-//          });
-//        }
-//      });
-//    }
-
-      (()=>{
-        ajaxDataListFn();
-      })();
+//      (()=>{
+//        ajaxDataListFn();
+//      })();

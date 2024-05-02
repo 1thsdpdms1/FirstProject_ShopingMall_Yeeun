@@ -1,6 +1,7 @@
 package org.spring.e1i4TeamProject.shop.dto;
 
 import lombok.*;
+import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.spring.e1i4TeamProject.shop.entity.CartShopListEntity;
 import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
@@ -83,4 +84,7 @@ public class ShopDto {
         }
         return shopDto;
     }
+
+
+
 }
