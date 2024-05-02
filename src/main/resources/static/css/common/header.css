@@ -178,7 +178,7 @@
   text-align: center;
   line-height: 30px;
   font-size: 25px;
-  color: #fffb02;
+  color: #e8ffa3;
   font-weight: bold;
   height: 200px;
   
@@ -212,7 +212,8 @@
   line-height: 40px;
   font-size: 20px;
   font-weight: bold;
-  background-color: rgb(88, 180, 255);
+  /*background-color: rgb(88, 180, 255);*/
+  background: linear-gradient(to right, #ffffff,#ffffff);
   color: #161616;
 }
 
@@ -221,7 +222,8 @@
   height: auto;
   line-height: 20px;
   font-size: 15px;
-  background-color: rgb(187, 211, 255);
+  /* background-color: rgb(187, 211, 255); */
+  background: linear-gradient(to bottom, #d8f1ff,#5d5d5d);
   color: #e8ff96;
   transition: all 0.3s;
 
@@ -232,7 +234,7 @@
 .header .header-con .bottom-header .gnb>ul>li ul.sub li{
   line-height: 30px;
   font-size: 20px;
-  color: #e2ff7a;
+  color: #5500ff;
 }
 .header .header-con .bottom-header .gnb>ul>li ul.sub li a{
   color: inherit;

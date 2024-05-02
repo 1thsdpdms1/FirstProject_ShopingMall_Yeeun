@@ -17,8 +17,6 @@
 
 
                         <th:block sec:authorize="isAuthenticated()">
-
-
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
                                     <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}"
@@ -110,11 +108,23 @@
                         <ul class="sub">
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
+
                                     <a th:href="@{/member/memberDetail/{id}
-                                    (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
+                                    (id=${#authentication.principal.memberEntity.id} )}">개인정보</a>
                                 </li>
+                                <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+                                    <li><a th:href="@{/board/boardInquiry/category/{category}
+                                    (category=8)}">1:1문의내역</a></li>
+                                </th:block>
+
+                                <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                    <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
+                                    (id=${#authentication.principal.memberEntity.id} , category=8 )}">1:1문의내역</a></li>
+                                </th:block>
+
                             </th:block>
-                            <li><a th:href="@{/board/boardInquiry}">1:1문의내역</a></li>
+
+
                         </ul>
                     </li>
                 </ul>
