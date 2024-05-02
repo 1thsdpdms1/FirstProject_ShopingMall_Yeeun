@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
     <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
-    <script th:src="@{/js/chatBot.js}"></script>
+    <script th:src="@{/js/chatBot.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
     <link rel="stylesheet" th:href="@{/css/index.css}">
 
@@ -67,11 +67,11 @@
                         <div class="bottom-con">
                             <div class="left-con">
                                 <div class="con1 on">
-<!--                                    <div class="con1-left">-->
-<!--                                            <label th:text="${boardDtoList.boardTitle}"></label>-->
-<!--                                            <label th:text="${boardDtoList.boardContent}"></label>-->
-<!--                                            <label th:text="${boardDtoList.newFileName}"></label>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="con1-left">-->
+                                    <!--                                            <label th:text="${boardDtoList.boardTitle}"></label>-->
+                                    <!--                                            <label th:text="${boardDtoList.boardContent}"></label>-->
+                                    <!--                                            <label th:text="${boardDtoList.newFileName}"></label>-->
+                                    <!--                                    </div>-->
 
                                 </div>
 
@@ -83,40 +83,11 @@
                     </div>
                 </div>
             </div>
-            <div class="pop-con">
-                <a href="#">수강신청바로가기</a>
-            </div>
         </div>
     </div>
-
 </div>
-<div th:replace="~{/fragments/common/footer :: footerFragment}">
-</div>
-<div class="chat">
-    <div id="chat-bot">
-        <div class="wrap">
-            <button type="button" id="btn-chat-open"  onclick="openChat()">
-                <img th:src="@{/images/bot.png}" alt="버튼">
-            </button>
-            <dl id="chat-disp">
-                <dt id="chat-header">
-                    <span>챗봇_Sample</span>
-                    <span class="btn-wrap">
-				<button type="button" id="btn-chat-close" onclick="disconnect()">X</button>
-			</span>
-                </dt>
-                <dd id="chat-content">
 
-                </dd>
-                <dd id="chat-question" class="flex between">
-                    <span class="flex column center"><i></i></span>
-                    <input type="text" id="question"  placeholder="질문을 입력하세요">
-                    <button type="button" id="btn-msg-send" onclick="msgSendClickFn()">전송</button>
-                </dd>
-            </dl>
-        </div>
-    </div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 
-</div>
 </body>
 </html>
