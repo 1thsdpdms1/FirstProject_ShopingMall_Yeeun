@@ -6,12 +6,12 @@
     <title>index</title>
     <script th:src="@{/js/index.js}" defer></script>
     <script th:src="@{/js/AutoGallery.js}" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script th:src="@{/js/chatBot.js}" defer></script>
     <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
     <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
-    <script th:src="@{/js/chatBot.js}"></script>
     <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
-    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">-->
 
 </head>
 <body>
@@ -26,12 +26,12 @@
 
                     </div>
                 </div>
+                <h2>환 영 합 니 다.</h2>
                 <div class="section sec2">
                     <div class="con">
 
                         <div class="left-con">
                             <table>
-
                             <tr th:each="like : ${liked}">
                                 <td th:text="${like.shopTitle}"></td>
                                 <td th:text="${like.createTime}"></td>
@@ -49,10 +49,10 @@
                                     <li></li>
                                 </ul>
                             </div>
-                            <div class="center-arrow">
-                                <span class="arrow arrowLeft"></span>
-                                <span class="arrow arrowRight"></span>
-                            </div>
+                            <!--  <div class="center-arrow">
+                                  <span class="arrow arrowLeft"></span>
+                                  <span class="arrow arrowRight"></span>
+                              </div>-->
                             <div class="items">
                                 <ul>
                                     <li class="liOn"></li>
@@ -69,62 +69,55 @@
                 <div class="section sec3">
                     <div class="con">
                         <div class="title">
-                            <span class="left"><img th:src="@{/images/left.svg}" alt=""></span>
-                            <span class="right"><img th:src="@{/images/right.svg}" alt=""></span>
+                            <span class="left"><img th:src="@{/images/right.svg}" alt=""></span>
+
+                            <span class="right"><img th:src="@{/images/free-icon-list-button-61438.png}" alt=""></span>
                         </div>
                         <div class="bottom-con">
                             <div class="left-con">
-                                <div class="con1 on">
-<!--                                    <div class="con1-left">-->
-<!--                                            <label th:text="${boardDtoList.boardTitle}"></label>-->
-<!--                                            <label th:text="${boardDtoList.boardContent}"></label>-->
-<!--                                            <label th:text="${boardDtoList.newFileName}"></label>-->
-<!--                                    </div>-->
-
-                                </div>
-
-                                <div class="con2 off">con2</div>
+                            <div class="con1 span-on">
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
+                                <div class="sub-con">SUB</div>
                             </div>
-                            <!-- <div class="center-con">center</div>-->
-                            <!--<div class="right-con">right</div>-->
+                            <div class="con2 span-off">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>종류</th>
+                                        <th>제목</th>
+                                        <th>내용</th>
+                                        <th>작성자</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <h1>수 강 후 기</h1>
+                                    <tr th:each="review:${boardDtoList}">
+                                        <td th:if="${review.category eq 4}" th:text="미술"></td>
+                                        <td th:if="${review.category eq 5}" th:text="체육"></td>
+                                        <td th:if="${review.category eq 6}" th:text="음악"></td>
+                                        <td th:if="${review.category eq 7}" th:text="요리"></td>
+                                        <td th:text="${review.boardTitle}"></td>
+                                        <td th:text="${review.boardContent}"></td>
+                                        <td th:text="${review.boardWriter}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  </div>-->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="pop-con">
-                <a href="#">수강신청바로가기</a>
-            </div>
         </div>
     </div>
-
 </div>
-<div th:replace="~{/fragments/common/footer :: footerFragment}">
 </div>
-<div class="chat">
-    <div id="chat-bot">
-        <div class="wrap">
-            <button type="button" id="btn-chat-open"  onclick="openChat()">
-                <img th:src="@{/images/bot.png}" alt="버튼">
-            </button>
-            <dl id="chat-disp">
-                <dt id="chat-header">
-                    <span>챗봇_Sample</span>
-                    <span class="btn-wrap">
-				<button type="button" id="btn-chat-close" onclick="disconnect()">X</button>
-			</span>
-                </dt>
-                <dd id="chat-content">
-
-                </dd>
-                <dd id="chat-question" class="flex between">
-                    <span class="flex column center"><i></i></span>
-                    <input type="text" id="question"  placeholder="질문을 입력하세요">
-                    <button type="button" id="btn-msg-send" onclick="msgSendClickFn()">전송</button>
-                </dd>
-            </dl>
-        </div>
-    </div>
-
-</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 </body>
 </html>

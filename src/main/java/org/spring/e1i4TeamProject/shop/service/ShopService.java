@@ -1,6 +1,8 @@
 package org.spring.e1i4TeamProject.shop.service;
 
 import lombok.RequiredArgsConstructor;
+import org.spring.e1i4TeamProject.board.dto.BoardDto;
+import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.spring.e1i4TeamProject.member.repository.MemberRepository;
 import org.spring.e1i4TeamProject.shop.dto.ShopDto;
@@ -266,34 +268,142 @@ public class ShopService implements ShopServiceImpl {
     }
   }
 
-  @Override
-  public List<ShopDto> shopList1() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
+@Override
+public Page<ShopDto> shopList(Pageable pageable, String subject1, String subject2, String search) {
+  Page<ShopEntity> shopEntityPage=null;
 
-    shopEntityList=shopRepository.findByCategory(1);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+  if(subject1!=null && subject2!=null && search!=null) {
+    if ("1".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(1, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(1, search, pageable);
+      }
+    } else if ("2".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(2, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(2, search, pageable);
+      }
+    } else if ("3".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(3, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(3, search, pageable);
+      }
+    } else if ("4".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(4, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(4, search, pageable);
+      }
+    } else {
+      shopEntityPage = shopRepository.findAll(pageable);
+      System.out.println("else");
+    }
+  }else {
+    shopEntityPage = shopRepository.findAll(pageable);
+  }
+
+  Page<ShopDto> shopDtos = shopEntityPage.map(ShopDto::toselectShopDto);
+
+  return shopDtos;
+}
+
+  @Override
+  public Page<ShopDto> shopSearchPageList1(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
+
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory1Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle1Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent1Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory1Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
   }
   @Override
-  public List<ShopDto> shopList2() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
+  public Page<ShopDto> shopSearchPageList2(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
 
-    shopEntityList=shopRepository.findByCategory(2);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory2Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle2Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent2Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory2Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
   }
   @Override
-  public List<ShopDto> shopList3() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
+  public Page<ShopDto> shopSearchPageList3(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
 
-    shopEntityList=shopRepository.findByCategory(3);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory3Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle3Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent3Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory3Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
   }
   @Override
-  public List<ShopDto> shopList4() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
+  public Page<ShopDto> shopSearchPageList4(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
 
-    shopEntityList=shopRepository.findByCategory(4);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory4Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle4Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent4Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory4Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
   }
+  
+
 
   @Transactional
   public String toggleLikeShop(Long shopId, Long memberId) {
@@ -357,6 +467,7 @@ public class ShopService implements ShopServiceImpl {
 
     return likeDto;
   }
+
 }
 
 

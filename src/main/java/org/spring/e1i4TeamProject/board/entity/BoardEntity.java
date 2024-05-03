@@ -70,7 +70,7 @@ public class BoardEntity extends BaseTimeEntity {
         boardEntity.setBoardContent(boardDto.getBoardContent());
         boardEntity.setBoardWriter(boardDto.getBoardWriter());
         boardEntity.setBoardAttachFile(0);
-        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
+//        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
         boardEntity.setBoardHit(0);
         boardEntity.setReplyCount(boardDto.getReplyCount());
         boardEntity.setMemberEntity(boardDto.getMemberEntity());

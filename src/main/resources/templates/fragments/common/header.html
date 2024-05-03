@@ -3,7 +3,6 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div class="header" th:fragment="headerFragment">
-<script th:src="@{/js/header.js}" defer></script>
     <div class="header-con">
         <div class="top-header">
             <div class="top-menu">
@@ -14,15 +13,11 @@
                             <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
                         </th:block>
                         <li><a th:href="@{/shop/cartList}">장바구니</a></li>
-
-
                         <th:block sec:authorize="isAuthenticated()">
-
-
-
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
-                                    <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}" alt="photo" height="24px">
+                                    <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}"
+                                         alt="photo" height="24px">
                                 </th:block>
                                 <th:block th:unless="${#authentication.principal.memberEntity.memberAttachFile == 1}">
                                     <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
@@ -56,27 +51,60 @@
             </div>
         </div>
         <div class="bottom-header">
-            <div class="pre-gnb on">
+            <div class="pre-gnb">
                 <ul>
                     <li>
-                        <a href="#">SHOP</a>
+                        <a th:href="@{/shop/shopList}">강 의 실</a>
+                        <ul class="sub">
+                            <li><a th:href="@{/shop/shopList}">전체</a></li>
+                            <li><a th:href="@{/shop/shopList1}">미술</a></li>
+                            <li><a th:href="@{/shop/shopList2}">체육</a></li>
+                            <li><a th:href="@{/shop/shopList3}">음악</a></li>
+                            <li><a th:href="@{/shop/shopList4}">요리</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a th:href="@{/board/boardList}">BOARD</a>
+                        <a th:href="@{/board/boardList}">게 시 판</a>
+                        <ul class="sub">
+                            <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
+                            <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
+                            <li><a th:href="@{/board/reviewBoardList}">수강후기</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">SELLER</a>
+                        <a th:href="@{/seller/sellerList}">강 사</a>
+                        <ul class="sub">
+                            <th:block sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+                                <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
+                            </th:block>
+                            <li><a th:href="@{/seller/sellerList}">강사 소개</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">MY HOME</a>
+                        <a th:href="@{#}">마 이 페 이 지</a>
+                        <ul class="sub">
+                            <th:block sec:authorize="isAuthenticated()">
+                                <li>
+                                    <a th:href="@{/member/memberDetail/{id}
+                                    (id=${#authentication.principal.memberEntity.id} )}">개인정보</a>
+                                </li>
+                                <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+                                    <li><a th:href="@{/board/boardInquiry/category/{category}
+                                    (category=8)}">1:1문의내역</a></li>
+                                </th:block>
+
+                                <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                    <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
+                                    (id=${#authentication.principal.memberEntity.id} , category=8 )}">1:1문의내역</a></li>
+                                </th:block>
+                            </th:block>
                     </li>
                 </ul>
             </div>
-
-            <div class="gnb off">
+            <!--<div class="gnb">
                 <ul>
                     <li>
-                        <a th:href="@{/shop}">SHOP</a>
+                        <a th:href="@{/shop/shopList}">강 의 실</a>
                         <ul class="sub">
                             <li><a th:href="@{/shop/shopList}">전체</a></li>
                             <li><a th:href="@{/shop/shopList1}">미술</a></li>
@@ -86,7 +114,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a th:href="@{/board/boardList}">BOARD</a>
+                        <a th:href="@{/board/boardList}">게 시 판</a>
                         <ul class="sub">
                             <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
                             <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
@@ -94,29 +122,38 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">SELLER</a>
+                        <a th:href="@{/seller/sellerList}">강 사</a>
                         <ul class="sub">
-                            <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
-                            <li><a href="#">강의 등록</a></li>
-                            <li><a href="#">강의 등록</a></li>
-
+                            <th:block sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+                                <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
+                            </th:block>
+                            <li><a th:href="@{/seller/sellerList}">강사 소개</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">MY HOME</a>
-                        <ul class="sub">
-                            <th:block sec:authorize="isAuthenticated()">
-                                <li>
-                                    <a th:href="@{/member/memberDetail/{id}
-                                    (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
+                        <a th:href="@{#}">마 이 페 이 지</a>
+                                    <ul class="sub">
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <li>
+                                                <a th:href="@{/member/memberDetail/{id}
+                                    (id=${#authentication.principal.memberEntity.id} )}">개인정보</a>
                                 </li>
+                                <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+                                    <li><a th:href="@{/board/boardInquiry/category/{category}
+                                    (category=8)}">1:1문의내역</a></li>
+                                </th:block>
+
+                                <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                    <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
+                                    (id=${#authentication.principal.memberEntity.id} , category=8 )}">1:1문의내역</a></li>
+                                </th:block>
                             </th:block>
-                            <li><a th:href="@{/board/boardInquiry}">1:1문의내역</a></li>
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </div>-->
         </div>
     </div>
+    <script th:src="@{/js/header.js}" defer></script>
 </div>
 </html>

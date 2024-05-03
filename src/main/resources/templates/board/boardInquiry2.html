@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/js/inquiry/inquiry.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/board/boardInquiry.css}" />
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="inquiry">
+    <div class="inquiry-con">
+        <div class="left">
+            <div class="left-con">
+                <div class="writeForm">
+
+
+                    <form action="/board/inquiry/write" method="POST">
+                        <input type="text" name="boardWriter" id="boardWriter" placeholder="작성자" />
+                        <!-- 추가된 부분 -->
+                        <input type="text" name="boardTitle" id="boardTitle" placeholder="문의제목을 입력해주세요" />
+                        <textarea name="boardContent" id="boardContent" placeholder="문의내용을 입력해주세요"></textarea>
+                        <input type="hidden" name="category" id="category" value="8" />
+                        <!-- 추가된 부분 -->
+
+                        <button type="submit" onclick="ajaxInquiry(event)">작성</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-con">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>제목</th>
+                        <th>문의내용</th>
+                        <th>작성자</th>
+                        <th>문의답변</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="inquiry : ${boardDtoList}">
+                        <td th:text="${inquiry.boardTitle}"></td>
+                        <td th:text="${inquiry.boardContent}"></td>
+                        <td th:text="${inquiry.boardWriter}">작성자</td>
+                        <td>
+                            <a th:href="@{/board/boardAnswer(id=${inquiry.id})}">문의답변</a>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+
+</html>

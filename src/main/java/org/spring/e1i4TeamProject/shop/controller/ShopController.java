@@ -1,6 +1,8 @@
 package org.spring.e1i4TeamProject.shop.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.spring.e1i4TeamProject.board.dto.BoardDto;
+import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.config.MyUserDetailsImpl;
 import org.spring.e1i4TeamProject.member.repository.MemberRepository;
 import org.spring.e1i4TeamProject.member.service.MemberService;
@@ -20,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -77,79 +80,156 @@ public class ShopController {
   }
 
 
-  @GetMapping("/shopList1")
-  public String shopList1(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                          Model model) {
-
-    List<ShopDto> shopDtoList1 = shopService.shopList1();
-    model.addAttribute("shopDtoList1", shopDtoList1);
-    model.addAttribute("myUserDetails", myUserDetails);
-
-
-    return "shop/shopList1";
-  }
-
-  @GetMapping("/shopList2")
-  public String shopList2(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                          Model model) {
-
-    List<ShopDto> shopDtoList2 = shopService.shopList2();
-    model.addAttribute("shopDtoList2", shopDtoList2);
-    model.addAttribute("myUserDetails", myUserDetails);
-
-
-    return "shop/shopList2";
-  }
-
-  @GetMapping("/shopList3")
-  public String shopList3(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                          Model model) {
-
-    List<ShopDto> shopDtoList3 = shopService.shopList3();
-    model.addAttribute("shopDtoList3", shopDtoList3);
-    model.addAttribute("myUserDetails", myUserDetails);
-
-
-    return "shop/shopList3";
-  }
-
-  @GetMapping("/shopList4")
-  public String shopList4(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                          Model model) {
-
-    List<ShopDto> shopDtoList4 = shopService.shopList4();
-    model.addAttribute("shopDtoList4", shopDtoList4);
-    model.addAttribute("myUserDetails", myUserDetails);
-
-
-    return "shop/shopList4";
-  }
-
-
   @GetMapping("/shopList")
-  public String shopList(@PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
-                         @RequestParam(name = "subject", required = false) String subject,
-                         @RequestParam(name = "search", required = false) String search,
-                         @AuthenticationPrincipal MyUserDetailsImpl myUserDetails, Model model) {
-    Page<ShopDto> shopList = shopService.shopSearchPagingList(pageable, subject, search);
+  public String shopList(@PageableDefault(page = 0, size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                         Model model,
+                         @RequestParam(name = "subject1", required = false) String subject1,
+                         @RequestParam(name = "subject2", required = false) String subject2,
+                         @RequestParam(name = "search", required = false) String search) {
 
-    model.addAttribute("myUserDetails", myUserDetails);
 
-    int newPage = shopList.getNumber();
-    int totalPages = shopList.getTotalPages();
-    int blockNum = 5;
+    Page<ShopDto> shopList = shopService.shopList(pageable, subject1, subject2, search);
 
-    int startPage = (int) ((Math.floor(newPage / blockNum) * blockNum) + 1 <= totalPages
-        ? (Math.floor(newPage / blockNum) * blockNum) + 1 : totalPages);
 
-    int endPage = (startPage + blockNum) - 1 < totalPages ? (startPage + blockNum) - 1 : totalPages;
+    int totalPage = shopList.getTotalPages();//전체page
+    int newPage = shopList.getNumber();//현재page
+    Long totalElements = shopList.getTotalElements();//전체 레코드 갯수
+    int size = shopList.getSize();//페이지당 보이는 갯수
 
-    model.addAttribute("shopList", shopList);
+    int blockNum = 3; //브라우저에 보이는 페이지 갯수
+
+    int startPage = (int) ((Math.floor(newPage / blockNum) * blockNum) + 1 <= totalPage
+        ? (Math.floor(newPage / blockNum) * blockNum) + 1 : totalPage);
+    int endPage = (startPage + blockNum) - 1 < totalPage ? (startPage + blockNum) - 1 : totalPage;
+
     model.addAttribute("startPage", startPage);
     model.addAttribute("endPage", endPage);
+    model.addAttribute("shopList", shopList);
 
     return "shop/shopList";
   }
+
+  @GetMapping("/shopList1")
+  public String ShopList1 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                           @RequestParam(name = "subject", required = false) String subject,
+                           @RequestParam(name = "search", required = false) String search,
+                           @PageableDefault(page = 0, size = 8, sort = "shop_id", direction = Sort.Direction.DESC)
+                           Pageable pageable, Model model){
+
+    Page<ShopDto> shopDtoList = shopService.shopSearchPageList1(pageable, subject, search);
+
+    model.addAttribute("myUserDetails", myUserDetails);
+
+    //paging
+    int totalPages = shopDtoList.getTotalPages(); // 전체 페이지
+    int newPage = shopDtoList.getNumber(); // 현재 페이지
+    int blockNum = 8;// 브라우저에 보이는 페이지번호
+
+    int startPage = (int) (
+        (Math.floor(newPage / blockNum) * blockNum) + 1 <= totalPages ? (Math.floor(newPage / blockNum) * blockNum) + 1 : totalPages
+    );
+
+    int endPage = (startPage + blockNum) - 1 < totalPages ? (startPage + blockNum) - 1 : totalPages;
+
+    model.addAttribute("startPage", startPage);
+    model.addAttribute("newPage", newPage);
+    model.addAttribute("endPage", endPage);
+
+    model.addAttribute("shopDtoList1", shopDtoList);
+
+    return "shop/shopList1";
+  }//1만 보이기
+  @GetMapping("/shopList2")
+  public String ShopList2 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                           @RequestParam(name = "subject", required = false) String subject,
+                           @RequestParam(name = "search", required = false) String search,
+                           @PageableDefault(page = 0, size = 8, sort = "shop_id", direction = Sort.Direction.DESC)
+                           Pageable pageable, Model model){
+
+    Page<ShopDto> shopDtoList = shopService.shopSearchPageList2(pageable, subject, search);
+
+    model.addAttribute("myUserDetails", myUserDetails);
+
+    //paging
+    int totalPages = shopDtoList.getTotalPages(); // 전체 페이지
+    int newPage = shopDtoList.getNumber(); // 현재 페이지
+    int blockNum = 8;// 브라우저에 보이는 페이지번호
+
+    int startPage = (int) (
+        (Math.floor(newPage / blockNum) * blockNum) + 1 <= totalPages ? (Math.floor(newPage / blockNum) * blockNum) + 1 : totalPages
+    );
+
+    int endPage = (startPage + blockNum) - 1 < totalPages ? (startPage + blockNum) - 1 : totalPages;
+
+    model.addAttribute("startPage", startPage);
+    model.addAttribute("newPage", newPage);
+    model.addAttribute("endPage", endPage);
+
+    model.addAttribute("shopDtoList2", shopDtoList);
+
+    return "shop/shopList2";
+  }//2만 보이기
+  @GetMapping("/shopList3")
+  public String ShopList3 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                  @RequestParam(name = "subject", required = false) String subject,
+                                  @RequestParam(name = "search", required = false) String search,
+                                  @PageableDefault(page = 0, size = 8, sort = "shop_id", direction = Sort.Direction.DESC)
+                                  Pageable pageable, Model model){
+
+    Page<ShopDto> shopDtoList = shopService.shopSearchPageList3(pageable, subject, search);
+
+    model.addAttribute("myUserDetails", myUserDetails);
+
+    //paging
+    int totalPages = shopDtoList.getTotalPages(); // 전체 페이지
+    int newPage = shopDtoList.getNumber(); // 현재 페이지
+    int blockNum = 8;// 브라우저에 보이는 페이지번호
+
+    int startPage = (int) (
+        (Math.floor(newPage / blockNum) * blockNum) + 1 <= totalPages ? (Math.floor(newPage / blockNum) * blockNum) + 1 : totalPages
+    );
+
+    int endPage = (startPage + blockNum) - 1 < totalPages ? (startPage + blockNum) - 1 : totalPages;
+
+    model.addAttribute("startPage", startPage);
+    model.addAttribute("newPage", newPage);
+    model.addAttribute("endPage", endPage);
+
+    model.addAttribute("shopDtoList3", shopDtoList);
+
+    return "shop/shopList3";
+  }//3만 보이기
+  @GetMapping("/shopList4")
+  public String shopList4 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                  @RequestParam(name = "subject", required = false) String subject,
+                                  @RequestParam(name = "search", required = false) String search,
+                                  @PageableDefault(page = 0, size = 8, sort = "shop_id", direction = Sort.Direction.DESC)
+                                  Pageable pageable, Model model){
+    
+    Page<ShopDto> shopDtoList = shopService.shopSearchPageList4(pageable, subject, search);
+
+    model.addAttribute("myUserDetails", myUserDetails);
+
+    //paging
+    int totalPages = shopDtoList.getTotalPages(); // 전체 페이지
+    int newPage = shopDtoList.getNumber(); // 현재 페이지
+    int blockNum = 8;// 브라우저에 보이는 페이지번호
+
+    int startPage = (int) (
+        (Math.floor(newPage / blockNum) * blockNum) + 1 <= totalPages ? (Math.floor(newPage / blockNum) * blockNum) + 1 : totalPages
+    );
+
+    int endPage = (startPage + blockNum) - 1 < totalPages ? (startPage + blockNum) - 1 : totalPages;
+
+    model.addAttribute("startPage", startPage);
+    model.addAttribute("newPage", newPage);
+    model.addAttribute("endPage", endPage);
+
+    model.addAttribute("shopDtoList4", shopDtoList);
+    
+    return "shop/shopList4";
+  }//4만 보이기
+
 
   @PostMapping("/shopUpdate")
   public String shopUpdate(ShopDto shopDto) throws IOException {

@@ -79,10 +79,10 @@
                 <label for="updateTime">수정시간</label>
                 <td th:text="${#temporals.format(shopDto.updateTime, 'yyyy년-MM월-dd일')}" id="updateTime"></td>
               </li>
-<!--              <li>-->
-<!--                <label for="shopFile">File</label>-->
-<!--                <input type="file" name="shopFile" id="shopFile">-->
-<!--              </li>-->
+              <!--              <li>-->
+              <!--                <label for="shopFile">File</label>-->
+              <!--                <input type="file" name="shopFile" id="shopFile">-->
+              <!--              </li>-->
               <li>
                 <span th:text=${shopDto.shopPrice}></span> 원
                 <input type='button'
@@ -94,7 +94,7 @@
                        onclick='count("plus")'
                        value='+'
                        class="plusBtn"/>
-            </li>
+              </li>
               <li>
                 <th:block sec:authorize="isAuthenticated()">
                   <th:blcok th:if="${shopDto.memberEntity.userEmail==myUserDetails.username}">
@@ -117,7 +117,7 @@
               <li>
                 <input type="button" class="cartBtn" id="cartBtn" value="장바구니">
               </li>
-                <li>
+              <li>
                 <span th:text="${shopDto.shopPrice}" id="priceSum"></span>원
               </li>
             </ul>

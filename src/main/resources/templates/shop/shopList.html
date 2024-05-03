@@ -29,15 +29,22 @@
         <div class="shopList-con">
           <h1>원데이클라스</h1>
           <div class="search">
-            <form th:action="@{/shop/shopList}" method="get">
-              <select name="subject" id="subject">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-                <!--            <option value="ShopPrice">가격</option>-->
-              </select>
-              <input type="text" name="search" id="search">
-              <input type="submit" value="검색">
-            </form>
+            <div class="search-con">
+              <form th:action="@{/shop/shopList}" method="get">
+                <select name="subject1" id="subject1">
+                  <option value="1" th:selected="${#strings.equals(param.subject1,'1')}">미술</option>
+                  <option value="2" th:selected="${#strings.equals(param.subject1,'2')}">체육</option>
+                  <option value="3" th:selected="${#strings.equals(param.subject1,'3')}">음악</option>
+                  <option value="4" th:selected="${#strings.equals(param.subject1,'4')}">요리</option>
+                </select>
+                <select name="subject2" id="subject2">
+                  <option value="shopTitle" th:selected="${#strings.equals(param.subject2,'shopTitle')}">수강명</option>
+                  <option value="shopContent" th:selected="${#strings.equals(param.subject2,'shopContent')}">수강내용</option>
+                </select>
+
+                <input type="text" name="search" id="search" th:value="${param.search}">
+                <input type="submit" value="검색">
+              </form>
           </div>
           <div class="grid-parent">
             <ul class="grid-con">

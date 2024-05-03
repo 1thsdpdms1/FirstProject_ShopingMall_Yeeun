@@ -15,8 +15,8 @@
             <label>메뉴</label>
             <ul>
                 <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
-                <li><img th:src="@{/images/users.png}" alt="icon"><a th:href="@{/seller/sellerList}">선생님</a></li>
-                <li><img th:src="@{/images/plus.png}" alt="icon"><a href="#" class="item">강의등록</a></li>
+                <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/seller/sellerList}" class="under">선생님</a></li>
+                <li><img th:src="@{/images/add.png}" alt="icon"><a th:href="@{/shop/shopWrite}" class="item">강의등록</a></li>
             </ul>
         </div>
         <div class="container-box">
@@ -26,19 +26,16 @@
                     <div class="grid">
                         <ul>
                             <li th:each="seller : ${seller}">
-                                <div class="photo">
+                                <div class="top">
                                     <th:block th:if="${seller.memberAttachFile==1}">
-                                        <!--  이미지 표시 -->
-                                        <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구">
-                                        </a>
+                                        <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"> <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구"></a>
                                     </th:block>
                                     <th:block th:unless="${seller.memberAttachFile==1}">
-                                        <!--  이미지 표시 -->
-                                        <img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구">
-                                        </a>
+                                        <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"><img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구"></a>
+
                                     </th:block>
                                 </div>
-                                <div class="info">
+                                <div class="bottom">
                                     <ul>
                                         <li>
                                             <span>이름: </span><span th:text="${seller.name}"></span>
@@ -46,15 +43,10 @@
                                         <li>
                                             <span>강의명: </span><span th:text="${seller.name}"></span>
                                         </li>
-
-
                                     </ul>
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                    <div class="preText">
-                        <pre>소개글</pre>
                     </div>
                 </div>
             </div>

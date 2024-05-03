@@ -42,8 +42,8 @@
 }
 
 .container .join .joinLogin-con {
-    width: 800px;
-    font-size: 30px;
+        width: 480px;
+        font-size: 18px;
     text-align: center;
     padding: 5px;
     box-sizing: border-box;

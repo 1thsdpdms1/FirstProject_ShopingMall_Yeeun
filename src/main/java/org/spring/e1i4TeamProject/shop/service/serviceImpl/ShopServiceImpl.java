@@ -1,5 +1,6 @@
 package org.spring.e1i4TeamProject.shop.service.serviceImpl;
 
+import org.spring.e1i4TeamProject.board.dto.BoardDto;
 import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +23,14 @@ public interface ShopServiceImpl {
 
   void addCart(Long id, Long shopId,ShopDto shopDto,int priceCount);
 
+  Page<ShopDto> shopList(Pageable pageable, String subject1, String subject2, String search);
 
+  Page<ShopDto> shopSearchPageList1(Pageable pageable, String subject, String search);
 
-  List<ShopDto> shopList1();
-  List<ShopDto> shopList2();
-  List<ShopDto> shopList3();
-  List<ShopDto> shopList4();
+  Page<ShopDto> shopSearchPageList2(Pageable pageable, String subject, String search);
+
+  Page<ShopDto> shopSearchPageList3(Pageable pageable, String subject, String search);
+  Page<ShopDto> shopSearchPageList4(Pageable pageable, String subject, String search);
 
 
   List<ShopDto> liked();

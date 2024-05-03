@@ -24,10 +24,10 @@
 
 
                         <th:block sec:authorize="isAuthenticated()">
-
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
-                                    <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}" alt="photo" height="24px">
+                                    <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}"
+                                         alt="photo" height="24px">
                                 </th:block>
                                 <th:block th:unless="${#authentication.principal.memberEntity.memberAttachFile == 1}">
                                     <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
@@ -64,16 +64,16 @@
             <div class="pre-gnb on">
                 <ul>
                     <li>
-                        <a href="#">SHOP</a>
+                        <a href="#">강 의 실</a>
                     </li>
                     <li>
-                        <a th:href="@{/board/boardList}">BOARD</a>
+                        <a href="#">게 시 판</a>
                     </li>
                     <li>
-                        <a href="#">SELLER</a>
+                        <a href="#">강 사</a>
                     </li>
                     <li>
-                        <a href="#">MY HOME</a>
+                        <a href="#">마 이 페 이 지</a>
                     </li>
                 </ul>
             </div>
@@ -81,7 +81,7 @@
             <div class="gnb off">
                 <ul>
                     <li>
-                        <a th:href="@{/shop}">SHOP</a>
+                        <a th:href="@{/shop/shopList}">강 의 실</a>
                         <ul class="sub">
                             <li><a th:href="@{/shop/shopList}">전체</a></li>
                             <li><a th:href="@{/shop/shopList1}">미술</a></li>
@@ -91,7 +91,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a th:href="@{/board/boardList}">BOARD</a>
+                        <a th:href="@{/board/boardList}">게 시 판</a>
                         <ul class="sub">
                             <li><a th:href="@{/board/boardList}">커뮤니티</a></li>
                             <li><a th:href="@{/board/noticeBoardList}">공지사항</a></li>
@@ -99,24 +99,36 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">SELLER</a>
+                        <a th:href="@{/seller/sellerList}">강 사</a>
                         <ul class="sub">
-                            <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
-                            <li><a href="#">강의 등록</a></li>
-                            <li><a href="#">강의 등록</a></li>
-
+                            <th:block sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+                                <li><a th:href="@{/shop/shopWrite}">강의 등록</a></li>
+                            </th:block>
+                            <li><a th:href="@{/seller/sellerList}">강사 소개</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">MY HOME</a>
+                        <!--                        <a th:href="@{/member/memberDetail/{id}-->
+                        <!--                                    (id=${#authentication.principal.memberEntity.id})}">마 이 페 이 지</a>-->
+
+                        <a th:href="@{#}">마 이 페 이 지</a>
                         <ul class="sub">
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
+
                                     <a th:href="@{/member/memberDetail/{id}
-                                    (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
+                                    (id=${#authentication.principal.memberEntity.id} )}">개인정보</a>
                                 </li>
+                                <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+                                    <li><a th:href="@{/board/boardInquiry/category/{category}
+                                    (category=8)}">1:1문의내역</a></li>
+                                </th:block>
+
+                                <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                    <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
+                                    (id=${#authentication.principal.memberEntity.id} , category=8 )}">1:1문의내역</a></li>
+                                </th:block>
                             </th:block>
-                            <li><a th:href="@{/board/boardInquiry}">1:1문의내역</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -216,7 +228,7 @@
                                 <th:block th:if="${memberDto.userEmail == myUserDetails.username}">
                                     <li class="li2">
                                         <input type="submit" value="UPDATE">
-                                        <a th:href="@{/member/delete/{id}(id=${memberDto.id})}">회원 탈퇴</a>
+                                        <a th:href="@{/seller/sellerListDelete/{id}(id=${memberDto.id})}">회원 탈퇴</a>
                                     </li>
                                 </th:block>
                                 <th:block th:unless="${memberDto.userEmail == myUserDetails.username}">

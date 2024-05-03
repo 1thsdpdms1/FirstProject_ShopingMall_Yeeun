@@ -33,12 +33,16 @@ public class HomeController {
     private final ShopService shopService;
 
 
-
-
-    @GetMapping({"/", "/index"})
-    public String shopList( Model model) {
+    @GetMapping({"/","/index"})
+    public String index(MemberDto memberDto, BoardDto boardDto,Model model)
+    {
 
         List<ShopDto> liked = shopService.liked();
+        model.addAttribute("memberDto", memberDto);
+
+        List<BoardDto> boardDtoList = boardService.topReviewBoardList(boardDto);
+
+        model.addAttribute("boardDtoList", boardDtoList);
         model.addAttribute("liked", liked);
 
 
