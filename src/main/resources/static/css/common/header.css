@@ -68,7 +68,7 @@ font-family: "Noto Sans KR", sans-serif;
     display: none;
 }
 .header .header-con .top-header .top-menu .right-menu >ul>li{
-    font-size: 12px;
+    font-size: 20px;
     position:relative;
     box-sizing:border-box;
 }
@@ -97,7 +97,7 @@ font-family: "Noto Sans KR", sans-serif;
   content: '';
   display: block;
   width: 100%;
-  height: 0px;
+  height: 0;
   background-color: #fa922b;
   position: absolute;
   bottom: -10px;
@@ -218,7 +218,7 @@ padding:10px;
   background-color:#ffffff;
   color:#222222;
   cursor:pointer;
-  font-size:12px;
+  font-size:20px;
 }
 .header .header-con .bottom-header .pre-gnb>ul>li:hover .sub>li:hover{
     background: linear-gradient(to right, #fa922b, #ff8e8e);

@@ -17,7 +17,7 @@
                             <li>
                                 <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
                                     <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}"
-                                         alt="photo" height="24px">
+                                         alt="photo" height="28px">
                                 </th:block>
                                 <th:block th:unless="${#authentication.principal.memberEntity.memberAttachFile == 1}">
                                     <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
@@ -81,9 +81,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a th:href="@{#}">마 이 페 이 지</a>
-                        <ul class="sub">
-                            <th:block sec:authorize="isAuthenticated()">
+                        <th:block sec:authorize="isAnonymous()">
+                            <a th:href="@{/member/memberLogin}">마 이 페 이 지</a>
+                        </th:block>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <a th:href="@{/member/memberDetail/{id}
+                                    (id=${#authentication.principal.memberEntity.id} )}">마 이 페 이 지</a>
+                            <ul class="sub">
                                 <li>
                                     <a th:href="@{/member/memberDetail/{id}
                                     (id=${#authentication.principal.memberEntity.id} )}">개인정보</a>
@@ -97,8 +101,9 @@
                                     <li><a th:href="@{/board/boardInquiry/member/{id}/category/{category}
                                     (id=${#authentication.principal.memberEntity.id} , category=8 )}">1:1문의내역</a></li>
                                 </th:block>
-                            </th:block>
-                    </li>
+                        </th:block>
+                </ul>
+                </li>
                 </ul>
             </div>
             <!--<div class="gnb">
