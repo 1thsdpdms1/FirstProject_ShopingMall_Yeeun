@@ -7,7 +7,7 @@
 /* 검색 css */
 .container {
   width: 100%;
-  height: 800 px;
+  height: calc(100vh - 50px - 200px);
   display: flex;
   justify-content: center;
   /* padding: 20px; */
@@ -29,7 +29,7 @@
  padding-left: 20px;
 }
 .container .memberList .memberList-con button.delete{
-  background: #000000;
+  background: #ffd2a6;
   padding: 5px;
   color: white;
   border: 1px solid #ffffff;

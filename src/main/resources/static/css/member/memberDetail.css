@@ -19,7 +19,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 100px;
 }
 
 .container .detail .detail-con {
@@ -51,7 +50,7 @@
     padding: 17px;
     border: 1px solid #333;
     border-radius: 30px;
-    margin-top: 700px;
+    margin-top: 100px;
 }
 .container .detail .detail-con .cartList .cartList-con .cartListTable{
     padding: 20px;
@@ -68,12 +67,9 @@
     align-items: center;
 }
 .container .detail .detail-con .cartList .cartList-con .cartListTable ul li.totalPrice{
-    margin-top: 20px;
     padding : 20px;
-    font-size: 25px;
+    font-size: 27px;
     color: #333333;
-    border: 1px solid #222;
-    border-radius: 10px 10px;
 }
 
 .container .detail .detail-con .cartList{

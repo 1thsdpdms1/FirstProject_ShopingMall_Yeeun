@@ -13,54 +13,51 @@
     <div class="boardWrite">
         <div class="boardWrite-con">
             <div class="boardWrite-form">
-                <!--                <form th:action="@{/board/boardWrite}" method="POST" enctype="multipart/form-data">-->
-                <form th:action="@{/board/noticeBoardWrite}" method="POST"   enctype="multipart/form-data"    >
-<!--                    enctype="multipart/form-data"-->
-<!--                    th:object="${boardDto}"-->
-                    <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+                <form th:action="@{/board/noticeBoardWrite}" method="POST" enctype="multipart/form-data"    >
                     <ul>
                         <li>
-                            공지사항 글작성
+                            <h1>공지글 작성</h1>
                         </li>
 
                         <li>
-                            <input type="hidden" name="category" id="category" value="3">
+                            <select name="category" id="category">
+                                <option value="3">공지사항</option>
+                            </select>
                         </li>
 
                         <li>
-
                             <input type="hidden" name="memberId" id="memberId" th:value="${memberId}" readonly>
-
                         </li>
 
                         <li>
-<!--                            <label for="boardWriter" hidden="hidden">작성자</label>-->
-                            <input type="hidden" id="boardWriter" name="boardWriter" th:value="${memberName}" hidden="hidden">
+                            <input type="hidden" id="boardWriter" name="boardWriter" th:value="${memberName}">
                         </li>
-                        <!--회원이름으로 불러오기  1. 글작성할때 boardWriter를 memberName으로 불러와서 쓸지
-                                            2. 여기에서 바로 memberName 으로 받아올지-->
 
                         <li>
                             <label>작성자</label>
-                            <span th:text="${memberName}"></span>
+                        </li>
+
+                        <li>
+                            <span th:text="${memberName}" readonly></span>
                         </li>
 
                         <li>
                             <label for="boardTitle">제목</label>
-                            <input type="text" id="boardTitle" name="boardTitle">
+                        </li>
+                        <li>
+                            <input type="text" id="boardTitle" name="boardTitle" placeholder="제목을 입력하세요">
                         </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
-                        <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
 
 
                         <li>
                             <label for="boardContent">내용 </label>
                         </li>
                         <li>
-                            <textarea name="boardContent" id="boardContent" cols="30" rows="10"></textarea>
+                            <textarea name="boardContent" id="boardContent"
+                                      cols="30" rows="10" placeholder="내용을 입력하세요"></textarea>
                         </li>
-                        <!--                        <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
 
-                        <li>
+                        <li class="file">
                             <label for="boardFile">파일</label>
                             <input type="file" name="boardFile" id="boardFile">
                         </li>
