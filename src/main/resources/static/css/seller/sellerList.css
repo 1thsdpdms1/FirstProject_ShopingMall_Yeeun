@@ -5,6 +5,7 @@
 
 .container {
 width: 100%;
+height: 800 px;
 display: flex;
 justify-content: center;
 }
