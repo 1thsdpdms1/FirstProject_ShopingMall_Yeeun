@@ -1,21 +1,14 @@
 package org.spring.e1i4TeamProject.shop.service;
 
 import lombok.RequiredArgsConstructor;
-import org.spring.e1i4TeamProject.member.dto.MemberDto;
+import org.spring.e1i4TeamProject.board.dto.BoardDto;
+import org.spring.e1i4TeamProject.board.entity.BoardEntity;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.spring.e1i4TeamProject.member.repository.MemberRepository;
-import org.spring.e1i4TeamProject.member.role.Role;
-import org.spring.e1i4TeamProject.shop.dto.CartShopListDto;
 import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.spring.e1i4TeamProject.shop.dto.ShopFileDto;
-import org.spring.e1i4TeamProject.shop.entity.CartEntity;
-import org.spring.e1i4TeamProject.shop.entity.CartShopListEntity;
-import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
-import org.spring.e1i4TeamProject.shop.entity.ShopFileEntity;
-import org.spring.e1i4TeamProject.shop.repository.CartRepository;
-import org.spring.e1i4TeamProject.shop.repository.CartShopListRepository;
-import org.spring.e1i4TeamProject.shop.repository.ShopFileRepository;
-import org.spring.e1i4TeamProject.shop.repository.ShopRepository;
+import org.spring.e1i4TeamProject.shop.entity.*;
+import org.spring.e1i4TeamProject.shop.repository.*;
 import org.spring.e1i4TeamProject.shop.service.serviceImpl.ShopServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.lang.reflect.Member;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+=======
+>>>>>>> dev
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,11 +35,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class ShopService implements ShopServiceImpl {
+
+
+  private static final String SUCCESS_LIKE_SHOP = "좋아요 처리 완료";
+  private static final String SUCCESS_UNLIKE_SHOP = "좋아요 취소 완료";
+
   private final ShopRepository shopRepository;
   private final ShopFileRepository shopFileRepository;
   private final MemberRepository memberRepository;
   private final CartRepository cartRepository;
   private final CartShopListRepository cartShopListRepository;
+  private final ShopLikeRepository shopLikeRepository;
 
   @Override
   public void insertShop(ShopDto shopDto) throws IOException {
@@ -192,7 +194,50 @@ public class ShopService implements ShopServiceImpl {
     shopRepository.delete(shopEntity);
   }
 
+//  @Override
+//  public void addCart(Long id, Long shopId, ShopDto shopDto, int priceCount) {
+//    MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+//    Optional<CartEntity> cartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
+//    CartEntity cartEntity1=null;
+//    if(!cartEntity.isPresent()) {
+//      cartEntity1=CartEntity.builder().memberEntity(memberEntity).build();
+//      cartRepository.save(cartEntity1);
+//    }else{
+//      cartEntity1=cartRepository.findByMemberEntityId(memberEntity.getId()).orElseThrow(IllegalArgumentException::new);
+//    }
+//    //shop 확인
+//    ShopEntity shopEntity=shopRepository.findById(shopId).orElseThrow(IllegalArgumentException::new);
+//
+//    //shopListEntity 확인
+//    List<CartShopListEntity> cartShopListEntity
+//        =cartShopListRepository.findByCartEntityIdAndShopEntityId(cartEntity1.getId(),shopEntity.getId());
+//    if(cartShopListEntity.isEmpty()){
+//    ShopEntity shopEntity1=shopRepository.findById(shopDto.getId()).orElseThrow(IllegalArgumentException::new);
+//
+//    int oldCount=shopEntity1.getPriceCount();
+//
+//      CartShopListEntity cartShopListEntity1=CartShopListEntity.builder()
+//          .count(priceCount+oldCount)
+//          .cartEntity(cartEntity1)
+//          .shopEntity(shopEntity)
+//          .build();
+//      cartShopListRepository.save(cartShopListEntity1);
+//    }else{
+//    ShopEntity shopEntity1=shopRepository.findById(shopDto.getId()).orElseThrow(IllegalArgumentException::new);
+//    int oldCount=shopEntity1.getPriceCount();
+//      cartShopListRepository.save(CartShopListEntity.builder()
+//          .id(cartShopListEntity.get(0).getId())
+//          .count(cartShopListEntity.get(0).getCount()+ priceCount+oldCount)
+//          .cartEntity(cartEntity1)
+//          .shopEntity(shopEntity)
+//          .build());
+//
+//    }
+//  }
+
+
   @Override
+<<<<<<< HEAD
   public void addCart(Long id, Long shopId) {
     MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     Optional<CartEntity> cartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
@@ -203,58 +248,249 @@ public class ShopService implements ShopServiceImpl {
       cartRepository.save(cartEntity1);
     }else{
       cartEntity1=cartRepository.findByMemberEntityId(memberEntity.getId()).orElseThrow(IllegalArgumentException::new);
+=======
+  public void addCart(Long id, Long shopId, ShopDto shopDto, int priceCount) {
+    MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    Optional<CartEntity> cartEntityOpt = cartRepository.findByMemberEntityId(memberEntity.getId());
+    CartEntity cartEntity;
+
+    if (!cartEntityOpt.isPresent()) {
+      cartEntity = CartEntity.builder().memberEntity(memberEntity).build();
+      cartRepository.save(cartEntity);
+    } else {
+      cartEntity = cartEntityOpt.get();
+>>>>>>> dev
     }
-    //shop 확인
-    ShopEntity shopEntity=shopRepository.findById(shopId).orElseThrow(IllegalArgumentException::new);
-    //shopListEntity 확인
-    List<CartShopListEntity> cartShopListEntity
-        =cartShopListRepository.findByCartEntityIdAndShopEntityId(cartEntity1.getId(),shopEntity.getId());
-    if(cartShopListEntity.isEmpty()){
-      CartShopListEntity cartShopListEntity1=CartShopListEntity.builder()
-          .count(1)
-          .cartEntity(cartEntity1)
+
+    // shop 확인
+    ShopEntity shopEntity = shopRepository.findById(shopId).orElseThrow(IllegalArgumentException::new);
+
+    // shopListEntity 확인
+    List<CartShopListEntity> cartShopListEntity = cartShopListRepository.findByCartEntityIdAndShopEntityId(cartEntity.getId(), shopEntity.getId());
+    ShopEntity shopEntity1 = shopRepository.findById(shopDto.getId()).orElseThrow(IllegalArgumentException::new);
+    int oldCount = shopEntity1.getPriceCount();
+    int totalCount = priceCount + oldCount;
+
+    if (cartShopListEntity.isEmpty()) {
+      CartShopListEntity cartShopListEntity1 = CartShopListEntity.builder()
+          .count(totalCount)
+          .cartEntity(cartEntity)
           .shopEntity(shopEntity)
           .build();
       cartShopListRepository.save(cartShopListEntity1);
-    }else{
+    } else {
       cartShopListRepository.save(CartShopListEntity.builder()
           .id(cartShopListEntity.get(0).getId())
-          .count(cartShopListEntity.get(0).getCount()+1)
-          .cartEntity(cartEntity1)
+          .count(cartShopListEntity.get(0).getCount() + totalCount)
+          .cartEntity(cartEntity)
           .shopEntity(shopEntity)
           .build());
-
     }
   }
-  @Override
-  public List<ShopDto> shopList1() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
 
-    shopEntityList=shopRepository.findByCategory(1);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
+@Override
+public Page<ShopDto> shopList(Pageable pageable, String subject1, String subject2, String search) {
+  Page<ShopEntity> shopEntityPage=null;
+
+  if(subject1!=null && subject2!=null && search!=null) {
+    if ("1".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(1, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(1, search, pageable);
+      }
+    } else if ("2".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(2, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(2, search, pageable);
+      }
+    } else if ("3".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(3, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(3, search, pageable);
+      }
+    } else if ("4".equals(subject1)) {
+
+      if ("shopTitle".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(4, search, pageable);
+      } else if ("shopContent".equals(subject2)) {
+        shopEntityPage = shopRepository.findByCategoryAndShopContentContains(4, search, pageable);
+      }
+    } else {
+      shopEntityPage = shopRepository.findAll(pageable);
+      System.out.println("else");
+    }
+  }else {
+    shopEntityPage = shopRepository.findAll(pageable);
   }
-  @Override
-  public List<ShopDto> shopList2() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
 
-    shopEntityList=shopRepository.findByCategory(2);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
-  }
-  @Override
-  public List<ShopDto> shopList3() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
+  Page<ShopDto> shopDtos = shopEntityPage.map(ShopDto::toselectShopDto);
 
-    shopEntityList=shopRepository.findByCategory(3);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
-  }
-  @Override
-  public List<ShopDto> shopList4() {
-    List<ShopEntity> shopEntityList=new ArrayList<>();
-
-    shopEntityList=shopRepository.findByCategory(4);
-    return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
-  }
-
-
-
+  return shopDtos;
 }
+
+  @Override
+  public Page<ShopDto> shopSearchPageList1(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
+
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory1Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle1Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent1Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory1Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
+  }
+  @Override
+  public Page<ShopDto> shopSearchPageList2(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
+
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory2Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle2Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent2Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory2Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
+  }
+  @Override
+  public Page<ShopDto> shopSearchPageList3(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
+
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory3Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle3Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent3Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory3Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
+  }
+  @Override
+  public Page<ShopDto> shopSearchPageList4(Pageable pageable, String subject, String search) {
+    ShopEntity shopEntity=new ShopEntity();
+    Page<ShopEntity> shopEntityPage = null;
+
+
+    if(subject==null || search==null){
+      shopEntityPage = shopRepository.findByCategory4Contains(pageable);
+    }else {
+      if (subject.equals("shopTitle")){
+        shopEntityPage=shopRepository.findByShopTitle4Contains(pageable,search);
+      } else if (subject.equals("shopContent")) {
+        shopEntityPage=shopRepository.findByShopContent4Contains(pageable,search);
+      }else {
+        shopEntityPage= shopRepository.findByCategory4Contains(pageable);
+      }
+    }
+
+    Page<ShopDto> shopDtoPage = shopEntityPage.map(ShopDto::toselectShopDto);
+
+    return shopDtoPage;
+  }
+  
+
+
+  @Transactional
+  public String toggleLikeShop(Long shopId, Long memberId) {
+    MemberEntity memberEntity=memberRepository.findById(memberId).orElseThrow(IllegalArgumentException::new);
+    ShopEntity shopEntity = shopRepository.findById(shopId)
+        .orElseThrow(() -> new RuntimeException("Shop not found with id: " + shopId));
+    Optional<ShopLikeEntity> shopLikeEntity =shopLikeRepository.findByShopEntityAndMemberEntity(shopEntity, memberEntity);
+    ShopLikeEntity shopLikeEntity1=null;
+    if (shopLikeEntity.isEmpty()) {
+      // 좋아요가 없는 경우 새로운 좋아요 엔터티를 생성하여 저장합니다.
+      shopEntity.increaseLikeCount();
+      shopLikeEntity1 = ShopLikeEntity.builder()
+          .shopEntity(shopEntity)
+          .memberEntity(memberEntity)
+          .liked(true)
+          .build();
+      shopLikeRepository.save(shopLikeEntity1);
+      return "좋아요 성공.";
+    } else {
+      // 이미 좋아요가 있는 경우 좋아요를 취소합니다.
+      shopEntity.decreaseLikeCount();
+      shopLikeRepository.deleteById(shopLikeEntity.get().getId());
+      return "좋아요 취소했습니다.";
+    }
+  }
+  public String checkLikeStatus(Long shopId, Long memberId) {
+    MemberEntity memberEntity = memberRepository.findById(memberId)
+        .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
+    ShopEntity shopEntity = shopRepository.findById(shopId)
+        .orElseThrow(() -> new IllegalArgumentException("상점을 찾을 수 없습니다."));
+
+    if (hasLikedShop(shopEntity, memberEntity)) {
+      return "liked";
+    } else {
+      return "unliked";
+    }
+  }
+  private boolean hasLikedShop(ShopEntity shopEntity, MemberEntity memberEntity) {
+    return shopLikeRepository.findByShopEntityAndMemberEntity(shopEntity, memberEntity).isPresent();
+  }
+
+  private void createLikeShop(ShopEntity shopEntity, MemberEntity memberEntity) {
+    shopLikeRepository.save(new ShopLikeEntity(shopEntity, memberEntity));
+  }
+
+  private void removeLikeShop(ShopEntity shopEntity, MemberEntity memberEntity) {
+    ShopLikeEntity shopLikeEntity = shopLikeRepository.findByShopEntityAndMemberEntity(shopEntity, memberEntity)
+        .orElseThrow(() -> new RuntimeException("Shop like not found for shop and member."));
+    shopLikeRepository.delete(shopLikeEntity);
+  }
+
+
+  @Override
+  public List<ShopDto> liked() {
+
+    List<ShopEntity> like = shopRepository.findTop5ByOrderByLikedDesc();
+
+    List<ShopDto> likeDto = like.stream().map(
+        ShopDto::toselectShopDto).collect(Collectors.toList());
+
+<<<<<<< HEAD
+=======
+
+    return likeDto;
+  }
+
+>>>>>>> dev
+}
+
+

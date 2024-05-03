@@ -9,9 +9,13 @@
 .container {
     width: 100%;
     height: auto;
+<<<<<<< HEAD
     display: flex; */
 /* 왼쪽과 오른쪽 요소를 가로로 배치하기 위해 flex 사용 *//*
 
+=======
+    display: flex; /* 왼쪽과 오른쪽 요소를 가로로 배치하기 위해 flex 사용 */
+>>>>>>> dev
     justify-content: space-between;
 }
 
@@ -19,50 +23,101 @@
 /* 왼쪽 네비게이션 *//*
 
 .left {
+<<<<<<< HEAD
     */
 /* 왼쪽 요소 스타일 *//*
 
+=======
+    /* 왼쪽 요소 스타일 */
+>>>>>>> dev
     flex: 0 0 200px;
 }
 
-.nav-section {
-    grid-row: span 3;
-    background-color: #6AC793;
-    padding: 20px;
-    box-sizing: border-box;
+/*메뉴css*/
+.menu {
+  display: block;
+  width: 200px;
+  background-color: #949494;
+  color: #fff;
+  /* border-radius: 20px; */
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden; /* 반응형 애니메이션용 */
+  transition: all 0.5s ease; /* 반응형 애니메이션 */
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu ul li {
+  display: flex; /* 아이콘과 텍스트를 가로로 나열 */
+  align-items: center; /* 세로 가운데 정렬 */
+  margin-bottom: 10px; /* 각 아이템 사이의 간격 설정 */
+  font-size: 20px;
 }
 
-.navigation ul {
-    list-style: none;
-    padding: 0;
+.menu a, .menu > label {
+  padding: 8px;
+  color: #fff;
+  font-size: 20px;
+
 }
 
-.navigation li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
+.menu ul li a{
+  display: block;
+  line-height: 60px;
+}
+
+.menu ul li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
+
+}
+.menu a:hover {
+  color: #000;
+}
+.menu ul li:hover{
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
 }
 
 */
 /* 오른쪽 메인 컨텐츠 *//*
 
 .right {
+<<<<<<< HEAD
     */
 /* 오른쪽 요소 스타일 *//*
 
+=======
+    /* 오른쪽 요소 스타일 */
+>>>>>>> dev
     flex:1;
 }
 
 .main-content {
+<<<<<<< HEAD
    */
 /* grid-row: span 4;
     display: flex;
     flex-direction: column;*//*
 
+=======
+   /* grid-row: span 4;
+    display: flex;
+    flex-direction: column;*/
+>>>>>>> dev
 }
 
 .shopList {
     display: flex;
+<<<<<<< HEAD
+=======
+        flex-direction: column;
+>>>>>>> dev
     justify-content: flex-start;
     margin-bottom: 20px;
 }
@@ -84,9 +139,13 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 */
 /*grit*//*
 
+=======
+/*grit*/
+>>>>>>> dev
 .grid-parent{
   width:100%;
 
@@ -99,6 +158,7 @@
 
   gap:5px;
 }
+<<<<<<< HEAD
 .grid-parent ul.grid-con li{
  border:1px solid ;
  box-sizing:border-box;
@@ -107,10 +167,20 @@
  background-color:#ffff00;
 }
 .grid-parent ul.grid-con li img{
+=======
+
+
+.grid-parent ul.grid-con li .top{
+  height:400px;
+}
+
+.grid-parent ul.grid-con li .top img{
+>>>>>>> dev
  display:block;
  width:100%;
 
 }
+<<<<<<< HEAD
 
 
 
@@ -404,6 +474,24 @@ span.now {
     cursor: pointer;
 }
 */
+=======
+.grid-parent ul.grid-con li .bottom{
+/*  height:100px;*/
+}
+.grid-parent ul.grid-con .bottom {
+  display:flex;
+  justify-content:space-between;
+
+}
+.grid-parent ul.grid-con .bottom  div{
+ border:1px solid ;
+ box-sizing:border-box;
+ padding:3px;
+ background-color:#ffff00;
+ height:100px;
+}
+
+>>>>>>> dev
 /* 페이징 */
 
 .paging {
@@ -480,4 +568,13 @@ span.now {
   padding: 0 10px;
   position: relative;
   cursor: pointer;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+
+>>>>>>> dev

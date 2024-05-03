@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <title>detail1_2</title>
     <link rel="stylesheet" th:href="@{/css/shop/shopDetail.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script th:src="@{/js/reply.js}" defer></script>
+=======
+  <meta charset="UTF-8">
+  <title>detail1_2</title>
+  <link rel="stylesheet" th:href="@{/css/shop/shopDetail.css}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--  <script th:src="@{/js/shop/reply.js}" defer></script>-->
+  <script th:src="@{/js/shop/shopLike.js}" defer></script>
+  <script th:src="@{/js/shop/cartCount.js}" defer></script>
+>>>>>>> dev
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
@@ -101,6 +111,7 @@
                     </form>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="bottom">
                 <div class="reply">
                     <div class="reply-con">
@@ -142,8 +153,188 @@
                 </div>
             </div>
         </div>
+=======
+            <ul>
+              <li>
+                자유게시판
+              </li>
+              <li>
+                <label for="id">ID</label>           <!-- shop.getMemberEntity().id -->
+                <input type="hidden" name="id" id="id" th:value="${shopDto.id}" readonly>
+              </li>
+              <li>
+                <label for="memberId">MemberId</label>
+                <input type="text" name="memberId" id="memberId" th:value="${shopDto.memberEntity.id}" readonly>
+              </li>
+              <li>
+                <label for="shopTitle">TITLE</label>
+                <input type="text" name="shopTitle" id="shopTitle" th:value="${shopDto.shopTitle}">
+              </li>
+              <li>
+                <label for="shopContent">CONTENT</label>
+              </li>
+              <li>
+                <textarea name="shopContent" id="shopContent" cols="30" rows="3"
+                          th:text="${shopDto.shopContent}"></textarea>
+              </li>
+
+              <li>
+                <label for="shopHit">HIT</label>
+                <input type="text" name="shopHit" id="shopHit" th:value="${shopDto.shopHit}" readonly>
+              </li>
+              <li>
+                <label for="shopPrice">금액</label>
+                <input type="text" name="shopPrice" id="shopPrice" th:value="${shopDto.shopPrice}" readonly>
+              </li>
+              <li>
+                <label for="shopSeller">선생님</label>
+                <input type="text" name="shopSeller" id="shopSeller" th:value="${shopDto.shopSeller}" readonly>
+              </li>
+              <li>
+                <label for="peopleCount">정원</label>
+                <input type="text" name="peopleCount" id="peopleCount" th:value="${shopDto.peopleCount}" readonly>
+              </li>
+              <li>
+                <label for="place">place</label>
+                <input type="text" name="place" id="place" th:value="${shopDto.Place}" readonly>
+              </li>
+              <li>
+                <label for="createTime">작성시간</label>
+                <td th:text="${#temporals.format(shopDto.createTime, 'yyyy년-MM월-dd일')}" id="createTime"></td>
+              </li>
+              <li>
+                <label for="updateTime">수정시간</label>
+                <td th:text="${#temporals.format(shopDto.updateTime, 'yyyy년-MM월-dd일')}" id="updateTime"></td>
+              </li>
+              <!--              <li>-->
+              <!--                <label for="shopFile">File</label>-->
+              <!--                <input type="file" name="shopFile" id="shopFile">-->
+              <!--              </li>-->
+              <li>
+                <span th:text=${shopDto.shopPrice}></span> 원
+                <input type='button'
+                       onclick='count("minus")'
+                       value='-'
+                       class="minusBtn"/>
+                <div id='result' class="sum">[[${shopDto.priceCount}]]</div>
+                <input type='button'
+                       onclick='count("plus")'
+                       value='+'
+                       class="plusBtn"/>
+              </li>
+              <li>
+                <th:block sec:authorize="isAuthenticated()">
+                  <th:blcok th:if="${shopDto.memberEntity.userEmail==myUserDetails.username}">
+
+                    <input type="submit" value="수정" class="btn1">
+
+                    <a th:href="@{/shop/shopDelete/{id}(id=${shopDto.id})}" class="btn1">삭제</a>
+                    <a th:href="@{/shop/shopList}" class="btn1">목록</a>
+                  </th:blcok>
+                </th:block>
+              </li>
+              <li>
+                <th:block sec:authorize="isAuthenticated()">
+                  <th:blcok th:unless="${shopDto.memberEntity.userEmail==myUserDetails.username}">
+                    <a th:href="@{/shop/shopList}" class="btn1">목록</a>
+
+                  </th:blcok>
+                </th:block>
+              </li>
+              <li>
+                <input type="button" class="cartBtn" id="cartBtn" value="장바구니">
+              </li>
+              <li>
+                <span th:text="${shopDto.shopPrice}" id="priceSum"></span>원
+              </li>
+            </ul>
+          </form>
+          <input type="hidden" id="memberId2" th:value="${myUserDetails.memberEntity.id}">
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="reply">
+          <div class="reply-con">
+            <h1>REVIEW LIST</h1>
+
+            <th:block sec:authorize="isAuthenticated()">
+              <form th:action="@{/reply/shopReplyWrite}" method="post">
+                <input type="text" id="shopId" name="shopId" th:value="${shopDto.id}" readonly>
+                <input type="hidden" name="shopReplyId">
+
+                <input type="text" name="shopReplyWriter" id="shopReplyWriter"
+                       th:value="${myUserDetails.name}" readonly>
+
+                <!--로그인되어 있으면 회원의 이름이 replyWriter 자리에 출력되도록 함-->
+                <input type="text" name="shopReplyContent" id="shopReplyContent" placeholder="덧글내용">
+                <input type="submit" value="댓글작성">
+                <!--                                <input type="button" id="replyOkBtn" value="댓글작성">-->
+              </form>
+            </th:block>
+
+            <th:block sec:authorize="isAnonymous()">
+              <h1>
+                댓글을 작성하려면 로그인하세요!
+                <a th:href="@{/member/memberLogin}">
+                  <img th:src="@{/images/btn_write}" alt="로그인"></a>
+              </h1>
+
+            </th:block>
+
+            </form>
+            <!--댓글 테이블-->
+            <table>
+              <thead>
+              <tr>
+                <th>글 번호</th>
+                <th>번호</th>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>작성시간</th>
+              </tr>
+              </thead>
+              <tbody class="tData">
+
+              <tr th:each="shopReply:${shopReplyList}">
+                <!--&lt;!&ndash;reply.getShopEntity.getId() &ndash;&gt;-->
+                <td th:text="${shopReply.shopEntity.id}"></td>
+                <td th:text="${shopReply.id}"></td>
+                <td th:text="${shopReply.shopReplyContent}"></td>
+                <td th:text="${shopReply.shopReplyWriter}"></td>
+                <td th:text="${#temporals.format(shopReply.createTime, 'yyyy-MM-dd HH:mm')}"></td>
+
+                <th:block sec:authorize="isAuthenticated()">
+                  <th:block sec:authorize="hasAnyRole('ADMIN')">
+                    <td><a th:href="@{/reply/shopReplyDelete/{id}(id=${shopReply.id})}">삭제</a>
+                    </td>
+                  </th:block>
+
+                  <!--자기 글이거나 자기가 쓴 댓글은 삭제 가 보임(member,manager 권한 따로 준것은 admin이 자기글일 때 중복해서 출력되기 때문-->
+                  <th:block
+                      th:if="${shopDto.memberEntity.userEmail==myUserDetails.username} or ${shopReply.shopReplyWriter==myUserDetails.name}">
+                    <th:block sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+                      <td><a th:href="@{/reply/shopReplyDelete/{id}(id=${shopReply.id})}">삭제</a>
+                      </td>
+                    </th:block>
+                  </th:block>
+
+                </th:block>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+>>>>>>> dev
     </div>
 </div>
+<input type="hidden" id="initialLikeStatus" th:value="${shopDto.liked}" />
+<button id="likeButton" onclick="likeShop()">♥</button>
 <div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+
+
+
+
+
 </body>
 </html>

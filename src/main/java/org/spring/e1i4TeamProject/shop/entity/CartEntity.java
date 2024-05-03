@@ -22,7 +22,11 @@ public class CartEntity extends BaseTimeEntity {
     private Long id;
 
 //    @JsonIgnore
+<<<<<<< HEAD
     @OneToOne(cascade = CascadeType.REMOVE)
+=======
+    @OneToOne(fetch = FetchType.LAZY)
+>>>>>>> dev
     @JoinColumn(name = "member_id")
     private MemberEntity memberEntity;
 

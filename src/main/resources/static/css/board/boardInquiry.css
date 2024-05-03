@@ -10,7 +10,11 @@
 }
 .inquiry .inquiry-con{
     flex: 0 1 1600px;
+<<<<<<< HEAD
     height: calc(100vh - 194px - 200px - 20px);
+=======
+    height: calc( 100vh - 337px - 200px);
+>>>>>>> dev
     /* border: 1px solid; */
     box-sizing: border-box;
 
@@ -18,9 +22,13 @@
     justify-content: space-between;
     gap: 10px;
 
+<<<<<<< HEAD
     background-color: rgb(250, 250, 250);
         /*위  좌/우  아래 */
      padding: 10px 0 20px;
+=======
+    background-color: wheat;
+>>>>>>> dev
  
 }
 
@@ -94,11 +102,47 @@
 }
 
 .writeForm button[type="submit"]:hover {
+<<<<<<< HEAD
      background-image: linear-gradient(to right, #ffa94e, #ffff6b);  /* 호버 시 그라데이션 변경 */
+}
+
+=======
+    background-image: linear-gradient(to bottom, #6572ff, #ff6565); /* 호버 시 그라데이션 변경 */
 }
 
 
 
+/* .reply{
+    margin-top:20px;
+}
+.reply-con{
+    background-color:#f9f9f9;
+    border:1px solid #ccc;
+    border-radius:5px;
+    padding:20px;
+}
+.reply-con .title{
+    font-size:20px;
+    margin-bottom:15px;
+}
+.reply-con form input[type="text"]{
+    width:calc(50%-10px); /*입력 필드를 반으로 나눕니다.*/
+    /* padding:10px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+    font-size:16px;
+}
+>>>>>>> dev
+
+
+<<<<<<< HEAD
+=======
+.reply-con form input[type="submit"]:hover {
+    background-color: #0056b3;
+    } */
+>>>>>>> dev
 
  
 
@@ -108,7 +152,11 @@
         /* border: 1px solid; */
         box-sizing: border-box;
         padding: 20px;
+<<<<<<< HEAD
         background-color: #ffffff;
+=======
+        background-color: #cccccc;
+>>>>>>> dev
         overflow-y: auto; /* 스크롤 추가 */
     }
     table,th,td{
@@ -119,8 +167,12 @@
         width: 100%;
     }
     .inquiry .inquiry-con .right table th{
+<<<<<<< HEAD
         
         background-color: rgb(250 184 119);;
+=======
+        background-image: linear-gradient(to bottom, #f67cff, #003c80);
+>>>>>>> dev
         padding: 5px 0;
     }
     .inquiry .inquiry-con .right table td{

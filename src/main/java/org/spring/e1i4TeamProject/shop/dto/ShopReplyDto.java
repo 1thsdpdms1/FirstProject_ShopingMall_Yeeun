@@ -12,24 +12,26 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ShopReplyDto {
-    private Long id;
+  private Long id;
 
-    private String shopReplyWriter;
+  private String shopReplyWriter;
 
-    private String shopReplyContent;
+  private String shopReplyContent;
 
-    private ShopEntity shopEntity;
+  private ShopEntity shopEntity;
 
-    private LocalDateTime createTime;
+  private LocalDateTime createTime;
 
-    private LocalDateTime updateTime;
+  private LocalDateTime updateTime;
 
-  public static ShopReplyDto toSelectShopReplyDto(ShopReplyEntity shopReplyEntity) {
+  private Long shopId;
+
+  public static ShopReplyDto toSelectReplyDto(ShopReplyEntity shopReplyEntity) {
     ShopReplyDto shopReplyDto=new ShopReplyDto();
     shopReplyDto.setId(shopReplyEntity.getId());
-    shopReplyDto.setShopReplyWriter(shopReplyEntity.getShopReplyWriter());
     shopReplyDto.setShopReplyContent(shopReplyEntity.getShopReplyContent());
     shopReplyDto.setShopEntity(shopReplyEntity.getShopEntity());
+    shopReplyDto.setShopReplyWriter(shopReplyEntity.getShopReplyWriter());
     shopReplyDto.setCreateTime(shopReplyEntity.getCreateTime());
     shopReplyDto.setUpdateTime(shopReplyEntity.getUpdateTime());
 

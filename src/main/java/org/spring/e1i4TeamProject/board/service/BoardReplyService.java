@@ -69,6 +69,10 @@ public class BoardReplyService implements BoardReplyInterface {
 
         //해당 글이 null이 아니라면
         if (boardEntity != null) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
             BoardReplyEntity boardReplyEntity = BoardReplyEntity.builder()
                     .boardEntity(BoardEntity.builder().id(boardReplyDto.getBoardId()).build()) // 글의 아이디
                     .boardReplyWriter(boardReplyDto.getBoardReplyWriter())
@@ -76,7 +80,10 @@ public class BoardReplyService implements BoardReplyInterface {
                     .build(); // 찾아서 값 넣고
             boardReplyRepository.save(boardReplyEntity);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
     }
 
     @Override
