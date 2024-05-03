@@ -37,6 +37,9 @@ public class BoardEntity extends BaseTimeEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int boardHit;
 
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int replyCount;
+
     @Column(nullable = false)
     private int boardAttachFile; //게시글 작성시 파일이 존재하면 1, 없으면 0
 
@@ -62,13 +65,14 @@ public class BoardEntity extends BaseTimeEntity {
 
         BoardEntity boardEntity=new BoardEntity();
 
-        boardEntity.setCategory(boardEntity.getCategory());
+        boardEntity.setCategory(boardDto.getCategory());
         boardEntity.setBoardTitle(boardDto.getBoardTitle()); //게시글 제목
         boardEntity.setBoardContent(boardDto.getBoardContent());
         boardEntity.setBoardWriter(boardDto.getBoardWriter());
         boardEntity.setBoardAttachFile(0);
-        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
+//        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
         boardEntity.setBoardHit(0);
+        boardEntity.setReplyCount(boardDto.getReplyCount());
         boardEntity.setMemberEntity(boardDto.getMemberEntity());
 
         return boardEntity;
@@ -79,15 +83,53 @@ public class BoardEntity extends BaseTimeEntity {
 
         BoardEntity boardEntity=new BoardEntity();
 
-        boardEntity.setCategory(boardEntity.getCategory());
+        boardEntity.setCategory(boardDto.getCategory());
         boardEntity.setBoardTitle(boardDto.getBoardTitle()); //게시글 제목
         boardEntity.setBoardContent(boardDto.getBoardContent());
         boardEntity.setBoardWriter(boardDto.getBoardWriter());//게시글 작성자
         boardEntity.setBoardAttachFile(1);
         boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
+        boardEntity.setReplyCount(boardDto.getReplyCount());
         boardEntity.setBoardHit(0);
         boardEntity.setMemberEntity(boardDto.getMemberEntity());
 
         return boardEntity;
     }
+
+
+    //파일이 없을 때 수정
+    public static BoardEntity toBoardUpdateEntity0(BoardDto boardDto) {
+
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setId(boardDto.getId());
+        boardEntity.setCategory(boardDto.getCategory());
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardWriter(boardDto.getBoardWriter());//게시글 작성자
+        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());//게시글 파일
+        boardEntity.setBoardAttachFile(0);
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
+        return boardEntity;
+    }
+
+
+    //파일이 있을 때 수정
+    public static BoardEntity toBoardUpdateEntity1(BoardDto boardDto) {
+
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setId(boardDto.getId());
+        boardEntity.setCategory(boardDto.getCategory());
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardWriter(boardDto.getBoardWriter());
+        boardEntity.setBoardAttachFile(1);
+        boardEntity.setBoardFileEntityList(boardDto.getBoardFileEntityList());
+        boardEntity.setMemberEntity(boardDto.getMemberEntity());
+
+        return boardEntity;
+    }
+
 }

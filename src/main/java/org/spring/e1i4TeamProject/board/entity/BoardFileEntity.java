@@ -36,6 +36,7 @@ public class BoardFileEntity extends BaseTimeEntity {
     public static BoardFileEntity toBoardInsertFile(BoardFileDto fileDto) {
 
         BoardFileEntity boardFileEntity=new BoardFileEntity();
+
         boardFileEntity.setBoardNewFileName(fileDto.getBoardNewFileName());
         boardFileEntity.setBoardOldFileName(fileDto.getBoardOldFileName());
         boardFileEntity.setBoardEntity(fileDto.getBoardEntity());

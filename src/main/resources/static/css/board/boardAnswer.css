@@ -1,0 +1,86 @@
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+@import url(/css/common/reset.css);
+
+
+
+.reply {
+    padding: 20px;
+    margin: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+
+.reply-con {
+    padding: 20px;
+    height: 800px;
+    width: 1600px;
+    margin: 0 auto;
+    
+}
+
+.reply-con h1.title {
+    background-color: rgb(250 184 119);
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+}
+
+.reply-con form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.reply-con form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.reply-con form input[type="text"]:focus {
+    outline: none;
+    background-image: linear-gradient(to bottom, #ffd29f, #fff98b);
+}
+
+.reply-con form input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(250 184 119);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reply-con form input[type="submit"]:hover {
+    background-image: linear-gradient(to right, #ffa94e, #ffff6b);
+    transition: border-color 0.3s ease;
+}
+
+.reply-con table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.reply-con table th, .reply-con table td {
+    padding: 10px;
+    border: 1px solid #ced4da;
+}
+
+.reply-con table th {
+    background-color: #f8f9fa;
+}
+
+.reply-con table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+

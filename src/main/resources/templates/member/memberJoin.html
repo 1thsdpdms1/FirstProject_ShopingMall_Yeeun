@@ -5,7 +5,7 @@
     <title>회원 가입</title>
     <link rel="stylesheet" th:href="@{/css/member/memberJoin.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script th:src="@{/js/join.js}" defer></script>
+    <script th:src="@{/js/member.js}" defer></script>
 </head>
 <body>
 
@@ -35,11 +35,24 @@
                     <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="error"></p>
                     <li>
                         <label for="memberUserPw">비 밀 번 호<span class="imp">*</span></label>
+                        <div id="memberShowPw" class="memberShowPw">
+                            <img th:src="@{/images/eye.png}" alt="이미지대체문구" height="24px">
+                        </div>
+
                     </li>
                     <li>
-                        <input type="password" id="memberUserPw" th:field="*{userPw}" placeholder="비 밀 번 호"> <br>
+                        <input type="password" id="memberUserPw" th:field="*{userPw}" placeholder="비 밀 번 호">
+
                     </li>
                     <p th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" class="error"></p>
+                    <li>
+                        <label for="memberUserPwCheck">비 밀 번 호 확 인<span class="imp">*</span></label>
+                    </li>
+                    <li>
+                        <input type="password" id="memberUserPwCheck" th:field="*{userPwCheck}"
+                               placeholder="비 밀 번 호 확 인">
+                    </li>
+                    <p th:if="${#fields.hasErrors('userPwCheck')}" th:errors="*{userPwCheck}" class="error"></p>
                     <li>
                         <label for="memberName">이 름<span class="imp">*</span></label>
                     </li>
@@ -83,12 +96,23 @@
                     </li>
                     <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="error"></p>
                     <li>
-                        <label for="memberUserPw">비 밀 번 호<span class="imp">*</span></label>
+                        <label for="sellerUserPw">비 밀 번 호<span class="imp">*</span></label>
+                        <div id="sellerShowPw" class="sellerShowPw">
+                            <img th:src="@{/images/eye.png}" alt="이미지대체문구" height="24px">
+                        </div>
                     </li>
                     <li>
                         <input type="password" id="sellerUserPw" th:field="*{userPw}" placeholder="비 밀 번 호"> <br>
                     </li>
                     <p th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" class="error"></p>
+                    <li>
+                        <label for="sellerUserPwCheck">비 밀 번 호 확 인<span class="imp">*</span></label>
+                    </li>
+                    <li>
+                        <input type="password" id="sellerUserPwCheck" th:field="*{userPwCheck}"
+                               placeholder="비 밀 번 호 확 인">
+                    </li>
+                    <p th:if="${#fields.hasErrors('userPwCheck')}" th:errors="*{userPwCheck}" class="error"></p>
                     <li>
                         <label for="sellerName">이 름<span class="imp">*</span></label>
                     </li>
@@ -112,8 +136,8 @@
                         <label for="sellerPhoneNumber">전 화 번 호</label>
                     </li>
                     <li>
-                    <input type="text" id="sellerPhoneNumber" oninput="sellerPhoneNumberInput()" maxlength="13"
-                           th:field="*{phoneNumber}" placeholder="전화번호 ( ' - ' 제외, 13자리 입력 )"> <br>
+                        <input type="text" id="sellerPhoneNumber" oninput="sellerPhoneNumberInput()" maxlength="13"
+                               th:field="*{phoneNumber}" placeholder="전화번호 ( ' - ' 제외, 13자리 입력 )"> <br>
                     </li>
                     <li class="file">
                         <label for="sellerFile">사 진 첨 부</label>

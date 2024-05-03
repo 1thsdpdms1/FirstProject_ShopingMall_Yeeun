@@ -1,3 +1,206 @@
-@import url(../common/reset.css);
-@import url(../common/header.css);
-@import url(../common/footer.css);
+
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+@import url(/css/common/paging.css);
+
+/* 검색 css */
+.container {
+ width: 100%;
+     height: auto;
+     display: flex;
+     justify-content: center;
+
+
+}
+
+.container .boardList {
+  width: 1600px;
+  display: flex;
+
+ /* justify-content: center;*/
+
+}
+
+.container .boardList .boardList-con{
+  width: 100%;
+ /* justify-content: center;*/
+ line-height: 2;
+ padding-top : 50px;
+ padding-left: 20px;
+}
+
+.container .boardList .boardList-con .writeButton{
+    margin: 10px;
+    margin-right: 0;
+    float: right;
+}
+
+.container .boardList .boardList-con h1 img{
+    width: 30px;
+    height: 30px;
+}
+
+.container .boardList .boardList-con button.delete{
+  background: #000000;
+  padding: 5px;
+  color: white;
+  border: 1px solid #ffffff;
+}
+
+.container .boardList h1{
+  background-color: rgb(250 184 119);
+  color: aliceblue;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.container .boardList .search{
+  background-color: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: end;
+}
+
+/* 리스트css */
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+   background-color: #f9f9f9;
+}
+
+th,td{
+  /* border: 1px solid #cccccc; */
+    border-bottom: 1px solid #000000ad;
+}
+table th{
+  background-color: #ffd2a6;
+  color: white;
+  padding: 5px;
+}
+
+table td:not(:last-child){
+  text-align: center;
+  padding: 5px;
+}
+
+table th td:nth-last-child{
+text-align : center;
+}
+
+table tr td  a {
+display : flex;
+justify-content : center;
+align-items : center;
+gap : 10px;
+
+  }
+table tr td  a img{
+    width : 20px;
+    height : 20px;
+}
+
+table td.ellipsis {
+  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 함 */
+      overflow: hidden; /* 요소의 내용이 넘칠 때 숨김 */
+      text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 추가 */
+      max-width: 200px; /* 요소의 최대 너비 지정 */
+}
+
+.menu {
+  width: 250px;
+ overflow: hidden;
+ padding: 10px;
+ padding-top: 80px;
+ box-sizing: border-box;
+ box-shadow: 5px 20px 5px rgb(68 67 67 / 34%);
+ /*position: fixed;*/
+ /* margin: 150px auto; */
+}
+
+
+.menu li:not(.sub) {
+ width: 100%;
+ text-align: center;
+ line-height: 50px;
+ background-color: #ffffff;
+ color: #000000;
+ display: flex;
+}
+
+
+.menu li.sub {
+display: flex;
+justify-content: space-between;
+}
+.menu li.sub img{
+display: inline-block;
+width: 30px;
+height: 30px;
+padding: 15px 10px;
+}
+
+.menu li.sub .right{
+flex:1;
+padding: 10px 0;
+box-sizing: border-box;
+}
+.menu li.sub .right > a{
+display: block;
+width: 80px;
+line-height: 30px;
+}
+
+
+
+.menu li:not(.sub) img{
+width: 30px;
+height: 30px;
+padding: 15px 10px;
+}
+
+/* .menu li.sub a{
+padding: 8px;
+color: #000000;
+font-size: 20px;
+width: 200pc;
+} */
+
+.menu a, .menu > label {
+padding: 8px;
+color: #000000;
+font-size: 20px;
+
+}
+
+.menu a:hover {
+opacity: 1;
+transition : 1s;
+border-bottom: 1px solid black;
+}
+
+.submenu {
+height: 0; /* submenu가 안보이게 하기 위해 */
+overflow: hidden;
+}
+.right ul.submenu > li {
+/* line-height: 50px; */
+background-color: #8d8c8c;
+justify-content: center;
+
+}
+
+/*.menu > li:hover {
+*//* menu부터 submenu01~5높이 생각해서 설정 *//*
+height: 300px;
+transition-duration: 0.5s;
+}*/
+
+.menu > li:hover .submenu {
+height: 350px; /*서브메뉴 li한개의 높이 50*5*/
+transition-duration: 1s;
+}

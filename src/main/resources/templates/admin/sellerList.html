@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>sellerList</title>
+    <link rel="stylesheet" th:href="@{/css/admin/sellerList.css}">
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="sellerList">
+        <div class="menu">
+            <label>메뉴</label>
+            <ul>
+                <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
+                <li><img th:src="@{/images/member.png}" alt="icon"><a th:href="@{/admin/memberList}" >회원조회</a></li>
+                <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/admin/sellerList}" class="under">선생님조회</a></li>
+                <li><img th:src="@{/images/bag.png}" alt="icon"><a th:href="@{/admin/shopList}">상품조회</a></li>
+                <li><img th:src="@{/images/api.png}" alt="icon"><a href="#">naverApi</a></li>
+            </ul>
+        </div>
+        <div class="sellerList-con">
+            <h1>선생님 리스트</h1>
+            <thead>
+            <div class="search">
+                <div class="search-con">
+                    <form th:action="@{/admin/sellerList}" method="get">
+                        <select name="subject" id="subject">
+                            <option value="" th:selected="${#strings.equals(param.subject)}">::선택::</option>
+                            <option value="name" th:selected="${#strings.equals(param.subject,'name')}">이름</option>
+                            <option value="phoneNumber" th:selected="${#strings.equals(param.subject,'phoneNumber')}">
+                                전화번호
+                            </option>
+                            <!--                                        <option value="${sellerList.name}" th:selected="${#strings.equals(param.subject,'name')}">이름</option>-->
+                            <option value="userEmail" th:selected="${#strings.equals(param.subject,'userEmail')}">이메일
+                            </option>
+                        </select>
+                        <input type="text" name="search" id="search" th:value="${param.search}">
+                        <input type="submit" value="검색">
+                    </form>
+                </div>
+            </div>
+            </thead>
+            <tbody>
+            <form id="deleteForm" action="/admin/sellerListDelete" method="post">
+                <table>
+                    <tr>
+                        <th><button type="submit" class="delete">선택삭제</button></th>
+                        <th>Id</th>
+                        <th>이메일</th>
+                        <th>비밀번호</th>
+                        <th>이름</th>
+                        <th>주소</th>
+                        <th>전화번호</th>
+                        <th>권한</th>
+                        <th>자격증</th>
+                        <th>가입일</th>
+                        <th>수정일</th>
+                        <th>보기</th>
+                        <th>삭제</th>
+                    </tr>
+                    <tr th:each="seller:${sellerList}">
+                        <td>
+                            <input type="checkbox" name="selectedIds" th:value="${seller.id}">
+                        </td>
+                        <td th:text="${seller.id}"></td>
+                        <td th:text="${seller.userEmail}"></td>
+                        <td class="ellipsis" th:text="${seller.userPw}"></td>
+                        <td th:text="${seller.name}"></td>
+                        <td th:text="${seller.address}"></td>
+                        <td th:text="${seller.phoneNumber}"></td>
+                        <td th:text="${seller.role}"></td>
+                        <td th:text="${seller.licence}"></td>
+                        <td th:text="${#temporals.format(seller.createTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                        <td th:text="${#temporals.format(seller.updateTime, 'yy/MM/dd HH:mm:ss')}"></td>
+                        <td><a th:href="@{/member/memberDetail/{id}(id=${seller.id})}">보기</a></td>
+                        <td><a th:href="@{/admin/sellerListDelete/{id}(id=${seller.id})}"
+                               onclick="return deleteConfirmation()">삭제</a></td>
+                    </tr>
+                    <script>
+                        function deleteConfirmation() {
+                            var result = confirm("정말로 이 회원을 삭제하시겠습니까?");
+                            if (result) {
+                                alert("회원이 삭제되었습니다.");
+                                return true; // "확인"을 클릭한 경우 링크 이동 실행
+                            } else {
+                                alert("회원 삭제가 취소되었습니다.");
+                                return false; // "취소"를 클릭한 경우 링크 이동 취소
+                            }
+                        }
+
+                         function deleteSelectedItems() {
+                            var checkboxes = document.querySelectorAll("input[name=selectedIds]:checked");
+                            checkboxes.forEach(function(checkbox) {
+                            checkbox.closest("tr").remove(); // 부모 tr 요소를 삭제
+                              });
+                            }
+                    </script>
+
+                </table>
+            </form>
+
+            </tbody>
+            <tfoot>
+            <div class="paging">
+                <ul>
+                    <li>
+                        <span th:if="${sellerList.pageable.pageNumber+1 eq 1}" class="span0"> &laquo </span>
+                        <span th:unless="${sellerList.pageable.pageNumber+1 eq 1}">
+                                     <a th:href="@{/admin/sellerList(page=0 , search=${param.search},subject=${param.subject} )}"
+                                        class="span1"> &laquo </a>
+                                     </span>
+                    </li>
+                    <li>
+                        <!-- 이전페이지가 첫번째 페이지면 span표시 -->
+                        <span th:if="${1==sellerList.pageable.pageNumber+1}" class="span0"> &lt </span>
+                        <span th:unless="${1==sellerList.pageable.pageNumber+1}">
+                                        <a th:href="@{/admin/sellerList(page=${sellerList.pageable.pageNumber-1}, search=${param.search},subject=${param.subject} )}"
+                                           class="span1"> &lt </a>
+                                     </span>
+                    </li>
+                    <!--block -->
+                    <!-- 페이지번호 -->
+                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                                    <span th:if="${i==sellerList.pageable.pageNumber+1}" th:text="${i}"
+                                          class="now"></span>
+                        <a th:unless="${i== sellerList.pageable.pageNumber+1}"
+                           th:href="@{/admin/sellerList(page=${i - 1},search=${param.search},subject=${param.subject} )}"
+                           th:text="${i}"></a>
+                    </li>
+                    <li>
+                        <!-- 현재페이지가 마지막 페이지면 span 표시 -->
+                        <span th:if="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}"
+                              class="span0"> &gt </span>
+                        <!-- 현재페이지가 마지막 페이지가아니면 a표시 현재페이지 +1 -->
+                        <span th:unless="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}">
+                                     <a th:href="@{/admin/sellerList(page=${sellerList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
+                                        class="span1"> &gt </a>
+                </span>
+                    </li>
+                    <li>
+                        <!-- 현재페이지가 마지막 페이지면 span 표시 -->
+                        <span th:if="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}"
+                              class="span0"> &raquo </span>
+                        <!-- 현재페이지가 마지막 페이지가아니면 마지막페이지로 이동해라  a -->
+                        <span th:unless="${sellerList.totalPages ==sellerList.pageable.pageNumber+1}">
+                                     <a th:href="@{/admin/sellerList(page=${sellerList.totalPages-1},search=${param.search},subject=${param.subject} )}"
+                                        class="span1"> &raquo </a>
+                </span>
+                    </li>
+                </ul>
+            </div>
+            </tfoot>
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

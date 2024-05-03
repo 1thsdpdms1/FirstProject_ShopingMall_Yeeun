@@ -1,0 +1,116 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+
+.container {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.container .container-box{
+  width: 1300px;
+  display: flex;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.container .container-box h1{
+  text-align: center;
+  background-color: rgb(250 184 119);
+  color: white;
+  padding: 10px;
+}
+.container-box .sellerList .sellerList-con .grid{
+  width: 100%;
+  border:1px solid #cccccc;
+  padding:10px;
+  box-sizing:border-box;
+}
+
+.container-box .sellerList .sellerList-con .grid ul{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(2,500px);
+  grid-auto-rows: 500px; 
+}
+
+.grid .top img {
+  width: 300px; 
+  height: 400px; 
+  object-fit: cover; 
+  transition: transform 0.5s ease;
+}
+
+.grid .top:hover img {
+  transform: scale(1.1);
+}
+
+
+.container-box .sellerList .sellerList-con .grid .bottom ul{
+  display: block;
+  background-color: #f8f8f8; 
+  font-size: 15px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.container-box .sellerList .sellerList-con .grid .bottom ul li{
+
+} 
+
+
+/* 사이드바css */
+.menu {
+  display: block;
+  width: 250px;
+  background-color: #ffffff;
+
+  color: #000000;
+  /* border-radius: 20px; */
+  padding: 10px;
+  padding-top: 80px;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 5px rgba(68, 67, 67, 0.459);
+
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  display: flex; /* 아이콘과 텍스트를 가로로 나열 */
+  align-items: center; /* 세로 가운데 정렬 */
+  margin-bottom: 10px; /* 각 아이템 사이의 간격 설정 */
+  font-size: 20px;
+}
+
+.menu a, .menu > label {
+  padding: 8px;
+  color: #000000;
+  font-size: 20px;
+
+}
+
+.menu ul li a{
+  display: block;
+  line-height: 60px;
+}
+
+.menu ul li a.under{
+  border-bottom: 1px solid black;
+}
+
+.menu ul li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
+
+}
+.menu a:hover {
+  opacity: 1;
+  transition : 1s;
+  border-bottom: 1px solid black;
+}

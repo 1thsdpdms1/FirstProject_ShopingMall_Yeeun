@@ -1,52 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/board/boardInquiry.css}">
-
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-    <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<head>
+    <meta charset="UTF-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script th:src="@{/js/inquiry/inquiry.js}" defer></script>
+    <script th:src="@{/js/inquiry/inquiry.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/board/boardInquiry.css}" />
+</head>
 
-<div class="writeForm">
-    <form action="/Inquiry" method="POST">
-        <input type="text" name="title" placeholder="제목을 입력해주세요">
-        <textarea name="content" placeholder="문의내용을 입력해주세요"></textarea>
-        <input type="hidden" name="category" id="category" value="7"> <!-- 추가된 부분 -->
-        <button type="submit">작성</button>
-    </form>
-</div>
-    <tbody>
-    <!-- 여기에 1:1문의내역 표시-->
-    <tr th:each="inquiry : ${boardList}">
-        <td th:text="${inquiry.title}">제목</td>
-        <td th:text="${inquiry.content}">문의내용</td>
-        <td th:text="${inquiry.writer}">작성자</td>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="inquiry">
+    <div class="inquiry-con">
+        <div class="left">
+            <div class="left-con">
+                <div class="writeForm">
+                    <form action="/board/inquiry/write" method="POST">
+                        <input type="text" name="boardWriter" id="boardWriter" placeholder="작성자" />
+                        <!-- 추가된 부분 -->
+                        <input type="text" name="boardTitle" id="boardTitle" placeholder="문의제목을 입력해주세요" />
+                        <textarea name="boardContent" id="boardContent" placeholder="문의내용을 입력해주세요"></textarea>
+                        <input type="hidden" name="category" id="category" value="8" />
+                        <!-- 추가된 부분 -->
 
-    </tr>
-    </tbody>
-    <div class="reply">
-        <div class="reply-con">
-            <h1 class="title">댓글작성</h1>
-            <form th:action="@{/reply/replyWrite}" method="POST">
-               <!-- <input type="hidden" name="inquiryId" th:value="${inquiry.id}">-->
-                <input type="text" name="replyContent" placeholder="문의답변내용">
-                <input type="text" name="replyWriter" placeholder="작성자">
-                <input type="submit" value="댓글작성 ">
+                        <button type="submit" onclick="ajaxInquiry(event)">작성</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-con">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>제목</th>
+                        <th>문의내용</th>
+                        <th>작성자</th>
+                        <th>문의답변</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-            </form>
+                    <tr th:each="inquiry : ${boardList}">
+                        <td th:text="${inquiry.boardTitle}"></td>
+                        <td th:text="${inquiry.boardContent}"></td>
+                        <td th:text="${inquiry.boardWriter}">작성자</td>
+
+                        <th:block sec:authorize="isAuthenticated()">
+
+                                <td>
+                                    <a th:href="@{/board/boardAnswer(id=${inquiry.id})}">문의 답변</a>
+                                </td>
+                            </th:block>
+
+<!--                        <td>-->
+<!--                            <a th:href="@{/board/boardAnswer(id=${inquiry.id})}" th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''MANAGER'')')}">문의답변</a>-->
+<!--                        </td>-->
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
+</div>
 
 
 
-
-
-
-
-
-
-
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
 
 </html>

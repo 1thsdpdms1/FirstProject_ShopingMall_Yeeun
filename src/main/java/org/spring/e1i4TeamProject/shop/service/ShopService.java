@@ -26,6 +26,9 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Member;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -122,6 +125,7 @@ public class ShopService implements ShopServiceImpl {
     return shopDtoPage;
   }
 
+
   @Override
   public void shopUpdateOk(ShopDto shopDto) throws IOException {
     //게시물 유무 체크
@@ -130,18 +134,18 @@ public class ShopService implements ShopServiceImpl {
     //파일체크
     Optional<ShopFileEntity> optionalFileEntity = shopFileRepository.findByShopEntityId(shopDto.getId());
     //파일이 있으면 파일 기존 파일 삭제
-//    if (optionalFileEntity.isPresent()) {
-//      String fileNewName = optionalFileEntity.get().getShopNewFileName();
-//      String filePath = "C:/e1i4_file/" + fileNewName;
-//      File deleteFile = new File(filePath);
-//      if (deleteFile.exists()) {
-//        deleteFile.delete();
-//        System.out.println("파일을 삭제하였습니다");
-//      } else {
-//        System.out.println("파일이 존재하지않습니다");
-//      }
-//      shopFileRepository.delete(optionalFileEntity.get());//파일 테이블 레코드 삭제
-//    }
+    if (optionalFileEntity.isPresent()) {
+      String fileNewName = optionalFileEntity.get().getShopNewFileName();
+      String filePath = "C:/e1i4_file/" + fileNewName;
+      File deleteFile = new File(filePath);
+      if (deleteFile.exists()) {
+        deleteFile.delete();
+        System.out.println("파일을 삭제하였습니다");
+      } else {
+        System.out.println("파일이 존재하지않습니다");
+      }
+      shopFileRepository.delete(optionalFileEntity.get());//파일 테이블 레코드 삭제
+    }
     //수정
     Optional<ShopEntity> optionalShopEntity = shopRepository.findById(shopDto.getId());
     MemberEntity memberEntity = MemberEntity.builder().id(shopDto.getMemberId()).build();
@@ -180,7 +184,7 @@ public class ShopService implements ShopServiceImpl {
   }
 
 
-  @Override
+    @Override
   public void shopDelete(Long id) {
     ShopEntity shopEntity= shopRepository.findById(id).orElseThrow(()->{
       throw new IllegalArgumentException("삭제할 게시물 없음");
@@ -193,6 +197,7 @@ public class ShopService implements ShopServiceImpl {
     MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     Optional<CartEntity> cartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
     CartEntity cartEntity1=null;
+
     if(!cartEntity.isPresent()) {
       cartEntity1=CartEntity.builder().memberEntity(memberEntity).build();
       cartRepository.save(cartEntity1);
@@ -249,13 +254,6 @@ public class ShopService implements ShopServiceImpl {
     shopEntityList=shopRepository.findByCategory(4);
     return shopEntityList.stream().map(ShopDto::toselectShopDto).collect(Collectors.toList());
   }
-
-
-
-
-
-
-
 
 
 

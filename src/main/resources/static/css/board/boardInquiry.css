@@ -1,11 +1,49 @@
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+@import url(/css/common/reset.css);
+.inquiry{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;;
+    box-sizing: border-box;
+}
+.inquiry .inquiry-con{
+    flex: 0 1 1600px;
+    height: calc(100vh - 194px - 200px - 20px);
+    /* border: 1px solid; */
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    background-color: rgb(250, 250, 250);
+        /*위  좌/우  아래 */
+     padding: 10px 0 20px;
+ 
+}
+
+.inquiry .inquiry-con .left{
+    flex:1;
+    /* height: 500px; */
+    /* border: 1px solid; */
+    box-sizing: border-box;
+
+    padding: 10px;
+}
+
+
 /* 글쓰기 폼 스타일 */
 .writeForm {
     max-width: 600px;
     margin: 20px auto;
-    padding: 20px;
+    /* padding: 20px; */
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+       padding: 5px;
+       box-sizing:border-box;
 }
 
 .writeForm input[type="text"],
@@ -18,16 +56,17 @@
     box-sizing: border-box;
     font-size: 16px; /* 폰트 크기를 조절합니다. */
     background-color: #f0f0f0;
-    background-imge: linear-gradient(to bottom, #fff, #f0f0f0);
+    background-color: linear-gradient(to bottom, #ecff82, #f0f0f0);
 }
 
 .writeForm textarea {
-    width:100%
-    height: 200px; /* 내용 입력 영역의 높이를 더 높게 조절합니다. */
+    width:100%;
+    height: 100px; /* 내용 입력 영역의 높이를 더 높게 조절합니다. */
     padding :15px;
     margin-bottom:10px;
     border: 1px solid #ccc;
     border-radius:5px;
+    resize: none;
     box-sizing:border-box;
     font-size:16px;
     background-color:#f0f0f0;
@@ -36,7 +75,7 @@
 
 .writeForm input[type="text"]:focus, writeForm textarea:focus{
     outline: none;
-    border-color:#007bff;
+    border-color:#ff0000;
 }
 
 
@@ -47,7 +86,7 @@
     border: none;
     border-radius: 5px;
     background-color: #007bff;
-    background-image: linear-gradient(to bottom, #007bff, #0056b3); /* 그라데이션 추가 */
+    background-image: linear-gradient(to bottom, #ffBE8D, #FF8A8C); /* 그라데이션 추가 */
     color: #fff;
     cursor: pointer;
     font-size: 16px; /* 버튼의 폰트 크기를 조절합니다. */
@@ -55,46 +94,47 @@
 }
 
 .writeForm button[type="submit"]:hover {
-    background-color: #0056b3;
-    background-image: linear-gradient(to bottom, #0056b3, #003c80); /* 호버 시 그라데이션 변경 */
+     background-image: linear-gradient(to right, #ffa94e, #ffff6b);  /* 호버 시 그라데이션 변경 */
 }
 
-.reply{
-    margin-top:20px;
-}
-.reply-con{
-    background-color:#f9f9f9;
-    border:1px solid #ccc;
-    border-radius:5px;
-    padding:20px;
-}
-.reply-con .title{
-    font-size:20px;
-    margin-bottom:15px;
-}
-.reply-con form input[type="text"]{
-    width:calc(50%-10px); /*입력 필드를 반으로 나눕니다.*/
-    padding:10px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    box-sizing:border-box;
-    font-size:16px;
-}
 
-.reply-con form input[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
 
-.reply-con form input[type="submit"]:hover {
-    background-color: #0056b3;
+
+ 
+
+    .inquiry .inquiry-con .right{
+        flex:2;
+        /* height: 500px; */
+        /* border: 1px solid; */
+        box-sizing: border-box;
+        padding: 20px;
+        background-color: #ffffff;
+        overflow-y: auto; /* 스크롤 추가 */
+    }
+    table,th,td{
+        border-collapse: collapse;
+        border: 1px solid #cccccc;
+    }
+    .inquiry .inquiry-con .right table{
+        width: 100%;
+    }
+    .inquiry .inquiry-con .right table th{
+        
+        background-color: rgb(250 184 119);;
+        padding: 5px 0;
+    }
+    .inquiry .inquiry-con .right table td{
+        background-color: #ffffff;
+        padding: 3px 0;
+        text-align: center;
     }
 
+    a.inquiry-answer{
+        color: #2d93f2cc;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a.inquiry-answer:hover{
+        color: #ff95bd;
+    }

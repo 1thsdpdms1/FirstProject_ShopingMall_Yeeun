@@ -1,0 +1,85 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/footer.css);
+@import url(/css/common/header.css);
+@import url(/css/common/paging.css);
+@import url(/css/common/sideBar.css);
+
+/* 검색 css */
+.container {
+  width: 100%;
+  height: 800
+  px;
+  display: flex;
+  justify-content: center;
+  /* padding: 20px; */
+}
+
+.container .memberList {
+  width: 1600px;
+  display: flex;
+
+ /* justify-content: center;*/
+
+}
+
+.container .memberList .memberList-con{
+  width: 100%;
+ /* justify-content: center;*/
+ line-height: 2;
+ padding-top : 50px;
+ padding-left: 20px;
+}
+.container .memberList .memberList-con button.delete{
+  background: #000000;
+  padding: 5px;
+  color: white;
+  border: 1px solid #ffffff;
+}
+
+.container .memberList h1{
+  background-color: rgb(250 184 119);
+  color: aliceblue;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.container .memberList .search{
+  background-color: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: end;
+}
+
+/* 리스트css */
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+   background-color: #f9f9f9;
+}
+
+th,td{
+  /* border: 1px solid #cccccc; */
+    border-bottom: 1px solid #000000ad;
+}
+table th{
+  background-color: #ffd2a6;
+  color: white;
+  padding: 5px;
+
+}
+
+table td{
+  text-align: center;
+  padding: 5px;
+}
+
+table td.ellipsis {
+  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 함 */
+      overflow: hidden; /* 요소의 내용이 넘칠 때 숨김 */
+      text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 추가 */
+      max-width: 200px; /* 요소의 최대 너비 지정 */
+}

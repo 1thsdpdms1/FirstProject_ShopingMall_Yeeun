@@ -7,6 +7,7 @@ import org.spring.e1i4TeamProject.contraint.BaseTimeEntity;
 import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.role.Role;
 
+import org.spring.e1i4TeamProject.shop.entity.CartEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.spring.e1i4TeamProject.shop.entity.ShopEntity;
@@ -23,6 +24,7 @@ import java.util.List;
 @Entity
 @Table(name = "member")
 public class MemberEntity extends BaseTimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
@@ -43,16 +45,22 @@ public class MemberEntity extends BaseTimeEntity {
     @Column(nullable = true)
     private String phoneNumber;
 
-    @Column(nullable = true)
     private String licence;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(nullable = true)
     private String memberFileName;
 
     @Column(nullable = false)
     private int memberAttachFile; //게시글 작성시 파일이 존재하면 1, 없으면 0
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "memberEntity"
+        , fetch = FetchType.LAZY
+        , cascade = CascadeType.REMOVE)
+    private CartEntity cartEntity;
 
     @JsonIgnore // ajax시 순환참조 방지
     @OneToMany(mappedBy = "memberEntity"

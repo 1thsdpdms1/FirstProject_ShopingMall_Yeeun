@@ -1,0 +1,21 @@
+@charset "UTF-8";
+*{
+  margin: 0;
+  padding: 0;
+
+}
+html,body{
+  width: 100%;
+}
+ul,li{
+  list-style: none;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+header,nav,article,aside,main,footer,section{
+  display: block;
+}
