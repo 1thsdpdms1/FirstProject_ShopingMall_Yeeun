@@ -1,9 +1,11 @@
 package org.spring.e1i4TeamProject.shop.repository;
 
+import org.spring.e1i4TeamProject.member.entity.MemberEntity;
 import org.spring.e1i4TeamProject.shop.entity.CartEntity;
 import org.spring.e1i4TeamProject.shop.entity.CartShopListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,4 +15,8 @@ public interface CartShopListRepository extends JpaRepository<CartShopListEntity
   List<CartShopListEntity> findAllByCartEntityId(Long id);
 
   List<CartShopListEntity> findByCartEntity(CartEntity cartEntity);
+
+  void deleteByIdIn(List<Long> ids);
+
+//  List<CartShopListEntity> findByMemberEntityId(Long memberId);
 }

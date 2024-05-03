@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>write</title>
+  <link rel="stylesheet" th:href="@{/css/shop/cartList.css}">
+</head>
+
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+  <div class="LikedList">
+    <div class="LikedList-con">
+      <h1>CartList</h1>
+      <table>
+        <tbody>
+        <tr th:each="like : ${liked}">
+          <td th:text="${like.id}" hidden></td>
+          <td th:text="${like.shopEntity.shopTitle}"></td>
+          <td th:text="${like.shopEntity.createTime}"></td>
+          <td th:text="${like.liked}"></td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+<!-- memberId 값으로 카트 샵 리스트 전체 삭제 폼 -->
+<!--<form th:action="@{/shop/cartShopAllDelete/{memberId}}" method="get">-->
+<!--  <input type="hidden" name="memberId" th:value="${myUserDetails.memberEntity.id}">-->
+<!--  <button type="submit" onclick="return confirm('정말로 모든 카트 샵 리스트를 삭제하시겠습니까?')">전체 삭제</button>-->
+<!--</form>-->
+</html>

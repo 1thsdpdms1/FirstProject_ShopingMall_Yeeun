@@ -79,4 +79,20 @@ public class CartShopService implements CartShopServiceImpl {
                 .build())
             .collect(Collectors.toList());
     }
+
+
+    @Override
+    public void cartShopDelete(Long id) {
+        CartShopListEntity cartShopListEntity=cartShopListRepository.findById(id).orElseThrow(()->{
+            throw new IllegalArgumentException("삭제할 장바구니없음");
+        });
+
+        cartShopListRepository.delete(cartShopListEntity);
+
+    }
+
+    @Override
+    public void deleteCart(List<Long> ids) {
+        cartShopListRepository.deleteByIdIn(ids);
+    }
 }
