@@ -50,4 +50,6 @@ public interface BoardServiceInterface {
     Page<BoardDto> inquirySearchPagingList(Pageable pageable);
 
     List<BoardDto> boardInquiryList(Long category);
+
+    List<BoardDto> topReviewBoardList(BoardDto boardDto);
 }

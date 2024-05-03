@@ -24,29 +24,27 @@ public class HomeController {
 
     private final BoardService boardService;
 
-    @GetMapping({"/","/index"})
-    public String index(MemberDto memberDto, Model model){
-
-        model.addAttribute("memberDto", memberDto);
-
-        return "index";
-    }
-
 //    @GetMapping({"/","/index"})
-//    public String index(MemberDto memberDto, BoardDto boardDto,
-//                        @RequestParam(name = "subject", required = false) String subject,
-//                        @RequestParam(name = "search", required = false) String search,
-//                        @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-//                            Pageable pageable,Model model){
+//    public String index(MemberDto memberDto, Model model){
+//
 //        model.addAttribute("memberDto", memberDto);
-//
-//        List<BoardDto> boardDtoList = boardService.boardList();
-//
-//        model.addAttribute("boardDtoList", boardDtoList);
-//
 //
 //        return "index";
 //    }
+
+    @GetMapping({"/","/index"})
+    public String index(MemberDto memberDto, BoardDto boardDto,Model model)
+    {
+
+        model.addAttribute("memberDto", memberDto);
+
+        List<BoardDto> boardDtoList = boardService.topReviewBoardList(boardDto);
+
+        model.addAttribute("boardDtoList", boardDtoList);
+
+
+        return "index";
+    }
 
 
 }

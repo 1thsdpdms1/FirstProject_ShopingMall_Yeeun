@@ -17,7 +17,7 @@ justify-content: center;
 
 .container .container-box h1{
   text-align: center;
-  background-color: #000000;
+  background-color: rgb(250 184 119);
   color: white;
   padding: 10px;
 }
@@ -65,9 +65,11 @@ justify-content: center;
   display: block;
   width: 250px;
   background-color: #ffffff;
+
   color: #000000;
   /* border-radius: 20px; */
   padding: 10px;
+  padding-top: 80px;
   box-sizing: border-box;
   box-shadow: 10px 10px 5px rgba(68, 67, 67, 0.459);
 

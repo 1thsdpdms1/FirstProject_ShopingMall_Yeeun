@@ -1,8 +1,8 @@
 .paging {
   width: 100%;
-  padding: 10px 0;
+/*  padding: 10px 0;*/
   box-sizing: border-box;
-  background-color: #ebf9f8;
+  background-color: #ffd2a6;
   display: flex;
   justify-content: center;
 }
@@ -14,6 +14,7 @@
   justify-content: space-between;
   gap: 5px;
   padding: 5px;
+    line-height : 50px;
   box-sizing: border-box;
 }
 
@@ -39,8 +40,6 @@
 }
 
 .paging>ul>li span {
-
-
   font-size: 12px;
 }
 
@@ -64,7 +63,7 @@
   /* background-color: #ff0000; */
   /* color: #ffffff; */
   color: #ff0000;
-  font-size: 20px
+  font-size: 20px;
 }
 
 span.now {
@@ -76,4 +75,5 @@ span.now {
   padding: 0 10px;
   position: relative;
   cursor: pointer;
+
 }

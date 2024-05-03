@@ -429,12 +429,20 @@ public class BoardService implements BoardServiceInterface {
 
     }
 
+    @Override
+    public List<BoardDto> topReviewBoardList(BoardDto boardDto) {
+
+        List<BoardEntity> boardEntityList = boardRepository.findTop3();
+
+        List<BoardDto> boardDtoList = boardEntityList.stream()
+                .map(BoardDto::toboardDto).collect(Collectors.toList());
+
+        return boardDtoList;
+
+    }
 
 
-
-
-
-    /////
+    /////////
 
     @Override
     public BoardDto boardMemberCategorySave(BoardDto boardDto) {
