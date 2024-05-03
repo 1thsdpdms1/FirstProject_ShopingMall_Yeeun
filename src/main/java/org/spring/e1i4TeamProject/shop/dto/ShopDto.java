@@ -27,7 +27,7 @@ public class ShopDto {
 
     private int shopPrice;
 
-    private int count;
+    private int peopleCount;
 
     private int category;
 
@@ -40,6 +40,8 @@ public class ShopDto {
     private MultipartFile shopFile;
 
     private String shopSeller;
+
+    private String place;
 
     private List<CartShopListEntity> cartShopListEntityList;
 
@@ -57,6 +59,9 @@ public class ShopDto {
 
     private String shopOldFileName;
 
+    private int liked;
+
+    private int priceCount;
 
     public static ShopDto toselectShopDto(ShopEntity shopEntity) {
         ShopDto shopDto=new ShopDto();
@@ -64,8 +69,10 @@ public class ShopDto {
         shopDto.setId(shopEntity.getId());
         shopDto.setShopTitle(shopEntity.getShopTitle());
         shopDto.setShopContent(shopEntity.getShopContent());
+        shopDto.setLiked(shopEntity.getLiked());
         shopDto.setShopPrice(shopEntity.getShopPrice());
-        shopDto.setCount(shopEntity.getCount());
+        shopDto.setPeopleCount(shopEntity.getPeopleCount());
+        shopDto.setPriceCount(shopEntity.getPriceCount());
         shopDto.setCategory(shopEntity.getCategory());
         shopDto.setShopSeller(shopEntity.getShopSeller());
         shopDto.setShopHit(shopEntity.getShopHit());

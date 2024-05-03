@@ -35,15 +35,15 @@
             </li>
             <p th:if="${#fields.hasErrors('shopContent')}" th:errors="*{shopContent}" class="error"></p>
             <li>
-              <label for="ShopPrice">ShopPrice</label>
-              <input type="text" id="ShopPrice" th:field="*{ShopPrice}">
+              <label for="shopPrice">ShopPrice</label>
+              <input type="text" id="shopPrice" th:field="*{shopPrice}">
             </li>
             <p th:if="${#fields.hasErrors('ShopPrice')}" th:errors="*{ShopPrice}" class="error"></p>
             <li>
-              <label for="Count">Count</label>
-              <input type="text" id="Count" th:field="*{Count}">
+              <label for="peopleCount">peopleCount</label>
+              <input type="text" id="peopleCount" th:field="*{peopleCount}">
             </li>
-            <p th:if="${#fields.hasErrors('Count')}" th:errors="*{Count}" class="error"></p>
+            <p th:if="${#fields.hasErrors('peopleCount')}" th:errors="*{peopleCount}" class="error"></p>
             <li>
               <label><input type="checkbox" name="category" id="미술" value="1">미술</label>
               <label><input type="checkbox" name="category" id="체육" value="2">체육</label>
@@ -52,7 +52,11 @@
             </li>
             <li>
               <label for="ShopSeller">ShopSeller</label>
-              <input type="text" id="ShopSeller" th:field="*{ShopSeller}">
+              <input type="text" id="ShopSeller" th:field="*{shopSeller}">
+            </li>
+            <li>
+              <label for="place">place</label>
+              <input type="text" id="place" th:field="*{place}">
             </li>
             <li>
               <label for="shopFile">파일</label>

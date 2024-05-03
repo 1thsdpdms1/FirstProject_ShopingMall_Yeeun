@@ -14,9 +14,5 @@ public interface CartRepository extends JpaRepository<CartEntity,Long> {
 
   Optional<CartEntity>  findByMemberEntity(MemberEntity memberEntity);
 
-//  @Query(name = " select c.cart_id " +
-//      "from member m inner join cart c " +
-//      "on m.member_id=c.member_id " +
-//      "where m.member_id=:id ", nativeQuery = true)
-//  Optional<CartEntity> findMemberDB(Long id);
+
 }
