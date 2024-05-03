@@ -122,7 +122,7 @@ font-family: "Noto Sans KR", sans-serif;
   height: 60px;
   /* border: 1px solid; */
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .header .header-con .top-header .bottom-menu h1.logo {

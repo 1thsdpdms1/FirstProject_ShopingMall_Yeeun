@@ -29,8 +29,15 @@
                 <h2>환 영 합 니 다.</h2>
                 <div class="section sec2">
                     <div class="con">
-                        <div class="left-con">
 
+                        <div class="left-con">
+                            <table>
+                            <tr th:each="like : ${liked}">
+                                <td th:text="${like.shopTitle}"></td>
+                                <td th:text="${like.createTime}"></td>
+                                <td th:text="${like.liked}"></td>
+                            </tr>
+                            </table>
                         </div>
                         <div class="right-con">
                             <div class="autoGallery">
