@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="footer" th:fragment="footerFragment">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script th:src="@{/js/chatBot.js}" defer></script>
+    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+    <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
     <div class="pop-con">
-        <a th:href="@{/shop/shopList}">수강신청바로가기</a>
+        <a th:href="@{/shop/shopList}">수강신청<br>바로가기</a>
     </div>
     <div id="chat-bot">
         <div class="wrap">

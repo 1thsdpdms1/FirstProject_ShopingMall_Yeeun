@@ -7,51 +7,51 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <tbody>
-    <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 
-    <div class="container">
+<div class="container">
 
-        <div class="menu">
-            <label>메뉴</label>
-            <ul>
-                <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
-                <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/seller/sellerList}" class="under">선생님</a></li>
-                <li><img th:src="@{/images/add.png}" alt="icon"><a th:href="@{/shop/shopWrite}" class="item">강의등록</a></li>
-            </ul>
-        </div>
-        <div class="container-box">
-            <div class="sellerList">
-                <div class="sellerList-con">
-                    <h1>선생님 리스트</h1>
-                    <div class="grid">
-                        <ul>
-                            <li th:each="seller : ${seller}">
-                                <div class="top">
-                                    <th:block th:if="${seller.memberAttachFile==1}">
-                                        <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"> <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구"></a>
-                                    </th:block>
-                                    <th:block th:unless="${seller.memberAttachFile==1}">
-                                        <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"><img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구"></a>
+    <div class="menu">
+        <label>메뉴</label>
+        <ul>
+            <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" class="item">HOME</a></li>
+            <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/seller/sellerList}" class="under">선생님</a></li>
+            <li><img th:src="@{/images/add.png}" alt="icon"><a th:href="@{/shop/shopWrite}" class="item">강의등록</a></li>
+        </ul>
+    </div>
+    <div class="container-box">
+        <div class="sellerList">
+            <div class="sellerList-con">
+                <h1>선생님 리스트</h1>
+                <div class="grid">
+                    <ul>
+                        <li th:each="seller : ${seller}">
+                            <div class="top">
+                                <th:block th:if="${seller.memberAttachFile==1}">
+                                    <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"> <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구"></a>
+                                </th:block>
+                                <th:block th:unless="${seller.memberAttachFile==1}">
+                                    <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"><img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구"></a>
 
-                                    </th:block>
-                                </div>
-                                <div class="bottom">
-                                    <ul>
-                                        <li>
-                                            <span>이름: </span><span th:text="${seller.name}"></span>
-                                        </li>
-                                        <li>
-                                            <span>강의명: </span><span th:text="${seller.name}"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                </th:block>
+                            </div>
+                            <div class="bottom">
+                                <ul>
+                                    <li>
+                                        <span>이름: </span><span th:text="${seller.name}"></span>
+                                    </li>
+                                    <li>
+                                        <span>강의명: </span><span th:text="${seller.name}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </tbody>
 <div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 

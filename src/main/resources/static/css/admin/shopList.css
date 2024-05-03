@@ -8,7 +8,7 @@
 /* 검색 css */
 .container {
   width: 100%;
-  height: calc(100vh - 200px - 326px);
+  height: 800px;
   display: flex;
   justify-content: center;
   /* padding: 20px; */
@@ -32,8 +32,8 @@
 }
 
 .container .sellerList h1{
-  background-color: black;
-  color: aliceblue;
+  background-color:  rgb(250 184 119);
+  color: white;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
@@ -61,7 +61,7 @@ th,td{
     border-bottom: 1px solid #000000ad;
 }
 table th{
-  background-color: rgb(0, 0, 0);
+  background-color:  #ffd2a6;
   color: white;
   padding: 5px;
 

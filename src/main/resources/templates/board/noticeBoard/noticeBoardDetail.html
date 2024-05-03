@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>boardDetail</title>
@@ -22,7 +23,6 @@
                             <li>
                                 공지사항 상세보기
                             </li>
-                            <!--                        <input th:text="${userId}">아이디</input> <br>-->
 
                             <li>
                                 <label>category</label>
@@ -35,18 +35,21 @@
                             </li>
 
                             <li>
+                                <label for="boardTitle">제목</label>
+                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
+                                       readonly>
+                            </li>
+
+                            <li>
                                 <label for="boardWriter">글쓴이</label>
                                 <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}"
                                        readonly>
                             </li>
 
                             <li>
-                                <label for="boardTitle">제목</label>
-                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
-                                       readonly>
-                            </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
-                            <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
-
+                                <label for="boardHit">조회수</label>
+                                <input type="text" name="boardHit" id="boardHit" th:value="${board.boardHit}">
+                            </li>
 
                             <li>
                                 <label for="boardContent">내용</label>
@@ -56,9 +59,6 @@
                                 <textarea name="boardContent" id="boardContent" cols="30" rows="10"
                                           th:text="${board.boardContent}" READONLY></textarea>
                             </li>
-
-
-                            <!-- <p th:if="${#fields.hasErrors('boardContent')}" th:errors="*{boardContent}" class="error"></p>-->
 
                             <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
                                 <!--                                <img th:src="@{|/upload/${board.boardFileEntityList.boardNewFileName}|}" alt="이미지 대체문구"  >&lt;!&ndash;width="400" height="200"&ndash;&gt;-->
@@ -115,7 +115,7 @@
                                 <li>
                                     <a th:href="@{/board/noticeBoardList}">목록</a>
                                 </li>
-
+                            </th:block>
 
                         </ul>
 
@@ -132,8 +132,6 @@
 
                         <th:block sec:authorize="isAuthenticated()">
                             <form th:action="@{/reply/noticeBoardReplyWrite}" method="post">
-                                <!--            <form th:action="@{/reply/replyWrite}" method="post">-->
-                                <!--                                <input type="hidden" name="boardId" id="board_id" th:value="${board.id}" readonly>-->
                                 <input type="text" name="boardId" th:value="${board.id}" readonly>
                                 <input type="hidden" name="boardReplyId">
 
@@ -150,18 +148,16 @@
                             <h1>
                                 댓글을 작성하려면 로그인하세요!
                                 <a th:href="@{/member/memberLogin}">
-                                    <img th:src="@{/images/btn_write}" alt="로그인"></a>
+                                    <img th:src="@{/images/user.png}" alt="로그인"></a>
                             </h1>
 
                         </th:block>
 
                         </form>
-                        <!--            </form>-->
                         <table>
                             <thead>
                             <tr>
                                 <th>글 번호</th>
-                                <!--                <span id="replyId" th:text="${replyList.get(0).id}"-->
                                 <th>번호</th>
                                 <th>내용</th>
                                 <th>작성자</th>
@@ -171,12 +167,10 @@
                             <tbody class="tData">
 
                             <tr th:each="boardReply:${boardReplyList}">
-                                <!--&lt;!&ndash;reply.getBoardEntity.getId() &ndash;&gt;-->
                                 <td th:text="${boardReply.boardEntity.id}"></td>
                                 <td th:text="${boardReply.id}"></td>
                                 <td th:text="${boardReply.boardReplyContent}"></td>
                                 <td th:text="${boardReply.boardReplyWriter}"></td>
-                                <!--                                <td th:text="${boardReply.createTime}"></td>-->
                                 <td th:text="${#temporals.format(boardReply.createTime, 'yyyy-MM-dd HH:mm')}"></td>
                                 <th:block sec:authorize="isAuthenticated()">
                                     <th:block sec:authorize="hasAnyRole('ADMIN')">
@@ -185,18 +179,21 @@
                                     </th:block>
 
                                     <!--자기 글일 때 삭제가능(member,manager 권한 따로 준것은 admin이 자기글일 때 중복해서 출력되기 때문-->
-                                    <th:block th:if="${board.memberEntity.userEmail==myUserDetails.username}  or ${boardReply.boardReplyWriter==myUserDetails.name}">
+                                    <th:block
+                                            th:if="${board.memberEntity.userEmail==myUserDetails.username}  or ${boardReply.boardReplyWriter==myUserDetails.name}">
                                         <th:block sec:authorize="hasAnyRole('MEMBER','MANAGER')">
-                                            <td><a th:href="@{/reply/noticeReplyDelete/{id}(id=${boardReply.id})}">삭제</a></td>
+                                            <td>
+                                                <a th:href="@{/reply/noticeReplyDelete/{id}(id=${boardReply.id})}">삭제</a>
+                                            </td>
                                         </th:block>
                                     </th:block>
+                                </th:block>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <!--댓글-->
 
         </div>
     </div>

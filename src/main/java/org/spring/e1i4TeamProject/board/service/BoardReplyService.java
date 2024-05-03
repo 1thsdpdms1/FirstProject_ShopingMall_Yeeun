@@ -27,20 +27,21 @@ public class BoardReplyService implements BoardReplyInterface {
     public void insertReply(BoardReplyDto boardReplyDto) {
 
         // 글번호
-        BoardEntity boardEntity = boardRepository.findById(boardReplyDto.getBoardEntity().getId()).orElseThrow(() -> {
+        /*<<<<<<< HEAD*/
+        BoardEntity boardEntity = boardRepository.findById(boardReplyDto.getBoardId()).orElseThrow(() -> {
             throw new IllegalArgumentException("아이디가 없습니다.");
         });
 
         if (boardEntity != null) {
-            BoardEntity boardEntity1 = BoardEntity.builder()
-                    .id(boardReplyDto.getId())
+            BoardReplyEntity boardReplyEntity = BoardReplyEntity.builder()
+                    .boardEntity(BoardEntity.builder().id(boardReplyDto.getBoardId()).build())
+                    .boardReplyContent(boardReplyDto.getBoardReplyContent())
+                    .boardReplyWriter(boardReplyDto.getBoardReplyWriter())
                     .build();
-            boardReplyDto.setBoardEntity(boardEntity1);
 
-            BoardReplyEntity boardReplyEntity = BoardReplyEntity.toInsertReplyEntity(boardReplyDto);
             boardReplyRepository.save(boardReplyEntity);
-        }
 
+        }
     }
 
     @Override
@@ -68,17 +69,13 @@ public class BoardReplyService implements BoardReplyInterface {
 
         //해당 글이 null이 아니라면
         if (boardEntity != null) {
-             BoardReplyEntity boardReplyEntity = BoardReplyEntity.builder()
+            BoardReplyEntity boardReplyEntity = BoardReplyEntity.builder()
                     .boardEntity(BoardEntity.builder().id(boardReplyDto.getBoardId()).build()) // 글의 아이디
                     .boardReplyWriter(boardReplyDto.getBoardReplyWriter())
                     .boardReplyContent(boardReplyDto.getBoardReplyContent())
                     .build(); // 찾아서 값 넣고
             boardReplyRepository.save(boardReplyEntity);
         }
-//        System.out.println(boardReplyDto.getBoardId()+">>>>");
-//            BoardReplyEntity boardReplyEntity = BoardReplyEntity.toInsertBoardReplyEntity(boardReplyDto);
-
-
 
     }
 
@@ -105,9 +102,9 @@ public class BoardReplyService implements BoardReplyInterface {
 
         Long boardId = boardReplyRepository.findById(id).get().getBoardEntity().getId(); //댓글 id를 찾아라
 
-        if (boardId != null){
+        if (boardId != null) {
             boardReplyRepository.deleteById(id);
-        }else{
+        } else {
             System.out.println("댓글삭제 실패");
         }
 

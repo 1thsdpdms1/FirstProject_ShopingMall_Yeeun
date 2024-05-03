@@ -10,12 +10,12 @@ import org.spring.e1i4TeamProject.board.repository.BoardReplyRepository;
 import org.spring.e1i4TeamProject.board.repository.BoardRepository;
 import org.spring.e1i4TeamProject.board.service.serviceInterface.BoardServiceInterface;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+import org.spring.e1i4TeamProject.member.repository.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,10 +25,14 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 
+
+
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class BoardService implements BoardServiceInterface {
 
+    private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
     private final BoardFileRepository boardFileRepository;
     private final BoardReplyRepository boardReplyRepository;
@@ -118,26 +122,7 @@ public class BoardService implements BoardServiceInterface {
     }
 
 
-//    @Override
-//    public Page<BoardDto> boardSearchPageList(Pageable pageable, String subject, String search) {
-//
-//        Page<BoardEntity> boardEntityPage = null;
-//
-//            if(subject==null || search==null){
-//                boardEntityPage = boardRepository.findByCategoryContains(pageable);
-//            }else {
-//                if (subject.equals("boardTitle")){
-//                    boardEntityPage=boardRepository.findByBoardTitleContains(pageable,search);
-//                } else if (subject.equals("boardContent")) {
-//                    boardEntityPage=boardRepository.findByBoardContentContains(pageable,search);
-//                }else {
-//                    boardEntityPage= boardRepository.findByCategoryContains(pageable);
-//                }
-//            }
-//        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toboardDto);
-//
-//        return boardDtoPage;
-//    }
+
 
     @Override
     public Page<BoardDto> boardSearchPageList1_2(Pageable pageable, String subject, String search) {
@@ -444,6 +429,119 @@ public class BoardService implements BoardServiceInterface {
 
     }
 
+    @Override
+    public List<BoardDto> topReviewBoardList(BoardDto boardDto) {
+
+        List<BoardEntity> boardEntityList = boardRepository.findTop3();
+
+        List<BoardDto> boardDtoList = boardEntityList.stream()
+                .map(BoardDto::toboardDto).collect(Collectors.toList());
+
+        return boardDtoList;
+
+    }
+
+
+    /////////
+
+    @Override
+    public BoardDto boardMemberCategorySave(BoardDto boardDto) {
+
+        Long id= boardRepository.save(BoardEntity.toInsertBoardEntity0(boardDto)).getId();
+
+        BoardEntity boardEntity= boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        return BoardDto.toboardDto1(boardEntity);
+    }
+
+//    @Override
+//    public Page<BoardDto> getBoardMemberCategoryPagingList(Pageable pageable, Long id, Long category) {
+//        Page<BoardEntity> boardEntityList = boardRepository.findByMemberAndCategory(id, category, pageable); // 적절한 필터링 메서드로 대체
+//
+//        return boardEntityList.map(BoardDto::toselectBoardDto);
+//
+//    }
+
+
+
+    @Override
+    public Page<BoardDto> inquirySearchPagingList(Pageable pageable) {
+
+      Long category=8L;
+
+       Page<BoardEntity> pageList=boardRepository.findAllByCategory(pageable,category);
+
+        return pageList.map(BoardDto::toselectBoardDto);
+    }
+
+    @Override
+    public List<BoardDto> boardMemberCategoryList(Long id, Long category) {
+
+        MemberEntity memberEntity= MemberEntity.builder().id(id).build();
+
+        List<BoardEntity> boardEntityList
+                =boardRepository.findByMemberEntity(memberEntity);
+
+        for(BoardEntity boardEntity: boardEntityList){
+            System.out.println(boardEntity);
+        }
+
+        return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
+    }
+
+
+//    @Override
+//    public List<BoardDto> boardInquiryList(Long category) {
+//
+//        MemberEntity memberEntity=MemberEntity.builder().build();
+//
+//        List<BoardEntity> boardEntityList
+//                =boardRepository.findByMemberEntity(memberEntity);
+//
+//        for(BoardEntity boardEntity: boardEntityList){
+//            System.out.println(boardEntity);
+//        }
+//        return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
+//
+//    }
+
+//    심지섭
+    @Override
+    public List<BoardDto> boardInquiryList(Long category) {
+
+        List<BoardEntity> boardEntityList = boardRepository.findByCategory8(category);
+//    List<BoardDto> boardDtoList = new ArrayList<>();
+
+        List<BoardDto>  boardDtoList = boardEntityList.stream()
+            .map(BoardDto::toboardDto8)
+                .collect(Collectors.toList());
+
+        return boardDtoList;
+
+    }
+    /////////////////
+//    BoardEntity boardEntity=new BoardEntity();
+//    Page<BoardEntity> boardEntityPage = null;
+//
+//
+//        if(subject==null || search==null){
+//        boardEntityPage = boardRepository.findByCategory6Contains(pageable);
+//    }else {
+//        if (subject.equals("boardTitle")){
+//            boardEntityPage=boardRepository.findByBoardTitle6Contains(pageable,search);
+//        } else if (subject.equals("boardContent")) {
+//            boardEntityPage=boardRepository.findByBoardContent6Contains(pageable,search);
+//        }else {
+//            boardEntityPage= boardRepository.findByCategory6Contains(pageable);
+//        }
+//    }
+//        for (BoardEntity boardEntity1 : boardEntityPage) {
+//        int replyCount = boardRepository.replyCount(boardEntity1.getId());
+//        boardEntity1.setReplyCount(replyCount);
+//    }
+//    Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDetailDto);
+//
+//        return boardDtoPage;
 
 
 

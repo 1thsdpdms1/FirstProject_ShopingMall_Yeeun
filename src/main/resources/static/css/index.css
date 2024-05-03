@@ -1,7 +1,7 @@
 @import url(../css/common/footer.css);
 @import url(../css/common/header.css);
 @import url(../css/common/reset.css);
-/*index*/
+/*index 수정본수정본수정본*/
 .container{
   width: 100%;
 }
@@ -14,8 +14,9 @@
 }
 
 .index .index-con .sections{
-  width: 1600px;
-  border: 1px solid;
+
+  flex: 0 1 1920px;
+  /*border: 1px solid;*/
   box-sizing: border-box;
   padding: 10px 0;
 }
@@ -23,15 +24,21 @@
 .index .index-con .sections .section.sec1{
   width: 100%;
   height: auto;
+
+  padding:10px;
+   box-sizing: border-box;
+
 }
 .index .index-con .sections .section.sec1 .con{
-  width: 100%;
-    height: 300px;
-    border: 1px solid;
+   width: 100%;
+    height: 600px;
+   /*border: 1px solid;*/
     box-sizing: border-box;
-    background: url(/images/sec1_bg2.jpg) no-repeat 50%/cover;
+    background:url(/images/index.png) no-repeat 50%/cover;
     opacity: 0.9; /* 투명도 추가 */
     padding: 20px; /* 내부 여백 추가 */
+    position: relative;
+    z-index: -999;
 }
 /* 버튼 스타일 */
 .index .index-con .sections .section.sec1 .con button {
@@ -49,14 +56,25 @@
   background-color: #0056b3;
 }
 
-.index .index-con .sections .section.sec2{
-  width: 100%;
-  height: auto;
+.index .index-con .sections h2{
+padding:50px;
+text-align : center;
+color : #333;
 }
+
+.index .index-con .sections .section.sec2{
+  width: 70%;
+  height: auto;
+  /*margin-top: 100px;*/
+  margin: 0 auto;
+ /* margin-left: 200px;*/
+}
+
+
 .index .index-con .sections .section.sec2 .con{
   width: 100%;
-  height: 300px;
-  border: 1px solid;
+  height: 400px;
+/*border: 1px solid;*/
   box-sizing: border-box;
 
   display: flex;
@@ -64,38 +82,42 @@
 }
 
 .index .index-con .sections .section.sec2 .con .left-con{
- flex:1;
+  flex:1;
   color: bisque;
   display: flex;
   justify-content: center;
   align-items: center;
+ overflow: hidden;
 }
 
+.index .index-con .sections .section.sec2  .left-con .con img{
+   display:block;
+   width: 100%;
+ }
+
+
 .index .index-con .sections .section.sec2 .con .right-con{
-  flex:5;
-  board:1px solid #ff0000;
+  flex:4;
+  border:1px solid #fffdb6;
 
   position:relative;
+
+
+
+
 }
 
 
 
 .index .index-con .sections .section.sec2 .con .right-con .autoGallery{
 /*  flex:2;*/
-  background-color: rgb(222, 79, 13);
+  background-color: rgb(152, 255, 200);
   color: bisque;
   display: flex;
   justify-content: center;
   align-items: center;
-  height:300px;
+  height:400px;
 
-
- /* width:70%;
-  height:inherit;
-  border:1px solid;
-  box-sizing: border-box;
-
-  position:absolute;*/
 }
 .index .index-con .sections .section.sec2 .con .right-con .autoGallery ul{
     width:100%;
@@ -186,185 +208,119 @@
     height:20px;
     border-radius:50%;
     border: 1px solid #cccccc;
+
 }
 .index .index-con .sections .section.sec2 .con .right-con .items ul li:hover{
-    background-color:#aa0000 !important;
+    background-color:#ffd2a6 !important;
     cursor:pointer
 }
 
 .liOn{
-  background-color:#ff0000 !important;
+  background-color:#fa922b !important;
 }
 
-
-/*.index .index-con .sections .section.sec2 .con .right-con{
-  flex:1;
-  background-color: rgb(12, 174, 228);
-  color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
 
 
 
 .index .index-con .sections .section.sec3{
-  width: 100%;
+  width: 70%;
   height: auto;
+  /*margin-left: 200px;*/
+  margin: 0 auto;
 
 }
 .index .index-con .sections .section.sec3 .con{
   width: 100%;
-  height: 400px;
-  border: 1px solid;
+  /*height: 400px;*/
+  /*border: 1px solid;*/
   box-sizing: border-box;
 }
 .index .index-con .sections .section.sec3 .con .title{
   width: 100%;
   height: 50px;
-  border: 1px solid;
+  /*border: 1px solid;*/
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
 }
+
 .index .index-con .sections .section.sec3 .con .title{
   width: 100%;
-  height: 50px;
-  border: 1px solid;
+  height: auto;
+  padding:10px;
+  /*border: 1px solid;*/
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: flex-end;
   gap: 5px;
 }
+.index .index-con .sections .section.sec3 .con .title span{
+  position:relative;
+  z-index:900;
+  transition:all 0.2s;
+  opacity:0.8;
+
+}
+
+.index .index-con .sections .section.sec3 .con .title span:hover{
+  cursor:pointer;
+  opacity:1;
+
+  transform:scale(1.1);
+  box-shadow:0 2px 2px #0000;
+ }
+
 .index .index-con .sections .section.sec3 .con .bottom-con{
 
   display: flex;
   justify-content: space-between;
 }
+
 .index .index-con .sections .section.sec3 .con .bottom-con .left-con{
 
   flex:3;
   height: 300px;
-  /*background-color: rgb(100, 10, 255);*/
+
   color: bisque;
   position:relative;
 }
+/////////////////////
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con>div{
 
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div{
     width:100%;
     height:inherit;
-    border:2px solid #ff0000;
+    border:2px solid #000000;
     box-sizing:border-box;
     position:absolute;
     font-size:20px;
     color:#000;
 }
-/* .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con1 {
-    background: url(/images/sec1_bg1.jpg) no-repeat 50%;
-    background-size: cover;
-} */
 
 
 
-/* .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 {
-  background: url(/images/sec1_bg2.jpg) no-repeat 50%;
-  background-size: cover;
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div img{
-  width:100%;
-  display:block;
-} */
-
-/* .index .index-con .sections .section.sec3 .con .bottom{
-  position: relative;
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table{
+    width:100%;
 }
 
-.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper{
+/*마우스 오버시 .con1변화*/
 
-  position: absolute;
-    width: calc(100vw - 10px);
-    height: calc(13.857142857142858rem* 2 + 16px);
-    left: calc((-100vw + 5.714285714285714rem) / 2 + 50%);
-    overflow: hidden;
+.span-on{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(2, 150px);
+  gap:3px;
+}
+.span-off{
+  display:none;
 }
 
-.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list{
-
+.span-on2{
+   display:block;
 }
-
-
-.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products{
-
-  animation: leftMoveLoop 90s infinite linear;
+.sub-con{
+  border:1px solid #ff0000 !important;
+  box-sizing:border-box;
 }
-@keyframes leftMoveLoop {
-  
-  0% {
-    transform: translateX(0); 
-  }
-  100% {
-    transform: translateX(-100%); 
-  }
-}
-.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products ..index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products{
-  display: flex;
-  width: auto;
-}
-.index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products ..index .index-con .sections .section.sec3 .con .bottom .bottom-wrapper .bottom-wrapper-list .bottom-wrapper-list-products .item{
-  width: 13.857142857142858rem;
-    height: 13.857142857142858rem;
-    border-radius: 4.285714285714286rem;
-    margin: 0 .5714285714285714rem;
-    overflow: hidden;
-}
- */
-
-.bottom-wrapper-list-products {
-  margin-top: 20px;
-  overflow: hidden; /* 넘치는 부분을 숨김 */
-}
-
-.bottom-wrapper-list-products-items {
-  display: flex;
-  animation: leftMoveLoop 1500s  infinite linear; /* 애니메이션 무한 반복 설정 */
-  width: calc(320px*1000); 
-}
-
-.bottom-wrapper-list-products-items .item {
-
-  width: 300px;
-  height: 300px;
-
-  margin: 0 10px; /* 여백을 좌우로만 지정합니다 */
-  animation-delay: -260s;
-}
-.bottom-wrapper-list-products-items .item a img{
-width : 300px;
-height :300px;
-border-radius: 4.285714285714286rem;
-text-align : center;
-line-height : 300px;
-}
-
-@keyframes leftMoveLoop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-
-  
-}
-
-
-
-
-
-
-
-
-
 
 .index .index-con .sections .section.sec3 .con .bottom-con .center-con{
 
@@ -377,7 +333,6 @@ line-height : 300px;
   align-items: center;
 }
 .index .index-con .sections .section.sec3 .con .bottom-con .right-con{
-
   flex:1;
   height: 300px;
   background-color: rgb(221, 201, 66);
@@ -386,23 +341,90 @@ line-height : 300px;
   justify-content: center;
   align-items: center;
 }
+.index .index-con .sections .section.sec4 {
+  width: 1600px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items {
+  display: flex;
+  animation: leftMoveLoop 1500s infinite linear;
+  width: calc(320px * 1000);
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item {
+  width: 300px;
+  height: 300px;
+  margin: 0 10px;
+  animation-delay: -260s; /* 이 부분은 다음 선택자 바깥으로 이동해야 합니다. */
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item a img {
+  width: 300px;
+  height: 300px;
+  border-radius: 4.285714285714286rem;
+  text-align: center;
+  line-height: 300px;
+}
+
+@keyframes leftMoveLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/*.index .index-con .sections .section.sec4{
+  width: 1600px;
+  height: auto;
+  margin-left: 200px;
+  margin: 0 auto;
+
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items {
+  display: flex;
+  animation: leftMoveLoop 1500s  infinite linear;
+  width: calc(320px*1000);
+}
 
 
-/*pop*/
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item {
 
+  width: 300px;
+  height: 300px;
 
+  margin: 0 10px;
+  animation-delay: -260s;
 
+.index .index-con .sections .section.sec4.bottom-wrapper-list-products .bottom-wrapper-list-products-items .item a img{
+  width : 300px;
+  height :300px;
+  border-radius: 4.285714285714286rem;
+  text-align : center;
+  line-height : 300px;
+}
 
-
-
-
-
-
-
-
-
-
-
+@keyframes leftMoveLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}*/
 
 
 
