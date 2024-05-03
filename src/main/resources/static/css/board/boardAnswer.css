@@ -16,21 +16,14 @@
 
 .reply-con {
     padding: 20px;
-<<<<<<< HEAD
     height: 800px;
     width: 1600px;
     margin: 0 auto;
-    
+
 }
 
 .reply-con h1.title {
     background-color: rgb(250 184 119);
-=======
-}
-
-.reply-con h1.title {
-    background-color: #7b0b81;
->>>>>>> dev
     color: #ffffff;
     text-align: center;
     padding: 10px 0;
@@ -54,34 +47,22 @@
 
 .reply-con form input[type="text"]:focus {
     outline: none;
-<<<<<<< HEAD
     background-image: linear-gradient(to bottom, #ffd29f, #fff98b);
-=======
-    border-color: #7b0b81;
->>>>>>> dev
 }
 
 .reply-con form input[type="submit"] {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-<<<<<<< HEAD
     background-color: rgb(250 184 119);
-=======
-    background-color: #7b0b81;
->>>>>>> dev
     color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .reply-con form input[type="submit"]:hover {
-<<<<<<< HEAD
     background-image: linear-gradient(to right, #ffa94e, #ffff6b);
     transition: border-color 0.3s ease;
-=======
-    background-color: #5a074f;
->>>>>>> dev
 }
 
 .reply-con table {

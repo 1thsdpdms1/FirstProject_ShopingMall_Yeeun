@@ -15,7 +15,7 @@
 
 .container .detail {
     width: 100%;
-    height: calc(100vh - 328px - 200px);
+    height: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,6 +64,11 @@
     flex: 4;
     border-right: 1px solid #333333;
     padding-right: 20px;
+}
+
+.container .detail .detail-con .detail-form .left .left-con img{
+    width: 450px;
+    height: 500px;
 }
 
 .container .detail .detail-con .detail-form form .right {

@@ -153,11 +153,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     int replyCount(@Param("id") Long id);
 
 
-<<<<<<< HEAD
-   true)
-======= @Query(value = "  SELECT * FROM board where category=8 order by create_time DESC ", nativeQuery =
     @Query(value = "  SELECT * FROM board where category=8", nativeQuery = true)
->>>>>>> dev
     List<BoardEntity> findByCategory8(Long category);
 
     @Query(value = "select * from board where category between 4 and 7 order by board_hit desc limit 3",nativeQuery = true)

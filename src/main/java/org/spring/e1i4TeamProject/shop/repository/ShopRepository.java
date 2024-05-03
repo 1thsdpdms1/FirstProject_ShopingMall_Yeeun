@@ -27,25 +27,14 @@ public interface ShopRepository extends JpaRepository<ShopEntity,Long> {
 
   List<ShopEntity> findByCategory(int i);
 
-<<<<<<< HEAD
-
-  List<ShopEntity> findByMemberEntityId(Long id);
-//
-//  Page<ShopEntity> findByShopTitleContains(Pageable pageable, String search);
-//
-//  Page<ShopEntity> findByShopContentContains(Pageable pageable, String search);
-=======
   List<ShopEntity> findTop5ByOrderByLikedDesc();
 
   List<ShopEntity> findByMemberEntityId(Long id);
->>>>>>> dev
 
   Page<ShopEntity> findByCategoryAndShopTitleContains(int i, String search, Pageable pageable);
 
   Page<ShopEntity> findByCategoryAndShopContentContains(int i, String search, Pageable pageable);
 
-<<<<<<< HEAD
-=======
   //카테고리 1
   @Query(value = "select * from shop where category=1", nativeQuery = true)
   Page<ShopEntity> findByCategory1Contains(Pageable pageable);
@@ -101,7 +90,6 @@ public interface ShopRepository extends JpaRepository<ShopEntity,Long> {
   @Query(value = "  SELECT * FROM shop where category=4 and shop_content LIKE %:search%"
       , nativeQuery = true)
   Page<ShopEntity> findByShopContent4Contains(Pageable pageable, @Param("search") String search);
->>>>>>> dev
 
 }
 

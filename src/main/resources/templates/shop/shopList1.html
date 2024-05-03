@@ -39,17 +39,6 @@
         <div class="shopList-con">
           <h1>원데이클라스</h1>
           <div class="search">
-<<<<<<< HEAD
-            <form th:action="@{/shop/shopList}" method="get">
-              <select name="subject" id="subject">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-                <!--            <option value="ShopPrice">가격</option>-->
-              </select>
-              <input type="text" name="search" id="search">
-              <input type="submit" value="검색">
-            </form>
-=======
             <div class="search-con">
               <form th:action="@{/shop/shopList1}" method="get">
                 <select name="subject" id="subject">
@@ -67,7 +56,6 @@
                 <input type="text" name="search" id="search" th:value="${param.search}">
                 <input type="submit" value="검색">
               </form>
->>>>>>> dev
           </div>
           <div class="grid-parent">
             <ul class="grid-con">
@@ -81,31 +69,6 @@
                   </th:block>
                 </div>
                 <div class="bottom">
-<<<<<<< HEAD
-                  <ul>
-                    <li>
-                      <span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span> <br>
-                    </li>
-                    <li>
-                      <span>수업명: </span> <span th:text="${shop.shopTitle}"></span> <br>
-                    </li>
-                    <li>
-                      <span>수업내용: </span> <span th:text="${shop.shopContent}"></span> <br>
-                    </li>
-                    <li>
-                      <span>♥:</span> <span th:text="${shop.shopHit}"></span> <br>
-                    </li>
-                    <li>
-                      <span>수업가격: </span> <span th:text="${shop.shopPrice}"></span> <br>
-                    </li>
-                    <li>
-                      <span>선생님: </span> <span th:text="${shop.shopSeller}"></span> <br>
-                    </li>
-                    <li>
-                      <span>학생정원: </span> <span th:text="${shop.Count}"></span> <br>
-                    </li>
-                  </ul>
-=======
                   <div class="left">
                     <ul>
                       <li><span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span></li>
@@ -120,7 +83,6 @@
                       <li>  <span>수업가격:  <th:block  th:text="${shop.shopPrice}"></th:block> </span></li>
                     </ul>
                   </div>
->>>>>>> dev
                 </div>
               </li>
             </ul>

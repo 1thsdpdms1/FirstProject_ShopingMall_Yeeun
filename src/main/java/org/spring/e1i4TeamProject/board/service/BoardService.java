@@ -25,11 +25,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> dev
 @Transactional
 @Service
 @RequiredArgsConstructor
@@ -432,11 +427,8 @@ public class BoardService implements BoardServiceInterface {
 
     }
 
-<<<<<<< HEAD
     
     //조민성씨
-=======
->>>>>>> dev
     @Override
     public List<BoardDto> topReviewBoardList(BoardDto boardDto) {
 

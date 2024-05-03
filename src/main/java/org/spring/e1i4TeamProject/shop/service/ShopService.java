@@ -18,13 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-<<<<<<< HEAD
-import java.lang.reflect.Member;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-=======
->>>>>>> dev
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -186,7 +179,7 @@ public class ShopService implements ShopServiceImpl {
   }
 
 
-    @Override
+  @Override
   public void shopDelete(Long id) {
     ShopEntity shopEntity= shopRepository.findById(id).orElseThrow(()->{
       throw new IllegalArgumentException("삭제할 게시물 없음");
@@ -237,18 +230,6 @@ public class ShopService implements ShopServiceImpl {
 
 
   @Override
-<<<<<<< HEAD
-  public void addCart(Long id, Long shopId) {
-    MemberEntity memberEntity=memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-    Optional<CartEntity> cartEntity = cartRepository.findByMemberEntityId(memberEntity.getId());
-    CartEntity cartEntity1=null;
-
-    if(!cartEntity.isPresent()) {
-      cartEntity1=CartEntity.builder().memberEntity(memberEntity).build();
-      cartRepository.save(cartEntity1);
-    }else{
-      cartEntity1=cartRepository.findByMemberEntityId(memberEntity.getId()).orElseThrow(IllegalArgumentException::new);
-=======
   public void addCart(Long id, Long shopId, ShopDto shopDto, int priceCount) {
     MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     Optional<CartEntity> cartEntityOpt = cartRepository.findByMemberEntityId(memberEntity.getId());
@@ -259,7 +240,6 @@ public class ShopService implements ShopServiceImpl {
       cartRepository.save(cartEntity);
     } else {
       cartEntity = cartEntityOpt.get();
->>>>>>> dev
     }
 
     // shop 확인
@@ -484,13 +464,10 @@ public Page<ShopDto> shopList(Pageable pageable, String subject1, String subject
     List<ShopDto> likeDto = like.stream().map(
         ShopDto::toselectShopDto).collect(Collectors.toList());
 
-<<<<<<< HEAD
-=======
 
     return likeDto;
   }
 
->>>>>>> dev
 }
 
 

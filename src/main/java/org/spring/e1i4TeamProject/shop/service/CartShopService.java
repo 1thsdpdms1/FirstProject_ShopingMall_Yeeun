@@ -79,8 +79,6 @@ public class CartShopService implements CartShopServiceImpl {
                 .build())
             .collect(Collectors.toList());
     }
-<<<<<<< HEAD
-=======
 
 
     @Override
@@ -97,5 +95,4 @@ public class CartShopService implements CartShopServiceImpl {
     public void deleteCart(List<Long> ids) {
         cartShopListRepository.deleteByIdIn(ids);
     }
->>>>>>> dev
 }

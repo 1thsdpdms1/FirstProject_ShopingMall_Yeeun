@@ -16,8 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartService implements CartServiceImpl {
 
-<<<<<<< HEAD
-=======
   private final MemberRepository memberRepository;
   private final CartRepository cartRepository;
 
@@ -43,5 +41,4 @@ public class CartService implements CartServiceImpl {
   }
 
 
->>>>>>> dev
 }

@@ -22,19 +22,6 @@
         <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopList4}">요리</a></li>
       </ul>
     </div>
-<<<<<<< HEAD
-<!--    <div class="nav-section">-->
-<!--      <div>"카테고리"</div>-->
-<!--      <div class="navigation" style="display: block;">-->
-<!--        <li><a th:href="@{/shop/shopList}">전체</a></li>-->
-<!--        <li><a th:href="@{/shop/shopList1}">미술</a></li>-->
-<!--        <li><a th:href="@{/shop/shopList2}">체육</a></li>-->
-<!--        <li><a th:href="@{/shop/shopList3}">음악</a></li>-->
-<!--        <li><a th:href="@{/shop/shopList4}">요리</a></li>-->
-<!--      </div>-->
-<!--    </div>-->
-=======
->>>>>>> dev
   </div>
   <div class="right">
     <div class="main-content">
@@ -55,27 +42,9 @@
                   <option value="shopContent" th:selected="${#strings.equals(param.subject2,'shopContent')}">수강내용</option>
                 </select>
 
-<<<<<<< HEAD
-
-    <div class="main-content">
-      <div class="shopList">
-        <div class="shopList-con">
-          <h1>원데이클라스</h1>
-          <div class="search">
-            <form th:action="@{/shop/shopList}" method="get">
-              <select name="subject" id="subject">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-                <!--            <option value="ShopPrice">가격</option>-->
-              </select>
-              <input type="text" name="search" id="search">
-              <input type="submit" value="검색">
-            </form>
-=======
                 <input type="text" name="search" id="search" th:value="${param.search}">
                 <input type="submit" value="검색">
               </form>
->>>>>>> dev
           </div>
           <div class="grid-parent">
             <ul class="grid-con">
@@ -89,31 +58,6 @@
                   </th:block>
                 </div>
                 <div class="bottom">
-<<<<<<< HEAD
-                  <ul>
-                    <li>
-                      <span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span> <br>
-                    </li>
-                    <li>
-                      <span>수업명: </span> <span th:text="${shop.shopTitle}"></span> <br>
-                    </li>
-                    <li>
-                      <span>수업내용: </span> <span th:text="${shop.shopContent}"></span> <br>
-                    </li>
-                    <li>
-                      <span>♥:</span> <span th:text="${shop.shopHit}"></span> <br>
-                    </li>
-                    <li>
-                      <span>수업가격: </span> <span th:text="${shop.shopPrice}"></span> <br>
-                    </li>
-                    <li>
-                      <span>선생님: </span> <span th:text="${shop.shopSeller}"></span> <br>
-                    </li>
-                    <li>
-                      <span>학생정원: </span> <span th:text="${shop.Count}"></span> <br>
-                    </li>
-                  </ul>
-=======
                   <div class="left">
                     <ul>
                       <li><span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span></li>
@@ -128,7 +72,6 @@
                       <li>  <span>수업가격:  <th:block  th:text="${shop.shopPrice}"></th:block> </span></li>
                     </ul>
                   </div>
->>>>>>> dev
                 </div>
               </li>
             </ul>
