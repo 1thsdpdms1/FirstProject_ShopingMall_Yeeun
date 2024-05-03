@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>boardUpdate</title>
-    <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/board/boardWrite.css}">
 </head>
 <body>
 
 <div th:replace="~{/fragments/common/header :: headerFragment }"></div>
 
 <div class="container">
-    <div class="boardDetail">
-        <div class="boardDetail-con">
-            <div class="boardDetail-form">
-                <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
-                <form th:action="@{/board/noticeBoardUpdate}" method="post" enctype="multipart/form-data">  <!--th:object="${boardEntity}"-->
-                    <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+    <div class="boardWrite">
+        <div class="boardWrite-con">
+            <div class="boardWrite-form">
+                <form th:action="@{/board/noticeBoardUpdate}" method="post" enctype="multipart/form-data">
 
                     <ul>
                         <li>
-                            공지사항 수정
+                            <h1>공지사항 수정</h1>
                         </li>
-                        <!--                        <input th:text="${userId}">아이디</input> <br>-->
+
                         <li>
-                            <input type="hidden" name="category" id="category" value="3">
+                            <select name="category" id="category">
+                                <option value="3">공지사항</option>
+                            </select>
                         </li>
 
                         <li>
@@ -32,21 +32,24 @@
                         </li>
 
                         <li>
-                            <!--                            <label for="memberId" hidden="hidden">회원아이디</label>-->
-                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}" readonly >
+                            <input type="hidden" name="memberId" id="memberId" th:value="${memberId}" readonly>
                         </li>
 
 
                         <li>
-                            <label for="boardWriter">글쓴이</label>
-                            <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}" readonly>
+                            <label for="boardWriter">작성자</label>
+                        </li>
+                        <li>
+                            <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}"
+                                   readonly>
                         </li>
 
                         <li>
                             <label for="boardTitle">제목</label>
-                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}" >
+                        </li>
+                        <li>
+                            <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}">
                         </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
-                        <!--                        <p th:if="${#fields.hasErrors('boardTitle')}" th:errors="*{boardTitle}" class="error"></p>-->
 
 
                         <li>
@@ -62,7 +65,6 @@
                             <label for="boardFile">파일</label>
                             <input type="file" name="boardFile" id="boardFile">
                         </li>
-
 
 
                         <li>
