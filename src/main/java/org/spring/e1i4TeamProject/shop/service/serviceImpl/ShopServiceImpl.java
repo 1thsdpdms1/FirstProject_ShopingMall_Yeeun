@@ -1,10 +1,8 @@
 package org.spring.e1i4TeamProject.shop.service.serviceImpl;
 
-import org.spring.e1i4TeamProject.shop.dto.CartShopListDto;
 import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,10 +20,15 @@ public interface ShopServiceImpl {
 
   void shopDelete(Long id);
 
-  void addCart(Long id, Long shopId);
+  void addCart(Long id, Long shopId,ShopDto shopDto,int priceCount);
+
+
 
   List<ShopDto> shopList1();
   List<ShopDto> shopList2();
   List<ShopDto> shopList3();
   List<ShopDto> shopList4();
+
+
+  List<ShopDto> liked();
 }

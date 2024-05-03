@@ -3,12 +3,18 @@ package org.spring.e1i4TeamProject.controller;
 import lombok.RequiredArgsConstructor;
 import org.spring.e1i4TeamProject.board.dto.BoardDto;
 import org.spring.e1i4TeamProject.board.service.BoardService;
+import org.spring.e1i4TeamProject.config.MyUserDetailsImpl;
 import org.spring.e1i4TeamProject.member.dto.MemberDto;
 import org.spring.e1i4TeamProject.member.service.MemberService;
+import org.spring.e1i4TeamProject.shop.dto.ShopDto;
+import org.spring.e1i4TeamProject.shop.service.ShopLikeService;
+import org.spring.e1i4TeamProject.shop.service.ShopService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,30 +30,20 @@ public class HomeController {
 
     private final BoardService boardService;
 
-    @GetMapping({"/","/index"})
-    public String index(MemberDto memberDto, Model model){
+    private final ShopService shopService;
 
-        model.addAttribute("memberDto", memberDto);
+
+
+
+    @GetMapping({"/", "/index"})
+    public String shopList( Model model) {
+
+        List<ShopDto> liked = shopService.liked();
+        model.addAttribute("liked", liked);
+
 
         return "index";
     }
-
-//    @GetMapping({"/","/index"})
-//    public String index(MemberDto memberDto, BoardDto boardDto,
-//                        @RequestParam(name = "subject", required = false) String subject,
-//                        @RequestParam(name = "search", required = false) String search,
-//                        @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-//                            Pageable pageable,Model model){
-//        model.addAttribute("memberDto", memberDto);
-//
-//        List<BoardDto> boardDtoList = boardService.boardList();
-//
-//        model.addAttribute("boardDtoList", boardDtoList);
-//
-//
-//        return "index";
-//    }
-
 
 }
 

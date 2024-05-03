@@ -107,12 +107,7 @@
                         <ul class="sub">
                             <th:block sec:authorize="isAuthenticated()">
                                 <li>
-<<<<<<< HEAD
-                                    <a th:href="@{member/memberDetail/{id}
-
-=======
                                     <a th:href="@{/member/memberDetail/{id}
->>>>>>> dev
                                     (id=${#authentication.principal.memberEntity.id})}">개인정보</a>
                                 </li>
                             </th:block>

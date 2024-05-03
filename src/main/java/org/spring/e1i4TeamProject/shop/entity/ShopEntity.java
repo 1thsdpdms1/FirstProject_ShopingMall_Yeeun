@@ -32,19 +32,20 @@ public class ShopEntity extends BaseTimeEntity {
     private int shopPrice;
 
     @Column(nullable = false)
-    private int count;
+    private int peopleCount;
+
+    @Column(nullable = false)
+    private int priceCount;
 
     @Column(nullable = false)
     private int category;
 
-<<<<<<< HEAD
     @Column(nullable = false)
     private String place;
 
-=======
->>>>>>> dev
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int shopHit;
+
 
     @Column(nullable = false)
     private int shopAttachFile;
@@ -52,6 +53,8 @@ public class ShopEntity extends BaseTimeEntity {
     @Column(nullable = false)
     private String shopSeller;
 
+    @Column(nullable = false)
+    private int liked; // 추천 수
 
     @JsonIgnore
     @OneToMany(mappedBy = "shopEntity"
@@ -64,6 +67,13 @@ public class ShopEntity extends BaseTimeEntity {
         ,fetch = FetchType.LAZY
         ,cascade = CascadeType.REMOVE)
     private List<ShopFileEntity> shopFileEntityList;
+
+    @JsonIgnore
+    @OneToMany
+        (mappedBy = "shopEntity"
+            , fetch = FetchType.LAZY
+            , cascade = CascadeType.REMOVE)
+    private List<ShopLikeEntity> ShopLikeEntityList;
 
     @JsonIgnore
     @OneToMany(mappedBy = "shopEntity"
@@ -81,10 +91,12 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
-        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPeopleCount(shopDto.getPeopleCount());
         shopEntity.setPlace(shopDto.getPlace());
+        shopEntity.setLiked(0);
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setCategory(shopDto.getCategory());
+        shopEntity.setPriceCount(0);
         shopEntity.setShopHit(0);
         shopEntity.setShopAttachFile(0);
         shopEntity.setMemberEntity(shopDto.getMemberEntity());
@@ -99,8 +111,10 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
-        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPeopleCount(shopDto.getPeopleCount());
         shopEntity.setPlace(shopDto.getPlace());
+        shopEntity.setLiked(0);
+        shopEntity.setPriceCount(0);
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopHit(0);
@@ -116,8 +130,9 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
-        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPeopleCount(shopDto.getPeopleCount());
         shopEntity.setPlace(shopDto.getPlace());
+        shopEntity.setLiked(0);
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(0);
@@ -131,8 +146,9 @@ public class ShopEntity extends BaseTimeEntity {
         shopEntity.setShopTitle(shopDto.getShopTitle());
         shopEntity.setShopContent(shopDto.getShopContent());
         shopEntity.setShopPrice(shopDto.getShopPrice());
-        shopEntity.setCount(shopDto.getCount());
+        shopEntity.setPeopleCount(shopDto.getPeopleCount());
         shopEntity.setPlace(shopDto.getPlace());
+        shopEntity.setLiked(0);
         shopEntity.setCategory(shopDto.getCategory());
         shopEntity.setShopSeller(shopDto.getShopSeller());
         shopEntity.setShopAttachFile(1);
@@ -141,6 +157,13 @@ public class ShopEntity extends BaseTimeEntity {
         return shopEntity;
     }
 
+    public void increaseLikeCount() {
+        this.liked += 1;
+    }
+
+    public void decreaseLikeCount() {
+        this.liked -= 1;
+    }
 
 
 

@@ -79,6 +79,7 @@ public class ReplyController {
     //공지사항 댓글 삭제
     @GetMapping("/noticeReplyDelete/{id}")
     public String noticeBoardReplyDelete(@PathVariable("id") Long id) {
+
         Long boardId = boardReplyService.boardReplyDeleteById(id);
 
         return "redirect:/board/noticeBoardDetail/" + boardId;

@@ -25,4 +25,5 @@ public interface ShopRepository extends JpaRepository<ShopEntity,Long> {
 
   List<ShopEntity> findByCategory(int i);
 
+  List<ShopEntity> findTop5ByOrderByLikedDesc();
 }

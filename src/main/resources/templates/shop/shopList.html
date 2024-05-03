@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>write</title>
   <link rel="stylesheet" th:href="@{/css/shop/shopList.css}">
+
 </head>
 
 <body>
@@ -23,11 +24,6 @@
     </div>
   </div>
   <div class="right">
-<<<<<<< HEAD
-=======
-
-
->>>>>>> dev
     <div class="main-content">
       <div class="shopList">
         <div class="shopList-con">
@@ -59,7 +55,7 @@
                     <ul>
                       <li><span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span></li>
                       <li> <span>수업명: <th:block  th:text="${shop.shopTitle}"></th:block> </span></li>
-                      <li><span>학생정원: <th:block  th:text="${shop.Count}"></th:block> </span></li>
+                      <li><span>학생정원: <th:block  th:text="${shop.peopleCount}"></th:block> </span></li>
                     </ul>
                   </div>
                   <div class="right">
@@ -141,5 +137,7 @@
 </div>
 </body>
 <div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+
+
 
 </html>

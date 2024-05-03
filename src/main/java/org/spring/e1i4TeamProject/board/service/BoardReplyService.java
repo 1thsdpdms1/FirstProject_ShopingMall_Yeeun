@@ -69,17 +69,13 @@ public class BoardReplyService implements BoardReplyInterface {
         //해당 글이 null이 아니라면
         if (boardEntity != null) {
              BoardReplyEntity boardReplyEntity = BoardReplyEntity.builder()
-                    .boardEntity(BoardEntity.builder().id(boardReplyDto.getBoardId()).build()) // 글의 아이디
+                    .boardEntity(BoardEntity.builder()
+                        .id(boardReplyDto.getBoardId()).build()) // 글의 아이디
                     .boardReplyWriter(boardReplyDto.getBoardReplyWriter())
                     .boardReplyContent(boardReplyDto.getBoardReplyContent())
                     .build(); // 찾아서 값 넣고
             boardReplyRepository.save(boardReplyEntity);
         }
-//        System.out.println(boardReplyDto.getBoardId()+">>>>");
-//            BoardReplyEntity boardReplyEntity = BoardReplyEntity.toInsertBoardReplyEntity(boardReplyDto);
-
-
-
     }
 
     @Override

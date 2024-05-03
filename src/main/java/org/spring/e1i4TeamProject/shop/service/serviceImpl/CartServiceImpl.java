@@ -1,11 +1,14 @@
 package org.spring.e1i4TeamProject.shop.service.serviceImpl;
 
-import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
-=======
+import org.spring.e1i4TeamProject.config.MyUserDetailsImpl;
+import org.spring.e1i4TeamProject.shop.entity.CartEntity;
 
->>>>>>> dev
+import java.util.List;
+
 public interface CartServiceImpl {
+
+
+  Long cartShopAllDelete(Long cartId);
 
 }
