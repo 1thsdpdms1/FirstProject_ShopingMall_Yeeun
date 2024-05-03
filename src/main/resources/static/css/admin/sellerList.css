@@ -4,22 +4,19 @@
 @import url(/css/common/paging.css);
 @import url(/css/common/sideBar.css);
 
-
-
 /* 검색 css */
 .container {
   width: 100%;
-  height: 800px;
+  height: 800 px;
   display: flex;
   justify-content: center;
-
   /* padding: 20px; */
-
 }
 
 .container .sellerList {
   width: 1600px;
   display: flex;
+
  /* justify-content: center;*/
 
 }
@@ -28,10 +25,9 @@
   width: 100%;
  /* justify-content: center;*/
  line-height: 2;
- padding-left: 20px;
  padding-top : 50px;
+ padding-left: 20px;
 }
-
 .container .sellerList .sellerList-con button.delete{
   background: #000000;
   padding: 5px;
@@ -86,4 +82,3 @@ table td.ellipsis {
       text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 추가 */
       max-width: 200px; /* 요소의 최대 너비 지정 */
 }
-

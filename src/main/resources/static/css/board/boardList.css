@@ -99,6 +99,46 @@ align-items : center;
 gap : 10px;
 
   }
+<<<<<<< HEAD
+
+ .left{
+  width: 250px;
+ height:100vh;
+ background-color: #ffffff;
+ color: #000000;
+ }
+
+ .menu {
+    width: 250px;
+   overflow: hidden;
+   padding: 10px;
+   padding-top: 80px;
+   box-sizing: border-box;
+   box-shadow: 5px 20px 5px rgb(68 67 67 / 34%);
+   /*position: fixed;*/
+   /* margin: 150px auto; */
+ }
+
+
+ .menu li {
+   width: 100%;
+   text-align: center;
+   line-height: 50px;
+   background-color: #ffffff;
+   color: #000000;
+ }
+
+ .menu li img{
+  width: 30px;
+  height: 30px;
+  padding: 15px 10px;
+}
+
+ .menu a, .menu > label {
+  padding: 8px;
+  color: #000000;
+  font-size: 20px;
+=======
 table tr td  a img{
     width : 20px;
     height : 20px;
@@ -174,22 +214,74 @@ width: 200pc;
 padding: 8px;
 color: #000000;
 font-size: 20px;
+>>>>>>> dev
 
 }
 
 .menu a:hover {
+<<<<<<< HEAD
+  opacity: 1;
+  transition : 1s;
+  border-bottom: 1px solid black;
+=======
 opacity: 1;
 transition : 1s;
 border-bottom: 1px solid black;
+>>>>>>> dev
 }
 
 .submenu {
 height: 0; /* submenu가 안보이게 하기 위해 */
 overflow: hidden;
 }
+<<<<<<< HEAD
+.submenu > li {
+  /* line-height: 50px; */
+  background-color: #8d8c8c;
+
+}
+
+/*.menu > li:hover {
+  *//* menu부터 submenu01~5높이 생각해서 설정 *//*
+  height: 300px;
+  transition-duration: 0.5s;
+}*/
+
+.menu > li:hover .submenu {
+  height: 350px; /*서브메뉴 li한개의 높이 50*5*/
+  transition-duration: 1s;
+}
+
+
+
+
+/*main main main main main main main main main main */
+
+
+.right {
+      flex: 1;
+  }
+
+  .main-content {
+      padding: 20px;
+  }
+
+
+.boardList {
+
+width: 100%;
+
+ /* border: 1px solid; */
+
+ box-sizing: border-box;
+
+display: flex;
+
+=======
 .right ul.submenu > li {
 /* line-height: 50px; */
 background-color: #8d8c8c;
+>>>>>>> dev
 justify-content: center;
 
 }
