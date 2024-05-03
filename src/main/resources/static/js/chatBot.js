@@ -94,13 +94,3 @@ function msgSendClickFn(){
       //  @MessageMapping("/message")
     stompClient.send("/app2/message", {}, JSON.stringify({'content': question}));
 }
-
-
-//$(function(){
-//    $("#question").keyup(qKeyupFn); // window load시 처음 실행
-//});
-//엔터가 입력이되면 질문을 텍스트 화면에 표현
-//function qKeyupFn(event){
-//    if(event.keyCode!=13) return; // enter키 제외하고
-//    msgSendClickFn() // 실행
-//}

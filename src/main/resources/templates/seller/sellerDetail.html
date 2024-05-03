@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>선생님 소개</title>
+    <script th:src="@{/js/header.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/css/seller/sellerDetail.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="menu">
+        <label>메뉴</label>
+        <ul>
+            <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/}" >HOME</a></li>
+            <li><img th:src="@{/images/manager.png}" alt="icon"><a th:href="@{/seller/sellerList}" class="under">선생님</a></li>
+            <li><img th:src="@{/images/add.png}" alt="icon"><a th:href="@{/shop/shopWrite}" >강의등록</a></li>
+        </ul>
+    </div>
+    <div class="detail">
+        <div class="detail-con">
+            <div class="detail-form">
+                <h1 class="title">선 생 님 정 보</h1>
+                <form th:action="@{/seller/sellerDetailUpdate}" method="post" enctype="multipart/form-data">
+                    <div class="left">
+                        <div class="left-con">
+                            <h2>프 로 필 사 진</h2>
+                            <th:block th:if="${seller.memberAttachFile == 1}">
+                                <img th:src="@{|/upload/${seller.memberFileName}|}" alt="file">
+                            </th:block>
+                            <th:block th:unless="${seller.memberAttachFile == 1}">
+                                <img src="http://placehold.co/600X500?text=NOIMAGE" alt="이미지대체문구">
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="right-con">
+                            <ul>
+                                <li>
+                                    <label for="userEmail">이 메 일</label>
+                                </li>
+                                <li>
+                                    <input type="text" id="userEmail" name="userEmail"
+                                           th:value="${seller.userEmail}">
+                                    <br>
+                                </li>
+
+                                <li>
+                                    <label for="name">이 름</label>
+                                </li>
+                                <li>
+                                    <input type="text" id="name" name="name" th:value="${seller.name}"> <br>
+                                </li>
+
+                                <li>
+                                    <label for="phoneNumber">전 화 번 호</label>
+                                </li>
+                                <li>
+                                    <input type="text" id="phoneNumber" name="phoneNumber"
+                                           th:value="${seller.phoneNumber}"> <br>
+                                </li>
+
+                                    <li>
+                                        <label for="license">자 격 증</label>
+                                    </li>
+                                    <li>
+                                        <input type="text" name="license" id="license"
+                                               th:value="${seller.licence}">
+                                    </li>
+
+                                <th:block sec:authorize="hasAnyRole('ADMIN')">
+                                    <li class="li2">
+                                        <a th:href="@{/seller/sellerList}">LIST</a>
+                                        <a th:href="@{/seller/sellerListDelete/{id}(id=${seller.id})}">회원 탈퇴</a>
+                                    </li>
+                                </th:block>
+                                <th:block sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+                                    <li class="li2">
+                                        <a th:href="@{/seller/sellerList}">LIST</a>
+                                    </li>
+                                </th:block>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="shopList">
+                <div class="shopList-con">
+                    <table>
+                        <tr>
+                            <th>상품명</th>
+                            <th>수업내용</th>
+                            <th>수업가격</th>
+                            <th>담당자</th>
+                            <th>바로가기</th>
+                        </tr>
+                        <tr th:each="shop:${shop}">
+
+                            <td th:text="${shop.shopTitle}"></td>
+                            <td th:text="${shop.shopContent}" class="long"></td>
+                            <td th:text="${shop.shopPrice}"></td>
+                            <td th:text="${shop.shopSeller}"></td>
+                            <td><a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}">바로가기</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
+</html>

@@ -9,11 +9,21 @@ import org.spring.e1i4TeamProject.board.service.BoardReplyService;
 import org.spring.e1i4TeamProject.board.service.BoardService;
 import org.spring.e1i4TeamProject.config.MyUserDetailsImpl;
 import org.spring.e1i4TeamProject.member.entity.MemberEntity;
+//<<<<<<< HEAD
+import org.spring.e1i4TeamProject.shop.dto.ShopDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+//=======
+//import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.Pageable;
+//import org.springframework.data.domain.Sort;
+//import org.springframework.data.repository.query.Param;
+//import org.springframework.data.web.PageableDefault;
+//>>>>>>> dev
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +33,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+//<<<<<<< HEAD
+import java.util.HashMap;
+//=======
 import java.util.ArrayList;
+//>>>>>>> dev
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -64,7 +79,7 @@ public class BoardController {
     public String boardList(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                             @RequestParam(name = "subject", required = false) String subject,
                             @RequestParam(name = "search", required = false) String search,
-                            @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
+                            @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
                             Pageable pageable, Model model) {
 //        search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList1_2(pageable, subject, search);
@@ -108,24 +123,25 @@ public class BoardController {
         BoardDto board = boardService.boardDetail(id);
 
 //        게시글이 존재하면 -> 게시글에 연결된 덧글리스트
-        List<BoardReplyDto> boardReplyList= boardReplyService.boardReplyList2(board.getId());
+        List<BoardReplyDto> boardReplyList = boardReplyService.boardReplyList2(board.getId());
 
 //        model.addAttribute("boardFileEntityList",boardFileEntityList);
         model.addAttribute("myUserDetails", myUserDetails);
         model.addAttribute("memberId", board.getMemberEntity().getId());
         model.addAttribute("memberName", board.getMemberEntity().getName());
         model.addAttribute("board", board);
-        model.addAttribute("boardReplyList",boardReplyList);
+        model.addAttribute("boardReplyList", boardReplyList);
 
         return "board/boardDetail";
     }
 
 
+
     @GetMapping("/boardUpdate/{id}")
-    public String boardUpdate(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+    public String boardUpdate (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
 //                              @ModelAttribute BoardDto boardDto,
-                              Model model,
-                              @PathVariable("id") Long id) {
+                               Model model,
+                               @PathVariable("id") Long id){
 
         BoardDto board = boardService.boardDetail(id);
         model.addAttribute("board", board);
@@ -135,10 +151,8 @@ public class BoardController {
     }
 
 
-
-
     @PostMapping("/boardUpdate")
-    public String boardUpdateOk(@ModelAttribute BoardDto boardDto, Model model) throws IOException {
+    public String boardUpdateOk (@ModelAttribute BoardDto boardDto, Model model) throws IOException {
 
         boardService.boardUpdate(boardDto);
         model.addAttribute("board", boardDto);
@@ -148,7 +162,7 @@ public class BoardController {
 
 
     @GetMapping("/boardDelete/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    public String delete (@PathVariable("id") Long id){
 
         boardService.boardDeleteById(id);
 
@@ -157,8 +171,8 @@ public class BoardController {
 
     ///////////////////////////////공지사항////////////////////
     @GetMapping("/noticeBoardWrite")
-    public String noticeBoardWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                   BoardDto boardDto, Model model) {
+    public String noticeBoardWrite (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                    BoardDto boardDto, Model model){
 
         model.addAttribute("memberId", myUserDetails.getMemberEntity().getId());
         model.addAttribute("boardDto", boardDto);
@@ -169,13 +183,14 @@ public class BoardController {
 
 
     @PostMapping("/noticeBoardWrite")
-    public String noticeBoardWriteOK(BoardDto boardDto,
-                                     @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                     Model model) throws IOException {
+    public String noticeBoardWriteOK (BoardDto boardDto,
+                                      @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                      Model model) throws IOException {
 
 //        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
 //        model.addAttribute("boardDto",boardDto);
 //        boardService.boardInsert(boardDto);
+//>>>>>>>dev
         boardService.boardInsertFile(boardDto);
 
         return "redirect:/board/noticeBoardList";
@@ -183,13 +198,67 @@ public class BoardController {
     }
 
 
+    //<<<<<<<HEAD
+    @GetMapping("/boardInquiry/member/{id}/category/{category}")
+    public String inquiry (@PathVariable("id") Long id,
+                           @PathVariable("category") Long category, Model model){
+        List<BoardDto> boardList
+                = boardService.boardMemberCategoryList(id, category);
+        model.addAttribute("boardList", boardList);
+
+        return "board/boardInquiry";
+    }
+
+
+    // 다 뽑기
+    @GetMapping("/boardInquiry/category/{category}")
+    public String inquiry(@PathVariable("category")Long category, Model model){
+
+        List<BoardDto> boardDtoList
+                =boardService.boardInquiryList(category);
+        model.addAttribute("boardDtoList", boardDtoList);
+
+        return "board/boardInquiry2";
+
+    }
+
+
+
+    //작성 post
+    @PostMapping("/inquiry/write")
+    public ResponseEntity<?> inquiryQ (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails, BoardDto boardDto)
+    {
+        boardDto.setBoardAttachFile(0);
+        boardDto.setMemberEntity(MemberEntity.builder().id(myUserDetails.getMemberEntity().getId()).build());
+
+        BoardDto board = boardService.boardMemberCategorySave(boardDto);
+        Map<String, BoardDto> map = new HashMap<>();
+        map.put("board", board);
+        return ResponseEntity.status(HttpStatus.OK).body(map);
+    }
+
+
+
+
+    @GetMapping("/boardAnswer")
+    public String boardAnswer (@RequestParam("id") Long id, Model model){
+        BoardDto boardDto = boardService.boardDetail(id);
+        List<BoardReplyDto> boardReplyDtoList = boardReplyService.boardReplyList(boardDto.getId());
+
+        model.addAttribute("boardReplyDtoList", boardReplyDtoList);
+        model.addAttribute("board", boardDto);
+        return "board/boardAnswer";
+    }
+
+
+
     @GetMapping("/noticeBoardList")
-    public String noticeBoardList(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                  @RequestParam(name = "subject", required = false) String subject,
-                                  @RequestParam(name = "search", required = false) String search,
-                                  @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-                                  Pageable pageable, Model model) {
-//      search
+    public String noticeBoardList (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                   @RequestParam(name = "subject", required = false) String subject,
+                                   @RequestParam(name = "search", required = false) String search,
+                                   @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
+                                   Pageable pageable, Model model){
+
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList3(pageable, subject, search);
 
         model.addAttribute("myUserDetails", myUserDetails);
@@ -220,19 +289,14 @@ public class BoardController {
         BoardEntity boardEntity = new BoardEntity();
 
 
-//            if(subject==null || search ==null){
-//                boardDtos = boardService.boardSearchPageList3(pageable);
-//            }else{
-//                boardDtoList=  boardService.boardSearchPageList3(pageable,subject,search);
-//            }
 
 
         return "board/noticeBoard/noticeBoardList";
     }
 
     @GetMapping("/noticeBoardDetail/{id}")
-    public String noticeBoardDetail(Model model, @PathVariable("id") Long id,
-                                    @AuthenticationPrincipal MyUserDetailsImpl myUserDetails) {
+    public String noticeBoardDetail (Model model, @PathVariable("id") Long id,
+                                     @AuthenticationPrincipal MyUserDetailsImpl myUserDetails){
 
         boardService.boardHit(id);
 
@@ -240,23 +304,23 @@ public class BoardController {
         BoardDto board = boardService.boardDetail(id);
 
         //게시글이 존재하면 -> 게시글에 연결된 덧글리스트
-        List<BoardReplyDto> boardReplyList= boardReplyService.boardReplyList(board.getId());
+        List<BoardReplyDto> boardReplyList = boardReplyService.boardReplyList(board.getId());
 
         model.addAttribute("myUserDetails", myUserDetails);
         model.addAttribute("memberId", board.getMemberEntity().getId());
         model.addAttribute("memberName", board.getMemberEntity().getName());
         model.addAttribute("board", board);
-        model.addAttribute("boardReplyList",boardReplyList);
+        model.addAttribute("boardReplyList", boardReplyList);
 
         return "board/noticeBoard/noticeBoardDetail";
     }
 
 
     @GetMapping("/noticeBoardUpdate/{id}")
-    public String noticeBoardUpdate(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-//                              @ModelAttribute BoardDto boardDto,
-                                    Model model,
-                                    @PathVariable("id") Long id) {
+    public String noticeBoardUpdate (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+
+                                     Model model,
+                                     @PathVariable("id") Long id){
 
         BoardDto board = boardService.boardDetail(id);
         model.addAttribute("board", board);
@@ -267,7 +331,7 @@ public class BoardController {
 
 
     @PostMapping("/noticeBoardUpdate")
-    public String noticeBoardUpdateOk(@ModelAttribute BoardDto boardDto, Model model) throws IOException {
+    public String noticeBoardUpdateOk (@ModelAttribute BoardDto boardDto, Model model) throws IOException {
 
         boardService.boardUpdate(boardDto);
         model.addAttribute("board", boardDto);
@@ -277,7 +341,7 @@ public class BoardController {
 
 
     @GetMapping("/noticeBoardDelete/{id}")
-    public String noticeBoardDelete(@PathVariable("id") Long id) {
+    public String noticeBoardDelete (@PathVariable("id") Long id){
 
         boardService.boardDeleteById(id);
 
@@ -285,11 +349,10 @@ public class BoardController {
     }
 
 
-    ///////////////////////////review//////////////////////////////
 
     @GetMapping("/reviewBoardWrite")
-    public String reviewBoardWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                   BoardDto boardDto, Model model) {
+    public String reviewBoardWrite (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                    BoardDto boardDto, Model model){
 
         model.addAttribute("memberId", myUserDetails.getMemberEntity().getId());
         model.addAttribute("boardDto", boardDto);
@@ -300,13 +363,10 @@ public class BoardController {
 
 
     @PostMapping("/reviewBoardWrite")
-    public String reviewBoardWriteOK(BoardDto boardDto,
-                                     @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                     Model model) throws IOException {
+    public String reviewBoardWriteOK (BoardDto boardDto,
+                                      @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                      Model model) throws IOException {
 
-//        model.addAttribute("memberName",myUserDetails.getMemberEntity().getName());
-//        model.addAttribute("boardDto",boardDto);
-//        boardService.boardInsert(boardDto);
         boardService.boardInsertFile(boardDto);
 
         return "redirect:/board/reviewBoardList";
@@ -314,11 +374,11 @@ public class BoardController {
 
     //4~7까지 다 보이기
     @GetMapping("/reviewBoardList")
-    public String reviewBoardList(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                  @RequestParam(name = "subject", required = false) String subject,
-                                  @RequestParam(name = "search", required = false) String search,
-                                  @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-                                  Pageable pageable, Model model) {
+    public String reviewBoardList (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                   @RequestParam(name = "subject", required = false) String subject,
+                                   @RequestParam(name = "search", required = false) String search,
+                                   @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
+                                   Pageable pageable, Model model){
 //      search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList4_7(pageable, subject, search);
 
@@ -327,8 +387,7 @@ public class BoardController {
         //paging
         int totalPages = boardDtoList.getTotalPages(); // 전체 페이지
         int newPage = boardDtoList.getNumber(); // 현재 페이지
-//        Long totalElements= boardDtoList.getTotalElements(); // 전체레코드 개수
-//        int size = boardDtoList.getSize(); // 페이지당 보이는 갯수
+
         int blockNum = 8;// 브라우저에 보이는 페이지번호
 
         int startPage = (int) (
@@ -348,11 +407,11 @@ public class BoardController {
 
     //4만 보이기
     @GetMapping("/reviewBoardList4")
-    public String reviewBoardList4(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                   @RequestParam(name = "subject", required = false) String subject,
-                                   @RequestParam(name = "search", required = false) String search,
-                                   @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-                                   Pageable pageable, Model model) {
+    public String reviewBoardList4 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                    @RequestParam(name = "subject", required = false) String subject,
+                                    @RequestParam(name = "search", required = false) String search,
+                                    @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model){
 //      search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList4(pageable, subject, search);
 
@@ -384,11 +443,11 @@ public class BoardController {
 
     //5만 보이기
     @GetMapping("/reviewBoardList5")
-    public String reviewBoardList5(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                   @RequestParam(name = "subject", required = false) String subject,
-                                   @RequestParam(name = "search", required = false) String search,
-                                   @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-                                   Pageable pageable, Model model) {
+    public String reviewBoardList5 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                    @RequestParam(name = "subject", required = false) String subject,
+                                    @RequestParam(name = "search", required = false) String search,
+                                    @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model){
 //      search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList5(pageable, subject, search);
 
@@ -419,11 +478,11 @@ public class BoardController {
 
     //6만 보이기
     @GetMapping("/reviewBoardList6")
-    public String reviewBoardList6(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                   @RequestParam(name = "subject", required = false) String subject,
-                                   @RequestParam(name = "search", required = false) String search,
-                                   @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-                                   Pageable pageable, Model model) {
+    public String reviewBoardList6 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                    @RequestParam(name = "subject", required = false) String subject,
+                                    @RequestParam(name = "search", required = false) String search,
+                                    @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model){
 //      search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList6(pageable, subject, search);
 
@@ -455,11 +514,11 @@ public class BoardController {
 
     //7만 보이기
     @GetMapping("/reviewBoardList7")
-    public String reviewBoardList7(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
-                                   @RequestParam(name = "subject", required = false) String subject,
-                                   @RequestParam(name = "search", required = false) String search,
-                                   @PageableDefault(page = 0, size = 3, sort = "board_id", direction = Sort.Direction.DESC)
-                                   Pageable pageable, Model model) {
+    public String reviewBoardList7 (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                                    @RequestParam(name = "subject", required = false) String subject,
+                                    @RequestParam(name = "search", required = false) String search,
+                                    @PageableDefault(page = 0, size = 8, sort = "board_id", direction = Sort.Direction.DESC)
+                                    Pageable pageable, Model model){
 //      search
         Page<BoardDto> boardDtoList = boardService.boardSearchPageList7(pageable, subject, search);
 
@@ -491,8 +550,8 @@ public class BoardController {
 
 
     @GetMapping("/reviewBoardDetail/{id}")
-    public String reviewBoardDetail(Model model, @PathVariable("id") Long id,
-                                    @AuthenticationPrincipal MyUserDetailsImpl myUserDetails) {
+    public String reviewBoardDetail (Model model, @PathVariable("id") Long id,
+                                     @AuthenticationPrincipal MyUserDetailsImpl myUserDetails){
 
         boardService.boardHit(id);
 
@@ -500,24 +559,24 @@ public class BoardController {
         BoardDto board = boardService.boardDetail(id);
 
         //게시글이 존재하면 -> 게시글에 연결된 덧글리스트
-        List<BoardReplyDto> boardReplyList= boardReplyService.boardReplyList(board.getId());
+        List<BoardReplyDto> boardReplyList = boardReplyService.boardReplyList(board.getId());
 
 //        model.addAttribute("boardFileEntityList",boardFileEntityList);
         model.addAttribute("myUserDetails", myUserDetails);
         model.addAttribute("memberId", board.getMemberEntity().getId());
         model.addAttribute("memberName", board.getMemberEntity().getName());
         model.addAttribute("board", board);
-        model.addAttribute("boardReplyList",boardReplyList);
+        model.addAttribute("boardReplyList", boardReplyList);
 
         return "board/reviewBoard/reviewBoardDetail";
     }
 
 
     @GetMapping("/reviewBoardUpdate/{id}")
-    public String reviewBoardUpdate(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+    public String reviewBoardUpdate (@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
 //                              @ModelAttribute BoardDto boardDto,
-                                    Model model,
-                                    @PathVariable("id") Long id) {
+                                     Model model,
+                                     @PathVariable("id") Long id){
 
         BoardDto board = boardService.boardDetail(id);
         model.addAttribute("board", board);
@@ -528,7 +587,7 @@ public class BoardController {
 
 
     @PostMapping("/reviewBoardUpdate")
-    public String reviewBoardUpdateOk(@ModelAttribute BoardDto boardDto, Model model) throws IOException {
+    public String reviewBoardUpdateOk (@ModelAttribute BoardDto boardDto, Model model) throws IOException {
 
         boardService.boardUpdate(boardDto);
         model.addAttribute("board", boardDto);
@@ -539,15 +598,13 @@ public class BoardController {
 
 
     @GetMapping("/reviewBoardDelete/{id}")
-    public String reviewBoardDelete(@PathVariable("id") Long id) {
+    public String reviewBoardDelete (@PathVariable("id") Long id){
 
         boardService.boardDeleteById(id);
 
         return "redirect:/board/reviewBoardList";
     }
 
+
+
 }
-
-
-
-

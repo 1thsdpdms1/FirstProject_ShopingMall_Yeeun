@@ -8,13 +8,13 @@ import org.spring.e1i4TeamProject.board.entity.BoardReplyEntity;
 import org.spring.e1i4TeamProject.board.repository.BoardReplyRepository;
 import org.spring.e1i4TeamProject.board.repository.BoardRepository;
 import org.spring.e1i4TeamProject.board.service.BoardReplyService;
-import org.spring.e1i4TeamProject.board.service.BoardService;
+
 import org.spring.e1i4TeamProject.config.MyUserDetailsImpl;
+import org.spring.e1i4TeamProject.board.service.BoardService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -27,12 +27,14 @@ public class ReplyController {
     private final BoardRepository boardRepository;
 
 
+//    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER')")
     @PostMapping("/replyWrite")
     public String replyWrite(BoardReplyDto boardReplyDto) {
 
         boardReplyService.insertReply(boardReplyDto);
 
-        return "redirect:/inquiry/Inquiry/" + boardReplyDto.getId();
+        return "redirect:/board/boardAnswer?id="+boardReplyDto.getBoardId();
+
     }
 
 

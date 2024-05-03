@@ -37,16 +37,22 @@
                             </li>
 
                             <li>
+                                <label for="boardTitle">제목</label>
+                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
+                                       readonly>
+                            </li>
+
+                            <li>
                                 <label for="boardWriter">글쓴이</label>
                                 <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}"
                                        readonly>
                             </li>
 
                             <li>
-                                <label for="boardTitle">제목</label>
-                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
-                                       readonly>
+                                <label for="boardHit">조회수</label>
+                                <input type="text" name="boardHit" id="boardHit" th:value="${board.boardHit}">
                             </li>
+
 
                             <li>
                                 <label for="boardContent">내용</label>
@@ -148,7 +154,7 @@
                             <h1>
                                 댓글을 작성하려면 로그인하세요!
                                 <a th:href="@{/member/memberLogin}">
-                                    <img th:src="@{/images/user.png}" alt="로그인"></a>
+                                    <img th:src="@{/images/logo.png}" alt="로그인"></a>
                             </h1>
 
                         </th:block>

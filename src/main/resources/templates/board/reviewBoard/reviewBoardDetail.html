@@ -38,16 +38,21 @@
                             </li>
 
                             <li>
+                                <label for="boardTitle">제목</label>
+                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
+                                       readonly>
+                            </li>
+
+                            <li>
                                 <label for="boardWriter">글쓴이</label>
                                 <input type="text" name="boardWriter" id="boardWriter" th:value="${board.boardWriter}"
                                        readonly>
                             </li>
 
                             <li>
-                                <label for="boardTitle">제목</label>
-                                <input type="text" name="boardTitle" id="boardTitle" th:value="${board.boardTitle}"
-                                       readonly>
-                            </li>                                 <!-- name 값을 포함하고 있어서 name안써도 된다 -->
+                                <label for="boardHit">조회수</label>
+                                <input type="text" name="boardHit" id="boardHit" th:value="${board.boardHit}">
+                            </li>
 
                             <li>
                                 <label for="boardContent">내용</label>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/board/boardAnswer.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="reply">
+    <div class="reply-con">
+        <h1 class="title">문의답변</h1>
+
+
+        <!--관리자 매니저만 문의작성보이게하기  -->
+        <th:block sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+            <form th:action="@{/reply/replyWrite}" method="POST">
+
+                <input type="hidden" name="boardId" th:value="${board.id}" readonly>
+                <input type="text" name="boardReplyWriter" placeholder="문의답변자">
+                <input type="text" name="boardReplyContent" placeholder="문의답변">
+                <input type="hidden" name="category" id="category" value="9">
+                <input type="submit">
+            </form>
+           </th:block>
+
+        <table>
+            <thead>
+            <tr>
+                <th>문의글번호</th>
+                <th>번호</th>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>작성시간</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="boardReply:${boardReplyDtoList}">
+                <td th:text="${boardReply.BoardEntity.id}"></td>
+                <td th:text="${boardReply.id}"></td>
+                <td th:text="${boardReply.boardReplyContent}"></td>
+                <td th:text="${boardReply.boardReplyWriter}"></td>
+                <td th:text="${boardReply.createTime}"></td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+
+</body>
+</html>
