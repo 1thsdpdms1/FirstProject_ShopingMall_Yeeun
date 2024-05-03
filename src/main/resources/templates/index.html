@@ -6,12 +6,12 @@
     <title>index</title>
     <script th:src="@{/js/index.js}" defer></script>
     <script th:src="@{/js/AutoGallery.js}" defer></script>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script th:src="@{/js/chatBot.js}" defer></script>
-    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
-    <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
-    <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
-    <link rel="stylesheet" th:href="@{/css/index.css}">-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script th:src="@{/js/chatBot.js}" defer></script>
+        <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+        <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
+        <link rel="stylesheet" th:href="@{/css/index.css}">-->
 
 </head>
 <body>
@@ -67,49 +67,84 @@
                     </div>
                 </div>
                 <div class="section sec3">
+
                     <div class="con">
                         <div class="title">
                             <span class="left"><img th:src="@{/images/right.svg}" alt=""></span>
 
                             <span class="right"><img th:src="@{/images/free-icon-list-button-61438.png}" alt=""></span>
                         </div>
+
                         <div class="bottom-con">
                             <div class="left-con">
-                            <div class="con1 span-on">
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
-                                <div class="sub-con">SUB</div>
+                                <div class="con1 span-on">
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con">SUB</div>
+                                </div>
+                                <div class="con2 span-off">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>종류</th>
+                                            <th>제목</th>
+                                            <th>내용</th>
+                                            <th>작성자</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <h1>수 강 후 기</h1>
+                                        <tr th:each="review:${boardDtoList}">
+                                            <td th:if="${review.category eq 4}" th:text="미술"></td>
+                                            <td th:if="${review.category eq 5}" th:text="체육"></td>
+                                            <td th:if="${review.category eq 6}" th:text="음악"></td>
+                                            <td th:if="${review.category eq 7}" th:text="요리"></td>
+                                            <td th:text="${review.boardTitle}"></td>
+                                            <td th:text="${review.boardContent}"></td>
+                                            <td th:text="${review.boardWriter}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="con2 span-off">
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>종류</th>
-                                        <th>제목</th>
-                                        <th>내용</th>
-                                        <th>작성자</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <h1>수 강 후 기</h1>
-                                    <tr th:each="review:${boardDtoList}">
-                                        <td th:if="${review.category eq 4}" th:text="미술"></td>
-                                        <td th:if="${review.category eq 5}" th:text="체육"></td>
-                                        <td th:if="${review.category eq 6}" th:text="음악"></td>
-                                        <td th:if="${review.category eq 7}" th:text="요리"></td>
-                                        <td th:text="${review.boardTitle}"></td>
-                                        <td th:text="${review.boardContent}"></td>
-                                        <td th:text="${review.boardWriter}"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="section sec4">
+                    <div class="bottom">
+                        <div class="bottom-wrapper-list-products">
+                            <div class="bottom-wrapper-list-products-items">
+                                <!-- 원본 항목 템플릿 -->
+                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                                                          alt="item"></a></div>
+                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                                                          alt="item"></a></div>
+                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                                                          alt="item"></a></div>
+                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                                                          alt="item"></a></div>
+                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                                                          alt="item"></a></div>
                             </div>
-                            <!--  </div>-->
+                            <!-- 항목을 복제하기 위한 JavaScript -->
+                            <script>
+                                // 아이템 요소를 복제하여 추가합니다.
+                                const itemsContainer = document.querySelector('.bottom-wrapper-list-products-items');
+                                const itemTemplates = itemsContainer.querySelectorAll('.item');
+                                for (let j = 0; j < 1000; j++) { // 각 항목을 다섯 번씩 반복
+                                    itemTemplates.forEach(itemTemplate => {
+                                        const newItem = itemTemplate.cloneNode(true);
+                                        itemsContainer.appendChild(newItem);
+                                    });
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -117,7 +152,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 </body>
 </html>

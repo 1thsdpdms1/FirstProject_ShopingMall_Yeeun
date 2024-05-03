@@ -14,8 +14,7 @@
 }
 
 .index .index-con .sections{
- /* width: 1600px;*/
- /* width : 100%;*/
+
   flex: 0 1 1920px;
   /*border: 1px solid;*/
   box-sizing: border-box;
@@ -25,8 +24,7 @@
 .index .index-con .sections .section.sec1{
   width: 100%;
   height: auto;
-/*   background-color:#006bffd4;*/
-  /*border:10px solid #006bffd4;*/
+
   padding:10px;
    box-sizing: border-box;
 
@@ -120,13 +118,6 @@ color : #333;
   align-items: center;
   height:400px;
 
-
- /* width:70%;
-  height:inherit;
-  border:1px solid;
-  box-sizing: border-box;
-
-  position:absolute;*/
 }
 .index .index-con .sections .section.sec2 .con .right-con .autoGallery ul{
     width:100%;
@@ -229,15 +220,6 @@ color : #333;
 }
 
 
-/*.index .index-con .sections .section.sec2 .con .right-con{
-  flex:1;
-  background-color: rgb(12, 174, 228);
-  color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}*/
-
 
 
 .index .index-con .sections .section.sec3{
@@ -279,7 +261,7 @@ color : #333;
   opacity:0.8;
 
 }
- /////////선생님 수정///////////
+
 .index .index-con .sections .section.sec3 .con .title span:hover{
   cursor:pointer;
   opacity:1;
@@ -287,7 +269,7 @@ color : #333;
   transform:scale(1.1);
   box-shadow:0 2px 2px #0000;
  }
- /////////선생님 수정///////////
+
 .index .index-con .sections .section.sec3 .con .bottom-con{
 
   display: flex;
@@ -298,7 +280,7 @@ color : #333;
 
   flex:3;
   height: 300px;
-  /*background-color: rgb(100, 10, 255);*/
+
   color: bisque;
   position:relative;
 }
@@ -313,25 +295,8 @@ color : #333;
     font-size:20px;
     color:#000;
 }
-//////////////////////////////////////////
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con1 {
-/*
-    background: url(/images/sec1_bg1.jpg) no-repeat 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-*/
 
 
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 {
-   /* background: url(/images/sec1_bg2.jpg) no-repeat 50%;
-    background-size: cover;*/
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div img{
-    width:100%;
-    display:block;
-}
 
 .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table{
     width:100%;
@@ -357,9 +322,6 @@ color : #333;
   box-sizing:border-box;
 }
 
-
-
-
 .index .index-con .sections .section.sec3 .con .bottom-con .center-con{
 
   flex:2;
@@ -379,12 +341,90 @@ color : #333;
   justify-content: center;
   align-items: center;
 }
+.index .index-con .sections .section.sec4 {
+  width: 1600px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items {
+  display: flex;
+  animation: leftMoveLoop 1500s infinite linear;
+  width: calc(320px * 1000);
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item {
+  width: 300px;
+  height: 300px;
+  margin: 0 10px;
+  animation-delay: -260s; /* 이 부분은 다음 선택자 바깥으로 이동해야 합니다. */
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item a img {
+  width: 300px;
+  height: 300px;
+  border-radius: 4.285714285714286rem;
+  text-align: center;
+  line-height: 300px;
+}
+
+@keyframes leftMoveLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/*.index .index-con .sections .section.sec4{
+  width: 1600px;
+  height: auto;
+  margin-left: 200px;
+  margin: 0 auto;
+
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items {
+  display: flex;
+  animation: leftMoveLoop 1500s  infinite linear;
+  width: calc(320px*1000);
+}
 
 
+.index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item {
 
+  width: 300px;
+  height: 300px;
 
+  margin: 0 10px;
+  animation-delay: -260s;
 
+.index .index-con .sections .section.sec4.bottom-wrapper-list-products .bottom-wrapper-list-products-items .item a img{
+  width : 300px;
+  height :300px;
+  border-radius: 4.285714285714286rem;
+  text-align : center;
+  line-height : 300px;
+}
 
+@keyframes leftMoveLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}*/
 
 
 
