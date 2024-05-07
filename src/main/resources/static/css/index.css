@@ -280,13 +280,27 @@ color : #333;
 
   flex:3;
   height: 300px;
-
-  color: bisque;
+    text-align: center;
   position:relative;
+  background-color:#fff0e0;
+      /* border: 1px solid  rgb(250 184 119); */
+      border-radius: 7px 7px;
 }
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con h1{
+text-align:left;
+padding:15px 0;
+margin-left:100px;
+
+display:flex;
+justify-content:space-between;
+
+}
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con h1 label{
+font-size:15px;
+}
+
 /////////////////////
 .index .index-con .sections .section.sec3 .con .bottom-con .left-con>div{
-
     width:100%;
     height:inherit;
     border:2px solid #000000;
@@ -296,15 +310,88 @@ color : #333;
     color:#000;
 }
 
-
-
 .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table{
     width:100%;
+    padding:10px;
+   
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table th{
+  background-color: #ffd2a6;
+  color: white;
+  padding: 5px;
+ 
+}
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr .list{
+  padding: 5px;
+ 
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table th td{
+  background-color: #dda56d;
+  color: white;
+  padding: 10px;
+ 
+}
+
+table tr td.btitle{
+    width: 500px !important;
+
+}
+  table tr td.btitle> a {
+    display:block;
+    width: inherit;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    text-align:left;
+    /*background-color:#ffff00;*/
+  }
+
+
+  table tr td  a:hover{
+text-decoration: underline;
+cursor: pointer;
+  }
+    table tr td  label:hover{
+  text-decoration: underline;
+  cursor: pointer;
+    }
+
+table tr td  a img{
+    width : 20px;
+    height : 20px;
+}
+/*
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr td .btitle{
+width: 300px !important;
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr td .btitle> a{
+display:block;
+    width: inherit;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr td .btitle> a:hover{
+text-decoration: underline;
+cursor: pointer;
+}
+*/
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 span-off table td{
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  word-wrap:normal;
+  width:100px;
+  overflow:hidden;
 }
 
 /*마우스 오버시 .con1변화*/
 
 .span-on{
+
   display:grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: repeat(2, 150px);
@@ -318,8 +405,8 @@ color : #333;
    display:block;
 }
 .sub-con{
-  border:1px solid #ff0000 !important;
-  box-sizing:border-box;
+  /*border:1px solid #ff0000 !important;
+  box-sizing:border-box;*/
 }
 
 .index .index-con .sections .section.sec3 .con .bottom-con .center-con{

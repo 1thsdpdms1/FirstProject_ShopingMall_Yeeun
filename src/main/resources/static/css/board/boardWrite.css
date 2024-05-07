@@ -91,10 +91,6 @@
     border: 0;
 
 }
-
-
-
-
 .boardWrite   .boardWrite-form ul li select {
        width:600px;
        height:30px;
@@ -120,4 +116,22 @@
     background-color:  rgb(250 184 119);
     color: #ffffff;
     cursor: pointer;
+}
+
+.boardWrite   .boardWrite-form ul li a {
+
+    padding: 5px;
+    box-sizing: border-box;
+    background-color:  rgb(250 184 119);
+    color: #ffffff;
+    cursor: pointer;
+   /* display:flex;*/
+    justify-content:space-between;
+    gap:3px;
+      /*flex: 3;*/
+           padding: 20px;
+           border: 1px solid #ccc;
+           border-radius: 7px 7px;
+           box-sizing: border-box;
+           text-align:center;
 }

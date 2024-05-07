@@ -91,7 +91,7 @@
 
                 </thead>
 
-                <tbody>
+                <tbody class="list">
                 <tr th:each="board: ${boardDtoList}">
 
                     <td th:text="${board.id}"></td>
@@ -99,7 +99,7 @@
                     <!--                    <td th:if="${board.category eq 3}" th:text="공지"></td>-->
                     <td th:if="${board.category eq 3}"><img src="/images/notice2.png" alt="공지"></td>
 
-                    <td>
+                    <td class="btitle">
                         <a th:href="@{/board/noticeBoardDetail/{id}(id=${board.id})}">
 
                             <label th:text="${board.boardTitle}"><h1 th:text="${board.replyCount}"></h1></label>
@@ -123,7 +123,7 @@
                 </tr>
                 </tbody>
 
-                <tfoot>
+                <tfoot class="page">
 
                 <tr>
                     <td colspan="10">
