@@ -141,6 +141,9 @@
             </div>
       <input type="hidden" id="initialLikeStatus" th:value="${shopDto.liked}"/>
       <button id="likeButton" onclick="likeShop()">♥</button>
+      <div class="bottom-reply">
+
+
         <div class="reply">
           <div class="reply-con">
             <h1>나도 한 마디!!</h1>
@@ -149,21 +152,25 @@
                 <input type="hidden" id="shopId" name="shopId" th:value="${shopDto.id}" readonly>
                 <input type="hidden" name="shopReplyId">
 
+                <div class="writer">
                 <input type="text" name="shopReplyWriter" id="shopReplyWriter"
-                       th:value="${myUserDetails.name}" readonly>
+                       th:value="${myUserDetails.name}" style="background-color: rgb(250 184 119); border: none;" readonly>
+                </div>
 
                 <!--로그인되어 있으면 회원의 이름이 replyWriter 자리에 출력되도록 함-->
-                <input type="text" name="shopReplyContent" id="shopReplyContent" placeholder="덧글내용">
-                <input type="submit" value="댓글작성">
-                <!--                                <input type="button" id="replyOkBtn" value="댓글작성">-->
+
+                <div class="content">
+                <input type="text" name="shopReplyContent" id="shopReplyContent" placeholder="덧글내용" >
+                <input type="submit" value="댓글작성" >
+                </div>
               </form>
             </th:block>
 
             <th:block sec:authorize="isAnonymous()">
               <h1>
-                댓글을 작성하려면 로그인하세요!
+                댓글을 작성하려면
                 <a th:href="@{/member/memberLogin}">
-                  <img th:src="@{/images/btn_write}" alt="로그인"></a>
+                  로그인</a> 하세요!
               </h1>
 
             </th:block>
@@ -171,10 +178,8 @@
             <table>
               <thead>
               <tr>
-                <th>글 번호</th>
-                <th>번호</th>
-                <th>내용</th>
                 <th>작성자</th>
+                <th>내용</th>
                 <th>작성시간</th>
               </tr>
               </thead>
@@ -182,10 +187,8 @@
 
               <tr th:each="shopReply:${shopReplyList}">
                 <!--&lt;!&ndash;reply.getShopEntity.getId() &ndash;&gt;-->
-                <td th:text="${shopReply.shopEntity.id}"></td>
-                <td th:text="${shopReply.id}"></td>
-                <td th:text="${shopReply.shopReplyContent}"></td>
                 <td th:text="${shopReply.shopReplyWriter}"></td>
+                <td th:text="${shopReply.shopReplyContent}"></td>
                 <td th:text="${#temporals.format(shopReply.createTime, 'yyyy-MM-dd HH:mm')}"></td>
 
                 <th:block sec:authorize="isAuthenticated()">
@@ -209,7 +212,7 @@
             </table>
           </div>
         </div>
-
+      </div>
     </div>
   </div>
 </div>

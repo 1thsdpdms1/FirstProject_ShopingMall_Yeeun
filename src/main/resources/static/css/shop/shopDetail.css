@@ -162,25 +162,6 @@ padding-top: 5px;
 
 
 
-.reply-con {
-    margin-top: 20px;
-}
-
-.reply-con table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.reply-con table th, .reply-con table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.reply-con table th {
-    background-color: #f2f2f2;
-}
-
 .cartBtn {
     background-color: #FF8C0A;
     color: white;
@@ -239,7 +220,70 @@ padding-top: 5px;
   color: red; /* 좋아요 상태일 때 아이콘 색상 변경 */
 }
 
+/* bottom 댓글 */
+ .bottom-reply{
+width: 100%;
+height: auto;
+/* background-color: rgb(113, 171, 238); */
+padding: 20px 0;
+/* gap: 20px; */
+}
+ .bottom-reply .reply{
+padding: 20px;
+box-sizing: border-box;
+/* background-color: #e7a4a4; */
 
+}
+
+ .bottom-reply .reply .reply-con{
+border: 1px solid;
+box-sizing: border-box;
+border-radius: 15px;
+padding: 20px;
+text-align:center;
+background-color: rgb(250 184 119);
+
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+ .bottom-reply .reply .reply-con h1{
+background-color : #ffd2a6;
+}
+
+ .bottom-reply .reply .reply-con form{
+display: flex;
+justify-content: space-between; /*가로 정렬*/
+gap: 5px;
+
+box-sizing: border-box;
+}
+ .bottom-reply .reply .reply-con .content{
+    padding: 5px 0;
+    line-height: 20px;
+    text-indent: 5px;
+ }
+  .bottom-reply .reply .reply-con .writer input:nth-child(1) {
+      justify-content: center;
+      text-align: center;
+      font-size: large;
+      padding-top: 20px;
+          display: flex;
+
+  }
+
+ .bottom-reply .reply .reply-con form .content input:nth-child(1){
+     width: 700px;
+     height: 50px;
+     font-size: 20px;
+}
+ .bottom-reply .reply .reply-con form .content input:nth-child(2){
+     width: 100px;
+     height: 50px;
+ }
+ .bottom-reply .reply .reply-con form input.writer{
+width:150px;
+}
 
 
 
