@@ -2,366 +2,384 @@
 @import url(../css/common/header.css);
 @import url(../css/common/reset.css);
 /*index 수정본수정본수정본*/
-.container{
-  width: 100%;
-}
-.index{
-  width: 100%;
-}
-.index .index-con{
-  display: flex;
-  justify-content: center;
+.container {
+    width: 100%;
 }
 
-.index .index-con .sections{
-
-  flex: 0 1 1920px;
-  /*border: 1px solid;*/
-  box-sizing: border-box;
-  padding: 10px 0;
+.index {
+    width: 100%;
 }
 
-.index .index-con .sections .section.sec1{
-  width: 100%;
-  height: auto;
-
-  padding:10px;
-   box-sizing: border-box;
-
+.index .index-con {
+    display: flex;
+    justify-content: center;
 }
-.index .index-con .sections .section.sec1 .con{
-   width: 100%;
-    height: 600px;
-   /*border: 1px solid;*/
+
+.index .index-con .sections {
+
+    flex: 0 1 1920px;
+    /*border: 1px solid;*/
     box-sizing: border-box;
-    background:url(/images/index.png) no-repeat 50%/cover;
+    padding: 10px 0;
+}
+
+.index .index-con .sections .section.sec1 {
+    width: 100%;
+    height: auto;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+
+.index .index-con .sections .section.sec1 .con {
+    width: 100%;
+    height: 600px;
+    /*border: 1px solid;*/
+    box-sizing: border-box;
+    background: url(/images/index.png) no-repeat 50%/cover;
     opacity: 0.9; /* 투명도 추가 */
     padding: 20px; /* 내부 여백 추가 */
     position: relative;
     z-index: -999;
 }
+
 /* 버튼 스타일 */
 .index .index-con .sections .section.sec1 .con button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
 }
 
 .index .index-con .sections .section.sec1 .con button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
-.index .index-con .sections h2{
-padding:50px;
-text-align : center;
-color : #333;
+.index .index-con .sections h2 {
+    padding: 50px;
+    text-align: center;
+    color: #333;
 }
 
-.index .index-con .sections .section.sec2{
-  width: 70%;
-  height: auto;
-  /*margin-top: 100px;*/
-  margin: 0 auto;
- /* margin-left: 200px;*/
-}
-
-
-.index .index-con .sections .section.sec2 .con{
-  width: 100%;
-  height: 400px;
-/*border: 1px solid;*/
-  box-sizing: border-box;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.index .index-con .sections .section.sec2 .con .left-con{
-  flex:1;
-  color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- overflow: hidden;
-}
-
-.index .index-con .sections .section.sec2  .left-con .con img{
-   display:block;
-   width: 100%;
- }
-
-
-.index .index-con .sections .section.sec2 .con .right-con{
-  flex:4;
-  border:1px solid #fffdb6;
-
-  position:relative;
-
-
-
-
+.index .index-con .sections .section.sec2 {
+    width: 70%;
+    height: auto;
+    /*margin-top: 100px;*/
+    margin: 0 auto;
+    /* margin-left: 200px;*/
 }
 
 
+.index .index-con .sections .section.sec2 .con {
+    width: 100%;
+    height: 400px;
+    /*border: 1px solid;*/
+    box-sizing: border-box;
 
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery{
-/*  flex:2;*/
-  background-color: rgb(152, 255, 200);
-  color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:400px;
-
-}
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul{
-    width:100%;
-    height:inherit;
+    display: flex;
+    justify-content: space-between;
 }
 
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li{
-    width:100%;
-    height:inherit;
+.index .index-con .sections .section.sec2 .con .left-con {
+    flex: 1;
+    color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-    position:absolute;
-    border:1px solid;
-    box-sizing:border-box;
+.index .index-con .sections .section.sec2 .left-con .con img {
+    display: block;
+    width: 100%;
+}
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
 
-    color:#ffffff;
-    font-size:25px;
+.index .index-con .sections .section.sec2 .con .right-con {
+    flex: 4;
+    border: 1px solid #fffdb6;
+
+    position: relative;
+
+
+}
+
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery {
+    /*  flex:2;*/
+    background-color: rgb(152, 255, 200);
+    color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul {
+    width: 100%;
+    height: inherit;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li {
+    width: 100%;
+    height: inherit;
+
+    position: absolute;
+    border: 1px solid;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #ffffff;
+    font-size: 25px;
 
     opacity: 0; /*처음에는 보이지마라*/
-    visibility:hidden;
+    visibility: hidden;
 
     transition: all 0.3s;
 }
 
-.fadeIn{
+.fadeIn {
     opacity: 1 !important;
-    visibility:visible !important; /*여기서부터 보여라*/
-}
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(1){
-    background:url(/images/auto1.jpg) no-repeat 50%/cover;
-}
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(2){
-    background:url(/images/auto2.jpg) no-repeat 50%/cover;
-}
-.index .index-con .sections .section.sec2 .con  .right-con .autoGallery ul li:nth-child(3){
-    background:url(/images/auto3.jpg) no-repeat 50%/cover;
-}
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(4){
-    background:url(/images/auto4.jpg) no-repeat 50%/cover;
-}
-.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(5){
-    background:url(/images/auto5.jpg) no-repeat 50%/cover;
+    visibility: visible !important; /*여기서부터 보여라*/
 }
 
-.index .index-con .sections .section.sec2 .con .right-con .center-arrow{
-    width:100%;
-    height:auto;
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(1) {
+    background: url(/images/auto1.jpg) no-repeat 50%/cover;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(2) {
+    background: url(/images/auto2.jpg) no-repeat 50%/cover;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(3) {
+    background: url(/images/auto3.jpg) no-repeat 50%/cover;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(4) {
+    background: url(/images/auto4.jpg) no-repeat 50%/cover;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .autoGallery ul li:nth-child(5) {
+    background: url(/images/auto5.jpg) no-repeat 50%/cover;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .center-arrow {
+    width: 100%;
+    height: auto;
     padding: 0 10px;
-    box-sizing:border-box;
-/*    background-color:#ffffff75;*/
-    position:absolute;
-    top:50%;
+    box-sizing: border-box;
+    /*    background-color:#ffffff75;*/
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
-    display:flex;
-    justify-content:space-between;
-}
-.index .index-con .sections .section.sec2 .con .right-con .center-arrow span.arrow{
-    width:30px;
-    height:30px;
-    border-radius:5cqh;
-    background-color:#ff0000;
+    display: flex;
+    justify-content: space-between;
 }
 
-.index .index-con .sections .section.sec2 .con .right-con .center-arrow span:hover{
-    background-color:#ffffff;
-    cursor:pointer;
+.index .index-con .sections .section.sec2 .con .right-con .center-arrow span.arrow {
+    width: 30px;
+    height: 30px;
+    border-radius: 5cqh;
+    background-color: #ff0000;
 }
-.index .index-con .sections .section.sec2 .con .right-con .items{
-    width:100%;
-    height:auto;
-    padding:10px 0;
- /*   background-color:#ffffff55;*/
-    position:absolute;
-    bottom:0;
-    display:flex;
-    justify-content:center;
+
+.index .index-con .sections .section.sec2 .con .right-con .center-arrow span:hover {
+    background-color: #ffffff;
+    cursor: pointer;
 }
-.index .index-con .sections .section.sec2 .con .right-con .items ul{
-    display:flex;
-   justify-content:space-between;
-   gap:5px;
+
+.index .index-con .sections .section.sec2 .con .right-con .items {
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+    /*   background-color:#ffffff55;*/
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
 }
-.index .index-con .sections .section.sec2 .con .right-con .items ul li{
-    width:20px;
-    height:20px;
-    border-radius:50%;
+
+.index .index-con .sections .section.sec2 .con .right-con .items ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.index .index-con .sections .section.sec2 .con .right-con .items ul li {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
     border: 1px solid #cccccc;
 
 }
-.index .index-con .sections .section.sec2 .con .right-con .items ul li:hover{
-    background-color:#ffd2a6 !important;
-    cursor:pointer
+
+.index .index-con .sections .section.sec2 .con .right-con .items ul li:hover {
+    background-color: #ffd2a6 !important;
+    cursor: pointer
 }
 
-.liOn{
-  background-color:#fa922b !important;
+.liOn {
+    background-color: #fa922b !important;
 }
 
 
-
-
-.index .index-con .sections .section.sec3{
-  width: 70%;
-  height: auto;
-  /*margin-left: 200px;*/
-  margin: 0 auto;
-
-}
-.index .index-con .sections .section.sec3 .con{
-  width: 100%;
-  /*height: 400px;*/
-  /*border: 1px solid;*/
-  box-sizing: border-box;
-}
-.index .index-con .sections .section.sec3 .con .title{
-  width: 100%;
-  height: 50px;
-  /*border: 1px solid;*/
-  box-sizing: border-box;
-  background-color: rgb(255, 255, 255);
-}
-
-.index .index-con .sections .section.sec3 .con .title{
-  width: 100%;
-  height: auto;
-  padding:10px;
-  /*border: 1px solid;*/
-  box-sizing: border-box;
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  justify-content: flex-end;
-  gap: 5px;
-}
-.index .index-con .sections .section.sec3 .con .title span{
-  position:relative;
-  z-index:900;
-  transition:all 0.2s;
-  opacity:0.8;
+.index .index-con .sections .section.sec3 {
+    width: 70%;
+    height: auto;
+    /*margin-left: 200px;*/
+    margin: 0 auto;
 
 }
 
-.index .index-con .sections .section.sec3 .con .title span:hover{
-  cursor:pointer;
-  opacity:1;
-
-  transform:scale(1.1);
-  box-shadow:0 2px 2px #0000;
- }
-
-.index .index-con .sections .section.sec3 .con .bottom-con{
-
-  display: flex;
-  justify-content: space-between;
+.index .index-con .sections .section.sec3 .con {
+    width: 100%;
+    /*height: 400px;*/
+    /*border: 1px solid;*/
+    box-sizing: border-box;
 }
 
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con{
+.index .index-con .sections .section.sec3 .con .title {
+    width: 100%;
+    height: 50px;
+    /*border: 1px solid;*/
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+}
 
-  flex:3;
-  height: 300px;
+.index .index-con .sections .section.sec3 .con .title {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    /*border: 1px solid;*/
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.index .index-con .sections .section.sec3 .con .title span {
+    position: relative;
+    z-index: 900;
+    transition: all 0.2s;
+    opacity: 0.8;
+
+}
+
+.index .index-con .sections .section.sec3 .con .title span:hover {
+    cursor: pointer;
+    opacity: 1;
+
+    transform: scale(1.1);
+    box-shadow: 0 2px 2px #0000;
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con {
+
+    flex: 3;
+    height: 300px;
     text-align: center;
-  position:relative;
-  background-color:#fff0e0;
-      /* border: 1px solid  rgb(250 184 119); */
-      border-radius: 7px 7px;
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con h1{
-text-align:left;
-padding:15px 0;
-margin-left:100px;
-
-display:flex;
-justify-content:space-between;
-
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con h1 label{
-font-size:15px;
+    position: relative;
+    background-color: #fff0e0;
+    /* border: 1px solid  rgb(250 184 119); */
+    border-radius: 7px 7px;
 }
 
-/////////////////////
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con>div{
-    width:100%;
-    height:inherit;
-    border:2px solid #000000;
-    box-sizing:border-box;
-    position:absolute;
-    font-size:20px;
-    color:#000;
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con h1 {
+    text-align: left;
+    padding-top: 15px;
+    margin-left: 20px;
+
+    display: flex;
+    justify-content: space-between;
+
 }
 
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table{
-    width:100%;
-    padding:10px;
-   
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con h1 label {
+    font-size: 15px;
 }
 
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table th{
-  background-color: #ffd2a6;
-  color: white;
-  padding: 5px;
- 
-}
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr .list{
-  padding: 5px;
- 
-}
-
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table th td{
-  background-color: #dda56d;
-  color: white;
-  padding: 10px;
- 
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con > div {
+    width: 100%;
+    height: inherit;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    position: absolute;
+    font-size: 20px;
+    color: #000;
 }
 
-table tr td.btitle{
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table {
+    width: 100%;
+    padding: 10px;
+
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table th {
+    background-color: #ffd2a6;
+    color: white;
+    padding: 5px;
+
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr .list {
+    padding: 5px;
+
+}
+
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table th td {
+    background-color: #dda56d;
+    color: white;
+    padding: 10px;
+
+}
+
+table tr td.btitle {
     width: 500px !important;
 
 }
-  table tr td.btitle> a {
-    display:block;
+
+table tr td.btitle > a {
+    display: block;
     width: inherit;
     overflow: hidden;
-    white-space:nowrap;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    text-align:left;
+    text-align: left;
     /*background-color:#ffff00;*/
-  }
-
-
-  table tr td  a:hover{
-text-decoration: underline;
-cursor: pointer;
-  }
-    table tr td  label:hover{
-  text-decoration: underline;
-  cursor: pointer;
-    }
-
-table tr td  a img{
-    width : 20px;
-    height : 20px;
 }
+
+
+table tr td a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+table tr td label:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+table tr td a img {
+    width: 20px;
+    height: 20px;
+}
+
 /*
 .index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 table tr td .btitle{
 width: 300px !important;
@@ -380,94 +398,99 @@ cursor: pointer;
 }
 */
 
-.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 span-off table td{
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  word-wrap:normal;
-  width:100px;
-  overflow:hidden;
+.index .index-con .sections .section.sec3 .con .bottom-con .left-con div.con2 span-off table td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 100px;
+    overflow: hidden;
 }
 
 /*마우스 오버시 .con1변화*/
 
-.span-on{
+.span-on {
 
-  display:grid;
-  grid-template-columns: repeat(4,1fr);
-  grid-template-rows: repeat(2, 150px);
-  gap:3px;
-}
-.span-off{
-  display:none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 150px);
+    gap: 3px;
 }
 
-.span-on2{
-   display:block;
-}
-.sub-con{
-  /*border:1px solid #ff0000 !important;
-  box-sizing:border-box;*/
+.span-off {
+    display: none;
 }
 
-.index .index-con .sections .section.sec3 .con .bottom-con .center-con{
+.span-on2 {
+    display: block;
+}
 
-  flex:2;
-  height: 300px;
-  background-color: rgb(255, 10, 112);
-  color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.sub-con {
+    /*border:1px solid #ff0000 !important;
+    box-sizing:border-box;*/
 }
-.index .index-con .sections .section.sec3 .con .bottom-con .right-con{
-  flex:1;
-  height: 300px;
-  background-color: rgb(221, 201, 66);
-  color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.index .index-con .sections .section.sec3 .con .bottom-con .center-con {
+
+    flex: 2;
+    height: 300px;
+    background-color: rgb(255, 10, 112);
+    color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.index .index-con .sections .section.sec3 .con .bottom-con .right-con {
+    flex: 1;
+    height: 300px;
+    background-color: rgb(221, 201, 66);
+    color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .index .index-con .sections .section.sec4 {
-  width: 1600px;
-  height: auto;
-  margin: 0 auto;
+    width: 1600px;
+    height: auto;
+    margin: 0 auto;
 }
 
 .index .index-con .sections .section.sec4 .bottom-wrapper-list-products {
-  margin-top: 20px;
-  overflow: hidden;
+    margin-top: 20px;
+    overflow: hidden;
 }
 
 .index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items {
-  display: flex;
-  animation: leftMoveLoop 1500s infinite linear;
-  width: calc(320px * 1000);
+    display: flex;
+    animation: leftMoveLoop 1500s infinite linear;
+    width: calc(320px * 1000);
 }
 
 .index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item {
-  width: 300px;
-  height: 300px;
-  margin: 0 10px;
-  animation-delay: -260s; /* 이 부분은 다음 선택자 바깥으로 이동해야 합니다. */
+    width: 300px;
+    height: 300px;
+    margin: 0 10px;
+    animation-delay: -260s; /* 이 부분은 다음 선택자 바깥으로 이동해야 합니다. */
 }
 
 .index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item a img {
-  width: 300px;
-  height: 300px;
-  border-radius: 4.285714285714286rem;
-  text-align: center;
-  line-height: 300px;
+    width: 300px;
+    height: 300px;
+    border-radius: 4.285714285714286rem;
+    text-align: center;
+    line-height: 300px;
 }
 
 @keyframes leftMoveLoop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
+
 /*.index .index-con .sections .section.sec4{
   width: 1600px;
   height: auto;
