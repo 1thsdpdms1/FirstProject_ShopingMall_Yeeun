@@ -1,213 +1,236 @@
 @import url(/css/common/reset.css);
 @import url(/css/common/footer.css);
 @import url(/css/common/header.css);
-/*@import url(/css/container/indexContainer.css);*/
+/* 전체 페이지 스타일 */
+.container {
+    width: 100%;
+    height: auto;
 
-/* detail1 */
-.container{
-  width: 100%;
-  height: auto;
-  background-color: #ffffff;
 }
-.detail1{
-  width: 100%;
-  /* border: 1px solid; */
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-}
-.detail1 .detail1-con{
-  flex-basis: 1000px;
-  min-height: calc( 100vh - 70px - 150px );
-  /* display: flex;
-  justify-content: center;
-  align-items: flex-start; */
-}
-.detail1 .detail1-con .top{
-  width: 100%;
-  height: auto;
+.container .detail {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 }
 
-.detail1 .detail1-con .top .detail1-form{
-  width: 100%;
-  background-color: #ffffff;
+.container .detail .detail-con{
+  width: 1200px;
   border: 1px solid;
-  border-radius: 15px;
   padding: 20px;
   box-sizing: border-box;
-  margin: 20px 0px 0px 0px;
-}
 
-.detail1 .detail1-con .top .detail1-form form{
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-/*left*/
-.detail1 .detail1-con .top .detail1-form  .left{
-  flex:4;
-}
-.detail1 .detail1-con .top .detail1-form  .left .left-con img{
- width: 100%;
- display: block;
-}
-/**/
-.detail1 .detail1-con .top .detail1-form ul{
-   flex:6;
-   display: flex;
-   flex-direction: column;
-   border-radius: 15px;
-   border: 1px solid;
-   gap: 5px;
-   padding: 20px;
-   box-sizing: border-box;
-}
-.detail1 .detail1-con  .top .detail1-form ul li{
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  font-size: 18px !important;
-}
-.detail1 .detail1-con .top .detail1-form ul li:nth-child(1){
-  padding: 5px 0;
-  justify-content: center;
-  font-size: 20px;
-  background-color: black;
-  color: #ffffff;
-}
-.detail1 .detail1-con .top .detail1-form ul li label{
-  flex:1;
-}
-.detail1 .detail1-con .top .detail1-form ul li input[type=text]{
-  flex:3;
-}
-.detail1 .detail1-con .top .detail1-form ul li select{
-  flex:3;
-  text-align: center;
-}
-.detail1 .detail1-con .top .detail1-form ul li textarea{
-  flex:1;
-  resize: none;
-}
-.detail1 .detail1-con .top .detail1-form ul li input[type=submit]{
-  flex:1;
-  padding: 8px ;
-  box-sizing: border-box;
-  background-color: black;
-  color: #ffffff;
-  cursor: pointer;
-}
-.detail1 .detail1-con .top .detail1-form ul li a.btn1{
-  flex:1;
-  display: inline-block;
-  width:80px;
-  background-color: blueviolet;
-  color: #ffffff;
-  border: 0;
-  cursor: pointer;
-  text-align: center;
-  padding:8px;
-  font-size: 14px;
-}
-.detail1 .detail1-con .top .detail1-form ul li:last-child{
-  display: flex;
-  justify-content: space-between;
-  gap:5px;
+  flex-direction: column;
+  gap: 10px ;
 }
 
-.detail1 .detail1-con .top .detail1-form ul li:last-child .btn1{
-  flex:1;
-  display: block;
-  width:80px;
-  background-color: blueviolet;
-  color: #ffffff;
-  border: 0;
-  cursor: pointer;
-  text-align: center;
-  height: 30px;
-  font-size: 14px;
-}
-.detail1 .detail1-con .top .detail1-form ul li:last-child a{
-  line-height: 30px;
+
+.top {
+  
 }
 
-.detail1 .detail1-con .bottom{
-  width: 100%;
-  height: 100px;
-  background-color: #ffffff;
-}
-.detail1 .detail1-con .bottom{
-witdh: 100%;
-height:auto;
-background-color: 222222;
-}
-.detail1 .detail1-con .bottom .reply{
-padding:20px;
-box-sizing:border-box;
-}
-.detail1 .detail1-con .bottom .reply .reply-con {
-   border: 1px solid;
-   box-sizing: border-box;
-   border-radius: 15px;
-   padding: 20px;
-   display: flex;
-   flex-direction: column;
-   gap: 5px;
- }
+.detail-form {
+  display : flex;
 
- .detail1 .detail1-con .bottom .reply .reply-con h1{
-   background-color: #6478FF;
-   color: #ffffff;
-   text-align: center;
-   padding: 10px 0;
-   box-sizing: border-box;
- }
- .detail1 .detail1-con .bottom .reply .reply-con form {
-   display: flex;
-   justify-content: space-between;
-   gap:5px;
-   padding: 5px 10px;
-   box-sizing: border-box;
- }
-.detail1 .detail1-con .bottom .reply .reply-con  input{
-  flex:1;
-  line-height:20px;
-  text-align:center;
-  text-indent:5px;
-  }
-.detail1 .detail1-con .bottom .reply .reply-con form input[type=text]:nth-child(1){
-  flex:4;
-  }
-.detail1 .detail1-con .bottom .reply .reply-con form input[type=text]:nth-child(2){
- flex:2;
- }
-.detail1 .detail1-con .bottom .reply .reply-con form input[type=submit]{
-flex:1;
-text-align: center;
-background-color: black;
-color: #ffffff;
-cursor: pointer;
+  flex-direction: column;
+
 }
 
-.detail1 .detail1-con .bottom .reply .reply-con table{
-width: 100%;
+.top h1{
+
 }
-.detail1 .detail1-con .bottom .reply .reply-con table th{
-  background-color: aliceblue;
-  padding: 8px;
-  box-sizing: border-box;
+
+.top ul li{
+float : right;
 }
-.detail1 .detail1-con .bottom .reply .reply-con table td{
-padding: 5px;
-box-sizing: border-box;
-font-size: 12px;
-text-align: center;
+
+
+
+.left{
+
+}
+
+.left-con{
+
+}
+
+.left-con img {
+    /*max-width: 100%;*/
+    width:800px;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+
+.left-con ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between; /* 요소를 양쪽 끝으로 정렬 */
+}
+
+.left-con ul li {
+    margin-bottom: 10px;
+    flex: 1; /* 각 항목이 동일한 너비를 가지도록 설정 */
+}
+.left-con ul li label {
+    font-weight: bold;
+}
+
+.container .detail .detail-con .bottom{
+font-size: 30px;
+
+}
+.category{
+    border: 2px solid #fa922b;
+    background-color: #ffd2a6;
+    border-radius: 8px;
+    width: 60px;
+    text-align: center;
+
+}
+
+.bottom li:nth-child(1) {
+display: flex;
+justify-content: space-between;
+}
+
+.bottom li:nth-child(2) {
+padding-top: 5px;
+    justify-content: space-between;
+    display: flex;
+    gap: 5px;
+    font-weight:bold;
+
+}
+.bottom li:nth-child(2) .title{
+color:#fa922b;
+}
+
+.bottom li:nth-child(2) .title-right{
+color:#ff8e8e;
+}
+
+.bottom li:nth-child(3) {
+padding-top: 5px;
+display: flex;
+justify-content: start;
+}
+.like {
+    margin-left: 10px;
+    color: red;
+}
+.bottom li:nth-child(3) img:nth-child(1){
+width:30px;
+height:35px;
+}
+.bottom li:nth-child(3) .place-right img{
+width:40px;
+height:40px;
+}
+.bottom li:nth-child(4) textarea{
+padding-top: 5px;
+    width: 1000px;
+    height: 400px;
+    border: none;
+    background-color: white;
+    font-size:20px;
+}
+.bottom li:nth-child(5){
+padding-top: 5px;
+}
+.bottom li:nth-child(5) input {
+    width: auto;
+    height: 30px;
+    background-color: white;
+    border: none;
+    font-size: 30px;
+
+}
+
+
+.container .detail .detail-con .cart{
+    display: flex;
+    justify-content: right;
+}
+.container .detail .detail-con .cart ul .two{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.reply-con {
+    margin-top: 20px;
+}
+
+.reply-con table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reply-con table th, .reply-con table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.reply-con table th {
+    background-color: #f2f2f2;
+}
+
+.cartBtn {
+    background-color: #FF8C0A;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cartBtn:hover {
+    background-color: #FFC314;
+}
+
+.btn1, .btn2 {
+    background-color: #FFC314;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn1:hover, .btn2:hover {
+    background-color: #004C7E;
+}
+
+.sum {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+}
+
+.minusBtn, .plusBtn {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.minusBtn:hover, .plusBtn:hover {
+    background-color: #e5e5e5;
 }
 /* 좋아요 버튼의 기본 스타일 */
 #likeButton {
   background-color: transparent; /* 배경색 투명하게 설정 */
   border: none; /* 테두리 없애기 */
-  font-size: 24px; /* 아이콘 크기 조정 */
+  font-size: 50px; /* 아이콘 크기 조정 */
   cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 상태 표시 */
   transition: color 0.3s; /* 색상 변경에 애니메이션 효과 추가 */
 }

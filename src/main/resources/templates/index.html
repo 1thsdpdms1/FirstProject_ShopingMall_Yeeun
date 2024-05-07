@@ -34,7 +34,8 @@
                             <table>
                             <tr th:each="like : ${liked}">
                                 <td th:text="${like.shopTitle}"></td>
-                                <td th:text="${like.createTime}"></td>
+<!--                                <td th:text="${like.createTime,'yyyy.MM.dd'}"></td>-->
+                                <td th:text="${#temporals.format(like.createTime, 'yyyy.MM.dd')}"></td>
                                 <td th:text="${like.liked}"></td>
                             </tr>
                             </table>
