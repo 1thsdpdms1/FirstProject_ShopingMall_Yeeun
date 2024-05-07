@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>detail1_2</title>
+    <link rel="stylesheet" th:href="@{/css/shop/shopUpdate.css}">
+</head>
+<body>
+<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="container">
+    <div class="detail1">
+        <div class="detail1-con">
+            <div class="top">
+                <div class="detail1-form">
+                    <form th:action="@{/shop/shopUpdate}" method="post" enctype="multipart/form-data">
+                        <div class="left">
+                            <div class="left-con">
+                                <th:block th:if="${shopDto.shopAttachFile==1}"> <!--  이미지 표시 -->
+                                    <img th:src="@{|/upload/${shopDto.shopNewFileName}|}" alt="이미지대체문구">
+                                </th:block>
+                                <th:block th:unless="${shopDto.shopAttachFile==1}">  <!--  이미지 표시 -->
+                                    <img src="https://placehold.co/400x500?text=NOIMAGE" alt="이미지대체문구">
+                                </th:block>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                자유게시판
+                            </li>
+                            <li>
+                                <input type="hidden" name="id" id="id" th:value="${shopDto.id}" readonly>
+                            </li>
+                            <li>
+                                <label for="memberId">MemberId</label>
+                                <input type="text" name="memberId" id="memberId" th:value="${shopDto.memberEntity.id}"
+                                       readonly>
+                            </li>
+                            <li>
+                                <label for="shopTitle">TITLE</label>
+                                <input type="text" name="shopTitle" id="shopTitle" th:value="${shopDto.shopTitle}">
+                            </li>
+                            <li>
+                                <label for="shopContent">CONTENT</label>
+                            </li>
+                            <li>
+                <textarea name="shopContent" id="shopContent" cols="30" rows="3"
+                          th:text="${shopDto.shopContent}"></textarea>
+                            </li>
+                            <li>
+                                <div class="category">
+                                    <span th:if="${shopDto.category == 1}">미술</span>
+                                    <span th:if="${shopDto.category == 2}">체육</span>
+                                    <span th:if="${shopDto.category == 3}">음악</span>
+                                    <span th:if="${shopDto.category == 4}">요리</span>
+                                </div>
+                            </li>
+                            <li>
+                                <label for="shopHit">HIT</label>
+                                <input type="text" name="shopHit" id="shopHit" th:value="${shopDto.shopHit}" readonly>
+                            </li>
+                            <li>
+                                <label for="shopPrice">금액</label>
+                                <input type="text" name="shopPrice" id="shopPrice" th:value="${shopDto.shopPrice}"
+                                       readonly>
+                            </li>
+                            <li>
+                                <label for="shopSeller">선생님</label>
+                                <input type="text" name="shopSeller" id="shopSeller" th:value="${shopDto.shopSeller}"
+                                       readonly>
+                            </li>
+                            <li>
+                                <label for="peopleCount">정원</label>
+                                <input type="text" name="peopleCount" id="peopleCount" th:value="${shopDto.peopleCount}"
+                                       readonly>
+                            </li>
+                            <li>
+                                <label for="place">장소</label>
+                                <input type="text" name="place" id="place" th:value="${shopDto.Place}">
+                            </li>
+                            <li>
+                                <label for="createTime">작성시간</label>
+                                <td th:text="${#temporals.format(shopDto.createTime, 'yyyy년-MM월-dd일')}"
+                                    id="createTime"></td>
+                            </li>
+                            <li>
+                                <label for="updateTime">수정시간</label>
+                                <td th:text="${#temporals.format(shopDto.updateTime, 'yyyy년-MM월-dd일')}"
+                                    id="updateTime"></td>
+                            </li>
+                            <li>
+                                <label for="shopFile">File</label>
+                                <input type="file" name="shopFile" id="shopFile">
+                            </li>
+                            <li>
+                                <th:block sec:authorize="isAuthenticated()">
+                                    <th:blcok th:if="${shopDto.memberEntity.userEmail==myUserDetails.username}">
+
+                                        <input type="submit" value="수정" class="btn1">
+
+                                        <a th:href="@{/shop/shopDelete/{id}(id=${shopDto.id})}" class="btn1">삭제</a>
+                                        <a th:href="@{/shop/shopList}" class="btn1">목록</a>
+                                        <input type="hidden" id="memberId2" th:value="${myUserDetails.memberEntity.id}">
+                                    </th:blcok>
+                                </th:block>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
+
+
+</body>
+</html>

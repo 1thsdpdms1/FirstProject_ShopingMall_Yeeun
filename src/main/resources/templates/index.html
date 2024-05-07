@@ -25,13 +25,15 @@
                     <div class="con">
 
                         <div class="left-con">
-                            <table>
-                            <tr th:each="like : ${liked}">
-                                <td th:text="${like.shopTitle}"></td>
-                                <td th:text="${like.createTime}"></td>
-                                <td th:text="${like.liked}"></td>
-                            </tr>
-                            </table>
+                            <h1>이달의 랭킹</h1>
+                            <div  class="like" th:each="like :${liked}">
+                                <ul>
+                                    <li><a th:href="@{/shop/shopDetail/{id}(id=${like.id})}"><span th:text="${like.shopTitle}"></span></a></li>
+                                    <li><span th:text="${#temporals.format(like.createTime,'yy-MM-dd')}"></span></li>
+                                    <!--<li>♥<span th:text="${like.liked}"></span></li>-->
+                                    <li class="heart">♥<span class="heart" th:text="${like.liked}"></span></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="right-con">
                             <div class="autoGallery">
@@ -74,7 +76,7 @@
                                 <div class="con1 span-on">
                                     <div class="sub-con"><img th:src="@{/images/index/index_art.jpg}" alt="img" width="200px" height="150px"></div>
                                     <div class="sub-con"><img th:src="@{/images/index/index_cafe.png}" alt="img" width="200px" height="150px"></div>
-                                    <div class="sub-con"><img th:src="@{/images/index/index_cook.jpg}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_cook.png}" alt="img" width="200px" height="150px"></div>
                                     <div class="sub-con"><img th:src="@{/images/index/index_guitar.png}" alt="img" width="200px" height="150px"></div>
                                     <div class="sub-con"><img th:src="@{/images/index/index_making.png}" alt="img" width="200px" height="150px"></div>
                                     <div class="sub-con"><img th:src="@{/images/index/index_piano.png}" alt="img" width="200px" height="150px"></div>
@@ -94,7 +96,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <h1>수 강 후 기
+                                        <h1>수 강 후 기 Top 6!!
                                             <label><a th:href="@{/board/reviewBoardList}">+더보기</a></label>
                                         </h1>
                                         <tr th:each="review:${boardDtoList}" class="list">
