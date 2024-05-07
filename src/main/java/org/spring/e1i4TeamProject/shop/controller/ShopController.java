@@ -48,7 +48,8 @@ public class ShopController {
   public String shopWrite(@AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
                           ShopDto shopDto, Model model) {
     model.addAttribute("memberId", myUserDetails.getMemberEntity().getId());
-
+    model.addAttribute("myUserDetails", myUserDetails);
+    model.addAttribute("memberName", myUserDetails.getMemberEntity().getName());
     return "shop/shopWrite";
   }
 
@@ -85,7 +86,8 @@ public class ShopController {
                          Model model,
                          @RequestParam(name = "subject1", required = false) String subject1,
                          @RequestParam(name = "subject2", required = false) String subject2,
-                         @RequestParam(name = "search", required = false) String search) {
+                         @RequestParam(name = "search", required = false) String search,
+                         @AuthenticationPrincipal MyUserDetailsImpl myUserDetails ) {
 
 
     Page<ShopDto> shopList = shopService.shopList(pageable, subject1, subject2, search);
@@ -105,6 +107,7 @@ public class ShopController {
     model.addAttribute("startPage", startPage);
     model.addAttribute("endPage", endPage);
     model.addAttribute("shopList", shopList);
+    model.addAttribute("myUserDetails", myUserDetails);
 
     return "shop/shopList";
   }
@@ -236,6 +239,25 @@ public class ShopController {
     shopService.shopUpdateOk(shopDto);
     return "redirect:/shop/shopDetail/" + shopDto.getId();
   }
+
+  @GetMapping("/shopUpdate/{Id}")
+  public String shopUpdate(@PathVariable("Id") Long Id,
+                           @AuthenticationPrincipal MyUserDetailsImpl myUserDetails,
+                           Model model) {
+    boolean shopLike = false;
+
+    ShopDto shopDto = shopService.detail(Id);
+
+    // 상점 댓글 목록 조회
+
+    model.addAttribute("shopLike", shopLike);
+    model.addAttribute("shopDto", shopDto);
+    model.addAttribute("myUserDetails", myUserDetails);
+
+    return "shop/shopUpdate";
+  }
+
+
 
   @GetMapping("/shopDelete/{id}")
   public String shopDelete(@PathVariable("id") Long id) {
