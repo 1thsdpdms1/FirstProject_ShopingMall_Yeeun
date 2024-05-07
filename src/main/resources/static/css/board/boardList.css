@@ -129,6 +129,9 @@ table tr td.btitle{
     text-overflow: ellipsis;
     /*background-color:#ffff00;*/
   }
+  table tr td.btitle img{
+
+  }
 
 
   table tr td  a:hover{
