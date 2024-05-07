@@ -72,6 +72,7 @@ public class ShopDto {
         shopDto.setLiked(shopEntity.getLiked());
         shopDto.setShopPrice(shopEntity.getShopPrice());
         shopDto.setPeopleCount(shopEntity.getPeopleCount());
+        shopDto.setPlace(shopEntity.getPlace());
         shopDto.setPriceCount(shopEntity.getPriceCount());
         shopDto.setCategory(shopEntity.getCategory());
         shopDto.setShopSeller(shopEntity.getShopSeller());

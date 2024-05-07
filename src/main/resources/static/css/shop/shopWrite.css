@@ -1,81 +1,123 @@
-@import url(/css/common/reset.css);
-@import url(/css/common/footer.css);
-@import url(/css/common/header.css);
+@import url(../common/reset.css);
+@import url(../common/header.css);
+@import url(../common/footer.css);
 
-
-/* index */
 .container {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.shopWrite {
+    width: 1600px;
+    box-sizing: border-box;
+    align-items:center;
+    background-color:  rgb(255, 251, 247);
+    
+}
+
+
+
+.shopWrite  .shopWrite-con  {
+    width:100%;
+    height:900px;
+    background-color: rgb(255 251 247);
+    flex-basis: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    
+    display: flex;
+    justify-content: center;
+
+}
+.shopWrite   .shopWrite-form {
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    flex-basis: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 7px 7px;
+    display: flex;
+    justify-content: center;
 
 }
 
-.container .write {
-  width: 100%;
-  /* height: calc( 100vh - 70px - 150px ); */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.shopWrite   .shopWrite-form ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.container .write .write-con {
-
-  width: 100%;
-  height: calc(100vh - 70px - 150px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.shopWrite   .shopWrite-form ul li {
+     display: flex;
+       justify-content: space-between;
+       /*gap: 5px;*/
+       /*border: 1px solid #ccc;*/
+       box-sizing: border-box;
+       float: right;
+}
+.shopWrite   .shopWrite-form ul li h1{
+    text-align:center;
 }
 
-.container .write .write-con .write-form {
-  background-color: #6478FF;
-  flex-basis: 400px;
-  padding: 20px;
-  box-sizing: border-box;
+.shopWrite   .shopWrite-form ul li label {
+
+        flex: 1;
+            font-size: 20px;
+            color: #666;
+            font-family:"나눔고딕 ExtraBold";
+            padding-top: 10px;
+            box-sizing: border-box;
 }
 
-.container .write .write-con .write-form ul {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+.shopWrite   .shopWrite-form ul li input{
+   flex: 3;
+       padding: 20px;
+       border: 1px solid #ccc;
+       border-radius: 7px 7px;
+       box-sizing: border-box;
+}
+
+.shopWrite   .shopWrite-form ul li.file{
+ display:flex;
+ justify-content:space-between;
+    align-items:center;
+}
+
+.shopWrite   .shopWrite-form ul li input[type=file]{
+    border: 0;
 
 }
 
-.container .write .write-con .write-form ul li {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
+
+
+
+.shopWrite   .shopWrite-form ul li select {
+       width:600px;
+       height:30px;
+    text-align: center;
+    border: 1px solid #ccc;
+           border-radius: 7px 7px;
 }
 
-.container .write .write-con .write-form ul li:nth-child(1) {
-  padding: 5px 0;
- 
-  font-size: 20px;
-  background-color: #B9FFFF;
-  color: #ffffff;
-  text-align: center;
-}
 
-.container .write .write-con .write-form ul li label {
-  flex: 1;
-}
-.container .write .write-con .write-form ul li input[type=text]{
+.shopWrite   .shopWrite-form ul li textarea {
   flex: 3;
-}
-.container .write .write-con .write-form ul li select{
-flex: 3;
-text-align: center;
+       padding: 20px;
+       border: 1px solid #ccc;
+       border-radius: 7px 7px;
+       box-sizing: border-box;
+    resize: none;
 }
 
-.container .write .write-con .write-form ul li textarea{
-  flex: 1;
-  resize: none;
-}
-.container .write .write-con .write-form ul li input[type=submit]{
-flex: 1;
-padding: 5px;
-box-sizing: border-box;
-background-color: #B9FFFF;
-color: #ffffff;
+.shopWrite   .shopWrite-form ul li input[type=submit] {
+
+    padding: 5px;
+    box-sizing: border-box;
+    background-color:  rgb(250 184 119);
+    color: #ffffff;
+    cursor: pointer;
 }

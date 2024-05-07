@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
   <title>write</title>
   <link rel="stylesheet" th:href="@{/css/shop/shopList.css}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script th:src="@{/js/shop/shopLike.js}" defer></script>
 </head>
 
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 <div class="container">
-  <div class="left">
+  <div class="shopList">
     <div class="menu">
       <label>메뉴</label>
       <ul>
@@ -21,139 +23,143 @@
         <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopList4}">요리</a></li>
       </ul>
     </div>
-    <!--    <div class="nav-section">-->
-    <!--      <div>"카테고리"</div>-->
-    <!--      <div class="navigation" style="display: block;">-->
-    <!--        <li><a th:href="@{/shop/shopList}">전체</a></li>-->
-    <!--        <li><a th:href="@{/shop/shopList1}">미술</a></li>-->
-    <!--        <li><a th:href="@{/shop/shopList2}">체육</a></li>-->
-    <!--        <li><a th:href="@{/shop/shopList3}">음악</a></li>-->
-    <!--        <li><a th:href="@{/shop/shopList4}">요리</a></li>-->
-    <!--      </div>-->
-    <!--    </div>-->
-  </div>
-  <div class="right">
-
-    <div class="main-content">
-      <div class="shopList">
-        <div class="shopList-con">
-          <h1>원데이클라스</h1>
-          <div class="search">
-            <div class="search-con">
-              <form th:action="@{/shop/shopList3}" method="get">
-                <select name="subject" id="subject">
-                  <option value="" th:selected="${#strings.isEmpty(param.subject)}">
-                    ::선택::
-                  </option>
-                  <option value="shopTitle"
-                          th:selected="${#strings.equals(param.subject,'shopTitle')}">제목
-                  </option>
-                  <option value="shopContent"
-                          th:selected="${#strings.equals(param.subject,'shopContent')}">
-                    내용
-                  </option>
-                </select>
-                <input type="text" name="search" id="search" th:value="${param.search}">
-                <input type="submit" value="검색">
-              </form>
+    <div class="shopList-con">
+      <h1>원데이클라스</h1>
+      <thead>
+      <tr>
+        <div class="search">
+          <div class="search-con">
+            <form th:action="@{/shop/shopList3}" method="get">
+              <select name="subject" id="subject">
+                <option value="" th:selected="${#strings.isEmpty(param.subject)}">
+                  ::선택::
+                </option>
+                <option value="shopTitle"
+                        th:selected="${#strings.equals(param.subject,'shopTitle')}">제목
+                </option>
+                <option value="shopContent"
+                        th:selected="${#strings.equals(param.subject,'shopContent')}">
+                  내용
+                </option>
+              </select>
+              <input type="text" name="search" id="search" th:value="${param.search}">
+              <input type="submit" value="검색">
+            </form>
           </div>
-          <div class="grid-parent">
-            <ul class="grid-con">
-              <li th:each="shop : ${shopDtoList3}">
-                <div class="top">
-                  <th:block th:if="${shop.shopAttachFile==1}"> <!--  이미지 표시 -->
-                    <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}"><img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구"></a>
-                  </th:block>
-                  <th:block th:unless="${shop.shopAttachFile==1}">  <!--  이미지 표시 -->
-                    <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}"><img src="https://placehold.co/400x500?text=NOIMAGE" alt="이미지대체문구"></a>
-                  </th:block>
-                </div>
-                <div class="bottom">
-                  <div class="left">
-                    <ul>
-                      <li><span>상품번호: </span> <span th:text="${shop.id}" hidden="hidden"></span></li>
-                      <li> <span>수업명: <th:block  th:text="${shop.shopTitle}"></th:block> </span></li>
-                      <li><span>학생정원: <th:block  th:text="${shop.peopleCount}"></th:block> </span></li>
-                    </ul>
+        </div>
+      </tr>
+      </thead>
+      <tbody>
+      <div class="grid-parent">
+        <ul class="grid-con">
+          <li th:each="shop : ${shopDtoList3}">
+            <div class="top" style="position: relative;"> <!-- 상위 요소에 position: relative; 적용 -->
+
+              <th:block th:if="${shop.shopAttachFile==1}"> <!--  이미지 표시 -->
+                <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}"><img th:src="@{|/upload/${shop.shopNewFileName}|}" alt="이미지대체문구"></a>
+              </th:block>
+              <input type="hidden" id="initialLikeStatus" th:value="${shop.liked}" />
+              <button id="likeButton" onclick="likeShop()"
+                      style="position: absolute; top: 10px; right: 10px;">♥</button> <!-- 버튼에 position: absolute; 적용 -->
+              <th:block th:unless="${shop.shopAttachFile==1}">  <!--  이미지 표시 -->
+                <a th:href="@{/shop/shopDetail/{id}(id=${shop.id})}"><img src="https://placehold.co/400x500?text=NOIMAGE" alt="이미지대체문구"></a>
+              </th:block>
+
+            </div>
+            <th:block sec:authorize="isAuthenticated()">
+              <input type="hidden" id="memberId2" th:value="${myUserDetails.memberEntity.id}">
+              <input type="hidden" name="id" id="id" th:value="${shop.id}" readonly>
+            </th:block>
+            <div class="bottom">
+              <ul>
+                <li>
+                  <div class="category">
+                    <span th:if="${shop.category == 1}">미술</span>
+                    <span th:if="${shop.category == 2}">체육</span>
+                    <span th:if="${shop.category == 3}">음악</span>
+                    <span th:if="${shop.category == 4}">요리</span>
                   </div>
-                  <div class="right">
-                    <ul>
-                      <li><span>선생님:  <th:block  th:text="${shop.shopSeller}"></th:block> </span></li>
-                      <li> <span>♥:  <th:block  th:text="${shop.shopHit}"></th:block> </span></li>
-                      <li>  <span>수업가격:  <th:block  th:text="${shop.shopPrice}"></th:block> </span></li>
-                    </ul>
-                  </div>
-                </div>
+                  <span class="like">♥ <th:block  th:text="${shop.liked}"></th:block> </span>
+                </li>
+                <li>
+                  <img th:src="@{|/upload/${shop.memberEntity.memberFileName}|}"
+                       alt="photo" height="32px">
+                  <span> <th:block  th:text="${shop.shopSeller}"></th:block> 선생님  </span>
+                </li>
+                <li> <span> <th:block  th:text="${shop.shopTitle}"></th:block> </span></li>
+                <li>
+                  <span>정원: <th:block  th:text="${shop.peopleCount}"></th:block>명 </span>
+                  <span> <th:block  th:text="${shop.shopPrice}"></th:block> 원</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="7" class="tdPaging">
+          <div class="paging">
+            <ul>
+              <li>
+                <!-- 현재페이지가  첫번째 페이지이면   span표시 -->
+                <span th:if="${shopDtoList3.pageable.pageNumber+1 eq 1}" class="span0">START</span>
+                <!-- 처음 페이지가 아니면  a -->
+                <span th:unless="${shopDtoList3.pageable.pageNumber+1 eq 1}">
+                    <a th:href="@{/shop/shopList3(page=0 , search=${param.search}, subject=${param.subject}  )}"
+                       class="span1">처음</a>
+                  </span>
+              </li>
+              <li>
+                <!-- 이전페이지가  첫번째 페이지이면   span표시 -->
+                <span th:if="${1==shopDtoList3.pageable.pageNumber+1}" class="span0">PRE</span>
+                <span th:unless="${1==shopDtoList3.pageable.pageNumber+1}">
+                    <!--itemList.pageable.pageNumber 현재페이지 -1 -->
+                    <a th:href="@{/shop/shopList3(page=${shopDtoList3.pageable.pageNumber-1} ,search=${param.search},subject=${param.subject} )}"
+                       class="span1">이전</a>
+                  </span>
+              </li>
+              <!-- block  -->
+              <!-- 페이지 번호 -->
+              <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">
+                <span th:if="${i == shopDtoList3.pageable.pageNumber+1}" th:text="${i}" class="now"></span>
+                <a th:unless="${i == shopDtoList3.pageable.pageNumber+1}"
+                   th:href="@{/shop/shopList3(page=${ i - 1},search=${param.search},subject=${param.subject} )}"
+                   th:text="${i}"></a>
+              </li>
+              <li>
+                <!-- 현재페이지가 마지막 페이지이면   span표시 -->
+                <span th:if="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}" class="span0">NEXT</span>
+                <!-- 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 -->
+                <span th:unless="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}">
+                        <a th:href="@{/shop/shopList3(page=${shopDtoList31.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
+                           class="span1">다음</a>
+                  </span>
+              </li>
+              <li>
+                <!-- 현재페이지가 마지막 페이지이면   span표시 -->
+                <span th:if="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}" class="span0">END</span>
+                <!-- 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a -->
+                <span th:unless="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}">
+                    <a th:href="@{/shop/shopList3(page=${shopDtoList3.totalPages-1},search=${param.search},subject=${param.subject} )}"
+                       class="span1">마지막</a>
+                  </span>
               </li>
             </ul>
           </div>
+        </td>
+      </tr>
+      </tfoot>
+      <th:block sec:authorize="isAuthenticated()">
+        <div class="writeButton">
+          <a href="/shop/shopWrite" class><img src="/images/btn_write.jpg" alt="글쓰기"></a>
         </div>
-        <tfoot>
-        <tr>
-          <!--          <td colspan="11">-->
-          <!--            <div class="paging">-->
-          <!--              <ul>-->
-          <!--                <li>-->
-          <!--                  &lt;!&ndash; 현재페이지가  첫번째 페이지이면   span표시 &ndash;&gt;-->
-          <!--                  <span th:if="${shopList.pageable.pageNumber+1 eq 1}" class="span0">START</span>-->
-          <!--                  &lt;!&ndash; 처음 페이지가 아니면  a &ndash;&gt;-->
-          <!--                  <span th:unless="${shopList.pageable.pageNumber+1 eq 1}">-->
-          <!--                    <a th:href="@{/shop/shopList(page=0 , search=${param.search}, subject=${param.subject}  )}"-->
-          <!--                       class="span1">처음</a>-->
-          <!--                  </span>-->
-          <!--                </li>-->
-          <!--                <li>-->
-          <!--                  &lt;!&ndash; 이전페이지가  첫번째 페이지이면   span표시 &ndash;&gt;-->
-          <!--                  <span th:if="${1==shopList.pageable.pageNumber+1}" class="span0">PRE</span>-->
-          <!--                  <span th:unless="${1==shopList.pageable.pageNumber+1}">-->
-          <!--                    &lt;!&ndash;itemList.pageable.pageNumber 현재페이지 -1 &ndash;&gt;-->
-          <!--                    <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber-1} ,search=${param.search},subject=${param.subject} )}"-->
-          <!--                       class="span1">이전</a>-->
-          <!--                  </span>-->
-          <!--                </li>-->
-          <!--                &lt;!&ndash; block  &ndash;&gt;-->
-          <!--                &lt;!&ndash; 페이지 번호 &ndash;&gt;-->
-          <!--                <li th:each="i: ${#numbers.sequence(startPage, endPage)}" class="block">-->
-          <!--                  <span th:if="${i == shopList.pageable.pageNumber+1}" th:text="${i}" class="now"></span>-->
-          <!--                  <a th:unless="${i == shopList.pageable.pageNumber+1}"-->
-          <!--                     th:href="@{/shop/shopList(page=${ i - 1},search=${param.search},subject=${param.subject} )}"-->
-          <!--                     th:text="${i}"></a>-->
-          <!--                </li>-->
-          <!--                <li>-->
-          <!--                  &lt;!&ndash; 현재페이지가 마지막 페이지이면   span표시 &ndash;&gt;-->
-          <!--                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">NEXT</span>-->
-          <!--                  &lt;!&ndash; 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 &ndash;&gt;-->
-          <!--                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">-->
-          <!--                        <a th:href="@{/shop/shopList(page=${shopList.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"-->
-          <!--                           class="span1">다음</a>-->
-          <!--                  </span>-->
-          <!--                </li>-->
-          <!--                <li>-->
-          <!--                  &lt;!&ndash; 현재페이지가 마지막 페이지이면   span표시 &ndash;&gt;-->
-          <!--                  <span th:if="${shopList.totalPages ==shopList.pageable.pageNumber+1}" class="span0">END</span>-->
-          <!--                  &lt;!&ndash; 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a &ndash;&gt;-->
-          <!--                  <span th:unless="${shopList.totalPages ==shopList.pageable.pageNumber+1}">-->
-          <!--                    <a th:href="@{/shop/shopList(page=${shopList.totalPages-1},search=${param.search},subject=${param.subject} )}"-->
-          <!--                       class="span1">마지막</a>-->
-          <!--                  </span>-->
-          <!--                </li>-->
-          <!--              </ul>-->
-          <!--            </div>-->
-          <!--          </td>-->
-        </tr>
-        </tfoot>
-        <th:block sec:authorize="isAuthenticated()">
-          <div class="writeButton">
-            <a href="/shop/shopWrite" class><img src="/images/btn_write.jpg" alt="글쓰기"></a>
-          </div>
-        </th:block>
-      </div>
+      </th:block>
     </div>
-
   </div>
 </div>
-</div>
-</body>
-<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 
+<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+</body>
 </html>

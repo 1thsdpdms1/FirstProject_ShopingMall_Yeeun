@@ -25,13 +25,15 @@
                     <div class="con">
 
                         <div class="left-con">
-                            <table>
-                            <tr th:each="like : ${liked}">
-                                <td th:text="${like.shopTitle}"></td>
-                                <td th:text="${like.createTime}"></td>
-                                <td th:text="${like.liked}"></td>
-                            </tr>
-                            </table>
+                            <h1>이달의 랭킹</h1>
+                            <div  class="like" th:each="like :${liked}">
+                                <ul>
+                                    <li><a th:href="@{/shop/shopDetail/{id}(id=${like.id})}"><span th:text="${like.shopTitle}"></span></a></li>
+                                    <li><span th:text="${#temporals.format(like.createTime,'yy-MM-dd')}"></span></li>
+                                    <!--<li>♥<span th:text="${like.liked}"></span></li>-->
+                                    <li class="heart">♥<span class="heart" th:text="${like.liked}"></span></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="right-con">
                             <div class="autoGallery">

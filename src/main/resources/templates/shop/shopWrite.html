@@ -1,75 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>write</title>
-  <link rel="stylesheet" th:href="@{/css/shop/shopWrite.css}">
+    <meta charset="UTF-8">
+    <title>write</title>
+    <link rel="stylesheet" th:href="@{/css/shop/shopWrite.css}">
 </head>
 <body>
 <div th:replace="~{/fragments/common/header :: headerFragment}"></div>
 <div class="container">
-  <div class="write">
-    <div class="write-con">
-      <div class="write-form">
-        <form th:action="@{/shop/shopWrite}" method="post" enctype="multipart/form-data"
-              th:object="${shopDto}">
-          <ul>
-            <li>
-              shop Write
-            </li>
-            <li>
-              <label for="memberId">MEMBERID</label>
-              <input type="text" name="memberId"
-                     id="memberId" th:value="${memberId}" readonly>
-            </li>
-            <li>
-              <label for="shopTitle">TITLE</label>
-              <input type="text" id="shopTitle" th:field="*{shopTitle}">
-            </li>
-            <p th:if="${#fields.hasErrors('shopTitle')}" th:errors="*{shopTitle}" class="error"></p>
-            <li>
-              <label for="shopContent">CONTENT</label>
-            </li>
-            <li>
-              <textarea th:field="*{shopContent}" id="shopContent" cols="30" rows="10"></textarea>
-            </li>
-            <p th:if="${#fields.hasErrors('shopContent')}" th:errors="*{shopContent}" class="error"></p>
-            <li>
-              <label for="shopPrice">ShopPrice</label>
-              <input type="text" id="shopPrice" th:field="*{shopPrice}">
-            </li>
-            <p th:if="${#fields.hasErrors('ShopPrice')}" th:errors="*{ShopPrice}" class="error"></p>
-            <li>
-              <label for="peopleCount">peopleCount</label>
-              <input type="text" id="peopleCount" th:field="*{peopleCount}">
-            </li>
-            <p th:if="${#fields.hasErrors('peopleCount')}" th:errors="*{peopleCount}" class="error"></p>
-            <li>
-              <label><input type="checkbox" name="category" id="미술" value="1">미술</label>
-              <label><input type="checkbox" name="category" id="체육" value="2">체육</label>
-              <label><input type="checkbox" name="category" id="음악" value="3">음악</label>
-              <label><input type="checkbox" name="category" id="요리" value="4">요리</label>
-            </li>
-            <li>
-              <label for="ShopSeller">ShopSeller</label>
-              <input type="text" id="ShopSeller" th:field="*{shopSeller}">
-            </li>
-            <li>
-              <label for="place">place</label>
-              <input type="text" id="place" th:field="*{place}">
-            </li>
-            <li>
-              <label for="shopFile">파일</label>
-              <input type="file" name="shopFile" id="shopFile">
-            </li>
-            <li>
-              <input type="submit" value="shopWriteOk">
-            </li>
-          </ul>
-        </form>
-      </div>
+    <div class="shopWrite">
+        <div class="shopWrite-con">
+            <div class="shopWrite-form">
+                <form th:action="@{/shop/shopWrite}" method="post" enctype="multipart/form-data"
+                      th:object="${shopDto}">
+                    <ul>
+                        <li>
+                            <h1>원데이클래스 등록</h1>
+                        </li>
+                        <li>
+                            <label for="category">분류</label>
+                        </li>
+                        <li>
+                            <select name="category" id="category">
+                                <option value="1">미술</option>
+                                <option value="2">체육</option>
+                                <option value="3">음악</option>
+                                <option value="4">요리</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input type="hidden" name="memberId"
+                                   id="memberId" th:value="${memberId}">
+                        </li>
+
+                        <li>
+                            <input type="hidden" id="ShopSeller" name="ShopSeller" th:value="${memberName}">
+                        <li>
+
+                        <li>
+                            <label>선생님</label>
+                        </li>
+
+                        <li>
+                            <span th:text="${memberName}" readonly></span>
+                        </li>
+
+                        <li>
+                            <label for="shopTitle">수업명</label>
+                            <input type="text" id="shopTitle" th:field="*{shopTitle}">
+                        </li>
+                        <p th:if="${#fields.hasErrors('shopTitle')}" th:errors="*{shopTitle}" class="error"></p>
+
+                        <li>
+                            <label for="shopContent">내용</label>
+                        </li>
+
+                        <li>
+                            <textarea th:field="*{shopContent}" id="shopContent" cols="30" rows="10"></textarea>
+                        </li>
+                        <p th:if="${#fields.hasErrors('shopContent')}" th:errors="*{shopContent}" class="error"></p>
+                        <li>
+                            <label for="shopPrice">수업가격</label>
+                            <input type="text" id="shopPrice" th:field="*{shopPrice}">
+                        </li>
+                        <p th:if="${#fields.hasErrors('ShopPrice')}" th:errors="*{ShopPrice}" class="error"></p>
+                        <li>
+                            <label for="peopleCount">인원</label>
+                            <input type="text" id="peopleCount" th:field="*{peopleCount}">
+                        </li>
+                        <p th:if="${#fields.hasErrors('peopleCount')}" th:errors="*{peopleCount}" class="error"></p>
+
+                        <li>
+                            <label for="place">장소</label>
+                            <input type="text" id="place" th:field="*{place}">
+                        </li>
+                        <li>
+                            <label for="shopFile">파일</label>
+                            <input type="file" name="shopFile" id="shopFile">
+                        </li>
+                        <li>
+                            <input type="reset" value="초기화">
+                            <input type="submit" value="작성">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
 </body>

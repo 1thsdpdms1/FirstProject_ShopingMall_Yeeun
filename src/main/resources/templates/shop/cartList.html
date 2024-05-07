@@ -17,7 +17,7 @@
         <thead>
         <tr>
           <th>이미지</th>
-          <th>제목</th>
+          <th>수업명</th>
           <th>금액</th>
           <th>선생님</th>
           <th>정원</th>
@@ -54,7 +54,7 @@
       </table>
       <form th:action="@{/shop/cartShopAllDelete}" method="get" onsubmit="return confirm('정말로 모든 카트 샵 리스트를 삭제하시겠습니까?')">
         <input type="hidden" name="userId" th:value="${userId}">
-        <button type="submit">전체 삭제</button>
+        <button type="submit">장바구니 비우기</button>
       </form>
     </div>
   </div>

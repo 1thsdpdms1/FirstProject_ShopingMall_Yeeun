@@ -1,225 +1,159 @@
+
 @import url(/css/common/reset.css);
 @import url(/css/common/footer.css);
 @import url(/css/common/header.css);
+@import url(/css/common/paging.css);
+@import url(/css/common/sideBar.css);
 
-/* 공통 스타일 */
+
+/* 검색 css */
+
+
 .container {
-    width: 100%;
-    height: auto;
-    display: flex; /* 왼쪽과 오른쪽 요소를 가로로 배치하기 위해 flex 사용 */
-    justify-content: space-between;
+ width: 100%;
+     height: auto;
+     display: flex;
+     justify-content: center;
+}
+.container .shopList {
+  width: 1600px;
+  display: flex;
+/* justify-content: center;*/
+
 }
 
-/* 왼쪽 네비게이션 */
-.left {
-    /* 왼쪽 요소 스타일 */
-    flex: 0 0 200px;
+.container .shopList .shopList-con{
+  width: 100%;
+
+/* justify-content: center;*/
+ line-height: 2;
+ padding-top : 50px;
+ padding-left: 20px;
 }
 
-/*메뉴css*/
-.menu {
-  display: block;
-  width: 200px;
-  background-color: #949494;
-  color: #fff;
-  /* border-radius: 20px; */
+.container .shopList .shopList-con .writeButton{
+    margin: 10px;
+    margin-right: 0;
+    float: right;
+}
+
+.container .shopList .shopList-con h1 img{
+    width: 30px;
+    height: 30px;
+}
+
+.container .shopList .shopList-con button.delete{
+  background: #000000;
+  padding: 5px;
+  color: white;
+  border: 1px solid #ffffff;
+}
+
+.container .shopList h1{
+  background-color: rgb(250 184 119);
+  color: aliceblue;
+  text-align: center;
   padding: 10px;
   box-sizing: border-box;
-  overflow: hidden; /* 반응형 애니메이션용 */
-  transition: all 0.5s ease; /* 반응형 애니메이션 */
-}
-.menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.menu ul li {
-  display: flex; /* 아이콘과 텍스트를 가로로 나열 */
-  align-items: center; /* 세로 가운데 정렬 */
-  margin-bottom: 10px; /* 각 아이템 사이의 간격 설정 */
-  font-size: 20px;
 }
 
-.menu a, .menu > label {
-  padding: 8px;
-  color: #fff;
-  font-size: 20px;
-
+.container .shopList .search{
+  background-color: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: end;
 }
 
-.menu ul li a{
-  display: block;
-  line-height: 60px;
+/* 그리드 레이아웃 */
+.grid-parent {
+    width: 100%;
 }
 
-.menu ul li img{
-  width: 30px;
-  height: 30px;
-  padding: 15px 10px;
-
-}
-.menu a:hover {
-  color: #000;
-}
-.menu ul li:hover{
-  background-color: #fff;
-  color: #000;
-  border-radius: 10px;
+.grid-parent .grid-con {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
 }
 
-/* 오른쪽 메인 컨텐츠 */
-.right {
-    /* 오른쪽 요소 스타일 */
-    flex:1;
-}
-
-.main-content {
-   /* grid-row: span 4;
-    display: flex;
+/* 각 그리드 아이템 */
+.grid-parent ul.grid-con li {
+   /* display: flex;
     flex-direction: column;*/
+    overflow: hidden; /* 내용이 넘칠 경우를 대비하여 추가 */
+    line-height:35px;
 }
 
-.shopList {
-    display: flex;
-        flex-direction: column;
-    justify-content: flex-start;
-    margin-bottom: 20px;
+
+
+.bottom li:nth-child(1) {
+display: flex;
+justify-content: space-between;
 }
 
-.shopList-con {
-    flex-basis: 1600px;
-    min-height: calc(100vh - 70px - 150px);
-    overflow: auto;
-    padding: 20px;
-    border: 1px solid;
-    box-sizing: border-box;
-}
+.like {
+color:red;
 
-.shopList-con h1 {
-    background-color: #006400;
-    color: aliceblue;
+}
+.category{
+    border: 2px solid #fa922b;
+    background-color: #ffd2a6;
+    border-radius: 8px;
+    width: 40px;
     text-align: center;
+
+}
+
+.bottom li:nth-child(2) {
+    justify-content: flex-start;
+    display: flex;
+    gap: 5px;
+    font-weight:bold;
+
+}
+.bottom li:nth-child(2) img{
+padding-top:2px;
+}
+.bottom li:nth-child(4) {
+display: flex;
+justify-content: space-between;
+}
+
+
+
+/* 이미지 부분 */
+.grid-parent ul.grid-con li .top {
+    position: relative; /* .top 안에 절대 위치 요소가 있을 경우를 대비하여 추가 */
+    flex: 1; /* .top 영역이 유연하게 조정되도록 */
+}
+
+.grid-parent ul.grid-con li .top img {
+    width: 335px;
+    height: 240px;
+    object-fit: cover; /* 이미지를 영역에 맞게 자동으로 조정 */
+}
+
+/* 설명 부분 */
+.grid-parent ul.grid-con li .bottom {
     padding: 10px;
-    box-sizing: border-box;
+    background-color: #f9f9f9; /* 배경색 추가 */
+    border-top: 1px solid #ccc; /* 상단에 선 추가 */
+    box-sizing: border-box; /* 패딩, 보더를 포함한 너비 지정 */
 }
 
-/*grit*/
-.grid-parent{
-  width:100%;
-
-}
-.grid-parent .grid-con{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows:  repeat(2, 500px);
-  grid-auto-rows:500px;
-
-  gap:5px;
+/* 좋아요 버튼의 기본 스타일 */
+#likeButton {
+  background-color: transparent; /* 배경색 투명하게 설정 */
+  border: none; /* 테두리 없애기 */
+  font-size: 24px; /* 아이콘 크기 조정 */
+  cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 상태 표시 */
+  transition: color 0.3s; /* 색상 변경에 애니메이션 효과 추가 */
 }
 
-
-.grid-parent ul.grid-con li .top{
-  height:400px;
+#likeButton.liked {
+  color: red; /* 좋아요 상태일 때 아이콘 색상 변경 */
 }
 
-.grid-parent ul.grid-con li .top img{
- display:block;
- width:100%;
-
-}
-.grid-parent ul.grid-con li .bottom{
-/*  height:100px;*/
-}
-.grid-parent ul.grid-con .bottom {
-  display:flex;
-  justify-content:space-between;
-
-}
-.grid-parent ul.grid-con .bottom  div{
- border:1px solid ;
- box-sizing:border-box;
- padding:3px;
- background-color:#ffff00;
- height:100px;
-}
-
-/* 페이징 */
-
-.paging {
-  width: 100%;
-  padding: 10px 0;
-  box-sizing: border-box;
-  background-color: #ebf9f8;
-  display: flex;
-  justify-content: center;
-}
-
-.paging>ul {
-  flex-basis: 400px;
-  background-color: #cee76b;
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.paging>ul>li {
-  /* flex:1;*/
-  background-color: #58cc00;
-
-}
-
-.paging>ul>li.block {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-}
-
-.paging>ul>li.block a {
-  color: #ffffff;
-  font-weight: bold;
-  background-color: #000000;
-  padding: 0 10px;
-  display: block;
-}
-
-.paging>ul>li span {
-
-
-  font-size: 12px;
-}
-
-.paging>ul>li a {
-
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.paging>ul>li span.span0 {
-  background-color: #000000;
-  color: #cccccc;
-  padding: 2px 10px;
-  border-radius: 5px;
-}
-
-.paging>ul>li span a.span1 {
-  padding: 2px 10px;
-  background-color: #ff0000;
-  color: #ffffff;
-}
-
-span.now {
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 10px;
-  background-color: #0000ff;
-  padding: 0 10px;
-  position: relative;
-  cursor: pointer;
-}
 
 
 
