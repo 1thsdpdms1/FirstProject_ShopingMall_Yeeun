@@ -200,10 +200,11 @@ public class BoardController {
 
     //<<<<<<<HEAD
     @GetMapping("/boardInquiry/member/{id}/category/{category}")
-    public String inquiry (@PathVariable("id") Long id,
-                           @PathVariable("category") Long category, Model model){
+    public String inquiry1 (@PathVariable("id") Long id,
+                            Model model){
+
         List<BoardDto> boardList
-                = boardService.boardMemberCategoryList(id, category);
+                = boardService.boardMemberCategoryList(id);
         model.addAttribute("boardList", boardList);
 
         return "board/boardInquiry";

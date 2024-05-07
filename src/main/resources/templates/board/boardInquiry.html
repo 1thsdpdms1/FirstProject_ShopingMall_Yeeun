@@ -43,11 +43,13 @@
 
                     <tr th:each="inquiry : ${boardList}">
                         <td th:text="${inquiry.boardTitle}"></td>
+
                         <td th:text="${inquiry.boardContent}"></td>
+
+
                         <td th:text="${inquiry.boardWriter}">작성자</td>
 
                         <th:block sec:authorize="isAuthenticated()">
-
                                 <td>
                                     <a th:href="@{/board/boardAnswer(id=${inquiry.id})}">문의 답변</a>
                                 </td>
@@ -60,6 +62,9 @@
                     </tbody>
 
                 </table>
+
+
+
             </div>
         </div>
     </div>

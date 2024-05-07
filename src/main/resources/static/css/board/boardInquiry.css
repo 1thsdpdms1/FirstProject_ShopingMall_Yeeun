@@ -111,10 +111,11 @@
         background-color: #ffffff;
         overflow-y: auto; /* 스크롤 추가 */
     }
-    table,th,td{
-        border-collapse: collapse;
-        border: 1px solid #cccccc;
-    }
+
+
+
+
+
     .inquiry .inquiry-con .right table{
         width: 100%;
     }
@@ -124,10 +125,20 @@
         padding: 5px 0;
     }
     .inquiry .inquiry-con .right table td{
+
+
+        overflow: hidden;
         background-color: #ffffff;
         padding: 3px 0;
         text-align: center;
     }
+
+
+
+
+
+
+
 
     a.inquiry-answer{
         color: #2d93f2cc;

@@ -202,6 +202,7 @@ public class BoardService implements BoardServiceInterface {
         return boardDtoPage;
     }
 
+//
     //카테고리 4만
     @Override
     public Page<BoardDto> boardSearchPageList4(Pageable pageable, String subject, String search) {
@@ -474,43 +475,55 @@ public class BoardService implements BoardServiceInterface {
         return pageList.map(BoardDto::toselectBoardDto);
     }
 
-    @Override
-    public List<BoardDto> boardMemberCategoryList(Long id, Long category) {
-
-        MemberEntity memberEntity= MemberEntity.builder().id(id).build();
-
-        List<BoardEntity> boardEntityList
-                =boardRepository.findByMemberEntity(memberEntity);
-
-        for(BoardEntity boardEntity: boardEntityList){
-            System.out.println(boardEntity);
-        }
-
-        return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
-    }
-
-
 //    @Override
-//    public List<BoardDto> boardInquiryList(Long category) {
+//    public List<BoardDto> boardMemberCategoryList(Long id, Long category) {
 //
-//        MemberEntity memberEntity=MemberEntity.builder().build();
+//        MemberEntity memberEntity = MemberEntity.builder().id(id).build();
 //
-//        List<BoardEntity> boardEntityList
-//                =boardRepository.findByMemberEntity(memberEntity);
+//       List<BoardEntity> boardEntityList
+//               =boardRepository.findByMemberEntity(memberEntity.getId());
 //
-//        for(BoardEntity boardEntity: boardEntityList){
-//            System.out.println(boardEntity);
+//
+//       for(BoardEntity boardEntity: boardEntityList){
+//               System.out.println(boardEntity);
 //        }
+//
 //        return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
 //
 //    }
+@Override
+public List<BoardDto> boardMemberCategoryList(Long id){
+
+
+    List<BoardEntity> boardEntityList= boardRepository.findByMemberEntity(id);
+
+
+    System.out.println(boardEntityList);
+    List<BoardDto> boardDtoList = boardEntityList.stream().map(BoardDto::toboardDto1).collect(Collectors.toList());
+    return boardDtoList;
+
+}
+
+
+
+ /* @Override
+  public List<BoardDto> boardInquiryList(Long category) {
+
+
+        List<BoardEntity> boardEntityList =boardRepository.findByMemberEntity(memberEntity);
+
+       for(BoardEntity boardEntity: boardEntityList){
+         System.out.println(boardEntity);
+        }
+        return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
+ }*/
 
 //    심지섭
-    @Override
+ @Override
     public List<BoardDto> boardInquiryList(Long category) {
 
         List<BoardEntity> boardEntityList = boardRepository.findByCategory8(category);
-//    List<BoardDto> boardDtoList = new ArrayList<>();
+ /*  List<BoardDto> boardDtoList = new ArrayList<>();*/
 
         List<BoardDto>  boardDtoList = boardEntityList.stream()
             .map(BoardDto::toboardDto8)
