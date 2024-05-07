@@ -41,13 +41,31 @@ public interface BoardServiceInterface {
     Page<BoardDto> boardSearchPageList4_7(Pageable pageable, String subject, String search);
 
 
- /* List<BoardDto> boardMemberCategoryList(Long id, Long category);*/
-
-    List<BoardDto> boardMemberCategoryList(Long id, Long category);
+// /* List<BoardDto> boardMemberCategoryList(Long id, Long category);*/
+//
+//    List<BoardDto> boardMemberCategoryList(Long id, Long category);
 
     BoardDto boardMemberCategorySave(BoardDto boardDto);
 
     Page<BoardDto> inquirySearchPagingList(Pageable pageable);
+
+    //    @Override
+    //    public List<BoardDto> boardMemberCategoryList(Long id, Long category) {
+    //
+    //        MemberEntity memberEntity = MemberEntity.builder().id(id).build();
+    //
+    //       List<BoardEntity> boardEntityList
+    //               =boardRepository.findByMemberEntity(memberEntity.getId());
+    //
+    //
+    //       for(BoardEntity boardEntity: boardEntityList){
+    //               System.out.println(boardEntity);
+    //        }
+    //
+    //        return boardEntityList.stream().map(BoardDto::toboardDto2).collect(Collectors.toList());
+    //
+    //    }
+    List<BoardDto> boardMemberCategoryList(Long id);
 
     List<BoardDto> boardInquiryList(Long category);
 

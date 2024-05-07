@@ -15,7 +15,7 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
 
-    List<BoardEntity> findByMemberEntity(MemberEntity memberEntity);
+//    List<BoardEntity> findByMemberEntity(MemberEntity memberEntity);
 
     Page<BoardEntity> findAllByCategory(Pageable pageable, Long category);
 
@@ -147,9 +147,18 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     int replyCount(@Param("id") Long id);
 
 
+ /* @Query(value = "  SELECT * FROM board where category=8", nativeQuery = true)*/
+//    List<BoardEntity> findByCategory8(Long category);
+
+
     @Query(value = "  SELECT * FROM board where category=8", nativeQuery = true)
     List<BoardEntity> findByCategory8(Long category);
 
     @Query(value = "select * from board where category between 4 and 7 order by board_hit desc limit 6",nativeQuery = true)
     List<BoardEntity> findTop6();
+
+   /* void findByBoardEntity(MemberEntity memberEntity);*/
+
+    @Query(value = "  select * from board where category=8 and member_id=:id  ", nativeQuery = true)
+    List<BoardEntity> findByMemberEntity(@Param("id") Long id);
 }
