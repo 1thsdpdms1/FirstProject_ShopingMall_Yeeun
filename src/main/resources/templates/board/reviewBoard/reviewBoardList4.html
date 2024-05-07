@@ -97,28 +97,26 @@
 
                 </thead>
 
-                <tbody>
+                <tbody class="list">
                 <tr th:each="board: ${boardDtoList}">
 
                     <td th:text="${board.id}"></td>
 
                     <td th:if="${board.category eq 4}" th:text="미술"></td>
 
-                    <td>
+                    <td class="btitle">
 
                         <th:block th:if="${board.boardAttachFile==1}"> <!--  이미지 표시 -->
                             <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
-                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구"> <br>
+                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">
                                 <label th:text="${board.boardTitle}"></label></a>
                         </th:block>
 
                         <th:block th:unless="${board.boardAttachFile==1}">  <!--  이미지 표시 -->
                             <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
-                                <img src="https://placehold.co/30x20?text=NOIMAGE" alt="이미지대체문구"> <br>
+                                <img src="https://placehold.co/30x20?text=NOIMAGE" alt="이미지대체문구">
                                 <label th:text="${board.boardTitle}"></label></a>
                         </th:block>
-
-                        </a>
                     </td>
                     <!--제목을 누르면 Detail로 이동-->
 

@@ -19,12 +19,6 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
     Page<BoardEntity> findAllByCategory(Pageable pageable, Long category);
 
-//  Page<BoardEntity> findByMemberAndCategory(Pageable pageable);
-
-/*  @Query(value = "select * from board where category=8",nativeQuery = true)
-  Page<BoardEntity> findByCategory(Pageable pageable);*/
-
-
 //  Page<BoardEntity> findByCategory(Long id, Long category, Pageable pageable);
 
 

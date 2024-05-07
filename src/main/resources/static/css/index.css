@@ -424,6 +424,7 @@ cursor: pointer;
     word-wrap: normal;
     width: 100px;
     overflow: hidden;
+    padding : 5px;
 }
 
 /*마우스 오버시 .con1변화*/
