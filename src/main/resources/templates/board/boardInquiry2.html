@@ -9,7 +9,48 @@
 </head>
 
 <body>
-<div th:replace="~{/fragments/common/header :: headerFragment}"></div>
+<div class="header">
+    <div class="header-con">
+        <div class="top-header">
+            <div class="top-menu">
+                <div class="right-menu">
+                    <ul>
+                        <th:block sec:authorize="isAnonymous()">
+                            <li><a th:href="@{/member/memberLogin}">로그인</a></li>
+                            <li><a th:href="@{/member/memberJoin}">회원가입</a></li>
+                        </th:block>
+                        <li><a th:href="@{/shop/cartList}">장바구니</a></li>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <li>
+                                <th:block th:if="${#authentication.principal.memberEntity.memberAttachFile == 1}">
+                                    <img th:src="@{|/upload/${#authentication.principal.memberEntity.memberFileName}|}"
+                                         alt="photo" height="28px">
+                                </th:block>
+                                <th:block th:unless="${#authentication.principal.memberEntity.memberAttachFile == 1}">
+                                    <img th:src="@{/images/user.png}" alt="이미지대체문구" height="24px">
+                                </th:block>
+                            </li>
+                            <li>
+                                <a th:href="@{/member/memberDetail/{id}(id=${#authentication.principal.memberEntity.id})}"
+                                   th:text="${#authentication.principal.username}"></a>
+                            </li>
+                            <th:block sec:authorize="hasAnyRole('ADMIN')">
+                                <li><a th:href="@{/admin/memberList}">ADMIN</a></li>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyRole('MANAGER')">
+                                <li>MANAGER</li>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyRole('MEMBER')">
+                                <li>MEMBER</li>
+                            </th:block>
+                            <li><a th:href="@{/member/logout}">LOGOUT</a></li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="inquiry">
     <div class="inquiry-con">
         <div class="left">
@@ -58,9 +99,21 @@
     </div>
 </div>
 
-
-
-<div th:replace="~{/fragments/common/footer :: footerFragment}"></div>
+<div class="footer">
+    <div class="footer-con">
+        <span>(주)E1I4</span> <span> ㅣ </span>
+        <span>대표:박준우</span> <span> ㅣ </span>
+        <span>사업자 등록번호: 000-00-0000000</span> <span> ㅣ </span>
+        <p>주소:서울특별시 노원구 그린아카데미</p>
+        <p>E1I4</p>
+        <img th:src="@{/images/instagram.png}" alt="" class="circle">
+        <img th:src="@{/images/kakao-talk.png}" alt="" class="circle">
+        <img th:src="@{/images/facebook.png}" alt="" class="circle">
+        <img th:src="@{/images/youtube.png}" alt="" class="circle">
+        <img th:src="@{/images/twitter.png}" alt="" class="circle">
+        <img th:src="@{/images/apple-logo.png}" alt="" class="circle">
+    </div>
+</div>
 </body>
 
 </html>

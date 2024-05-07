@@ -33,9 +33,9 @@ public class ChatBotController {
                 "</div>" +
                 "<div class='part'>"+
                 "<p>자주하는 질문입니다 아래 내용을 클릭해 주세요.</p>"+
-                "<div class='flex center menu'>"+
-                "<div class='menu-item'><span onclick='menuclickFn(event)'>기업소개</span></div>"+
-                "<div class='menu-item'><span onclick='menuclickFn(event)'>상품문의</span></div>"+
+                "<div class='center'>"+
+                "<div class='center-item'><span onclick='menuclickFn(event)'>기업소개</span></div>"+
+                "<div class='center-item'><span onclick='menuclickFn(event)'>상품문의</span></div>"+
                 "</div>"+
                 "</div>"+
                 "<div class='time'>"+
