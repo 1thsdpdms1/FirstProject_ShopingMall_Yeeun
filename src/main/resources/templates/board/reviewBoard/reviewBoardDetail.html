@@ -19,6 +19,19 @@
                     <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
                         <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
 
+                        <div class="left">
+                            <div class="left-con">
+                                <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
+                                    <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지 대체문구">
+                                    <!--width="400" height="200"-->
+                                </th:block>
+
+                                <th:block th:unless="${board.boardAttachFile==1}">
+                                    <img src="https://placehold.co/600x450?text=NOIMAGE" alt="이미지 대체문구">
+                                </th:block>
+                            </div>
+                        </div>
+
                         <ul>
                             <li>
                                 수강후기 상세보기
@@ -64,25 +77,15 @@
                             </li>
 
 
-
-                            <th:block th:if="${board.boardAttachFile==1}">   <!-- 조건 충족하면 아래 식 실행 -->
-                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지 대체문구">
-                                <!--width="400" height="200"-->
-                            </th:block>
-
-                            <th:block th:unless="${board.boardAttachFile==1}">
-                                <img src="https://placehold.co/400x200?text=NOIMAGE" alt="이미지 대체문구">
-                            </th:block>
-
                             <li>
-                                <label for="createTime">작성시간 :</label>
-                                <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"
-                                    id="createTime"></td>
+                                <label for="createTime">작성시간</label>
+                                <input type="text" th:value="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"
+                                        id="createTime" readonly>
                             </li>
                             <li>
-                                <label for="updateTime">수정시간 :</label>
-                                <td th:text="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"
-                                    id="updateTime"></td>
+                                <label for="updateTime">수정시간</label>
+                                <input type="text"  th:value="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"
+                                        id="updateTime" readonly>
                             </li>
 
 
@@ -109,7 +112,9 @@
                                         </li>
                                     </th:block>
                                     <th:block th:unless="${board.memberEntity.userEmail==myUserDetails.username}">
-                                        <a th:href="@{/board/reviewBoardList}">목록</a>
+                                        <li>
+                                            <a th:href="@{/board/reviewBoardList}">목록</a>
+                                        </li>
                                     </th:block>
                                     <!--                                     admin이 자기가 쓴 글을 볼때에는 위에거랑 아래거랑 둘다 출력됨 -->
                                 </th:block>
@@ -133,13 +138,13 @@
             <div class="bottom">
                 <div class="reply">
                     <div class="reply-con">
-                        <h1>REVIEW LIST</h1>
+                        <h1>댓글</h1>
 
                         <th:block sec:authorize="isAuthenticated()">
                             <form th:action="@{/reply/reviewBoardReplyWrite}" method="post">
                                 <!--            <form th:action="@{/reply/replyWrite}" method="post">-->
                                 <!--                                <input type="hidden" name="boardId" id="board_id" th:value="${board.id}" readonly>-->
-                                <input type="text" id="boardId" name="boardId" th:value="${board.id}" readonly>
+                                <input type="hidden" id="boardId" name="boardId" th:value="${board.id}" readonly>
                                 <input type="hidden" name="boardReplyId">
 
                                 <input type="text" name="boardReplyWriter" id="boardReplyWriter"
@@ -154,9 +159,9 @@
 
                         <th:block sec:authorize="isAnonymous()">
                             <h1>
-                                댓글을 작성하려면 로그인하세요!
+                                댓글을 작성하려면
                                 <a th:href="@{/member/memberLogin}">
-                                    <img th:src="@{/images/btn_write}" alt="로그인"></a>
+                                    로그인</a> 하세요!
                             </h1>
 
                         </th:block>
@@ -165,8 +170,8 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>글 번호</th>
-                                <th>번호</th>
+                                <!--                                <th>글 번호</th>-->
+                                <!--                                <th>번호</th>-->
                                 <th>내용</th>
                                 <th>작성자</th>
                                 <th>작성시간</th>
@@ -175,10 +180,10 @@
                             <tbody class="tData">
 
                             <tr th:each="boardReply:${boardReplyList}">
-                                <td th:text="${boardReply.boardEntity.id}"></td>
-                                <td th:text="${boardReply.id}"></td>
-                                <td th:text="${boardReply.boardReplyContent}"></td>
+                                <!--                                <td th:text="${boardReply.boardEntity.id}"></td>-->
+                                <!--                                <td th:text="${boardReply.id}"></td>-->
                                 <td th:text="${boardReply.boardReplyWriter}"></td>
+                                <td th:text="${boardReply.boardReplyContent}"></td>
                                 <td th:text="${#temporals.format(boardReply.createTime, 'yyyy-MM-dd HH:mm')}"></td>
                                 <th:block sec:authorize="isAuthenticated()">
                                     <th:block sec:authorize="hasAnyRole('ADMIN')">

@@ -29,19 +29,19 @@
                         <ul class="submenu">
                             <li>
                                 <img th:src="@{/images/sideart.png}" alt="icon"><a
-                                    th:href="@{/board/reviewBoardList4}">미술</a>
+                                th:href="@{/board/reviewBoardList4}">미술</a>
                             </li>
                             <li>
                                 <img th:src="@{/images/sidesport.png}" alt="icon"><a
-                                    th:href="@{/board/reviewBoardList5}">체육</a>
+                                th:href="@{/board/reviewBoardList5}">체육</a>
                             </li>
                             <li>
                                 <img th:src="@{/images/sidemusic.png}" alt="icon"><a
-                                    th:href="@{/board/reviewBoardList6}">음악</a>
+                                th:href="@{/board/reviewBoardList6}">음악</a>
                             </li>
                             <li>
                                 <img th:src="@{/images/sidecook.png}" alt="icon"><a
-                                    th:href="@{/board/reviewBoardList7}">요리</a>
+                                th:href="@{/board/reviewBoardList7}">요리</a>
                             </li>
                         </ul>
                     </div>
@@ -91,13 +91,13 @@
 
                 </thead>
 
-                <tbody>
+                <tbody class="list">
                 <tr th:each="board: ${boardDtoList}">
                     <!--board에 boardDtoList를 넣는다(boardDtoList는 model.add~로 받아온 것임)-->
                     <td th:text="${board.id}"></td>
                     <td th:if="${board.category eq 1}" th:text="자유"></td>
                     <td th:if="${board.category eq 2}" th:text="질문"></td>
-                    <td>
+                    <td class="btitle">
                         <a th:href="@{/board/boardDetail/{id}(id=${board.id})}">
                             <label th:text="${board.boardTitle}"></label>
                         </a>
@@ -112,7 +112,7 @@
                     <td th:text="${board.replyCount}"></td>
                 </tr>
                 </tbody>
-                <tfoot>
+                <tfoot class="page">
                 <tr>
                     <td colspan="7" class="tdPaging">
                         <div class="paging">

@@ -6,12 +6,6 @@
     <title>index</title>
     <script th:src="@{/js/index.js}" defer></script>
     <script th:src="@{/js/AutoGallery.js}" defer></script>
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-        <script th:src="@{/js/chatBot.js}" defer></script>
-        <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
-        <script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
-        <link rel="stylesheet" th:href="@{/css/chatBot/chatBot.css}">
-        <link rel="stylesheet" th:href="@{/css/index.css}">-->
 
 </head>
 <body>
@@ -79,35 +73,43 @@
                         <div class="bottom-con">
                             <div class="left-con">
                                 <div class="con1 span-on">
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
-                                    <div class="sub-con">SUB</div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_art.jpg}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_cafe.png}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_cook.jpg}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_guitar.png}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_making.png}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_piano.png}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_surfing.jpg}" alt="img" width="200px" height="150px"></div>
+                                    <div class="sub-con"><img th:src="@{/images/index/index_tabletennis.jpg}" alt="img" width="200px" height="150px"></div>
                                 </div>
+
                                 <div class="con2 span-off">
                                     <table>
                                         <thead>
                                         <tr>
-                                            <th>종류</th>
+                                            <th>분류</th>
                                             <th>제목</th>
-                                            <th>내용</th>
+<!--                                            <th>내용</th>-->
                                             <th>작성자</th>
+                                            <th>조회수</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <h1>수 강 후 기</h1>
-                                        <tr th:each="review:${boardDtoList}">
+                                        <h1>수 강 후 기
+                                            <label><a th:href="@{/board/reviewBoardList}">+더보기</a></label>
+                                        </h1>
+                                        <tr th:each="review:${boardDtoList}" class="list">
                                             <td th:if="${review.category eq 4}" th:text="미술"></td>
                                             <td th:if="${review.category eq 5}" th:text="체육"></td>
                                             <td th:if="${review.category eq 6}" th:text="음악"></td>
                                             <td th:if="${review.category eq 7}" th:text="요리"></td>
-                                            <td th:text="${review.boardTitle}"></td>
-                                            <td th:text="${review.boardContent}"></td>
+                                            <td  class="btitle">
+                                                <a th:href="@{/board/reviewBoardDetail/{id}(id=${review.id})}">
+                                                    <label th:text="${review.boardTitle}"></label></a>
+                                            </td>
+<!--                                            <td th:text="${review.boardContent}"></td>-->
                                             <td th:text="${review.boardWriter}"></td>
+                                            <td th:text="${review.boardHit}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -123,15 +125,15 @@
                         <div class="bottom-wrapper-list-products">
                             <div class="bottom-wrapper-list-products-items">
                                 <!-- 원본 항목 템플릿 -->
-                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                <div class="item"><a th:href="@{/shop/shopList4}"><img th:src="@{/images/cook.jpeg}"
                                                                           alt="item"></a></div>
-                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                <div class="item"><a th:href="@{shop/shopList3}"><img th:src="@{/images/guitar.jpeg}"
                                                                           alt="item"></a></div>
-                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                <div class="item"><a th:href="@{/shop/shopList1}"><img th:src="@{/images/palette.jpeg}"
                                                                           alt="item"></a></div>
-                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                <div class="item"><a th:href="@{/shop/shopList2}"><img th:src="@{/images/tennis.jpeg}"
                                                                           alt="item"></a></div>
-                                <div class="item"><a th:href="@{/#}"><img th:src="@{/images/logo.png}"
+                                <div class="item"><a th:href="@{/shop/shopList3}"><img th:src="@{/images/drum.jpeg}"
                                                                           alt="item"></a></div>
                             </div>
                             <!-- 항목을 복제하기 위한 JavaScript -->

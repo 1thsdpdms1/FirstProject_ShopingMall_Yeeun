@@ -101,7 +101,7 @@
 
                 </thead>
 
-                <tbody>
+                <tbody class="list">
                 <tr th:each="board: ${boardDtoList}">
 
                     <td th:text="${board.id}"></td>
@@ -111,7 +111,8 @@
                     <td th:if="${board.category eq 6}" th:text="음악"></td>
                     <td th:if="${board.category eq 7}" th:text="요리"></td>
 
-                    <td>
+                    <!--제목을 누르면 Detail로 이동-->
+                    <td class="btitle">
 
                         <th:block th:if="${board.boardAttachFile==1}"> <!--  이미지 표시 -->
                             <a th:href="@{/board/reviewBoardDetail/{id}(id=${board.id})}">
@@ -126,7 +127,7 @@
                         </th:block>
 
                         </a>
-                    </td>
+                    </td >
                     <!--제목을 누르면 Detail로 이동-->
 
                     <td th:text="${board.boardWriter}"></td>
@@ -144,7 +145,7 @@
                 </tr>
                 </tbody>
 
-                <tfoot>
+                <tfoot class="page">
 
                 <tr>
                     <td colspan="10">
