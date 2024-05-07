@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="[http://www.thymeleaf.org](http://www.thymeleaf.org/)"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
@@ -17,14 +17,26 @@
         <div class="boardDetail-con">
             <div class="top">
                 <div class="boardDetail-form">
-                    <!--                <form th:action="@{/board/boardDetail}" method="POST" enctype="multipart/form-data">-->
+
+
                     <form th:action="@{/board/boardDetail}" method="GET">  <!--th:object="${boardEntity}"-->
                         <!-- boardDto를 가져와서 사용할 수 있게 해준다  -> 밑에서 title,cotent 등을 사용할 수 있게된 이유임-->
+                        <div class="left">
+                            <div class="left-con">
+                                <li th:if="${board.boardAttachFile==1}">
+                                    <!--  이미지 표시 -->
+                                    <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">
+                                </li>
+
+                                <li th:unless="${board.boardAttachFile==1}">
+                                    <!--  이미지 표시 -->
+                                    <img src="https://placehold.co/600x450?text=NOIMAGE" alt="이미지 대체문구">
+                                </li>
+                            </div>
+                        </div>
 
                         <ul>
-                            <li>
-                                글 상세보기
-                            </li>
+
                             <li>
                                 <label>카테고리</label>
                                 <input type="text" value="자유게시판" th:if="${board.category eq 1}" readonly>
@@ -53,36 +65,26 @@
                                 <input type="text" name="boardHit" id="boardHit" th:value="${board.boardHit}">
                             </li>
 
-
                             <li>
                                 <label for="boardContent">내용</label>
                             </li>
 
                             <li>
-                            <textarea name="boardContent" id="boardContent" cols="30" rows="10"
-                                      th:text="${board.boardContent}" READONLY></textarea>
-                            </li>
-
-                            <li th:if="${board.boardAttachFile==1}">
-                                <!--  이미지 표시 -->
-                                <img th:src="@{|/upload/${board.newFileName}|}" alt="이미지대체문구">
-                            </li>
-
-                            <li th:unless="${board.boardAttachFile==1}">
-                                <!--  이미지 표시 -->
-                                <img src="https://placehold.co/400x300" alt="이미지대체문구">
+                                <textarea name="boardContent" id="boardContent" cols="30" rows="10"
+                                  th:text="${board.boardContent}" READONLY></textarea>
                             </li>
 
                             <li>
-                                <label for="createTime">작성시간 :</label>
-                                <td th:text="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"
-                                    id="createTime"></td>
+                                <label for="createTime">작성시간</label>
+                                <input  type="text" th:value="${#temporals.format(board.createTime, 'yyyy-MM-dd HH:mm')}"
+                                    id="createTime" readonly>
                             </li>
                             <li>
-                                <label for="updateTime">수정시간 :</label>
-                                <td th:text="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"
-                                    id="updateTime"></td>
+                                <label for="updateTime">수정시간</label>
+                                <input  type="text"  th:value="${#temporals.format(board.updateTime, 'yyyy-MM-dd HH:mm')}"
+                                    id="updateTime" readonly>
                             </li>
+
 
                             <th:block sec:authorize="isAuthenticated()">
                                 <th:block sec:authorize="hasAnyRole('ADMIN')">
@@ -112,7 +114,9 @@
                                 </th:block>
 
                                 <th:block th:unless="${board.memberEntity.userEmail==myUserDetails.username}">
-                                    <a th:href="@{/board/boardList}">목록</a>
+                                    <li>
+                                        <a th:href="@{/board/boardList}">목록</a>
+                                    </li>
                                 </th:block>
 
                             </th:block>
@@ -133,15 +137,15 @@
             <div class="bottom">
                 <div class="reply">
                     <div class="reply-con">
-                        <h1>REVIEW LIST</h1>
+                        <h1>댓글</h1>
 
                         <th:block sec:authorize="isAuthenticated()">
                             <form th:action="@{/reply/boardReplyWrite}" method="post">
-                                <input type="text" id="boardId" name="boardId" th:value="${board.id}" readonly>
+                                <input type="hidden" id="boardId" name="boardId" th:value="${board.id}" readonly>
                                 <input type="hidden" name="boardReplyId">
 
                                 <input type="text" name="boardReplyWriter" id="boardReplyWriter"
-                                       th:value="${myUserDetails.name}" readonly>
+                                       th:value="${myUserDetails.name}" class="writer" readonly>
 
                                 <!--로그인되어 있으면 회원의 이름이 replyWriter 자리에 출력되도록 함-->
                                 <input type="text" name="boardReplyContent" id="boardReplyContent" placeholder="덧글내용">
@@ -152,9 +156,9 @@
 
                         <th:block sec:authorize="isAnonymous()">
                             <h1>
-                                댓글을 작성하려면 로그인하세요!
-                                <a th:href="@{/member/memberLogin}">
-                                    <img th:src="@{/images/logo.png}" alt="로그인"></a>
+                                댓글을 작성하려면
+                                <a th:href="@{/member/memberLogin}" class="login">
+                                    로그인</a> 하세요!
                             </h1>
 
                         </th:block>
@@ -164,20 +168,20 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>글 번호</th>
-                                <th>번호</th>
-                                <th>내용</th>
+                                <!--                                <th>글번호</th>-->
+                                <!--                                <th>번호</th>-->
                                 <th>작성자</th>
+                                <th>내용</th>
                                 <th>작성시간</th>
                             </tr>
                             </thead>
                             <tbody class="tData">
 
                             <tr th:each="boardReply:${boardReplyList}">
-                                <td th:text="${boardReply.boardEntity.id}"></td>
-                                <td th:text="${boardReply.id}"></td>
-                                <td th:text="${boardReply.boardReplyContent}"></td>
+                                <!--                                <td th:text="${boardReply.boardEntity.id}"></td>-->
+                                <!--                                <td th:text="${boardReply.id}"></td>-->
                                 <td th:text="${boardReply.boardReplyWriter}"></td>
+                                <td th:text="${boardReply.boardReplyContent}"></td>
                                 <td th:text="${#temporals.format(boardReply.createTime, 'yyyy-MM-dd HH:mm')}"></td>
 
                                 <th:block sec:authorize="isAuthenticated()">
@@ -212,8 +216,9 @@
             </div>
         </div>
     </div>
-</div>
 
+
+</div>
 
 <div th:replace="~{/fragments/common/footer :: footerFragment }"></div>
 </body>

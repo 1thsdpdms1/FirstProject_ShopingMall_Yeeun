@@ -156,6 +156,6 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     @Query(value = "  SELECT * FROM board where category=8", nativeQuery = true)
     List<BoardEntity> findByCategory8(Long category);
 
-    @Query(value = "select * from board where category between 4 and 7 order by board_hit desc limit 3",nativeQuery = true)
-    List<BoardEntity> findTop3();
+    @Query(value = "select * from board where category between 4 and 7 order by board_hit desc limit 6",nativeQuery = true)
+    List<BoardEntity> findTop6();
 }
