@@ -87,22 +87,60 @@ table th{
   padding: 5px;
 }
 
-table td:not(:last-child){
+table .list{
+  text-align: center;
+  padding: 5px;
+}
+
+table .list tr td{
+  text-align: center;
+  padding: 5px;
+}
+
+table .page{
+text-align : center;
+}
+
+/*table td:not(:last-child){
   text-align: center;
   padding: 5px;
 }
 
 table th td:nth-last-child{
 text-align : center;
-}
+}*/
 
 table tr td  a {
-display : flex;
+/*display : flex;
 justify-content : center;
 align-items : center;
-gap : 10px;
+gap : 10px;*/
 
   }
+table tr td.btitle{
+    width: 500px !important;
+}
+
+  table tr td.btitle> a {
+    display:block;
+    width: inherit;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    /*background-color:#ffff00;*/
+  }
+
+
+  table tr td  a:hover{
+text-decoration: underline;
+cursor: pointer;
+  }
+
+    table tr td  label:hover{
+  text-decoration: underline;
+  cursor: pointer;
+    }
+
 table tr td  a img{
     width : 20px;
     height : 20px;
@@ -192,12 +230,19 @@ font-size: 20px;
 
 }
 
-/* menu의 a태그에 hover 시*/
+.menu li:hover{
+transition : 1s;
+border-bottom: 1px solid black;
+background-color:rgb(250 184 119);
+}
+
+/* menu의 a태그에 hover 시
 .menu a:hover {
 opacity: 1;
 transition : 1s;
 border-bottom: 1px solid black;
-}
+
+}*/
 
 /*.submenu {
 height: 0; *//*
@@ -220,12 +265,17 @@ background-color:  rgb(250 184 119);
 justify-content: center;
 
 }
+.right ul.submenu > li:hover{
+transition : 1s;
+border-bottom: 1px solid black;
+/*background-color:rgb(250 184 119);*/
+}
 
 .menu > li:hover {
 
 /* menu부터 submenu01~5높이 생각해서 설정 */
 height: 300px;
-transition-duration: 0.5s;
+transition-duration: 1s;
 }
 
 
