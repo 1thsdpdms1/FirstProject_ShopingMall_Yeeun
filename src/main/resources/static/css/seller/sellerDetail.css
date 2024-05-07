@@ -88,7 +88,7 @@
 .container .detail .detail-con .detail-form .left .left-con img {
     width: 450px;
     height: 500px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .container .detail .detail-con .detail-form .right ul li {

@@ -17,10 +17,10 @@
       <label>메뉴</label>
       <ul>
         <li><img th:src="@{/images/home.png}" alt="icon"><a th:href="@{/shop/shopList}">전체</a></li>
-        <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopList1}">미술</a></li>
-        <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopList2}">체육</a></li>
-        <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopList3}">음악</a></li>
-        <li><img th:src="@{/images/plus.png}" alt="icon"><a th:href="@{/shop/shopList4}">요리</a></li>
+        <li><img th:src="@{/images/drawing.png}" alt="icon"><a th:href="@{/shop/shopList1}">미술</a></li>
+        <li><img th:src="@{/images/sport.png}" alt="icon"><a th:href="@{/shop/shopList2}">체육</a></li>
+        <li><img th:src="@{/images/music.png}" alt="icon"><a th:href="@{/shop/shopList3}">음악</a></li>
+        <li><img th:src="@{/images/food.png}" alt="icon"><a th:href="@{/shop/shopList4}">요리</a></li>
       </ul>
     </div>
     <div class="shopList-con">
@@ -104,20 +104,20 @@
             <ul>
               <li>
                 <!-- 현재페이지가  첫번째 페이지이면   span표시 -->
-                <span th:if="${shopDtoList3.pageable.pageNumber+1 eq 1}" class="span0">START</span>
+                <span th:if="${shopDtoList3.pageable.pageNumber+1 eq 1}" class="span0">&laquo</span>
                 <!-- 처음 페이지가 아니면  a -->
                 <span th:unless="${shopDtoList3.pageable.pageNumber+1 eq 1}">
                     <a th:href="@{/shop/shopList3(page=0 , search=${param.search}, subject=${param.subject}  )}"
-                       class="span1">처음</a>
+                       class="span1">&laquo</a>
                   </span>
               </li>
               <li>
                 <!-- 이전페이지가  첫번째 페이지이면   span표시 -->
-                <span th:if="${1==shopDtoList3.pageable.pageNumber+1}" class="span0">PRE</span>
+                <span th:if="${1==shopDtoList3.pageable.pageNumber+1}" class="span0">&lt</span>
                 <span th:unless="${1==shopDtoList3.pageable.pageNumber+1}">
                     <!--itemList.pageable.pageNumber 현재페이지 -1 -->
                     <a th:href="@{/shop/shopList3(page=${shopDtoList3.pageable.pageNumber-1} ,search=${param.search},subject=${param.subject} )}"
-                       class="span1">이전</a>
+                       class="span1">&lt</a>
                   </span>
               </li>
               <!-- block  -->
@@ -130,20 +130,20 @@
               </li>
               <li>
                 <!-- 현재페이지가 마지막 페이지이면   span표시 -->
-                <span th:if="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}" class="span0">NEXT</span>
+                <span th:if="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}" class="span0">&gt</span>
                 <!-- 현재페이지가 마지막 페이지아니면    a 표시 현재페이지 +1 -->
                 <span th:unless="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}">
-                        <a th:href="@{/shop/shopList3(page=${shopDtoList31.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
-                           class="span1">다음</a>
+                        <a th:href="@{/shop/shopList3(page=${shopDtoList3.pageable.pageNumber+1},search=${param.search},subject=${param.subject} )}"
+                           class="span1">&gt</a>
                   </span>
               </li>
               <li>
                 <!-- 현재페이지가 마지막 페이지이면   span표시 -->
-                <span th:if="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}" class="span0">END</span>
+                <span th:if="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}" class="span0">&raquo</span>
                 <!-- 현재페이지가 마지막 페이지가 아니면 마지막 페이지로 이동 해라  a -->
                 <span th:unless="${shopDtoList3.totalPages ==shopDtoList3.pageable.pageNumber+1}">
                     <a th:href="@{/shop/shopList3(page=${shopDtoList3.totalPages-1},search=${param.search},subject=${param.subject} )}"
-                       class="span1">마지막</a>
+                       class="span1">&raquo</a>
                   </span>
               </li>
             </ul>
