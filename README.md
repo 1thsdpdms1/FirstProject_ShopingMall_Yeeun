@@ -172,5 +172,132 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 - 이후 -100%를 넣어  가로길이의 100%만큼 왼쪽으로 이동하게 정의한후 1500초 동안 계속해서 재생되며 수평으로 움직이게 설정
 </details>
 
+--------------------------------------------------
 
+# ✈AdminPage_GroupAirTeamProject✈
+
+<br>
+항공사 관리자 페이지로
+이해하기 쉬운 UI와 부서 간의 의사소통이 원할하도록한 커뮤니티
+또한 권한에 따라 관여할수있는 부분 제한하였습니다
+
+사원, 부장, 대표이사 권한으로 나뉘어져있으며
+부서관리, 결제관리, 일정관리, 근태관리, 급여관리, 사원관리 등등 관리프로그램 
+
+영화API, 날씨 API, 버스API를 사용하여 사용자의 편의성을 높여보았습니다
+
+<br>
+
+
+## 📌 목차 
+
+- [프로젝트 기본설정](#-시연-영상)
+- [팀원 소개](#-팀원-소개)
+
+
+<br>
+
+## ⚙프로젝트 소개
+
+<details>
+<summary>프로젝트 기본설정</summary>
+<li> 2024/05/11~2024/06/07 </li>
+<li> 항공 관리자 페이지 </li>
+<li> 팀장 1명, 팀원 4명 (총 5인) _팀장으로 참여 </li>
+<li> 프로젝트명 : GroupAir TeamProject </li>
+<li> 프로그래밍 언어 : JAVA </li>
+<li> 프레임워크 : Springboot 2.7.11 </li>
+<li> 데이터베이스 : MySql8 </li>
+<li> 개발툴 : IntelliJ </li>
+<li> 템플릿 엔진 : Thymeleaf (HTML + css) </li>
+</details>
+
+<details>
+<summary> 🔧기술스택 </summary>
+  
+
+
+</details>
+
+<details>
+<summary> 팀원소개</summary>
+
+- 👩‍🦰손예은(팀장) : CI/CD, DB설계, 로그인, naver(oauth, Mail, 조직연동), 사원관리
+- 👱‍서**(팀원) : 회사일정(캘린더), 게시판 관리(파일 덧글 공지사항)
+- 👱‍박**(팀원) : db설계, 근태관리, 급여관리, 항공편관리(map) 
+- 👱‍조**(팀원) : chatbot, 부서관리(부서등록) 
+- 👱‍정**(팀원) : chatbot, 부서관리(부서등록) 
+
+
+</details>
+
+
+<details>
+<summary> 타임라인</summary>
+
+  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/c491040a-4bc0-43e9-9675-2a06484d6661)
+
+</details>
+
+<details>
+<summary> DB설계 </summary>
+
+  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ea0ccc32-1659-4d5e-845d-26a46bcbff69)
+
+
+</details>
+<br>
+
+
+<br>
+## ⭐프로젝트 시안
+![0index](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/860f5c63-8d3b-4f40-9463-10d9c2c67be6)
+
+
+### ✔ 로그인 페이지 구현 ✔
+<details>
+<summary>로그인 페이지 구현 시연 영상</summary>
+
+  ![로그인](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/3dd99fdb-f2d5-4347-b780-07eb49913627)
+
+  
+</details>
+
+<details>
+<summary>로그인 페이지 구현 시안 </summary>
+ 
+</details>
+
+### ✔ 회원등록 페이지 구현 ✔
+<details>
+<summary>회원등록 구현 시연 영상</summary>
+
+![회원등록](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0fb066b-f951-44fc-ae44-57fa2ac0b4f7)
+
+![회원디테일](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/6e3c2d0d-9cd8-496f-9383-d3ee2a981f7c)
+
+  
+</details>
+
+<details>
+<summary>회원등록 구현 시안 </summary>
+
+
+ 
+</details>
+
+### ✔ NAVER API 연동 구현 ✔
+<details>
+<summary> NAVER API 연동 시연 영상</summary>
+
+![네이버](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/238e136e-4607-428d-9845-95f92e516752)
+
+
+  
+</details>
+
+<details>
+<summary> NAVER API 연동 시안 </summary>
+ 
+</details>
 
