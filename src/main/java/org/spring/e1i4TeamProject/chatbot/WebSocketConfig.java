@@ -15,14 +15,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         //서버에서 클라이언트로 메세지 보낼 때
         config.enableSimpleBroker("/topic");
         //클라이언트가 메세지를 서버쪽으로 전송할 때
-        //  @MessageMapping("/hello")  <- stompClient.send("/app2/hello")
         config.setApplicationDestinationPrefixes("/app2");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // 소켓 연결
-        //  let  socket = new SockJS('/chatEndpoint');
         registry.addEndpoint("/chatEndpoint").withSockJS();
     }
 

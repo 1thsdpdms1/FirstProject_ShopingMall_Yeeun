@@ -64,31 +64,26 @@ public class AdminService implements AdminServiceInterface {
     @Override
     public Page<ShopDto> shopList(Pageable pageable, String subject1, String subject2, String search) {
         Page<ShopEntity> shopEntityPage=null;
-
         if(subject1!=null && subject2!=null && search!=null) {
             if ("1".equals(subject1)) {
-
                 if ("shopTitle".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(1, search, pageable);
                 } else if ("shopContent".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopContentContains(1, search, pageable);
                 }
             } else if ("2".equals(subject1)) {
-
                 if ("shopTitle".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(2, search, pageable);
                 } else if ("shopContent".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopContentContains(2, search, pageable);
                 }
             } else if ("3".equals(subject1)) {
-
                 if ("shopTitle".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(3, search, pageable);
                 } else if ("shopContent".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopContentContains(3, search, pageable);
                 }
             } else if ("4".equals(subject1)) {
-
                 if ("shopTitle".equals(subject2)) {
                     shopEntityPage = shopRepository.findByCategoryAndShopTitleContains(4, search, pageable);
                 } else if ("shopContent".equals(subject2)) {
@@ -101,9 +96,7 @@ public class AdminService implements AdminServiceInterface {
         }else {
             shopEntityPage = shopRepository.findAll(pageable);
         }
-
         Page<ShopDto> shopDtos = shopEntityPage.map(ShopDto::toselectShopDto);
-
         return shopDtos;
     }
 

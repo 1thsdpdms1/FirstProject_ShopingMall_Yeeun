@@ -151,16 +151,14 @@
                         <span th:if="${memberList.pageable.pageNumber+1 eq 1}" class="span0"> &laquo</span>
                         <span th:unless="${memberList.pageable.pageNumber+1 eq 1}">
                                      <a th:href="@{/admin/memberList(page=0 , search=${param.search},subject=${param.subject} )}"
-                                        class="span1"> &laquo</a>
-                                     </span>
+                                        class="span1"> &laquo</a></span>
                     </li>
                     <li>
                         <!-- 이전페이지가 첫번째 페이지면 span표시 -->
                         <span th:if="${1==memberList.pageable.pageNumber+1}" class="span0">&lt</span>
                         <span th:unless="${1==memberList.pageable.pageNumber+1}">
                                         <a th:href="@{/admin/memberList(page=${memberList.pageable.pageNumber-1}, search=${param.search},subject=${param.subject} )}"
-                                           class="span1">&lt</a>
-                                     </span>
+                                           class="span1">&lt</a></span>
                     </li>
                     <!--block -->
                     <!-- 페이지번호 -->

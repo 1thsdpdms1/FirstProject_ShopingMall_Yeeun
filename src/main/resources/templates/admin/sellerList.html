@@ -87,7 +87,7 @@
             <form id="deleteForm" action="/admin/sellerListDelete" method="post">
                 <table>
                     <tr>
-                        <th><button type="submit" class="delete">선택삭제</button></th>
+                        <th><button type="submit" class="delete" onclick="return deleteConfirmation()">선택삭제</button></th>
                         <th>Id</th>
                         <th>이메일</th>
                         <th>비밀번호</th>
@@ -103,7 +103,7 @@
                     </tr>
                     <tr th:each="seller:${sellerList}">
                         <td>
-                            <input type="checkbox" name="selectedIds" th:value="${seller.id}">
+                            <input type="checkbox" name="selectedIds" th:value="${seller.id} ">
                         </td>
                         <td th:text="${seller.id}"></td>
                         <td th:text="${seller.userEmail}"></td>

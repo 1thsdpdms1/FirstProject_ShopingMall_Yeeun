@@ -487,7 +487,14 @@ cursor: pointer;
     animation: leftMoveLoop 1500s infinite linear;
     width: calc(320px * 1000);
 }
-
+@keyframes leftMoveLoop {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 .index .index-con .sections .section.sec4 .bottom-wrapper-list-products .bottom-wrapper-list-products-items .item {
     width: 300px;
     height: 300px;
@@ -503,14 +510,7 @@ cursor: pointer;
     line-height: 300px;
 }
 
-@keyframes leftMoveLoop {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
+
 
 /*.index .index-con .sections .section.sec4{
   width: 1600px;

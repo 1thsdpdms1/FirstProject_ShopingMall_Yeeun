@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 @Controller
 public class ChatBotController {
 
-    @MessageMapping("/hello") // /app2/hello
-    @SendTo("/topic/greetings") //stompClient.subscribe
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
     public BotMessage greeting(ClientMessage message) throws Exception {
         Thread.sleep(50);
         LocalDateTime today=LocalDateTime.now();
@@ -20,7 +20,6 @@ public class ChatBotController {
         String formattedDay=today.format(formatter);
         String formattedtime=today.format(DateTimeFormatter.ofPattern("a H:mm"));
 
-        // 처음 실행 되는 -> 답장문
         return new BotMessage(
             "<div class='flex center date' >"+formattedDay+"</div>"+
                 "<div class='msg bot flex'>"+
@@ -45,10 +44,9 @@ public class ChatBotController {
                 "</div>");
     }
 
-    @MessageMapping("/message") // /app2/message
-    @SendTo("/topic/message")//stompClient.subscribe
+    @MessageMapping("/message")
+    @SendTo("/topic/message")
     public BotMessage message(ClientMessage message) throws Exception {
-
         Thread.sleep(100); // 응답딜레이 시간
         LocalDateTime today=LocalDateTime.now();
         String formattedtime=today.format(DateTimeFormatter.ofPattern("a H:mm"));
@@ -56,7 +54,6 @@ public class ChatBotController {
         String responseText=message.getContent()+" 대한 답장입니다.";
         String src="";
         String text="";
-
         if(responseText.contains("기업")){
             src="/images/logo.png"    ;
             text="E1I4는 원데이 클래스 강의를 판매하는 사이트입니다.<br>" +
@@ -65,7 +62,6 @@ public class ChatBotController {
             text="[상단메뉴] - [shop] - [전체] <br> 클릭하시면 모든 상품을 확인할수있으며,<br>" +
                 " 더 자세한 상품문의를 원하신다면 <br>선생님께 문의하시길 바랍니다";
         }
-
         return new BotMessage(
             "<div class='msg bot flex'>"+
                 "<div class='icon'>"+

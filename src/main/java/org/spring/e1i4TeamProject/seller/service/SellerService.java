@@ -33,24 +33,6 @@ private final ShopRepository shopRepository;
 
     }
 
-
-
-@Override
-public List<ShopDto> shopList(Long id) {
-    // 판매자 ID로 판매자 엔티티를 찾습니다.
-    MemberEntity memberEntity = sellerRepository.findById(id).orElseThrow(() ->
-        new IllegalArgumentException("해당 판매자를 찾을 수 없습니다. ID: " + id));
-
-    // 판매자 엔티티의 ID로 상점 엔티티를 찾습니다.
-    List<ShopEntity> shopEntityList = shopRepository.findByMemberEntityId(memberEntity.getId());
-
-    // 상점 엔티티를 DTO로 변환합니다.
-    List<ShopDto> shopDtos = shopEntityList.stream().map(ShopDto::toselectShopDto)
-        .collect(Collectors.toList());
-
-    return shopDtos;
-}
-
     @Override
     public MemberDto sellerDetail(Long id) {
         MemberEntity memberEntity=sellerRepository.findById(id).orElseThrow(()->{
@@ -59,6 +41,21 @@ public List<ShopDto> shopList(Long id) {
         MemberDto memberDto=MemberDto.toMemberDto(memberEntity);
         return memberDto;
     }
+
+    @Override
+    public List<ShopDto> shopList(Long id) {
+        MemberEntity memberEntity = sellerRepository.findById(id).orElseThrow(() ->
+            new IllegalArgumentException("해당 판매자를 찾을 수 없습니다. ID: " + id));
+
+        List<ShopEntity> shopEntityList = shopRepository.findByMemberEntityId(memberEntity.getId());
+
+        List<ShopDto> shopDtos = shopEntityList.stream().map(ShopDto::toselectShopDto)
+            .collect(Collectors.toList());
+
+        return shopDtos;
+    }
+
+
 
     @Override
     public int sellerListDelete(Long id) {

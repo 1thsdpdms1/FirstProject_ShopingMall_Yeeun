@@ -29,11 +29,12 @@
                         <li th:each="seller : ${seller}">
                             <div class="top">
                                 <th:block th:if="${seller.memberAttachFile==1}">
-                                    <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"> <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구"></a>
+                                    <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}">
+                                        <img th:src="@{|/upload/${seller.memberNewFileName}|}" alt="이미지대체문구"></a>
                                 </th:block>
                                 <th:block th:unless="${seller.memberAttachFile==1}">
-                                    <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}"><img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구"></a>
-
+                                    <a th:href="@{/seller/sellerDetail/{id}(id=${seller.id})}">
+                                        <img src="https://placehold.co/400x400?text=NOIMAGE" alt="이미지대체문구"></a>
                                 </th:block>
                             </div>
                             <div class="bottom">

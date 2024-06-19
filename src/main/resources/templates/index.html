@@ -125,7 +125,6 @@
                     <div class="bottom">
                         <div class="bottom-wrapper-list-products">
                             <div class="bottom-wrapper-list-products-items">
-                                <!-- 원본 항목 템플릿 -->
                                 <div class="item"><a th:href="@{/shop/shopList4}"><img th:src="@{/images/cook.jpeg}"
                                                                           alt="item"></a></div>
                                 <div class="item"><a th:href="@{shop/shopList3}"><img th:src="@{/images/guitar.jpeg}"
@@ -139,10 +138,9 @@
                             </div>
                             <!-- 항목을 복제하기 위한 JavaScript -->
                             <script>
-                                // 아이템 요소를 복제하여 추가합니다.
                                 const itemsContainer = document.querySelector('.bottom-wrapper-list-products-items');
                                 const itemTemplates = itemsContainer.querySelectorAll('.item');
-                                for (let j = 0; j < 1000; j++) { // 각 항목을 다섯 번씩 반복
+                                for (let j = 0; j < 1000; j++) {
                                     itemTemplates.forEach(itemTemplate => {
                                         const newItem = itemTemplate.cloneNode(true);
                                         itemsContainer.appendChild(newItem);
