@@ -79,7 +79,7 @@
 
 <details>
 <summary>관리자 페이지 구현 시안 </summary>
-  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/7abbca76-164e-4e32-a147-e775a2a6486c  width="200" height="400"/>
+  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/7abbca76-164e-4e32-a147-e775a2a6486c"  width="200" height="400"/>
 
 - Spring Security의 타임리프 태그 라이브러리를 사용하여 권한이 admin일때만 관리자페이지에 접속 가능
 - pageable ,subject, search를 매개변수로 받아와서 subject가 null이 아닌경우 subject에 따라 이름, 전화번호, 이메일로 검색이 가능
@@ -87,13 +87,13 @@
 - 테이블에 너무 긴 글이 들어간 경우엔 말줄임 기능
 <br>
 
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0294769-b666-4aa5-a164-48422e7fca12  width="200" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0294769-b666-4aa5-a164-48422e7fca12"  width="200" height="400"/>
 
 - 상품페이지는 param으로 subject1 subject2 seach pageable를 매겨변수를 불러와 미술/체육/음악/요리 등 카테고리별로 선택후 수강명/수강내용을 검색할수있게 select를 두개 구성
 - 검색하고 페이지네이션된 결과를 반환
 <br>
 
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b1c0eaa2-8553-4131-aa76-37b7adc45270  width="200" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b1c0eaa2-8553-4131-aa76-37b7adc45270"  width="200" height="400"/>
 
 - 삭제는 다중선택삭제와 일반 삭제 가능
 - 다중선택삭제는 javascript에 selectedIds"라는 이름을 가진 input 요소 중에 체크된 것들을 모두 선택하고
@@ -118,11 +118,11 @@
 - configureMessageBroker() 메서드는 메시지 브로커를 설정하고 /app2가 붙으면 서버로 전송, /topic이 붙으면 클라이언트에게 메세지 보내도록 활성화
 - registerStompEndpoints() 메서드로 클라이언트와 서버간의 웹소켓 연결을 활성화 
 
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ed233c53-4675-4464-9a30-bb7de21d5c1f  width="200" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ed233c53-4675-4464-9a30-bb7de21d5c1f"  width="200" height="400"/>
 
 - @MessageMapping() 주소로 메세지가 오면 해당 매서드가 구현되며 @Sendto() 주소로 클라이언트에게 전송
 - 처음 소켓연결시 연결이 성공하면  /app2/hello주소로 메세지를 보내 hello메서드를 실행시키도록 하여 기업소개, 상품소개를 선택할수있게 했으며 이는 topic/greetings주소로 클라이언트에게 전송
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/8966f99d-6527-4f5e-839a-5ed18900a1a6  width="200" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/8966f99d-6527-4f5e-839a-5ed18900a1a6"  width="200" height="400"/>
 - 기업소개 또는 상품소개 버튼을 클릭시 /app2/message주소로 메세지를 보내 message매서드를 실행시켜 그에대한 응답내용이 나오도록 함
 
 </details>
@@ -137,14 +137,14 @@
 <details>
 <summary>강사 소개 페이지 시안 설명</summary>
   
-  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/2ee0c3d2-998b-4d8a-af70-9abe71c56efb  width="200" height="400"/>
+  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/2ee0c3d2-998b-4d8a-af70-9abe71c56efb"  width="200" height="400"/>
 
 - 강사 페이지는 모든 사용자가 선생님의 프로필을 볼수있도록 한 페이지
 - JPQL을 사용하여 role이 seller인 모든회원을 검색하고 stream으로 엔티티를 dto로 변한후 리스트로 반환-
 - 이 list를 html에 그리드를 사용하여 나타냈고 hover시 transform: scale를 사용해 강조효과
 -  memberAttachFile==1일때와 아닐때를 구분하여 img가 없으면 기본이미지 나오도록 구현
 
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ebb030a2-9ec1-4a21-b43c-f6ded3bfae18  width="200" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ebb030a2-9ec1-4a21-b43c-f6ded3bfae18"  width="200" height="400"/>
 
 - 그리드를 선택하면 더 자세한 프로필을 볼수있는 디테일페이지가 나오고  프로필 하단에는 선생님이 등록한 상품인 강좌 list가 있으며 
 바로가기로 상품페이지로 이동할수있게 구성
@@ -164,7 +164,7 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 <details>
 &nbsp;<summary>INDEX 애니메이션 기능 시안 설명</summary>
   
-  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/baff420b-f0c3-40e5-9a07-995d86c9e8d0  width="200" height="400"/>
+  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/baff420b-f0c3-40e5-9a07-995d86c9e8d0"  width="200" height="400"/>
   
 - for문을 통해 각이미지를 1000번 나열되게 하고 나열된 이미지에 leftMoveLoop라는 이름의 키프레임 애니메이션을 translateX()에 0을 넣어 위치를 고정시킴
 - 이후 -100%를 넣어  가로길이의 100%만큼 왼쪽으로 이동하게 정의한후 1500초 동안 계속해서 재생되며 수평으로 움직이게 설정
