@@ -69,8 +69,8 @@
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
 
 ### ▶ 관리자 페이지 구현 
-<details>
-<summary>(　)관리자 페이지 구현 시안</summary>
+　<details>
+　<summary>　관리자 페이지 구현 시안</summary>
 
 (　）</details>
 <details>
