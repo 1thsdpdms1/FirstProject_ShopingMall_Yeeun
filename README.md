@@ -86,11 +86,13 @@
 - 회원조회와 선생님조회를 구분하기위해서는 권한과 subject 조건 두개를 and연산자를 이용하여 findByRoleAndNameContains 으로 회원이 member이면서 이름에 대해 검색가능하게 구현
 - 테이블에 너무 긴 글이 들어간 경우엔 말줄임 기능
 <br>
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0294769-b666-4aa5-a164-48422e7fca12  width="200" height="400"/>
 
 - 상품페이지는 param으로 subject1 subject2 seach pageable를 매겨변수를 불러와 미술/체육/음악/요리 등 카테고리별로 선택후 수강명/수강내용을 검색할수있게 select를 두개 구성
 - 검색하고 페이지네이션된 결과를 반환
 <br>
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b1c0eaa2-8553-4131-aa76-37b7adc45270  width="200" height="400"/>
 
 - 삭제는 다중선택삭제와 일반 삭제 가능
@@ -102,6 +104,7 @@
 ### ✔ Chatbot 구현 ✔
 <details>
 <summary>Chatbot 구현 시연 영상</summary>
+  
 ![chatBot](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/97b1952e-e28d-4b31-9215-7b600e8121bd)
 
 </details>
