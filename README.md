@@ -22,15 +22,14 @@
 
 
 <br>
-<br>
 
 ## 🔎프로젝트 소개
 
 <details>
 <summary>프로젝트 기본설정</summary>
-- 2024/04/11~2024/05/10 
-- 원데이 클래스 강의판매 사이트
-- 팀장 1명, 팀원 4명 (총 5인) _팀원으로 참여
+<li> 2024/04/11~2024/05/10  </li>
+<li> 원데이 클래스 강의판매 사이트 </li>
+<li> 팀장 1명, 팀원 4명 (총 5인) _팀원으로 참여 </li>
 <li> 프로젝트명 : E1i4TeamProject </li>
 <li> 프로그래밍 언어 : JAVA </li>
 <li> 프레임워크 : Springboot 2.7.11 </li>
@@ -50,20 +49,64 @@
 - 👩‍🦰손예은(팀원) : 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능
 
 </details>
-<br>
+
+<details>
+<summary> 타임라인</summary>
+  
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/1f2aa490-1614-40bc-881b-c4dfe19611bc)
+
+</details>
+
+<summary> DB설계 </summary>
+  
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/1f2aa490-1614-40bc-881b-c4dfe19611bc)
+
+</details>
 <br>
 
 ## 🔎프로젝트 시안
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
 
-### ▶ 관리자 페이지 구현
+### ▶ 관리자 페이지 구현 
+<details>
+<summary>관리자 페이지 구현 시안</summary>
+
+</details>
+<details>
+<summary>관리자 페이지 구현 시안 영상</summary>
+
+</details>
 
 ### ▶ Chatbot 구현
+<details>
+<summary>프로젝트 기본설정</summary>
+
+</details>
+<details>
+<summary>프로젝트 기본설정</summary>
+
+</details>
 
 ### ▶ 강사소개 구현
+<details>
+<summary>프로젝트 기본설정</summary>
+
+</details>
+<details>
+<summary>프로젝트 기본설정</summary>
+
+</details>
 
 ### ▶ INDEX 애니메이션 기능 구현
+<details>
+<summary>프로젝트 기본설정</summary>
+
+</details>
+<details>
+<summary>프로젝트 기본설정</summary>
+
+</details>
 
 
-## 🔎프로젝트 시안영상
+## 🔎블라블라
 
