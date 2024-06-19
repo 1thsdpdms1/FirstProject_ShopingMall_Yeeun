@@ -1,4 +1,4 @@
-[![Yeeun's GitHub stats](https://github-readme-stats.vercel.app/api?username=1thsdpdms1)](https://github.com/anuraghazra/github-readme-stats)
+[![Yeeun's GitHub stats](https://github-readme-stats.vercel.app/api?username=1thsdpdms1)]
 
 # E1I4TeamProject
 
