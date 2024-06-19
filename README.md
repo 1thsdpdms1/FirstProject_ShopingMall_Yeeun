@@ -71,8 +71,8 @@
 ### ✔ 관리자 페이지 구현 ✔
 <details>
 <summary>　관리자 페이지 구현 시연 영상</summary>
-![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f0c6f4cd-ea44-4aac-9c72-cc77ef5165de)
 
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/0cc68f62-fb3a-48cd-bbc9-2c25f28cb8be.gif)
   
 </details>
 
