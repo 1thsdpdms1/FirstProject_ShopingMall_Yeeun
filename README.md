@@ -70,7 +70,7 @@
 
 ### ✔ 관리자 페이지 구현 ✔
 <details>
-<summary>　관리자 페이지 구현 시연 영상</summary>
+<summary>관리자 페이지 구현 시연 영상</summary>
 
 ![관리자 페이지 시안영상](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/e603ecf6-fcf9-4c7c-905c-581025a0a3d1)
   
@@ -78,8 +78,8 @@
 
 <details>
 <summary>관리자 페이지 구현 시안 </summary>
-  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/bfe05a9b-06fb-4f4e-aa0a-5131b68de1db)
-
+  
+  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/7abbca76-164e-4e32-a147-e775a2a6486c)
 첫번쨰로 Spring Security의 타임리프 태그 라이브러리를 사용하여
 권한이 admin일때만 관리자페이지에 접속할수있도록 하였습니다 
 두번쨰로는 pageable ,subject, search를 매개변수로 받아와서 subject가 null이 아닌경우 subject에 따라 
@@ -111,6 +111,25 @@
 <details>
 <summary>Chatbot 구현 시안 설명</summary>
 
+  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f965e795-2b38-46f2-a864-cacde6a7cd71)
+
+websocket은 기존의 단방향 HTTP프로토콜과 호환되어 양방향 통신을 제공하기 위해 개발된 프로토콜이며
+websocket 라이브러리를 주입하여 사용합니다
+configureMessageBroker() 메서드는 메시지 브로커를 설정하고 
+/app2가 붙으면 서버로 전송하게 하고
+/topic이 붙으면 클라이언트에게 메세지 보내도록 활성화시켰으며
+그 아래 registerStompEndpoints() 메서드로 클라이언트와 서버간의 웹소켓 연결을 활성화 시켰습니다
+
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ed233c53-4675-4464-9a30-bb7de21d5c1f)
+
+@MessageMapping() 주소로 메세지가 오면 해당 매서드가 구현되며 @Sendto() 주소로 클라이언트에게 전송되는데
+처음 소켓연결시 연결이 성공하면  /app2/hello주소로 메세지를 보내 hello메서드를 실행시키도록 하여
+가장 많이 하는 질문인 기업소개, 상품소개를 선택할수있게 했으며 이는 topic/greetings주소로 클라이언트에게 전송됩니다
+
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/8966f99d-6527-4f5e-839a-5ed18900a1a6)
+
+기업소개 또는 상품소개 버튼을 클릭시 /app2/message주소로 메세지를 보내 
+message매서드를 실행시켜 그에대한 응답내용이 나오도록했습니다
 
 </details>
 
@@ -124,6 +143,21 @@
 </details>
 <details>
 <summary>강사 소개 페이지 시안 설명</summary>
+  
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/2ee0c3d2-998b-4d8a-af70-9abe71c56efb)
+강사 페이지는 모든 사용자가 선생님의 프로필을 볼수있도록 한 페이지 입니다
+JPQL을 사용하여 role이 seller인 모든회원을 검색하고 stream으로 엔티티를 dto로 변한후 리스트로 반환했으며
+이 list를 html에 그리드를 사용하여 나타냈고 hover시 transform: scale를 사용해 강조효과를 주었습니다
+또한 memberAttachFile==1일때와 아닐때를 구분하여 img가 없으면 기본이미지가 나오도록 했습니다
+
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ebb030a2-9ec1-4a21-b43c-f6ded3bfae18)
+
+
+그리드를 선택하면 더 자세한 프로필을 볼수있는 디테일페이지가 나오고  프로필 하단에는 선생님이 등록한 상품인 강좌 list가 있으며 
+바로가기로 상품페이지로 이동할수있게 구성하였습니다
+코드는 findbyid를 사용하여 id로 찾고 없으면 판매자가 존재하지 않는다는 예외를 뒀으며
+id를 찾았다면 찾은 엔티티를 dto로 반환하도록 했습니다
+또한 admin권한이라면 목록으로 돌아가기버튼과 회원탈퇴버튼 두개가 보여 여기서도 삭제 진행이 가능하게 하였습니다
 
 </details>
 
@@ -136,7 +170,13 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 </details>
 <details>
 &nbsp;<summary>INDEX 애니메이션 기능 시안 설명</summary>
-
+  
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/baff420b-f0c3-40e5-9a07-995d86c9e8d0)
+for문을 통해 각이미지를 1000번 나열되게 하고 
+나열된 이미지에 leftMoveLoop라는 이름의 키프레임 애니메이션을 
+translateX()에 0을 넣어 위치를 고정시켰다가
+이후 -100%를 넣어  가로길이의 100%만큼 왼쪽으로 이동하게 정의한후
+ 1500초 동안 계속해서 재생되며 수평으로 움직이게 설정히였습니다
 </details>
 
 
