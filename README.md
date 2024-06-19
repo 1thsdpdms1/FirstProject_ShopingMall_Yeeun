@@ -70,41 +70,41 @@
 
 ### ▶ 관리자 페이지 구현 
 <details>
-<summary>관리자 페이지 구현 시안</summary>
+&nbsp;<summary>관리자 페이지 구현 시안</summary>
 
 </details>
 <details>
-<summary>관리자 페이지 구현 시안 영상</summary>
+&nbsp;<summary>관리자 페이지 구현 시안 영상</summary>
 
 </details>
 
 ### ▶ Chatbot 구현
 <details>
-<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>프로젝트 기본설정</summary>
 
 </details>
 <details>
-<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>프로젝트 기본설정</summary>
 
 </details>
 
 ### ▶ 강사소개 구현
 <details>
-<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>프로젝트 기본설정</summary>
 
 </details>
 <details>
-<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>프로젝트 기본설정</summary>
 
 </details>
 
 ### ▶ INDEX 애니메이션 기능 구현
 <details>
-<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>프로젝트 기본설정</summary>
 
 </details>
 <details>
-<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>프로젝트 기본설정</summary>
 
 </details>
 
