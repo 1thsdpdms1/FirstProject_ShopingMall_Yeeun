@@ -78,17 +78,6 @@
 
 <details>
 <summary>관리자 페이지 구현 시안 </summary>
-
-</details>
-
-### ✔ Chatbot 구현 ✔
-<details>
-<summary>Chatbot 구현 시연 영상</summary>
-![chatBot](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/97b1952e-e28d-4b31-9215-7b600e8121bd)
-
-</details>
-<details>
-<summary>Chatbot 구현 시안 설명</summary>
   ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/bfe05a9b-06fb-4f4e-aa0a-5131b68de1db)
 
 첫번쨰로 Spring Security의 타임리프 태그 라이브러리를 사용하여
@@ -111,6 +100,17 @@
 다중선택삭제는 javascript에 selectedIds"라는 이름을 가진 input 요소 중에 체크된 것들을 모두 선택하고
 가장 가까운 tr요소를 찾아 삭제하는 명령을 foreach함수를 써 반복하게 하여 선택삭제를 구현했으며
 회원을 삭제하기 전에 사용자에게 확인 메시지를 표시하고, if else문으로 사용자의 응답에 따라 삭제를 진행하게 했습니다
+</details>
+
+### ✔ Chatbot 구현 ✔
+<details>
+<summary>Chatbot 구현 시연 영상</summary>
+![chatBot](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/97b1952e-e28d-4b31-9215-7b600e8121bd)
+
+</details>
+<details>
+<summary>Chatbot 구현 시안 설명</summary>
+
 
 </details>
 
