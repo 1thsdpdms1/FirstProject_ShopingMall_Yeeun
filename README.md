@@ -1,6 +1,7 @@
-[![Yeeun's GitHub stats](https://github-readme-stats.vercel.app/api?username=1thsdpdms1)]
-
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=1thsdpdms1&langs_count=8)](https://github.com/1thsdpdms1/github-readme-stats)
+<div align=center>
 # E1I4TeamProject
+</div>
 
 <details>
 <summary>프로젝트 기본설정</summary>
@@ -29,35 +30,6 @@ ORM : Spring Data JPA (JAVA(SQL))
 
 </details>
 
-## DEV
-
-### MEMBER
 <details>
-<summary>Security</summary>
-
-
+<summary> ## 팀원구성</summary>
 </details>
-
-<details>
-<summary>Oauth2</summary>
-
-</details>
-
-
-
-
-
-### BOARD
-### SHOP
-<details>
-<summary>shop</summary>
-
-</details>
-
-### ADMIN
-
-<details>
-<summary>admin</summary>
-
-</details>
-### FRONT
