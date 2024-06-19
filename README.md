@@ -65,7 +65,7 @@
 </details>
 <br>
 
-## 🔎프로젝트 시안
+## ⭐프로젝트 시안
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
 
 ### ✔ 관리자 페이지 구현 ✔
@@ -118,5 +118,4 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 </details>
 
 
-## 🔎블라블라
 
