@@ -72,7 +72,7 @@
 <details>
 <summary>　관리자 페이지 구현 시연 영상</summary>
 
-![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/0cc68f62-fb3a-48cd-bbc9-2c25f28cb8be.gif)
+![관리자 페이지 시안영상](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/e603ecf6-fcf9-4c7c-905c-581025a0a3d1)
   
 </details>
 
@@ -83,32 +83,37 @@
 
 ### ✔ Chatbot 구현 ✔
 <details>
-<summary>프로젝트 기본설정</summary>
+<summary>Chatbot 구현 시연 영상</summary>
+![chatBot](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/97b1952e-e28d-4b31-9215-7b600e8121bd)
 
 </details>
 <details>
-<summary>프로젝트 기본설정</summary>
+<summary>Chatbot 구현 시안 설명</summary>
 
 </details>
 
 ### ✔ 강사소개 구현 ✔
 <details>
 <summary>강사 소개 페이지 시연 영상</summary>
-![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/6475a08e-3202-48e0-be7a-7442c071ba0a)
+
+![강사 소개](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/82994cec-83e7-49eb-9329-b4cc5a03b7d4)
+
 
 </details>
 <details>
-<summary>강사 소개 페이지 시안</summary>
+<summary>강사 소개 페이지 시안 설명</summary>
 
 </details>
 
 ### ✔ INDEX 애니메이션 기능 구현 ✔
 <details>
-&nbsp;<summary>프로젝트 기본설정</summary>
+<summary>INDEX 애니메이션 기능 시연 영상</summary>
+
+https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ceed1a15-8386-4b9f-a65f-ee33ccff51f6
 
 </details>
 <details>
-&nbsp;<summary>프로젝트 기본설정</summary>
+&nbsp;<summary>INDEX 애니메이션 기능 시안 설명</summary>
 
 </details>
 
