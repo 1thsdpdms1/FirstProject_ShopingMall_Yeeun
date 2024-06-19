@@ -24,21 +24,21 @@
 <br>
 <br>
 
+## 🔎프로젝트 소개
+
 <details>
 <summary>프로젝트 기본설정</summary>
-
+- 2024/04/11~2024/05/10 
+- 원데이 클래스 강의판매 사이트
+- 팀장 1명, 팀원 4명 (총 5인) _팀원으로 참여
 <li> 프로젝트명 : E1i4TeamProject </li>
 <li> 프로그래밍 언어 : JAVA </li>
 <li> 프레임워크 : Springboot 2.7.11 </li>
 <li> 데이터베이스 : MySql8 </li>
 <li> 개발툴 : IntelliJ </li>
 <li> 템플릿 엔진 : Thymeleaf (HTML + css) </li>
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=1thsdpdms1&langs_count=8)](https://github.com/1thsdpdms1/github-readme-stats)
 
 </details>
-
-<br>
-<br>
 
 <details>
 <summary> 팀원소개</summary>
@@ -50,3 +50,20 @@
 - 👩‍🦰손예은(팀원) : 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능
 
 </details>
+<br>
+<br>
+
+## 🔎프로젝트 시안
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
+
+### ▶ 관리자 페이지 구현
+
+### ▶ Chatbot 구현
+
+### ▶ 강사소개 구현
+
+### ▶ INDEX 애니메이션 기능 구현
+
+
+## 🔎프로젝트 시안영상
+
