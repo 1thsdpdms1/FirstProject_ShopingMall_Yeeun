@@ -1,35 +1,52 @@
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=1thsdpdms1&langs_count=8)](https://github.com/1thsdpdms1/github-readme-stats)
-<div align=center>
-# E1I4TeamProject
-</div>
+
+# 🛍ShopingMall_E1I4TeamProject🛍
+
+<br>
+
+원데이 클래스 강의를 사고 팔수있는 강의 판매 사이트 입니다  
+
+선생님으로 가입시 강의를 등록 및 판매하고 
+일반회원으로 가입시 강의를 구매하고 
+관리자는 선생님 및 회원들을 관리하는 쇼핑몰 사이트!
+
+사용자 경험 중심의 웹사이트와
+지속적인 참여 및 관리를 목적으로 제작했습니다
+
+<br>
+
+
+## 📌 목차 
+
+- [프로젝트 기본설정](#-시연-영상)
+- [팀원 소개](#-팀원-소개)
+
+
+<br>
+<br>
 
 <details>
 <summary>프로젝트 기본설정</summary>
 
-
-프로젝트명 : E1i4TeamProject
-
-프로그래밍 언어 : JAVA
-
-프레임워크 : Springboot 2.7.11
-
-라이브러리 DI : Spring WEB(MVC), Thymeleaf, Spring Data JPA, Lombok, SpringSecurity5 
-               , websocket, validation, OAuth2, security  
-
-데이터베이스 : MySql8
-
-ORM : Spring Data JPA (JAVA(SQL))
-
-개발툴 : IntelliJ
-
-템플릿 엔진 : Thymeleaf (HTML + Data)
-
-빌드 : Gradle
-
-설정 : application.yml, application-oauth2.yml
+<li> 프로젝트명 : E1i4TeamProject </li>
+<li> 프로그래밍 언어 : JAVA </li>
+<li> 프레임워크 : Springboot 2.7.11 </li>
+<li> 데이터베이스 : MySql8 </li>
+<li> 개발툴 : IntelliJ </li>
+<li> 템플릿 엔진 : Thymeleaf (HTML + css) </li>
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=1thsdpdms1&langs_count=8)](https://github.com/1thsdpdms1/github-readme-stats)
 
 </details>
 
+<br>
+<br>
+
 <details>
-<summary> ## 팀원구성</summary>
+<summary> 팀원소개</summary>
+
+- 👱‍박**(팀장) : DB설계, 회원CRUD(개인정보), OAuth2, Security, 
+- 👱‍이**(팀원) : 상품목록, 상품상세, 장바구니(시간표), 구매, 구매리스트 
+- 👱‍심**(팀원) : 게시판 CRUD(커뮤니티, 공지사항, 수강후기), exception 
+- 👱‍조**(팀원) : INDEX 페이지 CSS ,1:1 문의내역, 덧글
+- 👩‍🦰손예은(팀원) : 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능
+
 </details>
