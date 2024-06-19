@@ -89,6 +89,28 @@
 </details>
 <details>
 <summary>Chatbot 구현 시안 설명</summary>
+  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/bfe05a9b-06fb-4f4e-aa0a-5131b68de1db)
+
+첫번쨰로 Spring Security의 타임리프 태그 라이브러리를 사용하여
+권한이 admin일때만 관리자페이지에 접속할수있도록 하였습니다 
+두번쨰로는 pageable ,subject, search를 매개변수로 받아와서 subject가 null이 아닌경우 subject에 따라 
+이름, 전화번호, 이메일로 검색이 가능하게 만들었으며
+회원조회와 선생님조회를 구분하기위해서는 권한과 subject 조건 두개를 and연산자를 이용하여
+ findByRoleAndNameContains 으로 회원이 member이면서 이름에 대해 검색가능하게 구현하였습니다
+또한 테이블에 너무 긴 글이 들어간 경우엔 말줄임 기능을 넣어보았습니다
+<br>
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0294769-b666-4aa5-a164-48422e7fca12)
+
+상품페이지는 param으로 subject1 subject2 seach pageable를 매겨변수를 불러와
+미술/체육/음악/요리 등 카테고리별로 선택후 수강명/수강내용을 검색할수있게 select를 두개 구성하였으며
+검색하고 페이지네이션된 결과를 반환하도록 하였습니다
+<br>
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b1c0eaa2-8553-4131-aa76-37b7adc45270)
+
+삭제는 다중선택삭제와 일반 삭제 가능하도록 했는데
+다중선택삭제는 javascript에 selectedIds"라는 이름을 가진 input 요소 중에 체크된 것들을 모두 선택하고
+가장 가까운 tr요소를 찾아 삭제하는 명령을 foreach함수를 써 반복하게 하여 선택삭제를 구현했으며
+회원을 삭제하기 전에 사용자에게 확인 메시지를 표시하고, if else문으로 사용자의 응답에 따라 삭제를 진행하게 했습니다
 
 </details>
 
