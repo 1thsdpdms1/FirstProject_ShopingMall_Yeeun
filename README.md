@@ -79,7 +79,7 @@
 
 <details>
 <summary>관리자 페이지 구현 시안 </summary>
-  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/7abbca76-164e-4e32-a147-e775a2a6486c"  width="700" height="400"/>
+  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/7abbca76-164e-4e32-a147-e775a2a6486c"  width="800" height="400"/>
 
 - Spring Security의 타임리프 태그 라이브러리를 사용하여 권한이 admin일때만 관리자페이지에 접속 가능
 - pageable ,subject, search를 매개변수로 받아와서 subject가 null이 아닌경우 subject에 따라 이름, 전화번호, 이메일로 검색이 가능
