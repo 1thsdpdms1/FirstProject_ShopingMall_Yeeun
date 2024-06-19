@@ -213,7 +213,7 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 </details>
 
 <details>
-<summary> 🔧기술스택 </summary>
+<summary> 기술스택 </summary>
   
 
 
@@ -254,7 +254,7 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 ![0index](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/860f5c63-8d3b-4f40-9463-10d9c2c67be6)
 
 
-### ✔ 로그인 페이지 구현 ✔
+### ✔ 1. 로그인 페이지 구현 ✔
 <details>
 <summary>로그인 페이지 구현 시연 영상</summary>
 
@@ -265,39 +265,68 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 <details>
 <summary>로그인 페이지 구현 시안 </summary>
+  
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/be6cd692-0bf4-4d4f-a77c-b4a98c5c544b" width="700" height="400"/>
+
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/5c1c70f6-6ba7-437d-9e1d-406e29c03b2f" width="700" height="400"/>
+
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/31f6aeb1-ab88-4cbd-9a7a-e1cccb5f8fe5" width="700" height="400"/>
  
+ 
+
 </details>
 
-### ✔ 회원등록 페이지 구현 ✔
+### ✔ 2. 회원등록 페이지 구현 ✔
 <details>
 <summary>회원등록 구현 시연 영상</summary>
 
 ![회원등록](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0fb066b-f951-44fc-ae44-57fa2ac0b4f7)
 
-![회원디테일](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/6e3c2d0d-9cd8-496f-9383-d3ee2a981f7c)
-
-  
 </details>
 
 <details>
 <summary>회원등록 구현 시안 </summary>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/0ab7a1f7-413d-4223-9bba-540187f8b6a3" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/a8d28892-f1bd-4ec6-b885-14106e56702d" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/952718cf-2e9c-468d-844c-c748e7652d92" width="700" height="400"/>
 
-
- 
 </details>
 
-### ✔ NAVER API 연동 구현 ✔
+### ✔ 3. 회원관리 페이지 구현 ✔
+<details>
+<summary>회원등록 구현 시연 영상</summary>
+
+![회원디테일](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/6e3c2d0d-9cd8-496f-9383-d3ee2a981f7c)
+
+</details>
+
+<details>
+<summary>회원등록 구현 시안 </summary>
+<img src="" width="700" height="400"/>
+![7회원관리 테이블캡처](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/65a17770-addd-41a4-9d60-75ac817e5bf6)
+![상세조회](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/3010afbe-2b53-43e1-9d3a-d8c3ebdf8f12)
+![수정캡처](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b883b030-df45-4a52-bd27-68d95083c450)
+
+
+</details>
+
+
+### ✔ 4. NAVER API 연동 구현 ✔
 <details>
 <summary> NAVER API 연동 시연 영상</summary>
 
-![네이버](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/238e136e-4607-428d-9845-95f92e516752)
+![네이버](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/96a948d0-07f1-4625-8088-f524f15b0065)
 
-
-  
 </details>
 
 <details>
 <summary> NAVER API 연동 시안 </summary>
- 
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/be052358-a031-490a-8b61-10930ba24942" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/2e1e1442-558d-4335-b5c9-a3922b37945c" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/548c880f-211b-4698-bda5-41e0c9904ed5" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/849ec12c-b34c-4f6d-8206-40a5813fdcc2" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/cdb9263e-9560-4150-9576-8fabba21b7bb" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/37645692-79d7-4979-83bf-99dc63a215fe" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/98eb68f9-994b-4c00-8cc0-13f391ffe24e" width="700" height="400"/>
 </details>
 
