@@ -69,32 +69,32 @@
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
 
 ### ▶ 관리자 페이지 구현 
-&nbsp; <details>
-&nbsp;<summary>관리자 페이지 구현 시안</summary>
+(　）<details>
+<summary>관리자 페이지 구현 시안</summary>
 
-</details>
+(　）</details>
 <details>
-&nbsp;<summary>관리자 페이지 구현 시안 영상</summary>
+<summary>관리자 페이지 구현 시안 영상</summary>
 
 </details>
 
 ### ▶ Chatbot 구현
 <details>
-&nbsp;<summary>프로젝트 기본설정</summary>
+<summary>프로젝트 기본설정</summary>
 
 </details>
 <details>
-&nbsp;<summary>프로젝트 기본설정</summary>
+<summary>프로젝트 기본설정</summary>
 
 </details>
 
 ### ▶ 강사소개 구현
 <details>
-&nbsp;<summary>프로젝트 기본설정</summary>
+<summary>프로젝트 기본설정</summary>
 
 </details>
 <details>
-&nbsp;<summary>프로젝트 기본설정</summary>
+<summary>프로젝트 기본설정</summary>
 
 </details>
 
