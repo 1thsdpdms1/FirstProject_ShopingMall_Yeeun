@@ -110,9 +110,8 @@
 </details>
 <details>
 <summary>Chatbot 구현 시안 설명</summary>
-
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f965e795-2b38-46f2-a864-cacde6a7cd71  width="200" height="400"/>
-
+  
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f965e795-2b38-46f2-a864-cacde6a7cd71.png" width="200" height="400"/>
 - websocket은 기존의 단방향 HTTP프로토콜과 호환되어 양방향 통신을 제공하기 위해 개발된 프로토콜
 - websocket 라이브러리를 주입하여 사용
 - configureMessageBroker() 메서드는 메시지 브로커를 설정하고 /app2가 붙으면 서버로 전송, /topic이 붙으면 클라이언트에게 메세지 보내도록 활성화
