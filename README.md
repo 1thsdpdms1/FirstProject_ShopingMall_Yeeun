@@ -251,7 +251,8 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 <br>
 ## ⭐프로젝트 시안
-![0index](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/860f5c63-8d3b-4f40-9463-10d9c2c67be6)
+
+![0index](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/db119b68-1233-4c54-aada-19e26998e761)
 
 
 ### ✔ 1. 로그인 페이지 구현 ✔
@@ -268,11 +269,20 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
   
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/be6cd692-0bf4-4d4f-a77c-b4a98c5c544b" width="700" height="400"/>
 
+- admin이 등록한 사원만 로그인이 가능하며 컨셉에 맞는 로고와 색상을 사용해 디자인
+- 로그인 실패 시에는 예외처리를 위한 스프링 시큐리티의 커스텀 인증실패 핸들러를 사용
+- 발생한 예외에 따라 적절한 메세지를 설정
+- 로그인 실패시 로그인창 하단에 예외문구를 띄워 처리
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/5c1c70f6-6ba7-437d-9e1d-406e29c03b2f" width="700" height="400"/>
 
+- 로그인시 자신의 정보가 잘 기억이 나지 않는다면 아이디 찾기와 비밀번호 찾기 가능
+- 아이디 찾기는 자신의 이름과 전화번호를 입력하게 하고 그 정보를 가지고 findUserEmailByNameAndPhone을 사용하여 이메일(즉 아이디)를 찾아 alert창에 나오도록 했으며
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/31f6aeb1-ab88-4cbd-9a7a-e1cccb5f8fe5" width="700" height="400"/>
- 
- 
+
+- 비밀번호 찾기는 이메일과 이름을 입력하게 하여 그 정보를 가지고 findUserPwByUserEmailAndName을 사용하여 그 회원을 찾고 새비밀번호로 변경하도록
+- 이 과정이 끝나고 로그인시도를 할수있도록 로그인페이지로 이동하게 설정
 
 </details>
 
@@ -286,9 +296,23 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 <details>
 <summary>회원등록 구현 시안 </summary>
+  
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/0ab7a1f7-413d-4223-9bba-540187f8b6a3" width="700" height="400"/>
+
+- admin권한으로 로그인시 회원 등록메뉴가 추가로 보여지며 회원을 등록시킬수있습니다
+- 페이지의 기능들을 소개하자면 이메일 유효성 검사 및 초기 비밀번호 설정,부서연동 ,카카오 주소 api사용, 전화번호 자동 하이픈 기능이 있습니다
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/a8d28892-f1bd-4ec6-b885-14106e56702d" width="700" height="400"/>
+
+- 이메일을 입력하고 버튼을 누르면초기 비밀번호로 사용될 6자리의숫자를 랜덤함수를 이용해 만들고 입력받은 메일주소를 매개변수로한 매서드가 실행
+- MimeMessageHelper는 이메일의 속성을 설정할수있는데 이때 수신자를 입력받은 메일주소로 설정, 내용에는 초기 비밀번호에 사용할 랜덤한 숫자를 포함한 메세지를 작성
+- 그외 발신자와 이메일의 제목을 설정
+- 발신이 완료되면 alert창과 함께 비밀번호 input창에 초기 비밀번호 값이 입력
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/952718cf-2e9c-468d-844c-c748e7652d92" width="700" height="400"/>
+
+- 주소입력시 카카오api를 사용하여 통일된 주소값을 가지도록 구현
+- 우편번호찾기버튼을 클릭시 카카오 주소검색창이 뜨고 우편번호와 주소값이 input창에 입력
+- 상세주소는 직접 입력할수있으며 위 주소와 상세주소를 합친 주소를 만들어 합친주소를 db에 저장
 
 </details>
 
@@ -302,12 +326,9 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 <details>
 <summary>회원등록 구현 시안 </summary>
-<img src="" width="700" height="400"/>
-![7회원관리 테이블캡처](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/65a17770-addd-41a4-9d60-75ac817e5bf6)
-![상세조회](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/3010afbe-2b53-43e1-9d3a-d8c3ebdf8f12)
-![수정캡처](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b883b030-df45-4a52-bd27-68d95083c450)
-
-
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/65a17770-addd-41a4-9d60-75ac817e5bf6" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/3010afbe-2b53-43e1-9d3a-d8c3ebdf8f12" width="700" height="400"/>
+<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b883b030-df45-4a52-bd27-68d95083c450" width="700" height="400"/>
 </details>
 
 
