@@ -68,27 +68,20 @@
 ## 🔎프로젝트 시안
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
 
-### ▶ 관리자 페이지 구현 
-　<details>
-　<summary>　관리자 페이지 구현 시안</summary>
-
-(　）</details>
+### ✔ 관리자 페이지 구현 ✔
 <details>
-<summary>관리자 페이지 구현 시안 영상</summary>
+<summary>　관리자 페이지 구현 시연 영상</summary>
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f0c6f4cd-ea44-4aac-9c72-cc77ef5165de)
+
+  
+</details>
+
+<details>
+<summary>관리자 페이지 구현 시안 </summary>
 
 </details>
 
-### ▶ Chatbot 구현
-<details>
-<summary>프로젝트 기본설정</summary>
-
-</details>
-<details>
-<summary>프로젝트 기본설정</summary>
-
-</details>
-
-### ▶ 강사소개 구현
+### ✔ Chatbot 구현 ✔
 <details>
 <summary>프로젝트 기본설정</summary>
 
@@ -98,7 +91,18 @@
 
 </details>
 
-### ▶ INDEX 애니메이션 기능 구현
+### ✔ 강사소개 구현 ✔
+<details>
+<summary>강사 소개 페이지 시연 영상</summary>
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/6475a08e-3202-48e0-be7a-7442c071ba0a)
+
+</details>
+<details>
+<summary>강사 소개 페이지 시안</summary>
+
+</details>
+
+### ✔ INDEX 애니메이션 기능 구현 ✔
 <details>
 &nbsp;<summary>프로젝트 기본설정</summary>
 
