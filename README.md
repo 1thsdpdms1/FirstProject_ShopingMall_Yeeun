@@ -3,10 +3,10 @@
 
 <br>
 
-원데이 클래스 강의를 사고 팔수있는 강의 판매 사이트 입니다  
+원데이 클래스 강의를 사고 팔수있는 강의 판매 사이트 입니다
 
-선생님으로 가입시 강의를 등록 및 판매하고 
-일반회원으로 가입시 강의를 구매하고 
+선생님으로 가입시 강의를 등록 및 판매하고
+일반회원으로 가입시 강의를 구매하고
 관리자는 선생님 및 회원들을 관리하는 쇼핑몰 사이트!
 
 사용자 경험 중심의 웹사이트와
@@ -15,10 +15,17 @@
 <br>
 
 
-## 📌 목차 
+## 📌 목차
 
 - [프로젝트 기본설정](#-시연-영상)
 - [팀원 소개](#-팀원-소개)
+
+* [🔎프로젝트 소개](#---------)
+  * [⭐프로젝트 시안](#--------)
+    + [✔ 관리자 페이지 구현 ✔](#--------------)
+    + [✔ Chatbot 구현 ✔](#--chatbot-----)
+    + [✔ 강사소개 구현 ✔](#-----------)
+    + [✔ INDEX 애니메이션 기능 구현 ✔](#--index--------------)
 
 
 <br>
@@ -42,9 +49,9 @@
 <details>
 <summary> 팀원소개</summary>
 
-- 👱‍박**(팀장) : DB설계, 회원CRUD(개인정보), OAuth2, Security, 
-- 👱‍이**(팀원) : 상품목록, 상품상세, 장바구니(시간표), 구매, 구매리스트 
-- 👱‍심**(팀원) : 게시판 CRUD(커뮤니티, 공지사항, 수강후기), exception 
+- 👱‍박**(팀장) : DB설계, 회원CRUD(개인정보), OAuth2, Security,
+- 👱‍이**(팀원) : 상품목록, 상품상세, 장바구니(시간표), 구매, 구매리스트
+- 👱‍심**(팀원) : 게시판 CRUD(커뮤니티, 공지사항, 수강후기), exception
 - 👱‍조**(팀원) : INDEX 페이지 CSS ,1:1 문의내역, 덧글
 - 👩‍🦰손예은(팀원) : 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능
 
@@ -52,14 +59,14 @@
 
 <details>
 <summary> 타임라인</summary>
-  
+
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/1f2aa490-1614-40bc-881b-c4dfe19611bc)
 
 </details>
 
 <details>
 <summary> DB설계 </summary>
-  
+
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/1f2aa490-1614-40bc-881b-c4dfe19611bc)
 
 </details>
@@ -72,9 +79,9 @@
 <details>
 <summary>관리자 페이지 구현 시연 영상</summary>
 
-  
+
 ![관리자 페이지 시안영상](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/e603ecf6-fcf9-4c7c-905c-581025a0a3d1)
-  
+
 </details>
 
 <details>
@@ -85,44 +92,44 @@
 - pageable ,subject, search를 매개변수로 받아와서 subject가 null이 아닌경우 subject에 따라 이름, 전화번호, 이메일로 검색이 가능
 - 회원조회와 선생님조회를 구분하기위해서는 권한과 subject 조건 두개를 and연산자를 이용하여 findByRoleAndNameContains 으로 회원이 member이면서 이름에 대해 검색가능하게 구현
 - 테이블에 너무 긴 글이 들어간 경우엔 말줄임 기능
-<br>
+  <br>
 
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/d0294769-b666-4aa5-a164-48422e7fca12"  width="700" height="400"/>
 
 - 상품페이지는 param으로 subject1 subject2 seach pageable를 매겨변수를 불러와 미술/체육/음악/요리 등 카테고리별로 선택후 수강명/수강내용을 검색할수있게 select를 두개 구성
 - 검색하고 페이지네이션된 결과를 반환
-<br>
+  <br>
 
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b1c0eaa2-8553-4131-aa76-37b7adc45270"  width="700" height="400"/>
 
 - 삭제는 다중선택삭제와 일반 삭제 가능
 - 다중선택삭제는 javascript에 selectedIds"라는 이름을 가진 input 요소 중에 체크된 것들을 모두 선택하고
-가장 가까운 tr요소를 찾아 삭제하는 명령을 foreach함수를 써 반복하게 하여 선택삭제를 구현
+  가장 가까운 tr요소를 찾아 삭제하는 명령을 foreach함수를 써 반복하게 하여 선택삭제를 구현
 - 회원을 삭제하기 전에 사용자에게 확인 메시지를 표시하고, if else문으로 사용자의 응답에 따라 삭제를 진행
 </details>
 
 ### ✔ Chatbot 구현 ✔
 <details>
 <summary>Chatbot 구현 시연 영상</summary>
-  
+
 ![chatBot](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/97b1952e-e28d-4b31-9215-7b600e8121bd)
 
 </details>
 <details>
 <summary>Chatbot 구현 시안 설명</summary>
-  
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f965e795-2b38-46f2-a864-cacde6a7cd71" width="700" height="400"/>
 
 - websocket은 기존의 단방향 HTTP프로토콜과 호환되어 양방향 통신을 제공하기 위해 개발된 프로토콜
 - websocket 라이브러리를 주입하여 사용
 - configureMessageBroker() 메서드는 메시지 브로커를 설정하고 /app2가 붙으면 서버로 전송, /topic이 붙으면 클라이언트에게 메세지 보내도록 활성화
-- registerStompEndpoints() 메서드로 클라이언트와 서버간의 웹소켓 연결을 활성화 
+- registerStompEndpoints() 메서드로 클라이언트와 서버간의 웹소켓 연결을 활성화
 
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ed233c53-4675-4464-9a30-bb7de21d5c1f"  width="700" height="400"/>
 
 - @MessageMapping() 주소로 메세지가 오면 해당 매서드가 구현되며 @Sendto() 주소로 클라이언트에게 전송
 - 처음 소켓연결시 연결이 성공하면  /app2/hello주소로 메세지를 보내 hello메서드를 실행시키도록 하여 기업소개, 상품소개를 선택할수있게 했으며 이는 topic/greetings주소로 클라이언트에게 전송
-- 
+-
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/8966f99d-6527-4f5e-839a-5ed18900a1a6"  width="700" height="400"/>
 
 - 기업소개 또는 상품소개 버튼을 클릭시 /app2/message주소로 메세지를 보내 message매서드를 실행시켜 그에대한 응답내용이 나오도록 함
@@ -138,7 +145,7 @@
 </details>
 <details>
 <summary>강사 소개 페이지 시안 설명</summary>
-  
+
   <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/2ee0c3d2-998b-4d8a-af70-9abe71c56efb"  width="700" height="400"/>
 
 - 강사 페이지는 모든 사용자가 선생님의 프로필을 볼수있도록 한 페이지
@@ -148,8 +155,8 @@
 
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ebb030a2-9ec1-4a21-b43c-f6ded3bfae18"  width="700" height="400"/>
 
-- 그리드를 선택하면 더 자세한 프로필을 볼수있는 디테일페이지가 나오고  프로필 하단에는 선생님이 등록한 상품인 강좌 list가 있으며 
-바로가기로 상품페이지로 이동할수있게 구성
+- 그리드를 선택하면 더 자세한 프로필을 볼수있는 디테일페이지가 나오고  프로필 하단에는 선생님이 등록한 상품인 강좌 list가 있으며
+  바로가기로 상품페이지로 이동할수있게 구성
 - 코드는 findbyid를 사용하여 id로 찾고 없으면 판매자가 존재하지 않는다는 예외를 뒀으며
 - id를 찾았다면 찾은 엔티티를 dto로 반환
 - admin권한이라면 목록으로 돌아가기버튼과 회원탈퇴버튼 두개가 보여 여기서도 삭제 진행이 가능
@@ -165,9 +172,9 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 </details>
 <details>
 &nbsp;<summary>INDEX 애니메이션 기능 시안 설명</summary>
-  
+
   <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/baff420b-f0c3-40e5-9a07-995d86c9e8d0"  width="700" height="400"/>
-  
+
 - for문을 통해 각이미지를 1000번 나열되게 하고 나열된 이미지에 leftMoveLoop라는 이름의 키프레임 애니메이션을 translateX()에 0을 넣어 위치를 고정시킴
 - 이후 -100%를 넣어  가로길이의 100%만큼 왼쪽으로 이동하게 정의한후 1500초 동안 계속해서 재생되며 수평으로 움직이게 설정
 </details>
@@ -182,16 +189,27 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 또한 권한에 따라 관여할수있는 부분 제한하였습니다
 
 사원, 부장, 대표이사 권한으로 나뉘어져있으며
-부서관리, 결제관리, 일정관리, 근태관리, 급여관리, 사원관리 등등 관리프로그램 
+부서관리, 결제관리, 일정관리, 근태관리, 급여관리, 사원관리 등등 관리프로그램
 
 영화API, 날씨 API, 버스API를 사용하여 사용자의 편의성을 높여보았습니다
 
 <br>
 
 
-## 📌 목차 
+## 📌 목차
 
 - [프로젝트 기본설정](#-시연-영상)
+# Paste Your Document In Here
+
+## And a table of contents
+
+will be generated
+
+## On the right
+
+side of this page.
+
+
 - [팀원 소개](#-팀원-소개)
 
 
@@ -214,7 +232,21 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 <details>
 <summary> 기술스택 </summary>
-  
+<img src="https://img.shields.io/badge/javaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot**&logoColor=white">
+<img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white">
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/amazonwebservices-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white">
+<img src="https://img.shields.io/badge/amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white">
+<img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
+<img src="https://img.shields.io/badge/amazonecs-FF9900?style=for-the-badge&logo=amazonecs&logoColor=white">
+<img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
 
 
 </details>
@@ -224,9 +256,9 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 - 👩‍🦰손예은(팀장) : CI/CD, DB설계, 로그인, naver(oauth, Mail, 조직연동), 사원관리
 - 👱‍서**(팀원) : 회사일정(캘린더), 게시판 관리(파일 덧글 공지사항)
-- 👱‍박**(팀원) : db설계, 근태관리, 급여관리, 항공편관리(map) 
-- 👱‍조**(팀원) : chatbot, 부서관리(부서등록) 
-- 👱‍정**(팀원) : chatbot, 부서관리(부서등록) 
+- 👱‍박**(팀원) : db설계, 근태관리, 급여관리, 항공편관리(map)
+- 👱‍조**(팀원) : chatbot, 부서관리(부서등록)
+- 👱‍정**(팀원) : chatbot, 부서관리(부서등록)
 
 
 </details>
@@ -235,14 +267,14 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 <details>
 <summary> 타임라인</summary>
 
-  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/c491040a-4bc0-43e9-9675-2a06484d6661)
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/c491040a-4bc0-43e9-9675-2a06484d6661)
 
 </details>
 
 <details>
 <summary> DB설계 </summary>
 
-  ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ea0ccc32-1659-4d5e-845d-26a46bcbff69)
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ea0ccc32-1659-4d5e-845d-26a46bcbff69)
 
 
 </details>
@@ -259,14 +291,14 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 <details>
 <summary>로그인 페이지 구현 시연 영상</summary>
 
-  ![로그인](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/3dd99fdb-f2d5-4347-b780-07eb49913627)
+![로그인](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/3dd99fdb-f2d5-4347-b780-07eb49913627)
 
-  
+
 </details>
 
 <details>
 <summary>로그인 페이지 구현 시안 </summary>
-  
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/be6cd692-0bf4-4d4f-a77c-b4a98c5c544b" width="700" height="400"/>
 
 - admin이 등록한 사원만 로그인이 가능하며 컨셉에 맞는 로고와 색상을 사용해 디자인
@@ -277,7 +309,8 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/5c1c70f6-6ba7-437d-9e1d-406e29c03b2f" width="700" height="400"/>
 
 - 로그인시 자신의 정보가 잘 기억이 나지 않는다면 아이디 찾기와 비밀번호 찾기 가능
-- 아이디 찾기는 자신의 이름과 전화번호를 입력하게 하고 그 정보를 가지고 findUserEmailByNameAndPhone을 사용하여 이메일(즉 아이디)를 찾아 alert창에 나오도록 했으며
+- 아이디 찾기는 자신의 이름과 전화번호를 입력하게 하고 그 정보를 가지고 findUserEmailByNameAndPhone을 사용하여 이메일(즉 아이디)를 찾아
+alert창에 나오도록 함
 
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/31f6aeb1-ab88-4cbd-9a7a-e1cccb5f8fe5" width="700" height="400"/>
 
@@ -296,7 +329,7 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 
 <details>
 <summary>회원등록 구현 시안 </summary>
-  
+
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/0ab7a1f7-413d-4223-9bba-540187f8b6a3" width="700" height="400"/>
 
 - admin권한으로 로그인시 회원 등록메뉴가 추가로 보여지며 회원을 등록시킬수있습니다
@@ -308,7 +341,7 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 - MimeMessageHelper는 이메일의 속성을 설정할수있는데 이때 수신자를 입력받은 메일주소로 설정, 내용에는 초기 비밀번호에 사용할 랜덤한 숫자를 포함한 메세지를 작성
 - 그외 발신자와 이메일의 제목을 설정
 - 발신이 완료되면 alert창과 함께 비밀번호 input창에 초기 비밀번호 값이 입력
-<img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/952718cf-2e9c-468d-844c-c748e7652d92" width="700" height="400"/>
+  <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/952718cf-2e9c-468d-844c-c748e7652d92" width="700" height="400"/>
 
 - 주소입력시 카카오api를 사용하여 통일된 주소값을 가지도록 구현
 - 우편번호찾기버튼을 클릭시 카카오 주소검색창이 뜨고 우편번호와 주소값이 input창에 입력
