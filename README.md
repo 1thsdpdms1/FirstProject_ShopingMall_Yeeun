@@ -2,14 +2,14 @@
 # 🛍ShopingMall_E1I4TeamProject🛍
 
 <br>
+원데이 클래스 강의를 사고 팔수있는 <span style="background-color: #F7BE81; color:black">강의판매사이트</span>입니다.
 
-원데이 클래스 강의를 사고 팔수있는 강의 판매 사이트 입니다
 
-선생님으로 가입시 강의를 등록 및 판매하고
-일반회원으로 가입시 강의를 구매하고
-관리자는 선생님 및 회원들을 관리하는 쇼핑몰 사이트!
+선생님으로 가입시 강의를 등록 및 판매하고 <br>
+일반회원으로 가입시 강의를 구매하고<br>
+관리자는 선생님 및 회원들을 관리하는 쇼핑몰 사이트!<br>
 
-사용자 경험 중심의 웹사이트와
+사용자 경험 중심의 웹사이트와 <br>
 지속적인 참여 및 관리를 목적으로 제작했습니다
 
 <br>
@@ -76,6 +76,7 @@
 
 ## ⭐프로젝트 시안
 ![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/781bfb06-6b04-43fc-b049-08595f52e7a7)
+<br>
 
 ### ✔ 관리자 페이지 구현 ✔
 <details>
@@ -109,6 +110,8 @@
   가장 가까운 tr요소를 찾아 삭제하는 명령을 foreach함수를 써 반복하게 하여 선택삭제를 구현
 - 회원을 삭제하기 전에 사용자에게 확인 메시지를 표시하고, if else문으로 사용자의 응답에 따라 삭제를 진행
 </details>
+<br>
+<br>
 
 ### ✔ Chatbot 구현 ✔
 <details>
@@ -137,6 +140,8 @@
 - 기업소개 또는 상품소개 버튼을 클릭시 /app2/message주소로 메세지를 보내 message매서드를 실행시켜 그에대한 응답내용이 나오도록 함
 
 </details>
+<br>
+<br>
 
 ### ✔ 강사소개 구현 ✔
 <details>
@@ -164,6 +169,8 @@
 - admin권한이라면 목록으로 돌아가기버튼과 회원탈퇴버튼 두개가 보여 여기서도 삭제 진행이 가능
 
 </details>
+<br>
+<br>
 
 ### ✔ INDEX 애니메이션 기능 구현 ✔
 <details>
@@ -186,16 +193,14 @@ https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ce
 # ✈AdminPage_GroupAirTeamProject✈
 
 <br>
-항공사 관리자 페이지로
-이해하기 쉬운 UI와 부서 간의 의사소통이 원할하도록한 커뮤니티
+GroupAir 항공사 관리자 페이지로 <br>
+이해하기 쉬운 UI와 부서 간의 의사소통이 원할하도록한 커뮤니티<br>
 또한 권한에 따라 관여할수있는 부분 제한하였습니다
 
-사원, 부장, 대표이사 권한으로 나뉘어져있으며
+사원, 부장, 대표이사 권한으로 나뉘어져있으며 <br>
 부서관리, 결제관리, 일정관리, 근태관리, 급여관리, 사원관리 등등 관리프로그램
 
-영화API, 날씨 API, 버스API를 사용하여 사용자의 편의성을 높여보았습니다
-
-<br>
+영화API, 날씨 API, 버스API를 사용하여 사용자의 편의성도 높여보았습니다
 
 
 ## 📌 목차
@@ -316,6 +321,8 @@ alert창에 나오도록 함
 - 이 과정이 끝나고 로그인시도를 할수있도록 로그인페이지로 이동하게 설정
 
 </details>
+<br>
+<br>
 
 ### ✔ 2. 회원등록 페이지 구현 ✔
 <details>
@@ -346,6 +353,8 @@ alert창에 나오도록 함
 - 상세주소는 직접 입력할수있으며 위 주소와 상세주소를 합친 주소를 만들어 합친주소를 db에 저장
 
 </details>
+<br>
+<br>
 
 ### ✔ 3. 회원관리 페이지 구현 ✔
 <details>
@@ -362,6 +371,8 @@ alert창에 나오도록 함
 <img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/b883b030-df45-4a52-bd27-68d95083c450" width="700" height="400"/>
 </details>
 
+<br>
+<br>
 
 ### ✔ 4. NAVER API 연동 구현 ✔
 <details>
