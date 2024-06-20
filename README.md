@@ -62,11 +62,11 @@
 </tr>
 <tr>
 
-<td>DB설계, 회원CRUD(개인정보), OAuth2, Security </td>
-<td> 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능 </td>
-<td> 상품목록, 상품상세, 장바구니(시간표), 구매, 구매리스트 </td>
-<td> 게시판 CRUD(커뮤니티, 공지사항, 수강후기), exception </td>
-<td> INDEX 페이지 CSS ,1:1 문의내역, 덧글</td>
+<td>DB설계, 회원CRUD(개인정보), <br>OAuth2, Security </td>
+<td> 관리자페이지<br>, Chatbot, <br>강사소개 페이지, <br>INDEX 애니메이션 기능 </td>
+<td> 상품목록, 상품상세,<br> 장바구니(시간표), 구매, <br>구매리스트 </td>
+<td> 게시판 CRUD,<br> exception </td>
+<td> INDEX 페이지 CSS ,<br>1:1 문의내역, 덧글</td>
 </tr>
   </tbody>
 </table>
@@ -284,10 +284,10 @@ GroupAir 항공사 관리자 페이지로 <br>
 </tr>
 <tr>
 
-<td>CI/CD, DB설계, 로그인, naver(oauth, Mail, 조직연동), 사원관리</td>
-<td> 회사일정(캘린더), 게시판 관리(파일 덧글 공지사항) </td>
-<td> db설계, 근태관리, 급여관리, 항공편관리(map) </td>
-<td> chatbot, 부서관리(부서등록) </td>
+<td>CI/CD, DB설계, <br>로그인, <br>naver(oauth, Mail, 조직연동),<br> 사원관리</td>
+<td> 회사일정, 게시판 관리 </td>
+<td> db설계, 근태관리, <br>급여관리, 항공편관리(map) </td>
+<td> chatbot, 부서관리 </td>
 <td> 결재관리</td>
 </tr>
   </tbody>
