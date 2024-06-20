@@ -51,11 +51,27 @@
 <details>
 <summary> 팀원소개</summary>
 
-- 👱‍박**(팀장) : DB설계, 회원CRUD(개인정보), OAuth2, Security,
-- 👱‍이**(팀원) : 상품목록, 상품상세, 장바구니(시간표), 구매, 구매리스트
-- 👱‍심**(팀원) : 게시판 CRUD(커뮤니티, 공지사항, 수강후기), exception
-- 👱‍조**(팀원) : INDEX 페이지 CSS ,1:1 문의내역, 덧글
-- 👩‍🦰손예은(팀원) : 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능
+<table>
+  <tbody>
+    <tr>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/a92bfe84-63f4-45b1-800c-4fc5c8512513" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 박**</b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/e4f3a019-1688-4879-bf23-9e791e3b56a5" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 손예은</b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ea52beb1-8420-4f6b-9028-ff0f247dc895" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 이** </b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/becb61fa-7a36-43fc-a00c-aa20be5ec767" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 심 **</b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/c690bc9c-0d05-4067-a3d6-5ece66b61620" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 조** </b></sub></a><br /></th>
+</tr>
+<tr>
+
+<td>DB설계, 회원CRUD(개인정보), OAuth2, Security </td>
+<td> 관리자페이지, Chatbot, 강사소개 페이지, INDEX 애니메이션 기능 </td>
+<td> 상품목록, 상품상세, 장바구니(시간표), 구매, 구매리스트 </td>
+<td> 게시판 CRUD(커뮤니티, 공지사항, 수강후기), exception </td>
+<td> INDEX 페이지 CSS ,1:1 문의내역, 덧글</td>
+</tr>
+  </tbody>
+</table>
+
+
 
 </details>
 
@@ -257,11 +273,25 @@ GroupAir 항공사 관리자 페이지로 <br>
 <details>
 <summary> 팀원소개</summary>
 
-- 👩‍🦰손예은(팀장) : CI/CD, DB설계, 로그인, naver(oauth, Mail, 조직연동), 사원관리
-- 👱‍서**(팀원) : 회사일정(캘린더), 게시판 관리(파일 덧글 공지사항)
-- 👱‍박**(팀원) : db설계, 근태관리, 급여관리, 항공편관리(map)
-- 👱‍조**(팀원) : chatbot, 부서관리(부서등록)
-- 👱‍정**(팀원) : chatbot, 부서관리(부서등록)
+<table>
+  <tbody>
+    <tr>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/e4f3a019-1688-4879-bf23-9e791e3b56a5" width="100px;" alt=""/><br /><sub><b>FE 팀장 : 손예은</b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/a92bfe84-63f4-45b1-800c-4fc5c8512513" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 박**</b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/ea52beb1-8420-4f6b-9028-ff0f247dc895" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 이** </b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/becb61fa-7a36-43fc-a00c-aa20be5ec767" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 심 **</b></sub></a><br /></th>
+      <th align="center"><a href=""><img src="https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/c690bc9c-0d05-4067-a3d6-5ece66b61620" width="100px;" alt=""/><br /><sub><b>FE 팀원 : 조** </b></sub></a><br /></th>
+</tr>
+<tr>
+
+<td>CI/CD, DB설계, 로그인, naver(oauth, Mail, 조직연동), 사원관리</td>
+<td> 회사일정(캘린더), 게시판 관리(파일 덧글 공지사항) </td>
+<td> db설계, 근태관리, 급여관리, 항공편관리(map) </td>
+<td> chatbot, 부서관리(부서등록) </td>
+<td> 결재관리</td>
+</tr>
+  </tbody>
+</table>
 
 
 </details>
