@@ -36,15 +36,17 @@
 
 <details>
 <summary>프로젝트 기본설정</summary>
-<li> 2024/04/11~2024/05/10  </li>
-<li> 원데이 클래스 강의판매 사이트 </li>
-<li> 팀장 1명, 팀원 4명 (총 5인) _팀원으로 참여 </li>
-<li> 프로젝트명 : E1i4TeamProject </li>
-<li> 프로그래밍 언어 : JAVA </li>
-<li> 프레임워크 : Springboot 2.7.11 </li>
-<li> 데이터베이스 : MySql8 </li>
-<li> 개발툴 : IntelliJ </li>
-<li> 템플릿 엔진 : Thymeleaf (HTML + css) </li>
+
+|제목|내용|
+|------|---|
+|일정|2024/04/11~2024/05/10|
+|주제|원데이 클래스 강의판매 사이트|
+|프로젝트명| E1i4 TeamProject|
+|프로그래밍 언어|JAVA|
+|프레임워크|Springboot 2.7.11|
+|데이터베이스|MySql8|
+|개발툴| IntelliJ|
+|템플릿 엔진|Thymeleaf (HTML + css)|
 
 </details>
 
