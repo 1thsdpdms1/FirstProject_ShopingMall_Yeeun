@@ -87,7 +87,7 @@
 <details>
 <summary> DB설계 </summary>
 
-![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/1f2aa490-1614-40bc-881b-c4dfe19611bc)
+![image](https://github.com/1thsdpdms1/FirstProject_ShopingMall_Yeeun/assets/154856610/f994dcb6-2c21-4ad8-a9f2-354c5b148f88)
 
 </details>
 <br>
